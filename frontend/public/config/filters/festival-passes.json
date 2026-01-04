@@ -1,0 +1,35 @@
+{
+  "config_key": "festival-passes",
+  "category_key": "entertainment",
+  "title": "Festival Passes",
+  "description": "Multi-day lineups and perks.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "events_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "event_type": "festival"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 2000 },
+    { "key": "date", "label": "Date", "type": "date" },
+    { "key": "camping", "label": "Camping", "type": "select", "options": ["yes", "no"] },
+    { "key": "lineup_rating", "label": "Lineup", "type": "select", "options": ["high", "medium", "emerging"] }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "date"] },
+    { "title": "Details", "filters": ["camping", "lineup_rating"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "lineup", "label": "Lineup" },
+    { "key": "camping", "label": "Camping" },
+    { "key": "date", "label": "Date" }
+  ],
+  "display": { "currency": "USD", "unit": "pass" }
+}

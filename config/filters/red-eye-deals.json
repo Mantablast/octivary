@@ -1,0 +1,35 @@
+{
+  "config_key": "red-eye-deals",
+  "category_key": "flights",
+  "title": "Red-Eye Deals",
+  "description": "Overnight flights with savings.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "flights_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "time_of_day": "red-eye"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 1200 },
+    { "key": "stops", "label": "Stops", "type": "select", "options": ["nonstop", "1", "2+"] },
+    { "key": "depart_time", "label": "Depart Time", "type": "select", "options": ["after 8pm", "after 10pm"] },
+    { "key": "airline", "label": "Airline", "type": "text" }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "stops"] },
+    { "title": "Details", "filters": ["depart_time", "airline"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "stops", "label": "Fewer stops" },
+    { "key": "airline", "label": "Airline" },
+    { "key": "duration", "label": "Shorter duration" }
+  ],
+  "display": { "currency": "USD", "unit": "flight" }
+}

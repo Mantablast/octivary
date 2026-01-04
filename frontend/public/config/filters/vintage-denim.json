@@ -1,0 +1,36 @@
+{
+  "config_key": "vintage-denim",
+  "category_key": "clothing",
+  "title": "Vintage Denim",
+  "description": "Curated denim drops and washes.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "apparel_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "style": "denim",
+    "collection": "vintage"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 800 },
+    { "key": "size", "label": "Size", "type": "select", "options": ["xs", "s", "m", "l", "xl"] },
+    { "key": "wash", "label": "Wash", "type": "select", "options": ["light", "medium", "dark", "black"] },
+    { "key": "condition", "label": "Condition", "type": "select", "options": ["new", "used"] }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "size"] },
+    { "title": "Details", "filters": ["wash", "condition"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "condition", "label": "Condition" },
+    { "key": "fit", "label": "Fit" },
+    { "key": "brand", "label": "Brand" }
+  ],
+  "display": { "currency": "USD", "unit": "item" }
+}

@@ -1,0 +1,36 @@
+{
+  "config_key": "luxury-watches",
+  "category_key": "wearable-accessories",
+  "title": "Luxury Watches",
+  "description": "Heritage timepieces and icons.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "accessories_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "item_type": "watch",
+    "tier": "luxury"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 50000 },
+    { "key": "brand", "label": "Brand", "type": "text" },
+    { "key": "case_material", "label": "Case Material", "type": "select", "options": ["steel", "gold", "titanium", "ceramic"] },
+    { "key": "condition", "label": "Condition", "type": "select", "options": ["new", "used", "vintage"] }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "brand"] },
+    { "title": "Details", "filters": ["case_material", "condition"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "condition", "label": "Condition" },
+    { "key": "brand", "label": "Brand" },
+    { "key": "resale", "label": "Resale value" }
+  ],
+  "display": { "currency": "USD", "unit": "watch" }
+}

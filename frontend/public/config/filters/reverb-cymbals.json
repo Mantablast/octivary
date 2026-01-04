@@ -1,0 +1,36 @@
+{
+  "config_key": "reverb-cymbals",
+  "category_key": "musical-instruments",
+  "title": "Reverb Cymbals",
+  "description": "Crash, ride, and hi-hat cymbals from Reverb.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "reverb_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "instrument_type": "cymbal",
+    "marketplace": "reverb"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 1500 },
+    { "key": "condition", "label": "Condition", "type": "select", "options": ["new", "used"] },
+    { "key": "cymbal_type", "label": "Cymbal Type", "type": "select", "options": ["crash", "ride", "hi-hat", "china", "splash"] },
+    { "key": "diameter", "label": "Diameter", "type": "select", "options": ["13", "14", "16", "18", "20", "22+"] }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "condition"] },
+    { "title": "Details", "filters": ["cymbal_type", "diameter"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "condition", "label": "Condition" },
+    { "key": "brand", "label": "Brand" },
+    { "key": "tone", "label": "Tone" }
+  ],
+  "display": { "currency": "USD", "unit": "cymbal" }
+}

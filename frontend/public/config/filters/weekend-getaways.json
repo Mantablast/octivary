@@ -1,0 +1,35 @@
+{
+  "config_key": "weekend-getaways",
+  "category_key": "flights",
+  "title": "Weekend Getaways",
+  "description": "Quick trips with flexible timing.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "flights_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "trip_type": "weekend"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 1200 },
+    { "key": "stops", "label": "Stops", "type": "select", "options": ["nonstop", "1", "2+"] },
+    { "key": "depart_airport", "label": "Departing Airport", "type": "text" },
+    { "key": "return_day", "label": "Return Day", "type": "select", "options": ["sun", "mon", "tue"] }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "stops"] },
+    { "title": "Details", "filters": ["depart_airport", "return_day"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "duration", "label": "Shorter duration" },
+    { "key": "stops", "label": "Fewer stops" },
+    { "key": "timing", "label": "Timing" }
+  ],
+  "display": { "currency": "USD", "unit": "flight" }
+}

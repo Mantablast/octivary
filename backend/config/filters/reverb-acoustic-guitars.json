@@ -1,0 +1,36 @@
+{
+  "config_key": "reverb-acoustic-guitars",
+  "category_key": "musical-instruments",
+  "title": "Reverb Acoustic Guitars",
+  "description": "Acoustic guitars curated from Reverb.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "reverb_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "instrument_type": "acoustic_guitar",
+    "marketplace": "reverb"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 5000 },
+    { "key": "condition", "label": "Condition", "type": "select", "options": ["new", "used", "refurbished"] },
+    { "key": "body_style", "label": "Body Style", "type": "select", "options": ["dreadnought", "concert", "parlor", "jumbo"] },
+    { "key": "brand", "label": "Brand", "type": "text" }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "condition"] },
+    { "title": "Details", "filters": ["body_style", "brand"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "condition", "label": "Condition" },
+    { "key": "brand", "label": "Brand reputation" },
+    { "key": "tone", "label": "Tone quality" }
+  ],
+  "display": { "currency": "USD", "unit": "guitar" }
+}

@@ -1,0 +1,36 @@
+{
+  "config_key": "everyday-bags",
+  "category_key": "wearable-accessories",
+  "title": "Everyday Bags",
+  "description": "Totes, packs, and commuters.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "accessories_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "item_type": "bag",
+    "use_case": "everyday"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 2000 },
+    { "key": "material", "label": "Material", "type": "select", "options": ["leather", "nylon", "canvas", "vegan"] },
+    { "key": "size", "label": "Size", "type": "select", "options": ["small", "medium", "large"] },
+    { "key": "condition", "label": "Condition", "type": "select", "options": ["new", "used"] }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "size"] },
+    { "title": "Details", "filters": ["material", "condition"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "material", "label": "Material" },
+    { "key": "capacity", "label": "Capacity" },
+    { "key": "condition", "label": "Condition" }
+  ],
+  "display": { "currency": "USD", "unit": "bag" }
+}

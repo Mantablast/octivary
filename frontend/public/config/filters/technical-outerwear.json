@@ -1,0 +1,36 @@
+{
+  "config_key": "technical-outerwear",
+  "category_key": "clothing",
+  "title": "Technical Outerwear",
+  "description": "Weather-ready layers and shells.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "apparel_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "style": "outerwear",
+    "collection": "technical"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 1200 },
+    { "key": "size", "label": "Size", "type": "select", "options": ["xs", "s", "m", "l", "xl"] },
+    { "key": "insulation", "label": "Insulation", "type": "select", "options": ["shell", "insulated", "down"] },
+    { "key": "waterproof", "label": "Waterproof", "type": "select", "options": ["yes", "no"] }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "size"] },
+    { "title": "Performance", "filters": ["insulation", "waterproof"] }
+  ],
+  "priorities": [
+    { "key": "waterproof", "label": "Water protection" },
+    { "key": "warmth", "label": "Warmth" },
+    { "key": "price", "label": "Affordability" },
+    { "key": "brand", "label": "Brand" }
+  ],
+  "display": { "currency": "USD", "unit": "jacket" }
+}

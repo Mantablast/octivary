@@ -1,0 +1,35 @@
+{
+  "config_key": "concert-tickets",
+  "category_key": "entertainment",
+  "title": "Concert Tickets",
+  "description": "Live music and tours.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "events_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "event_type": "concert"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 800 },
+    { "key": "date", "label": "Date", "type": "date" },
+    { "key": "city", "label": "City", "type": "text" },
+    { "key": "genre", "label": "Genre", "type": "select", "options": ["pop", "rock", "hip-hop", "electronic", "classical"] }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "date"] },
+    { "title": "Details", "filters": ["city", "genre"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "location", "label": "Location" },
+    { "key": "date", "label": "Date" },
+    { "key": "seat_quality", "label": "Seat quality" }
+  ],
+  "display": { "currency": "USD", "unit": "ticket" }
+}

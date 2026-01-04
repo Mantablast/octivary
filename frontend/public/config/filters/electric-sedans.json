@@ -1,0 +1,37 @@
+{
+  "config_key": "electric-sedans",
+  "category_key": "vehicles",
+  "title": "Electric Sedans",
+  "description": "Range-forward daily drivers.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "auto_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "body_style": "sedan",
+    "powertrain": "electric"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 100000 },
+    { "key": "range", "label": "Range (mi)", "type": "range", "min": 100, "max": 450 },
+    { "key": "year", "label": "Year", "type": "range", "min": 2012, "max": 2024 },
+    { "key": "mileage", "label": "Mileage", "type": "range", "min": 0, "max": 150000 }
+  ],
+  "sections": [
+    { "title": "Budget", "filters": ["price"] },
+    { "title": "Range", "filters": ["range"] },
+    { "title": "History", "filters": ["year", "mileage"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "range", "label": "Range" },
+    { "key": "mileage", "label": "Low mileage" },
+    { "key": "reliability", "label": "Reliability" }
+  ],
+  "display": { "currency": "USD", "unit": "vehicle" }
+}
