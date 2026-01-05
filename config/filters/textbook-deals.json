@@ -1,0 +1,35 @@
+{
+  "config_key": "textbook-deals",
+  "category_key": "books",
+  "title": "Textbook Deals",
+  "description": "Affordable course essentials.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "books_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "collection": "textbooks"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 500 },
+    { "key": "format", "label": "Format", "type": "select", "options": ["hardcover", "paperback", "ebook"] },
+    { "key": "condition", "label": "Condition", "type": "select", "options": ["new", "used", "rental"] },
+    { "key": "isbn", "label": "ISBN", "type": "text" }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "format"] },
+    { "title": "Details", "filters": ["condition", "isbn"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "condition", "label": "Condition" },
+    { "key": "format", "label": "Format" },
+    { "key": "delivery", "label": "Delivery speed" }
+  ],
+  "display": { "currency": "USD", "unit": "book" }
+}

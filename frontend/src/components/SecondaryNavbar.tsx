@@ -1,13 +1,66 @@
+import { useEffect, useRef } from 'react';
+import type { SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { categories } from '../data/categories';
 
 export default function SecondaryNavbar() {
+  const navRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (!navRef.current) return;
+      if (navRef.current.contains(event.target as Node)) return;
+      navRef.current.querySelectorAll('details[open]').forEach((detail) => {
+        detail.removeAttribute('open');
+      });
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      if (!navRef.current) return;
+      navRef.current.querySelectorAll('details[open]').forEach((detail) => {
+        detail.removeAttribute('open');
+      });
+    };
+
+    document.addEventListener('click', handleClick);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const handleToggle = (event: SyntheticEvent<HTMLDetailsElement>) => {
+    const toggled = event.target instanceof HTMLDetailsElement
+      ? event.target
+      : event.currentTarget;
+
+    if (!toggled.open) {
+      toggled.querySelectorAll('details[open]').forEach((child) => {
+        child.removeAttribute('open');
+      });
+      return;
+    }
+
+    document.querySelectorAll('details[open]').forEach((openDetail) => {
+      if (openDetail === toggled) return;
+      if (openDetail.contains(toggled)) return;
+      if (toggled.contains(openDetail)) return;
+      openDetail.querySelectorAll('details[open]').forEach((child) => {
+        child.removeAttribute('open');
+      });
+      openDetail.removeAttribute('open');
+    });
+  };
+
   return (
-    <div className="secondary-nav">
+    <div className="secondary-nav" ref={navRef}>
       <div className="secondary-title">Categories</div>
       <div className="category-dropdowns">
         {categories.map((category) => (
-          <details key={category.key} className="category-dropdown">
+          <details key={category.key} className="category-dropdown" onToggle={handleToggle}>
             <summary>{category.label}</summary>
             <div className="dropdown-panel">
               <p>{category.description}</p>
@@ -19,7 +72,6 @@ export default function SecondaryNavbar() {
                     className="dropdown-item"
                   >
                     <strong>{config.label}</strong>
-                    <span className="muted">{config.description}</span>
                   </Link>
                 ))}
               </div>

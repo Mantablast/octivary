@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { categories } from '../data/categories';
 
 export default function Home() {
   return (
@@ -27,22 +26,100 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="section">
-        <h2>Popular filters</h2>
-        <div className="tile-grid">
-          {categories.map((category) => (
-            <div key={category.key} className="tile">
-              <h3>{category.label}</h3>
-              <p>{category.description}</p>
-              <div className="tile-links">
-                {category.filterConfigs.map((config) => (
-                  <Link key={config.key} to={`/filters/${config.key}`} className="tile-link">
-                    {config.label}
-                  </Link>
-                ))}
+      <div className="section weekly-feature">
+        <div className="section-header">
+          <div>
+            <p className="eyebrow">Weekly feature</p>
+            <h2>Reverb Acoustic Guitars</h2>
+            <p className="lead">
+              A rotating spotlight on a single filter preset. We will swap this weekly as new
+              provider integrations launch.
+            </p>
+          </div>
+          <Link className="ghost-link" to="/filters/reverb-acoustic-guitars">
+            Open full filter
+          </Link>
+        </div>
+
+        <div className="weekly-grid">
+          <aside className="card weekly-sidebar">
+            <h3>Filter snapshot</h3>
+            <div className="filter-snapshot">
+              <div>
+                <span>Marketplace</span>
+                <strong>Reverb</strong>
+              </div>
+              <div>
+                <span>Price</span>
+                <strong>$400 - $1,500</strong>
+              </div>
+              <div>
+                <span>Body style</span>
+                <strong>Dreadnought</strong>
+              </div>
+              <div>
+                <span>Condition</span>
+                <strong>Used</strong>
               </div>
             </div>
-          ))}
+            <div className="priority-mini">
+              <span>Priority mix</span>
+              <div className="mini-bars">
+                <div className="mini-bar" style={{ width: '78%' }} />
+                <div className="mini-bar" style={{ width: '55%' }} />
+                <div className="mini-bar" style={{ width: '42%' }} />
+              </div>
+            </div>
+          </aside>
+
+          <div className="card weekly-listings">
+            <h3>Listings (Top picks)</h3>
+            <div className="listing-grid">
+              <div className="listing-row">
+                <div className="listing-meta">
+                  <strong>Martin D-15M</strong>
+                  <span className="muted">Score 91 · Warm tone</span>
+                </div>
+                <span className="price">$1,199</span>
+              </div>
+              <div className="listing-row">
+                <div className="listing-meta">
+                  <strong>Taylor 214ce</strong>
+                  <span className="muted">Score 88 · Balanced</span>
+                </div>
+                <span className="price">$999</span>
+              </div>
+              <div className="listing-row">
+                <div className="listing-meta">
+                  <strong>Gibson J-45</strong>
+                  <span className="muted">Score 84 · Iconic</span>
+                </div>
+                <span className="price">$1,450</span>
+              </div>
+            </div>
+          </div>
+
+          <aside className="card weekly-insights">
+            <h3>Your insights</h3>
+            <div className="insight-list">
+              <div className="insight-row">
+                <strong>12</strong>
+                <span>Saved searches</span>
+              </div>
+              <div className="insight-row">
+                <strong>5</strong>
+                <span>High priority picks</span>
+              </div>
+              <div className="insight-row">
+                <strong>3</strong>
+                <span>Search tools used</span>
+              </div>
+            </div>
+            <div className="insight-cta">
+              <p className="muted">Sign up to save weekly insights and get alerts.</p>
+              <Link className="cta" to="/account">Sign up</Link>
+            </div>
+          </aside>
         </div>
       </div>
     </section>

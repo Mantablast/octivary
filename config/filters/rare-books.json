@@ -1,0 +1,35 @@
+{
+  "config_key": "rare-books",
+  "category_key": "books",
+  "title": "Rare Books",
+  "description": "First editions and collector finds.",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "books_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "collection": "rare"
+  },
+  "filters": [
+    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 10000 },
+    { "key": "edition", "label": "Edition", "type": "select", "options": ["first", "limited", "signed"] },
+    { "key": "condition", "label": "Condition", "type": "select", "options": ["fine", "very good", "good", "fair"] },
+    { "key": "author", "label": "Author", "type": "text" }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "edition"] },
+    { "title": "Details", "filters": ["condition", "author"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Affordability" },
+    { "key": "condition", "label": "Condition" },
+    { "key": "edition", "label": "Edition" },
+    { "key": "rarity", "label": "Rarity" }
+  ],
+  "display": { "currency": "USD", "unit": "book" }
+}

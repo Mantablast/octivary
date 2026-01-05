@@ -2,6 +2,23 @@ import type { Category } from '../types';
 
 export const categories: Category[] = [
   {
+    key: 'books',
+    label: 'Books',
+    description: 'New releases, used, and rare finds.',
+    filterConfigs: [
+      {
+        key: 'rare-books',
+        label: 'Rare Books',
+        description: 'First editions and collector finds.'
+      },
+      {
+        key: 'textbook-deals',
+        label: 'Textbook Deals',
+        description: 'Affordable course essentials.'
+      }
+    ]
+  },
+  {
     key: 'musical-instruments',
     label: 'Musical Instruments',
     description: 'Guitars, keys, drums, and more.',
