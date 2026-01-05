@@ -2,7 +2,7 @@
   "config_key": "reverb-acoustic-guitars",
   "category_key": "musical-instruments",
   "title": "Reverb Acoustic Guitars",
-  "description": "Acoustic guitars curated from Reverb.",
+  "description": "Acoustic guitar listings curated from Reverb.",
   "datasets": {
     "primary": {
       "label": "Listings",
@@ -13,24 +13,130 @@
     }
   },
   "preset_filters": {
-    "instrument_type": "acoustic_guitar",
-    "marketplace": "reverb"
+    "query": "acoustic guitars",
+    "marketplace": "reverb",
+    "category_uuid": "630dc140-45e2-4371-b569-19405de321cc"
   },
   "filters": [
-    { "key": "price", "label": "Price", "type": "range", "min": 0, "max": 5000 },
-    { "key": "condition", "label": "Condition", "type": "select", "options": ["new", "used", "refurbished"] },
-    { "key": "body_style", "label": "Body Style", "type": "select", "options": ["dreadnought", "concert", "parlor", "jumbo"] },
-    { "key": "brand", "label": "Brand", "type": "text" }
+    {
+      "key": "make",
+      "label": "Make",
+      "type": "checkboxes",
+      "path": "make",
+      "options": [
+        "Collings",
+        "Martin",
+        "Bourgeois",
+        "Taylor",
+        "Glarry",
+        "Winzz",
+        "J.N Guitars",
+        "Unbranded",
+        "Szzzp",
+        "Glarner Guitars",
+        "DoBa"
+      ]
+    },
+    {
+      "key": "model",
+      "label": "Model",
+      "type": "checkboxes",
+      "path": "model",
+      "options": [
+        "Acoustic Guitars",
+        "Acoustic Guitars - D1A T - Traditional Series",
+        "Acoustic Guitars - 1956 D-28",
+        "Acoustic Guitars - Country Boy OM - Professional Series",
+        "Acoustic Guitars - 01 T - Traditional Series",
+        "Acoustic Guitars - D-35 (2025)",
+        "Acoustic Guitars - K24ce Builder's Edition"
+      ]
+    },
+    {
+      "key": "finish",
+      "label": "Finish",
+      "type": "checkboxes",
+      "path": "finish",
+      "options": [
+        "Natural",
+        "Indian Rosewood",
+        "Satin",
+        "Mahogany",
+        "Phosphor Bronze"
+      ]
+    },
+    {
+      "key": "year",
+      "label": "Year",
+      "type": "range",
+      "path": "year",
+      "min": 1950,
+      "max": 2026
+    },
+    {
+      "key": "description",
+      "label": "Description keywords",
+      "type": "text",
+      "path": "description",
+      "placeholder": "Add tags or keywords",
+      "allow_custom": true
+    },
+    {
+      "key": "condition_display",
+      "label": "Condition",
+      "type": "checkboxes",
+      "path": "condition.display_name",
+      "options": [
+        "Brand New",
+        "Mint",
+        "Excellent",
+        "Very Good",
+        "Good",
+        "Fair",
+        "Poor",
+        "Non Functioning"
+      ]
+    },
+    {
+      "key": "price",
+      "label": "Price (USD)",
+      "type": "range",
+      "path": "price.amount",
+      "min": 0,
+      "max": 20000
+    },
+    {
+      "key": "free_expedited_shipping",
+      "label": "Free expedited shipping",
+      "type": "boolean",
+      "path": "shipping.free_expedited_shipping"
+    }
   ],
   "sections": [
-    { "title": "Basics", "filters": ["price", "condition"] },
-    { "title": "Details", "filters": ["body_style", "brand"] }
+    { "title": "Basics", "filters": ["price", "condition_display", "year", "free_expedited_shipping"] },
+    { "title": "Make & Model", "filters": ["make", "model", "finish"] },
+    { "title": "Search", "filters": ["description"] }
   ],
   "priorities": [
-    { "key": "price", "label": "Affordability" },
-    { "key": "condition", "label": "Condition" },
-    { "key": "brand", "label": "Brand reputation" },
-    { "key": "tone", "label": "Tone quality" }
+    { "key": "price", "label": "Price" },
+    { "key": "condition_display", "label": "Condition" },
+    { "key": "year", "label": "Year" },
+    { "key": "free_expedited_shipping", "label": "Free shipping" },
+    { "key": "make", "label": "Make" }
   ],
-  "display": { "currency": "USD", "unit": "guitar" }
+  "display": {
+    "currency": "USD",
+    "unit": "guitar",
+    "title_template": "{title}",
+    "subtitle_template": "{make} {model}",
+    "image_path": "photos[0]._links.large_crop.href",
+    "empty_image": "/assets/octonotes.png",
+    "metadata": [
+      { "label": "Price", "path": "price.amount", "format": "currency", "currency": "USD" },
+      { "label": "Condition", "path": "condition.display_name" },
+      { "label": "Year", "path": "year" },
+      { "label": "Finish", "path": "finish" },
+      { "label": "Shop", "path": "shop_name" }
+    ]
+  }
 }

@@ -28,3 +28,12 @@ class ItemResult(BaseModel):
     title: str
     score: float
     price: Optional[float] = None
+
+
+class ReverbListingsRequest(BaseModel):
+    config_key: Optional[str] = None
+    query: Optional[str] = None
+    category_uuid: Optional[str] = None
+    filters: Dict[str, Any] = Field(default_factory=dict)
+    page: int = 1
+    per_page: int = 24

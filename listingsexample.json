@@ -1,0 +1,3463 @@
+{
+  "total": 134067,
+  "current_page": 1,
+  "per_page": 24,
+  "total_pages": 50,
+  "_links": {
+    "next": {
+      "href": "https://api.reverb.com/api/listings?page=2&per_page=24&query=acoustic+guitars"
+    },
+    "follow": {
+      "href": "https://api.reverb.com/api/my/follows/search?query=acoustic+guitars"
+    },
+    "listing": {
+      "href": "https://reverb.com/sell"
+    }
+  },
+  "humanized_params": "\"acoustic guitars\" Gear",
+  "listings": [
+    {
+      "id": 40270500,
+      "make": "J.N Guitars",
+      "model": "Acoustic Guitars",
+      "finish": "",
+      "year": "",
+      "title": "J.N GUITARS Asyla series 4/4 dreadnought acoustic-electric guitar with solid spruce top ASY-DCE",
+      "created_at": "2021-04-26T10:03:39-05:00",
+      "shop_name": "Maxwell's House of Music",
+      "shop": {
+        "slug": "maxwells-house-of-music",
+        "preferred_seller": true
+      },
+      "description": "- Back and sides: Mahogany\n- Neck: Mahogany, Oval C shape, satin finish\n- Fingerboard: Blackwood, with dot inlays\n- Bridge: Blackwood\n- Nut and (compensated) saddle: NuBone\n- Rosette: Tortoiseshell pattern\n- Body binding: White ABS with black purfling\n- Machine heads: Diecast, nickel\n- Strings: D'Addario EXP\n- Active preamp system: Under saddle pick-up, JN MET-A16 equaliser with built-in chromatic tuner, volume, bass, middle and treble control and low battery indicator\n- Colour: Natural\n- Finish: Open pore varnish<br><br> <br><br>*Please Note - shipping times may be longer.  Some items may be special order or pre-order.  Please contact us with any questions, prior to purchase. <br><br>Pictures may be for reference/color reference only.  Finish may vary.  Please contact us with any questions prior to purchase.  If you need something you don't see, contact us!<br><br>J.N GUITARS Asyla series 4/4 dreadnought acoustic-electric guitar with solid spruce top ASY-DCE",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "339.99",
+        "amount_cents": 33999,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$339.99"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "339.99",
+        "amount_cents": 33999,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$339.99"
+      },
+      "original_price": {
+        "tax_included": false,
+        "amount": "559.99",
+        "amount_cents": 55999,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$559.99"
+      },
+      "ribbon": {
+        "display": "$220 price drop",
+        "reason": "price_drop"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "09ea109a-5df1-4156-b00c-7456a3e5abf3",
+          "full_name": "Acoustic Guitars / Built-in Electronics"
+        },
+        {
+          "uuid": "630dc140-45e2-4371-b569-19405de321cc",
+          "full_name": "Acoustic Guitars / Dreadnought"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2022-05-17T15:40:31-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 76390,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "29.99",
+              "amount_cents": 2999,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$29.99"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "29.99",
+              "amount_cents": 2999,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$29.99"
+            },
+            "display": {
+              "amount": "29.99",
+              "amount_cents": 2999,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$29.99"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "ASY-DCE",
+      "price_drop": {
+        "percent": 40,
+        "display": "40% price drop",
+        "original_price": {
+          "tax_included": false,
+          "amount": "559.99",
+          "amount_cents": 55999,
+          "currency": "USD",
+          "symbol": "$",
+          "display": "$559.99"
+        }
+      },
+      "us_outlet": false,
+      "original_price_description": "Original price",
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--A1pbZh88--/quality=medium-low,height=800,width=800,fit=contain/uzubxnlkgs9ujn0pwkfj.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/40270500-j-n-guitars-asyla-series-4-4-dreadnought-acoustic-electric-guitar-with-solid-spruce-top-asy-dce"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/40270500-j-n-guitars-asyla-series-4-4-dreadnought-acoustic-electric-guitar-with-solid-spruce-top-asy-dce/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/40270500-j-n-guitars-asyla-series-4-4-dreadnought-acoustic-electric-guitar-with-solid-spruce-top-asy-dce"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/40270500"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/40270500-j-n-guitars-asyla-series-4-4-dreadnought-acoustic-electric-guitar-with-solid-spruce-top-asy-dce"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--A1pbZh88--/quality=medium-low,height=800,width=800,fit=contain/uzubxnlkgs9ujn0pwkfj.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--h7PZa4NB--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/uzubxnlkgs9ujn0pwkfj.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--A1pbZh88--/quality=medium-low,height=800,width=800,fit=contain/uzubxnlkgs9ujn0pwkfj.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--h7PZa4NB--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/uzubxnlkgs9ujn0pwkfj.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 92672682,
+      "make": "Unbranded",
+      "model": "Acoustic Guitars Full Size, 4/4 Folk Guitar for Beginners Adults, Acoustic Steel-string Guitar Black (41 Inches\uff09",
+      "finish": "",
+      "year": "",
+      "title": "Acoustic Guitars Full Size, 4/4 Folk Guitar for Beginners Adults, Acoustic Steel-string Guitar Black (41 Inches\uff09",
+      "created_at": "2025-10-18T05:53:08-05:00",
+      "shop_name": "The Sound Spot ",
+      "shop": {
+        "slug": "the-sound-spot",
+        "preferred_seller": false
+      },
+      "description": "<ul><li>Acoustic Guitars Full Size, 4/4 Folk Guitar for Beginners Adults, Acoustic Steel-string Guitar Black (41 Inches\uff09</li><li>Exquisite Look - Matte black, classical fashionable and elegant, delicate touch; with celluloid inlay line and line in the middle, adding color and vitality.</li></ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "218.73",
+        "amount_cents": 21873,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$218.73"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "196.86",
+        "amount_cents": 19686,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$196.86"
+      },
+      "original_price": {
+        "tax_included": false,
+        "amount": "218.73",
+        "amount_cents": 21873,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$218.73"
+      },
+      "ribbon": {
+        "display": "$21.87 off",
+        "reason": "sale"
+      },
+      "inventory": 2,
+      "has_inventory": true,
+      "offers_enabled": true,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-10-18T06:03:31-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 4007275,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "TSS-LK7TRB07K9-New",
+      "us_outlet": false,
+      "original_price_description": "Original price",
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--eaGBsmw_--/quality=medium-low,height=800,width=800,fit=contain/kkejsil6t1zjrsc6bgkf.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/92672682-acoustic-guitars-full-size-4-4-folk-guitar-for-beginners-adults-acoustic-steel-string-guitar-black-41-inches"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/92672682-acoustic-guitars-full-size-4-4-folk-guitar-for-beginners-adults-acoustic-steel-string-guitar-black-41-inches/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/92672682-acoustic-guitars-full-size-4-4-folk-guitar-for-beginners-adults-acoustic-steel-string-guitar-black-41-inches"
+        },
+        "make_offer": {
+          "href": "https://api.reverb.com/api/listings/92672682-acoustic-guitars-full-size-4-4-folk-guitar-for-beginners-adults-acoustic-steel-string-guitar-black-41-inches/offer",
+          "method": "POST"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/92672682"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/92672682-acoustic-guitars-full-size-4-4-folk-guitar-for-beginners-adults-acoustic-steel-string-guitar-black-41-inches"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--eaGBsmw_--/quality=medium-low,height=800,width=800,fit=contain/kkejsil6t1zjrsc6bgkf.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--PpmdZOBD--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/kkejsil6t1zjrsc6bgkf.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--eaGBsmw_--/quality=medium-low,height=800,width=800,fit=contain/kkejsil6t1zjrsc6bgkf.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--PpmdZOBD--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/kkejsil6t1zjrsc6bgkf.jpg"
+            }
+          }
+        }
+      ],
+      "sale_ribbon": {
+        "display": "10% off at checkout"
+      }
+    },
+    {
+      "id": 75669730,
+      "make": "Collings",
+      "model": "Acoustic Guitars - D1A T - Traditional Series",
+      "finish": "Natural",
+      "year": "",
+      "title": "Collings Acoustic Guitars - D1A T - Traditional Series",
+      "created_at": "2023-11-09T14:36:10-06:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "\n<p>This&nbsp;<strong>Collings - D1A Traditional T Series</strong>&nbsp;is a bold guitar. From it's gorgeous Adirondack Spruce top to the rich Mahogany back and sides this guitar means business. Perfect for flat-picking and bluegrass fiddle tunes, this&nbsp;D1A produces tons of volume and with plenty of head room to really drive through a jam. This bluegrass cannon has the sort of big, bold, full sound that flatpickers dream of, while being just as responsive when played with a light touch. With it's custom carved Traditional neck and rounded fingerboard edge it's extremely comfortable to play.</p>\n<p>The Traditional Series&nbsp;is marked by a return to just that, traditional building techniques and materials combined with the Collings exquisite attention to detail. This series is highlighted by traditional style bracing and tone woods which are adjusted, weighed and voiced to produce particularly warm, rounded highs while maintaining a full, rich low end. The extra thin Nitrocellulose lacquer finish, applied without a polyvinyl sealer, makes for a lively, expressive top that has the feel of an old vintage guitar.</p>\n<p>Includes a Collings case along with a free&nbsp;Mass Street setup from our luthiers</p>\n<ul>\n<li>14-Fret Dreadnought with Extra thin High Gloss Nitrocellulose Lacquer finish and Tortoise-style binding</li>\n<li>Custom Traditional Pre-War Scalloped bracing with no tongue brace</li>\n<li>Adirondack Spruce top with Tortoise-style pickguard and wood&nbsp;purfling</li>\n<li>Mahogany back and sides with 1-style Walnut backstrip</li>\n<li>25 1/2\" scale length</li>\n<li>Mahogany neck with Custom Traditional profile</li>\n<li>Ebony fingerboard with 14\" - 26\" compound radius, 20 Medium 18% nickel-silver frets and Gold Mother-of-Pearl microdot inlays</li>\n<li>1 3/4\" nut width, bone</li>\n<li>Bone cut-through saddle with 2 5/16\" string spacing</li>\n<li>Ebony belly-style bridge</li>\n<li>Nickel Waverly tuners with 16:1 ratio</li>\n<li>Collings hardshell case</li>\n<li>Serial# 34109</li>\n</ul>\n<ul></ul>.",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "7850.00",
+        "amount_cents": 785000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$7,850"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "7850.00",
+        "amount_cents": 785000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$7,850"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "630dc140-45e2-4371-b569-19405de321cc",
+          "full_name": "Acoustic Guitars / Dreadnought"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2023-11-09T15:47:44-06:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "D1AT34109",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--Fu_rzM2N--/quality=medium-low,height=800,width=800,fit=contain/bi45exn1ngn6cgvo5q2q.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/75669730-collings-acoustic-guitars-d1a-t-traditional-series"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/75669730-collings-acoustic-guitars-d1a-t-traditional-series/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/75669730-collings-acoustic-guitars-d1a-t-traditional-series"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/75669730"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/75669730-collings-acoustic-guitars-d1a-t-traditional-series"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--Fu_rzM2N--/quality=medium-low,height=800,width=800,fit=contain/bi45exn1ngn6cgvo5q2q.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--R4C2S35u--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/bi45exn1ngn6cgvo5q2q.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--Fu_rzM2N--/quality=medium-low,height=800,width=800,fit=contain/bi45exn1ngn6cgvo5q2q.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--R4C2S35u--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/bi45exn1ngn6cgvo5q2q.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 92389044,
+      "make": "Martin",
+      "model": "Acoustic Guitars - 1956 D-28",
+      "finish": "Natural",
+      "year": "1956",
+      "title": "Martin Acoustic Guitars - 1956 D-28",
+      "created_at": "2025-09-27T11:51:06-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This <strong>1956 Martin D-28</strong> is one of the cleanest, best sounding Martin's from the later half of the '50s that we've seen here in the shop. The spruce top has aged beautifully, taking on that vintage, dark amber color that visually compliments the Brazilian rosewood back and sides so well. A powerful, responsive guitar, with a deep Martin rosewood sound, and a projection and clarity not often found in late '50s D-28s. You can feel the rosewood vibrate while playing strumming chords or flatpicking a fiddle tune.</p>\n<p>There is the typical pickguard crack that is so common on these models when the pickguard shrinks and pulls the wood with it. It has been repaired and is stable. Here with moderate fretwear, there is also finish checking on the back of the headstock between the turners. Original bridge plate, original waffle-back tuners. Replaced Bridge pins. Includes a modern Martin hardshell dreadnought case.&nbsp;</p>\n",
+      "condition": {
+        "uuid": "ae4d9114-1bd7-4ec5-a4ba-6653af5ac84d",
+        "display_name": "Very Good",
+        "slug": "very-good"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "19260.00",
+        "amount_cents": 1926000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$19,260"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "19260.00",
+        "amount_cents": 1926000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$19,260"
+      },
+      "inventory": 1,
+      "has_inventory": false,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "630dc140-45e2-4371-b569-19405de321cc",
+          "full_name": "Acoustic Guitars / Dreadnought"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-09-27T11:51:09-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "price_guide_id": "320",
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "200.00",
+              "amount_cents": 20000,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$200"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "200.00",
+              "amount_cents": 20000,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$200"
+            },
+            "display": {
+              "amount": "200.00",
+              "amount_cents": 20000,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$200"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "1956 D-28-149776",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--KB7UIRxD--/quality=medium-low,height=800,width=800,fit=contain/b5bt33f7zc3etxlhy6lw.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/92389044-martin-acoustic-guitars-1956-d-28"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/92389044-martin-acoustic-guitars-1956-d-28/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/92389044-martin-acoustic-guitars-1956-d-28"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/92389044"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/92389044-martin-acoustic-guitars-1956-d-28"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--KB7UIRxD--/quality=medium-low,height=800,width=800,fit=contain/b5bt33f7zc3etxlhy6lw.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--35_DZu1L--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/b5bt33f7zc3etxlhy6lw.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--KB7UIRxD--/quality=medium-low,height=800,width=800,fit=contain/b5bt33f7zc3etxlhy6lw.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--35_DZu1L--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/b5bt33f7zc3etxlhy6lw.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 92181215,
+      "make": "Bourgeois",
+      "model": "Acoustic Guitars - Country Boy OM - Professional Series",
+      "finish": "",
+      "year": "",
+      "title": "Bourgeois Acoustic Guitars - Country Boy OM - Professional Series",
+      "created_at": "2025-09-12T12:22:18-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": " This&nbsp;<strong>Country Boy OM - Professional Series</strong> from Bourgeois brings&nbsp;the Ricky Skaggs-inspired, country boy sound to a smaller, more comfortable OM shape. A part of their Professional Series, this Bourgeois features a AAAA grade Torrefied Sitka spruce top, paired with Mahogany back and sides, for a classic, responsive and warm sounding OM. \n <br> \n Designed, voiced and built in Lewiston Maine, the Country Boy delivers on 50 years of guitar know-how, and continues to be a classic in the Bourgeois lineup. Includes a free Mass Street setup from our luthiers and the original hardshell case. \n<ul>\n<li>14-Fret Orchestra Model with Scalloped X-bracing</li>\n<li>AAAA grade AT Sitka Spruce top with Celluloid pickguard</li>\n<li>Mahogany back and sides with black line backstrip</li>\n<li>Black/Maple top border binding</li>\n<li>25 1/2\" scale length</li>\n<li>Mahogany neck with satin finish</li>\n<li>Ebony fingerboard, 20 frets and vintage style dots</li>\n<li>Square headstock with diamond</li>\n<li>1 3/4\" nut width, bone</li>\n<li>Bone drop-in saddle with 2 5/16\" string spacing</li>\n<li>Ebony Traditional bridge</li>\n<li>Schaller Vintage Bean 18:1 tuners</li>\n<li>Includes Hardshell case</li>\n<li>Serial #10527</li>\n</ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "5309.00",
+        "amount_cents": 530900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$5,309"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "5309.00",
+        "amount_cents": 530900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$5,309"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "db34e833-b352-45b9-9976-4f674a7e6d8c",
+          "full_name": "Acoustic Guitars / OM and Auditorium"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-09-12T12:22:21-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "CountryBoyOM10527",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--ngbzs5mj--/quality=medium-low,height=800,width=800,fit=contain/fo41hmqn9atp4xnvxejg.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/92181215-bourgeois-acoustic-guitars-country-boy-om-professional-series"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/92181215-bourgeois-acoustic-guitars-country-boy-om-professional-series/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/92181215-bourgeois-acoustic-guitars-country-boy-om-professional-series"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/92181215"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/92181215-bourgeois-acoustic-guitars-country-boy-om-professional-series"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--ngbzs5mj--/quality=medium-low,height=800,width=800,fit=contain/fo41hmqn9atp4xnvxejg.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--DtRxKTpY--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/fo41hmqn9atp4xnvxejg.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--ngbzs5mj--/quality=medium-low,height=800,width=800,fit=contain/fo41hmqn9atp4xnvxejg.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--DtRxKTpY--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/fo41hmqn9atp4xnvxejg.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 81432559,
+      "make": "Taylor",
+      "model": "Acoustic Guitars  ce LTD Builders Edition  th Anniversary",
+      "finish": "",
+      "year": "2024",
+      "title": "Taylor Acoustic Guitars - 814ce LTD Builder's Edition - 50th Anniversary",
+      "created_at": "2024-04-09T11:28:34-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This <strong>Taylor Guitars - 814ce - Builder's Edition</strong> takes the flagship model in Taylor's lineup and gives it a limited edition <strong>50th Anniversary</strong> treatment. Featuring an upgraded Sinker Redwood top, paired with East Indian rosewood back and this, this 814ce delivers a warm tone, with a cedar-like low-end and clear high-end sparkle. Rock Maple binding, gold-hued mother-of-pearl inlays and a green abalone rosette are all tasteful 50th Anniversary upgrades.<br><br>Further Builder's Edition upgrades include a beveled armrest and cutaway, along with a Curve Wing bridge that makes this such a comfortable Taylor to play. And with the built in Expression 2 electronics this 814 is as ready for campfire jams as it is for coffee shop gigs all the way up to larger venues. Includes a Taylor Hardshell Case and a free setup from our luthiers.</p>\n<ul>\n<li>Grand Auditorium shape with beveled cutaway, beveled Ebony armrest and high gloss finish</li>\n<li>V-Class bracing</li>\n<li>Sinker Redwood top with green abalone rosette</li>\n<li>East Indian Rosewood back and sides</li>\n<li>25 1/2\" scale length</li>\n<li>Neo-Tropical Mahogany neck and heel</li>\n<li>West African Crelicam Ebony fingerboard with 20 frets</li>\n<li>1 3/4\" nut width, Tusq</li>\n<li>Micarta saddle</li>\n<li>Expression System 2 electronics system</li>\n<li>Gotoh 510 tuners with Antique Gold buttons and 21:1 ratio</li>\n<li>Hardshell case included</li>\n<li>Serial# 1203084016</li>\n</ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "4999.00",
+        "amount_cents": 499900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$4,999"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "4999.00",
+        "amount_cents": 499900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$4,999"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "09ea109a-5df1-4156-b00c-7456a3e5abf3",
+          "full_name": "Acoustic Guitars / Built-in Electronics"
+        },
+        {
+          "uuid": "db34e833-b352-45b9-9976-4f674a7e6d8c",
+          "full_name": "Acoustic Guitars / OM and Auditorium"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-04-09T11:28:37-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "50th Anniv. BE 814ce LTD",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--i6T8K1wK--/quality=medium-low,height=800,width=800,fit=contain/kyxsgaupwmnniyjsdqqc.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/81432559-taylor-acoustic-guitars-814ce-ltd-builder-s-edition-50th-anniversary"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/81432559-taylor-acoustic-guitars-814ce-ltd-builder-s-edition-50th-anniversary/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/81432559-taylor-acoustic-guitars-814ce-ltd-builder-s-edition-50th-anniversary"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/81432559"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/81432559-taylor-acoustic-guitars-814ce-ltd-builder-s-edition-50th-anniversary"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--i6T8K1wK--/quality=medium-low,height=800,width=800,fit=contain/kyxsgaupwmnniyjsdqqc.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--C4z014yd--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/kyxsgaupwmnniyjsdqqc.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--i6T8K1wK--/quality=medium-low,height=800,width=800,fit=contain/kyxsgaupwmnniyjsdqqc.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--C4z014yd--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/kyxsgaupwmnniyjsdqqc.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 93522295,
+      "make": "Bourgeois",
+      "model": "Acoustic Guitars - 00-12 Vintage/HS Heirloom Series \"The Coup...",
+      "finish": "Indian Rosewood",
+      "year": "",
+      "title": "Bourgeois Acoustic Guitars - 00-12 Vintage/HS Heirloom Series \"The Coupe\" - Indian Rosewood/Adirondack",
+      "created_at": "2025-12-11T08:11:16-06:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": " This&nbsp;<strong>00-12 Vintage/HS Heirloom Series</strong> is a souped-up 12-Fret guitar with vintage appeal and appointments. Featuring an Adirondack spruce top, paired with an Indian Rosewood back and sides, \"The Coupe\" model takes the traditional 14-Fret 00 shape and shifts the bridge back. One of the benefits of the 12-fret neck and scale length is that it puts the right hand directly over the sound-hole making a comfy player that has loads of volume and oomph for a small body.<br><br>A very responsive and dynamic fingerstyle guitar, this 00 Coupe also handles a flatpick with a bit of extra headroom thanks to the Adirondack top. Constructed using animal protein glue, which can dry harder, making every joint of this Heirloom Series guitar more resonant and powerful. Includes a free setup from our luthiers and the original hardshell case. \n<ul>\n<li>12-Fret 00 (Coupe) Vintage/HS Heirloom Series</li>\n<li>Adirondack Spruce top with Celluloid Tortoise pickguard</li>\n<li>Indian Rosewood back and sides with Extra Vintage Zig Zag Backstrip</li>\n<li>Ivoroid binding with Extra Vintage Herringbone Purfling</li>\n<li>Animal Protein Glue</li>\n<li>Short 25\"&nbsp;Scale&nbsp;Length</li>\n<li>Mahogany neck with satin finish and Madagascar Rosewood headstock veneer</li>\n<li>Extra Vintage Three Ring rosette</li>\n<li>Ebony fingerboard, 22 frets</li>\n<li>Short Pattern Abalone Slotted Squares &amp; Diamonds fingerboard inlay</li>\n<li>1 3/4\" nut width, bone</li>\n<li>Bone drop-in saddle with 2 5/16\" string spacing</li>\n<li>Bone bridge pins with Black dot</li>\n<li>Traditional Ebony bridge</li>\n<li>Waverly Nickle&nbsp;Butterbean Tuners</li>\n<li>Includes Hardshell case</li>\n<li>Serial#: 10684</li>\n</ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "6299.00",
+        "amount_cents": 629900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$6,299"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "6299.00",
+        "amount_cents": 629900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$6,299"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "18bdeae7-e834-42a8-aeee-0e8ae33f8709",
+          "full_name": "Acoustic Guitars / Concert"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-12-11T08:11:19-06:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "00-VINTAGE/HS-10684",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--BmjjIcth--/quality=medium-low,height=800,width=800,fit=contain/bxihmyjumchyab70wcye.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/93522295-bourgeois-acoustic-guitars-00-12-vintage-hs-heirloom-series-the-coupe-indian-rosewood-adirondack"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/93522295-bourgeois-acoustic-guitars-00-12-vintage-hs-heirloom-series-the-coupe-indian-rosewood-adirondack/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/93522295-bourgeois-acoustic-guitars-00-12-vintage-hs-heirloom-series-the-coupe-indian-rosewood-adirondack"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/93522295"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/93522295-bourgeois-acoustic-guitars-00-12-vintage-hs-heirloom-series-the-coupe-indian-rosewood-adirondack"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--BmjjIcth--/quality=medium-low,height=800,width=800,fit=contain/bxihmyjumchyab70wcye.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--fY0gVA1p--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/bxihmyjumchyab70wcye.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--BmjjIcth--/quality=medium-low,height=800,width=800,fit=contain/bxihmyjumchyab70wcye.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--fY0gVA1p--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/bxihmyjumchyab70wcye.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 81285948,
+      "make": "Taylor",
+      "model": "Acoustic Guitars - K24ce Builder's Edition",
+      "finish": "",
+      "year": "",
+      "title": "Taylor Acoustic Guitars - K24ce Builder's Edition",
+      "created_at": "2024-04-04T13:43:56-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This <strong>Taylor Acoustic Guitars - K24ce</strong>&nbsp;is a <strong>Builder's Edition</strong> model with a host of gorgeous appointments. This all Koa build features the Andy Powers designed V-Class bracing in this extremely versatile Grand Auditorium body shape. With intricate&nbsp;binding and fingerboard inlays this Builder's Edition beauty is something special out of the Taylor factory.</p>\n<p>Focused, with loads of power and sustain, this comfortable model includes a contoured Ebony arm rest, beveled body edge treatment, and reshaped cutaway delivering hours of relaxed playing. With the new V-Class bracing this guitar plays exceptionally well in tune, thanks in part, to how focused and direct each inpidual note is. Gone are some of the overtones that can muddy up your tone, instead delivering a clear fundamental that results in excellent intonation no matter where you are on the neck.</p>\n<p>The new Silent Satin finish looks amazing, and helps to reduce incidental noise that comes from contact with the guitar while you're playing, perfect for on-stage or recording studio gigs. A new interior label, for a new era, this V-Class K24ce brings the best of the collaboration between Master Builder Andy Powers and founder Bob Taylor. Includes a Taylor Hardshell Case and a free setup from our luthiers.</p>\n<ul>\n<li>Grand Auditorium shape with Venetian cutaway, beveled Ebony armrest, Koa/Paua/Koa Edge Treatment, and Silent Satin finish</li>\n<li>V-Class bracing with Relief Rout</li>\n<li>Hawaiian Koa top with Koa/Fiber/Paua Single Ring Rosette</li>\n<li>Hawaiian Koa back and sides</li>\n<li>25 1/2\" scale length</li>\n<li>Tropical Mahogany neck and heel</li>\n<li>West African Ebony fingerboard with 20 frets, West African Ebony Binding, Spring Vine Fretboard Inlay</li>\n<li>1 3/4\" nut width, black graphite</li>\n<li>Micarta saddle</li>\n<li>Expression System 2 electronics system</li>\n<li>Gotoh 510 tuners with Gold buttons and 21:1 ratio</li>\n<li>Hardshell case included</li>\n<li>Serial#&nbsp;1201123024</li>\n</ul>.",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "6499.00",
+        "amount_cents": 649900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$6,499"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "6499.00",
+        "amount_cents": 649900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$6,499"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "db34e833-b352-45b9-9976-4f674a7e6d8c",
+          "full_name": "Acoustic Guitars / OM and Auditorium"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-04-04T13:44:01-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "AK0200261100018S240",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--9yUR6yod--/quality=medium-low,height=800,width=800,fit=contain/ygqhemcbvky5jhiidh5j.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/81285948-taylor-acoustic-guitars-k24ce-builder-s-edition"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/81285948-taylor-acoustic-guitars-k24ce-builder-s-edition/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/81285948-taylor-acoustic-guitars-k24ce-builder-s-edition"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/81285948"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/81285948-taylor-acoustic-guitars-k24ce-builder-s-edition"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--9yUR6yod--/quality=medium-low,height=800,width=800,fit=contain/ygqhemcbvky5jhiidh5j.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--H80gcLi---/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/ygqhemcbvky5jhiidh5j.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--9yUR6yod--/quality=medium-low,height=800,width=800,fit=contain/ygqhemcbvky5jhiidh5j.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--H80gcLi---/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/ygqhemcbvky5jhiidh5j.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 92834986,
+      "make": "Collings",
+      "model": "Acoustic Guitars - 01 T - Traditional Series",
+      "finish": "Natural",
+      "year": "",
+      "title": "Collings Acoustic Guitars - 01 T - Traditional Series",
+      "created_at": "2025-10-28T09:33:44-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This Collings 01 Traditional is a wonderful, easy playing guitar that brings with it some serious tone. Featuring a Sitka spruce top over a beautiful set of Honduran mahogany back and sides, this vintage-inspired small body guitar is responsive, ringing out with the lightest touch from a flat pick or when played fingerstyle. The 14-fret Traditional neck provides access to the higher frets, while still bringing a comfy playing experience. Speaking of the neck, this 01T features the T-Bar style adjustable truss rod that comes standard on Traditional series builds.</p>\n<p>The Traditional Series is marked by a return to just that, traditional building techniques and materials combined with the Collings exquisite attention to detail. This vintage-inspired series is highlighted by traditional style bracing and tone woods which are adjusted, weighed and voiced to produce particularly warm, rounded highs while maintaining a full, rich low end. The extra thin Nitrocellulose lacquer finish, applied without a polyvinyl sealer, makes for a lively, expressive top that has the feel of an old vintage guitar.</p>\n<p>This Collings 01T Traditional comes with a Collings TKL hardshell case, and includes a free setup to your specs from our luthiers.</p>\n<ul>\n<li>14-Fret 0 body with Extra thin High Gloss Nitrocellulose Lacquer finish and Tortoise-style binding</li>\n<li>Custom Traditional Pre-War Scalloped bracing with no tongue brace</li>\n<li>Sitka Spruce top with Tortoise-style pickguard with toner and wood purfling</li>\n<li>Mahogany back &amp; sides back and sides with 1-style walnut backstrip</li>\n<li>24 7/8\" Scale length</li>\n<li>Mahogany neck with Custom Traditional profile and Collings T-bar inspired fully adjustable adjustable truss rod</li>\n<li>Ebony fingerboard with 14\" - 26\" compound radius, 20 Medium 18% nickel-silver frets and Gold Mother-of-Pearl microdot inlays</li>\n<li>1 3/4\" nut width, bone</li>\n<li>Bone cut-through saddle with 2 5/16\" string spacing</li>\n<li>Ebony belly-style bridge</li>\n<li>Nickel Waverly tuners with 16:1 ratio</li>\n<li>Collings hardshell case</li>\n<li>Serial#: 35277</li>\n</ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "6600.00",
+        "amount_cents": 660000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$6,600"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "6600.00",
+        "amount_cents": 660000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$6,600"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "18bdeae7-e834-42a8-aeee-0e8ae33f8709",
+          "full_name": "Acoustic Guitars / Concert"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-10-28T09:33:50-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "01T-35277",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--VmaFqoo4--/quality=medium-low,height=800,width=800,fit=contain/ntjpxcn9drhcvzr3idnj.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/92834986-collings-acoustic-guitars-01-t-traditional-series"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/92834986-collings-acoustic-guitars-01-t-traditional-series/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/92834986-collings-acoustic-guitars-01-t-traditional-series"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/92834986"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/92834986-collings-acoustic-guitars-01-t-traditional-series"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--VmaFqoo4--/quality=medium-low,height=800,width=800,fit=contain/ntjpxcn9drhcvzr3idnj.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--oSgfvex2--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/ntjpxcn9drhcvzr3idnj.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--VmaFqoo4--/quality=medium-low,height=800,width=800,fit=contain/ntjpxcn9drhcvzr3idnj.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--oSgfvex2--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/ntjpxcn9drhcvzr3idnj.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 92068947,
+      "make": "Collings",
+      "model": "Acoustic Guitars - C10 Deluxe - Old Growth Sitka",
+      "finish": "Natural",
+      "year": "",
+      "title": "Collings Acoustic Guitars - C10 Deluxe - Old Growth Sitka",
+      "created_at": "2025-09-03T15:02:07-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This 00-inspired C10 from Collings delivers a host of upgrades, serving as an easy playing alternative to larger body sizes. Featuring an upgraded Old Growth Sitka Spruce top and Indian Rosewood back &amp; sides, this small bodied guitar serves up warm lows and punchy tones, with good volume despite its size. A great guitar for electric players especially, the c-shape neck profile, 1 11/16\" nut width, and body shape accommodate players looking for a guitar that provides ultimate comfort without a sacrifice in tone.</p>\n<p>With b/w/b/w/b top purfling, a maple/rosewood backstrip, and ivoroid binding on the fingerboard and peghead, this Deluxe model shines in the aesthetics region and is sure to be an eye catcher. Nitro gloss finish, nickel Waverly tuners, and haircut headstock shape finish off this gorgeous piece. A great sounding, parlor-sized acoustic for any player. Comes with a custom hardshell case and a Mass Street setup to your specs.</p>\n<ul>\n<li>C10 body style with Ivoroid binding</li>\n<li>Old Growth Sitka Spruce top&nbsp;</li>\n<li>Tortoiseshell pickguard, Ivoroid binding and rosette</li>\n<li>East Indian Rosewood back and sides</li>\n<li>25 1/2\" scale length</li>\n<li>Mahogany neck with C-Shape profile</li>\n<li>Ebony fingerboard</li>\n<li>1 11/16\" nut width, Bone</li>\n<li>\n Ebony straight-style Bridge with 2 3/16\" spacing<br>\n</li>\n<li>Nickel Waverly tuners</li>\n<li>Original hardshell case included<br>\n</li>\n<li>Serial# 35379</li>\n</ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "6865.00",
+        "amount_cents": 686500,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$6,865"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "6865.00",
+        "amount_cents": 686500,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$6,865"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "15cedc86-0e56-4800-b3f0-0f99fab350cb",
+          "full_name": "Acoustic Guitars / Parlor"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-09-03T15:02:10-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "C10Deluxe-35379",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--D5L9RYgf--/quality=medium-low,height=800,width=800,fit=contain/x23lpsrb7cao0xmbztoq.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/92068947-collings-acoustic-guitars-c10-deluxe-old-growth-sitka"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/92068947-collings-acoustic-guitars-c10-deluxe-old-growth-sitka/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/92068947-collings-acoustic-guitars-c10-deluxe-old-growth-sitka"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/92068947"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/92068947-collings-acoustic-guitars-c10-deluxe-old-growth-sitka"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--D5L9RYgf--/quality=medium-low,height=800,width=800,fit=contain/x23lpsrb7cao0xmbztoq.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--KUnHLK2d--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/x23lpsrb7cao0xmbztoq.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--D5L9RYgf--/quality=medium-low,height=800,width=800,fit=contain/x23lpsrb7cao0xmbztoq.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--KUnHLK2d--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/x23lpsrb7cao0xmbztoq.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 92961573,
+      "make": "Martin",
+      "model": "Acoustic Guitars - 2005 D12-28 - Used",
+      "finish": "Natural",
+      "year": "2005",
+      "title": "Martin Acoustic Guitars - 2005 D12-28 - Used",
+      "created_at": "2025-11-05T08:36:03-06:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This 2005 D12-28 is a Martin throwback to the '60s when 12-string acoustics adorned records everywhere. A Sitka Spruce top and Indian Rosewood back and sides lend this 12-string to that signature Martin sound with a deep bass thanks to the rosewood. Chords sound lush and feel like a wall of sound when pushed, perfect for accompanying a band.&nbsp;</p>\n<p>The 1 7/8\" nut width and 24 7/8\" scale length make for a 12-string that doesn't fight you, and with the frets having been redressed by our luthiers it plays fantastic. In Very Good condition with the minimal playwear and scratches it has seen over the years. Comes with the original Hardshell Case.</p>\n<ul>\n<li>14-Fret 12-String Dreadnought body</li>\n<li>Sitka Spruce top with Black pickguard, Style 28 Rosette</li>\n<li>Indian Rosewood back and sides</li>\n<li>24.9\" scale length</li>\n<li>Mahogany neck</li>\n<li>Ebony fingerboard with 20 frets</li>\n<li>1 7/8\" nut width, bone</li>\n<li>Drop-in Bone saddle</li>\n<li>Ebony bridge&nbsp;</li>\n<li>Original Hardshell Case</li>\n<li>Serial# 1096105</li>\n</ul>",
+      "condition": {
+        "uuid": "ae4d9114-1bd7-4ec5-a4ba-6653af5ac84d",
+        "display_name": "Very Good",
+        "slug": "very-good"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "2850.00",
+        "amount_cents": 285000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$2,850"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "2850.00",
+        "amount_cents": 285000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$2,850"
+      },
+      "inventory": 1,
+      "has_inventory": false,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "14d6cc96-ed7b-4521-bc21-7713c61e9dc5",
+          "full_name": "Acoustic Guitars / 12-String"
+        },
+        {
+          "uuid": "630dc140-45e2-4371-b569-19405de321cc",
+          "full_name": "Acoustic Guitars / Dreadnought"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-11-05T08:36:08-06:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "price_guide_id": "21977",
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "2005D12-28-1096105",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--3iRRe2Ic--/quality=medium-low,height=800,width=800,fit=contain/qpi6pmepo2od15smttyp.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/92961573-martin-acoustic-guitars-2005-d12-28-used"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/92961573-martin-acoustic-guitars-2005-d12-28-used/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/92961573-martin-acoustic-guitars-2005-d12-28-used"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/92961573"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/92961573-martin-acoustic-guitars-2005-d12-28-used"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--3iRRe2Ic--/quality=medium-low,height=800,width=800,fit=contain/qpi6pmepo2od15smttyp.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--5IaPOaN6--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/qpi6pmepo2od15smttyp.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--3iRRe2Ic--/quality=medium-low,height=800,width=800,fit=contain/qpi6pmepo2od15smttyp.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--5IaPOaN6--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/qpi6pmepo2od15smttyp.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 89647545,
+      "make": "Martin",
+      "model": "Acoustic Guitars - D-35 (2025)",
+      "finish": "Natural",
+      "year": "",
+      "title": "Martin Acoustic Guitars - D-35 (2025)",
+      "created_at": "2025-05-03T11:43:16-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This new for 2025 Martin D-35, a model made famous in the 1960s for its powerful low-end bass response and iconic three-piece back, continues to be a hallmark of the Martin Standard Series. Pairing the classic Martin forward-shifted X-bracing with non-scalloped tone bars makes for a dreadnought build that delivers loads of rosewood volume and tone.</p>\n<p>With its aging toner, faux tortoise pickguard, grover tuners and a multi-stripe inlays, this D-35 takes the iconic 60/70s era build and visually freshens things up the vintage-inspired, newly refreshed for 2025 Standard Series aesthetics. Includes a hardshell case and a Mass Street setup from our luthiers.</p>\n<ul>\n<li>14-Fret Dreadnought with Forward Shifted X Bracing, gloss finish, and Antique White binding/Multi-Stripe inlay</li>\n<li>Spruce top with aging toner, Tortoiseshell pickguard, and Multi-Stripe rosette</li>\n<li>3-Piece East Indian Rosewood back and sides</li>\n<li>25.4\" scale length</li>\n<li>Select Hardwood neck with Golden Era (GE) Modified Low Oval profile and High Performance Taper</li>\n<li>Ebony fingerboard with 20 frets and dot inlays</li>\n<li>1 3/4\" nut width, Bone</li>\n<li>Ebony GE Modern Belly-style bridge and 2 5/32\" string spacing and Bone Drop in saddle</li>\n<li>Chrome Enclosed Gear Grover Tuners</li>\n<li>Hardshell case included<br>\n</li>\n</ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "3499.00",
+        "amount_cents": 349900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$3,499"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "3499.00",
+        "amount_cents": 349900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$3,499"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-05-03T11:43:19-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "10Y25D35",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--Ipi19fSF--/quality=medium-low,height=800,width=800,fit=contain/t6tkqwgype5kzzrtqry5.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/89647545-martin-acoustic-guitars-d-35-2025"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/89647545-martin-acoustic-guitars-d-35-2025/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/89647545-martin-acoustic-guitars-d-35-2025"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/89647545"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/89647545-martin-acoustic-guitars-d-35-2025"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--Ipi19fSF--/quality=medium-low,height=800,width=800,fit=contain/t6tkqwgype5kzzrtqry5.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--mjmlTNNg--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/t6tkqwgype5kzzrtqry5.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--Ipi19fSF--/quality=medium-low,height=800,width=800,fit=contain/t6tkqwgype5kzzrtqry5.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--mjmlTNNg--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/t6tkqwgype5kzzrtqry5.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 91823497,
+      "make": "Martin",
+      "model": "Acoustic Guitars - 2015 HD-28V Custom Shop - Used",
+      "finish": "Natural",
+      "year": "2015",
+      "title": "Martin Acoustic Guitars - 2015 HD-28V Custom Shop - Used",
+      "created_at": "2025-08-15T11:10:25-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This 2015 HD-28V hails from the Martin Custom Shop with premium upgrades and features for a absolute home-run of a guitar. Utilizing an Adirondack top with Indian Rosewood back and sides, there's a low-end punch to this guitar, with a nice clarity without a lot of high-end harmonic distractions. The forward shifted, scalloped X-bracing amplifies these lows and the overall volume, just like its vintage counterparts.&nbsp;</p>\n<p>The neck, featuring a 1 11/16\" nut width and satin finish, plays smoothly and feels great in the hand making playing this guitar an absolute joy. Visual upgrades on this guitar are the herringbone purfling around the sides and zigzag backstrip, making for a sure stand out. Sporting an LR Baggs iBeam it's ready to be taken out and played anywhere. Here in Very Good condition, there is minor playwear and a few small dents to the finish. Includes the original Martin Hardshell case.&nbsp;</p>\n<ul>\n<li>14-Fret Dreadnought with Forward-Shifted Scalloped X-bracing</li>\n<li>Gloss finish with and grained ivoroid binding</li>\n<li>Herringbone purfling and Style 28 Multi-Stripe rosette</li>\n<li>Solid Adirondack Spruce top</li>\n<li>East Indian Rosewood back and sides with Zig-Zag backstrip</li>\n<li>Faux Tortoise pickguard</li>\n<li>25.4\" Scale length</li>\n<li>Mahogany Neck with Satin finish (has glossed up with play)</li>\n<li>Low Oval Neck Profile</li>\n<li>Standard Neck Taper</li>\n<li>Ebony fingerboard with 20 frets and Diamonds and Squares Long inlays</li>\n<li>1 11/16\" nut width, Bone</li>\n<li>Modern Belly-style bridge and 2 1/8\" string spacing</li>\n<li>Ivoroid Bridge Pins</li>\n<li>Nickel Open Gear tuners with Butterbean buttons</li>\n<li>Martin Hardshell case included</li>\n<li>Serial# 1942478</li>\n</ul>",
+      "condition": {
+        "uuid": "ae4d9114-1bd7-4ec5-a4ba-6653af5ac84d",
+        "display_name": "Very Good",
+        "slug": "very-good"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "3850.00",
+        "amount_cents": 385000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$3,850"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "3850.00",
+        "amount_cents": 385000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$3,850"
+      },
+      "inventory": 1,
+      "has_inventory": false,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-08-15T11:10:28-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "2015HD28CS-1942478",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--zo4wOpkm--/quality=medium-low,height=800,width=800,fit=contain/zqo4nwjfb8ibqapjg5yf.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/91823497-martin-acoustic-guitars-2015-hd-28v-custom-shop-used"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/91823497-martin-acoustic-guitars-2015-hd-28v-custom-shop-used/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/91823497-martin-acoustic-guitars-2015-hd-28v-custom-shop-used"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/91823497"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/91823497-martin-acoustic-guitars-2015-hd-28v-custom-shop-used"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--zo4wOpkm--/quality=medium-low,height=800,width=800,fit=contain/zqo4nwjfb8ibqapjg5yf.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--auQ_Nh_i--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/zqo4nwjfb8ibqapjg5yf.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--zo4wOpkm--/quality=medium-low,height=800,width=800,fit=contain/zqo4nwjfb8ibqapjg5yf.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--auQ_Nh_i--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/zqo4nwjfb8ibqapjg5yf.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 93020973,
+      "make": "Collings",
+      "model": "Acoustic Guitars - 1996 SJ Jumbo - Used",
+      "finish": "Natural",
+      "year": "1996",
+      "title": "Collings Acoustic Guitars - 1996 SJ Jumbo - Used",
+      "created_at": "2025-11-07T11:58:18-06:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This 1996 SJ Jumbo from Collings is a stunning build with equally as impressive sound. Here in a Small Jumbo shape, this '90s-era Collings features a Sitka Spruce top and a classic but beautiful Flamed Maple back and sides for a more pronounced midrange response. Thanks to the bigger body and elegant curves, this guitar delivers great treble and powerful bass, as well as plenty of volume, filling that classic singer-songwriter/country acoustic role.</p>\n<p>Here in Very Good condition, especially so for a 30-year-old guitar for its age, it does have a few small dents in the finish on the top as well as standard playwear on the pickguard. There's a minor strip of discoloration on the back as well (see photos). There are also a few nicks and dings to the headstock. Includes a Fishman Matrix pickup already installed and the original Collings hardshell case.</p>\n<ul>\n<li>SJ Body with Ivoroid Binding and Rosette with b/w purfling</li>\n<li>Sitka Spruce top with Tortoise-style pickguard</li>\n<li>Flamed Maple back and sides with Maple Mosaic backstrip</li>\n<li>25 1/2\" scale length</li>\n<li>Flame Maple Neck with C-shape profile</li>\n<li>Ebony fingerboard with 20 frets and  modern diamond inlays</li>\n<li>1 11/16\" bone nut</li>\n<li>Bone drop-in saddle with 2 1/4\" string spacing</li>\n<li>Ebony Modern-Style Belly bridge</li>\n<li>Original Gold Schaller tuners&nbsp;</li>\n<li>Fishman Matrix Pickup<br>\n</li>\n<li>Bill Collings signature on label</li>\n<li>Original Collings Hardshell Case</li>\n<li>Serial# 2336</li>\n</ul>",
+      "condition": {
+        "uuid": "ae4d9114-1bd7-4ec5-a4ba-6653af5ac84d",
+        "display_name": "Very Good",
+        "slug": "very-good"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "5500.00",
+        "amount_cents": 550000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$5,500"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "5500.00",
+        "amount_cents": 550000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$5,500"
+      },
+      "inventory": 1,
+      "has_inventory": false,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-11-07T11:58:21-06:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "1996CollingsSJ-2336",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--RETHk7gJ--/quality=medium-low,height=800,width=800,fit=contain/q2n49yklfctfexozitnl.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/93020973-collings-acoustic-guitars-1996-sj-jumbo-used"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/93020973-collings-acoustic-guitars-1996-sj-jumbo-used/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/93020973-collings-acoustic-guitars-1996-sj-jumbo-used"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/93020973"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/93020973-collings-acoustic-guitars-1996-sj-jumbo-used"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--RETHk7gJ--/quality=medium-low,height=800,width=800,fit=contain/q2n49yklfctfexozitnl.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--1KMsvjtE--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/q2n49yklfctfexozitnl.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--RETHk7gJ--/quality=medium-low,height=800,width=800,fit=contain/q2n49yklfctfexozitnl.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--1KMsvjtE--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/q2n49yklfctfexozitnl.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 83465099,
+      "make": "Collings",
+      "model": "Acoustic Guitars - D1 A Traditional T Series - Vintage Satin",
+      "finish": "Satin",
+      "year": "",
+      "title": "Collings Acoustic Guitars - D1 A Traditional T Series - Vintage Satin",
+      "created_at": "2024-07-08T16:05:43-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>Now here's a guitar we've been looking forward to for years. Combining our love of a spruce/mahogany dreadnought with both the traditional package, and the satin finish found on the Julian Lage signature model, this D1A T S is an absolute canon. With a growl to the mid-range when digging in that is hard to beat, and a focused low-end and that pleasant traditional package high-end we're all over the moon with how this guitar turned out.</p>\n<p>Perfect for flat-picking and bluegrass fiddle tunes, this D1A produces tons of volume and with plenty of head room to really drive through a jam. This bluegrass cannon has the sort of big, bold, full sound that flatpickers dream of, while being just as responsive when played with a light touch. With it's custom carved Traditional neck and rounded fingerboard edge it's extremely comfortable to play.</p>\n<p>The Collings Traditional Series is marked by a return to just that, traditional building techniques and materials combined with the Collings exquisite attention to detail. This series is highlighted by traditional style bracing and tone woods which are adjusted, weighed and voiced to produce particularly warm, rounded highs while maintaining a full, rich low end. The extra thin Nitrocellulose satin lacquer finish, applied without a polyvinyl sealer, makes for a lively, expressive top that has the feel of an old vintage guitar.</p>\n<p>Includes a Collings case along with a free&amp;nbsp;Mass Street setup from our luthiers</p>\n<ul>\n<li>14-Fret Dreadnought with Extra thin Satin Lacquer finish and Tortoise-style binding</li>\n<li>Custom Traditional Pre-War Scalloped bracing with no tongue brace</li>\n<li>Adirondack Spruce top with Tortoise-style pickguard and wood&nbsp;purfling</li>\n<li>Mahogany back and sides with 1-style Walnut backstrip</li>\n<li>25 1/2\" scale length</li>\n<li>Mahogany neck with Custom Traditional profile</li>\n<li>Ebony fingerboard with 14\" - 26\" compound radius, 20 Medium 18% nickel-silver frets and Gold Mother-of-Pearl&nbsp;microdot inlays</li>\n<li>1 3/4\" nut width, bone</li>\n<li>Bone cut-through saddle with 2 5/16\" string spacing</li>\n<li>Ebony belly-style bridge</li>\n<li>Nickel Waverly tuners with 16:1 ratio</li>\n<li>Collings hardshell case</li>\n<li>Serial# 34668</li>\n</ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "7850.00",
+        "amount_cents": 785000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$7,850"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "7850.00",
+        "amount_cents": 785000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$7,850"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "630dc140-45e2-4371-b569-19405de321cc",
+          "full_name": "Acoustic Guitars / Dreadnought"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-07-08T16:05:46-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "D1ATVS-34668",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--ITMLytTM--/quality=medium-low,height=800,width=800,fit=contain/mo23ld67wywwnjpqv0qx.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/83465099-collings-acoustic-guitars-d1-a-traditional-t-series-vintage-satin"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/83465099-collings-acoustic-guitars-d1-a-traditional-t-series-vintage-satin/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/83465099-collings-acoustic-guitars-d1-a-traditional-t-series-vintage-satin"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/83465099"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/83465099-collings-acoustic-guitars-d1-a-traditional-t-series-vintage-satin"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--ITMLytTM--/quality=medium-low,height=800,width=800,fit=contain/mo23ld67wywwnjpqv0qx.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--ahkIQorK--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/mo23ld67wywwnjpqv0qx.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--ITMLytTM--/quality=medium-low,height=800,width=800,fit=contain/mo23ld67wywwnjpqv0qx.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--ahkIQorK--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/mo23ld67wywwnjpqv0qx.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 81997935,
+      "make": "Bourgeois",
+      "model": "Acoustic Guitars - LDBO-14 - L-DB - Adirondack - Sinker Mahog...",
+      "finish": "Mahogany",
+      "year": "",
+      "title": "Bourgeois Acoustic Guitars - LDBO-14 - L-DB - Adirondack - Sinker Mahogany - Aged Tone",
+      "created_at": "2024-05-07T14:58:23-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This <strong>Aged Tone Bourgeois LDBO 14</strong>, here in a Hand-Sprayed Sunburst finish, combines the Bourgeois approach to guitar building with this classic depression-era model. Featuring an Aged Tone Adirondack top, bracing and finish, this 14-Fret guitar is clear and articulate, with a quick response that is a hallmark of this body shape. The upgraded Sinker Mahogany back and sides not only looks amazing, but is a fantastic use of these old, sinker logs, and delivers that dark, warm tone.</p>\n<p>With a slightly larger sound hole this small body guitar delivers a lot of power in a small package, which makes for a great flatpicker for those looking for a smaller guitar, but also excels as a fingerstyle player. Includes a free Mass Street setup from our luthiers and the original hardshell case</p>\n<ul>\n<li>14-Fret LDBO Body</li>\n<li>Aged Tone Sunburst Finish with Celluloid Tortoise pickguard</li>\n<li>Aged Tone Adirondack Spruce top</li>\n<li>Aged Tone Torrefied Adirondack Spruce Bracing</li>\n<li>Sinker Mahogany back and sides</li>\n<li>Purfling - Black/Ivoroid on End/Black with Back and Sides</li>\n<li>Single Ring Ivoroid on End Rosette</li>\n<li>25\u201d Short Scale length<br>\n</li>\n<li>Black, Ivoriod on end, Black W/B&amp;S purfling</li>\n<li>Ziricote fingerboard, 20 frets</li>\n<li>Tiny Dots - Mother of Pearl fretboard inlay</li>\n<li>Contour Headstock with MOP Logo with \"AJ\" inlay</li>\n<li>1 23/32\" nut width, bone</li>\n<li>Bone drop-in saddle with 2.2\" string spacing</li>\n<li>Bone bridge pins</li>\n<li>Ziricote Rectangle bridge</li>\n<li>Waverly Nickel with Oval Ivoroid Buttons</li>\n<li>Animal Protein Glue</li>\n<li>Includes Hardshell case</li>\n<li>Serial#: 10455</li>\n</ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "8549.10",
+        "amount_cents": 854910,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$8,549.10"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "8549.10",
+        "amount_cents": 854910,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$8,549.10"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "15cedc86-0e56-4800-b3f0-0f99fab350cb",
+          "full_name": "Acoustic Guitars / Parlor"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-05-07T14:58:26-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "LDBO-14-L-DB",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--EH7vTr0l--/quality=medium-low,height=800,width=800,fit=contain/ffn9daqadpzgddgqpupi.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/81997935-bourgeois-acoustic-guitars-ldbo-14-l-db-adirondack-sinker-mahogany-aged-tone"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/81997935-bourgeois-acoustic-guitars-ldbo-14-l-db-adirondack-sinker-mahogany-aged-tone/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/81997935-bourgeois-acoustic-guitars-ldbo-14-l-db-adirondack-sinker-mahogany-aged-tone"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/81997935"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/81997935-bourgeois-acoustic-guitars-ldbo-14-l-db-adirondack-sinker-mahogany-aged-tone"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--EH7vTr0l--/quality=medium-low,height=800,width=800,fit=contain/ffn9daqadpzgddgqpupi.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--NHjbvD4C--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/ffn9daqadpzgddgqpupi.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--EH7vTr0l--/quality=medium-low,height=800,width=800,fit=contain/ffn9daqadpzgddgqpupi.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--NHjbvD4C--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/ffn9daqadpzgddgqpupi.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 83194458,
+      "make": "Szzzp",
+      "model": "Acoustic Guitars",
+      "finish": "",
+      "year": "2025",
+      "title": "Szzzp 4 String Acoustic Bass Guitar, Full Size Bass Guitar Kit with Portable Guitar Bag, Premium Cable, Wrench, Strap, Plectrum (Natural)",
+      "created_at": "2024-06-25T22:28:03-05:00",
+      "shop_name": "Ozici Music (CA)",
+      "shop": {
+        "slug": "joels-gear-locker-672",
+        "preferred_seller": false
+      },
+      "description": "<ul><li>FABULOUS SOUND: The EQ-7545R bass preamp can freely adjust bass, middle, treble and presence to produce the sound you want. The 44.5-in acoustic bass body has a better resonance, which makes the sound fuller</li><li>BETTER TONE DISPLAY: Made of premium basswood, this bass body responds well to any acoustic playing style\uff0c from hard strumming to fast flatpicking to delicate fingerpicking. The surface coating design of strings makes string tension became larger therefore you can play a more stable and smooth sound</li><li>SPECIAL DESIGN: Made of premium rosewood, this fretboard of the 4-string bass guitar features smooth touch and hard texture for better hand-feeling and durability. Compared with ordinary bass, the special barrel shape of our acoustic bass guitar can better gather voices</li><li>FANSATIC FEELING: Our bass guitar kit has an adjustable truss rod, which keeps the neck of the bass guitar straight and allows you easier to adjust the distance between the strings and the fingerboard to get the most comfortable playing experience</li><li>SUITABLE FOR ALL SKILL LEVELS: Coming with a complete set, this bass guitar is no assembly required which is a great choice for beginners and experienced musicians of all levels. A portable bag with a convertible nylon strap supports you to carry it in different ways</li></ul><p>&nbsp;</p><p>RIGHT-HANDED BASS GUITAR<br>Whole Bass Size: 44.5 Inch<br>Upper Nut Material: PVC<br>Back Material: Basswood<br>Head Material: Canadian Maple<br>Neck Material: Canadian Maple<br>String Material: Phosphor Bronze<br>Fingerboard Material: Rosewood<br>Body Material: Basswood<br>EQ: 4 Band<br>Nut Width: 43 mm<br>Scale Length: 24.76\" (629 mm)<br>Pickguard Color: No Pickguard<br>Fingerboard Radius: 9.5\"<br>Guitar Dimensions: 44.5*15.4*4.3 in<br>Number of Frets: 22<br>Guitar Weight: 4.8 lb / 2.2 kg</p>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "104.90",
+        "amount_cents": 10490,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$104.90"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "104.90",
+        "amount_cents": 10490,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$104.90"
+      },
+      "original_price": {
+        "tax_included": false,
+        "amount": "120.95",
+        "amount_cents": 12095,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$120.95"
+      },
+      "ribbon": {
+        "display": "$16.05 price drop",
+        "reason": "price_drop"
+      },
+      "inventory": 10,
+      "has_inventory": true,
+      "offers_enabled": true,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-06-25T22:28:05-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 4017641,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          },
+          {
+            "region_code": "HK",
+            "rate": {
+              "amount": "80.00",
+              "amount_cents": 8000,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$80"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "SP-04338146",
+      "price_drop": {
+        "percent": 14,
+        "display": "14% price drop",
+        "original_price": {
+          "tax_included": false,
+          "amount": "120.95",
+          "amount_cents": 12095,
+          "currency": "USD",
+          "symbol": "$",
+          "display": "$120.95"
+        }
+      },
+      "us_outlet": false,
+      "original_price_description": "Original price",
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--H9ZPwjIX--/quality=medium-low,height=800,width=800,fit=contain/rtq1b3kum8bnyafxt9jf.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/83194458-szzzp-4-string-acoustic-bass-guitar-full-size-bass-guitar-kit-with-portable-guitar-bag-premium-cable-wrench-strap-plectrum-natural"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/83194458-szzzp-4-string-acoustic-bass-guitar-full-size-bass-guitar-kit-with-portable-guitar-bag-premium-cable-wrench-strap-plectrum-natural/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/83194458-szzzp-4-string-acoustic-bass-guitar-full-size-bass-guitar-kit-with-portable-guitar-bag-premium-cable-wrench-strap-plectrum-natural"
+        },
+        "make_offer": {
+          "href": "https://api.reverb.com/api/listings/83194458-szzzp-4-string-acoustic-bass-guitar-full-size-bass-guitar-kit-with-portable-guitar-bag-premium-cable-wrench-strap-plectrum-natural/offer",
+          "method": "POST"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/83194458"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/83194458-szzzp-4-string-acoustic-bass-guitar-full-size-bass-guitar-kit-with-portable-guitar-bag-premium-cable-wrench-strap-plectrum-natural"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--H9ZPwjIX--/quality=medium-low,height=800,width=800,fit=contain/rtq1b3kum8bnyafxt9jf.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--poig73JL--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/rtq1b3kum8bnyafxt9jf.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--H9ZPwjIX--/quality=medium-low,height=800,width=800,fit=contain/rtq1b3kum8bnyafxt9jf.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--poig73JL--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/rtq1b3kum8bnyafxt9jf.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 83194421,
+      "make": "Glarry",
+      "model": "Acoustic Guitars",
+      "finish": "",
+      "year": "2025",
+      "title": "Glarry GMB101 4 string Electric Acoustic Bass Guitar w/ 4-Band Equalizer EQ-7545R Burlywood",
+      "created_at": "2024-06-25T22:27:24-05:00",
+      "shop_name": "Ozici Music (CA)",
+      "shop": {
+        "slug": "joels-gear-locker-672",
+        "preferred_seller": false
+      },
+      "description": " Details \n<p>Introductions:<br>Glarry GMB101 4 string Electric Acoustic Bass Guitar have a Basswood Top, Back and Sides, ABS nut, Rosewood Bridge and Fingerboard. The body length 44.5 in has a better resonance, making the sound fuller.<br>The GMB101 body shape features a crisp midrange, bright treble and balanced tone with a straight fingerboard for fingerpicking and sweeping. Also Glarry GMB101 have an adjustable truss rods, effectively keeps the neck of the bass guitar straight and allows you to adjust the distance between the strings and the fingerboard to get the most comfortable playing experience.<br>The EQ-7545R bass preamp to produces high-quality sound with Built-in Volume control and the 4-bands equalizer adjustment of bass, middle, treble, and presence. You can play bass guitar with or without an amp.<br><br></p>\n<p>Features:<br>1. GMB101 Full Size, body length 44.5 in.<br>2. GMB101 have an adjustable truss rods.<br>3. 4-Band Equalizer EQ-7545R adjustment of bass, middle, treble,and presence.<br>4. The set Includes: Aoustic Bass Guitar, Bag, Cable, Wrench adjustment tool, Strap, Plectrum.&nbsp; 9V battery not included.</p>\n<p>Specifications:<br>1. Brand: Glarry<br>2. Size: 44.5 in<br>3. Model:GMB101<br>4. Guitar Color: Burlywood<br>5. Top/Back/Side Panel Material: Basswood<br>6. Fingerboard /Bridge Material: Rosewood<br>7. Neck Material:Maple<br>8. Nut Material: ABS Plastic<br>9. Tuning Peg Material: Metal Full Closed String Axis<br>10. Frets: 21<br>11. Nut Width : 1.65 in<br>12. Scale Length: 30 in<br>13. Guitar Dimensions: 44.5 in * 15.4 in *4.3 in<br>14. Guitar Weight: 4.8 lb / 2.2 kg<br><br>Equalizer EQ-7545R<br>1. Presence Control: \u00b112dB at 8KHz<br>2. Bass Control: \u00b112dB at 600Hz<br>3. Middle Control: \u00b112dB at 600Hz<br>4. Treble Control: \u00b112dB at 2.2KHz<br>5. Input impedance: 10MOhm<br>6. Frequency Response: 20Hz - 20KHz<br>7. Battery: 9V battery (not included)</p>\n<p>Package Includes:<br>1 x Aoustic Bass Guitar<br>1 x Guitar Bag<br>1 x Cable<br>1 x Wrench adjustment tool<br>1 x Strap<br>1 x Plectrum</p>\n",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "119.00",
+        "amount_cents": 11900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$119"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "119.00",
+        "amount_cents": 11900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$119"
+      },
+      "inventory": 15,
+      "has_inventory": true,
+      "offers_enabled": true,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-06-25T22:27:27-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 4017641,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          },
+          {
+            "region_code": "HK",
+            "rate": {
+              "amount": "80.00",
+              "amount_cents": 8000,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$80"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "D0102HPK65U",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--plxuwdq9--/quality=medium-low,height=800,width=800,fit=contain/fwl8k3ccwe95q8vhoani.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/83194421-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-burlywood"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/83194421-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-burlywood/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/83194421-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-burlywood"
+        },
+        "make_offer": {
+          "href": "https://api.reverb.com/api/listings/83194421-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-burlywood/offer",
+          "method": "POST"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/83194421"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/83194421-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-burlywood"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--plxuwdq9--/quality=medium-low,height=800,width=800,fit=contain/fwl8k3ccwe95q8vhoani.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--ksZ24dM9--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/fwl8k3ccwe95q8vhoani.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--plxuwdq9--/quality=medium-low,height=800,width=800,fit=contain/fwl8k3ccwe95q8vhoani.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--ksZ24dM9--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/fwl8k3ccwe95q8vhoani.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 72342454,
+      "make": "Glarner Guitars",
+      "model": "Acoustic Guitar Strings Light Gauge 11-52",
+      "finish": "Phosphor Bronze",
+      "year": "2023",
+      "title": "Glarner Guitars Acoustic Guitar Strings Light Gauge 11-52 2023 - Phosphor Bronze",
+      "created_at": "2023-08-11T20:47:12-05:00",
+      "shop_name": "The Music Conservatory ",
+      "shop": {
+        "slug": "warren-music-s-gear-garage",
+        "preferred_seller": true
+      },
+      "description": "<p>These are our economy class strings to keep you going on the cheap! Solid for strumming and priced to please! Proceeds benefit our childrens music scholarships </p>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "10.00",
+        "amount_cents": 1000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$10"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "10.00",
+        "amount_cents": 1000,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$10"
+      },
+      "inventory": 1,
+      "has_inventory": false,
+      "offers_enabled": true,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2023-08-11T20:50:54-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 2678263,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--7mPbGWVQ--/quality=medium-low,height=800,width=800,fit=contain/mhxh7fryloaf3l0qpju4.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/72342454-glarner-guitars-acoustic-guitar-strings-light-gauge-11-52-2023-phosphor-bronze"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/72342454-glarner-guitars-acoustic-guitar-strings-light-gauge-11-52-2023-phosphor-bronze/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/72342454-glarner-guitars-acoustic-guitar-strings-light-gauge-11-52-2023-phosphor-bronze"
+        },
+        "make_offer": {
+          "href": "https://api.reverb.com/api/listings/72342454-glarner-guitars-acoustic-guitar-strings-light-gauge-11-52-2023-phosphor-bronze/offer",
+          "method": "POST"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/72342454"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/72342454-glarner-guitars-acoustic-guitar-strings-light-gauge-11-52-2023-phosphor-bronze"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--7mPbGWVQ--/quality=medium-low,height=800,width=800,fit=contain/mhxh7fryloaf3l0qpju4.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--vR2EYkUf--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/mhxh7fryloaf3l0qpju4.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--7mPbGWVQ--/quality=medium-low,height=800,width=800,fit=contain/mhxh7fryloaf3l0qpju4.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--vR2EYkUf--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/mhxh7fryloaf3l0qpju4.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 91823494,
+      "make": "Martin",
+      "model": "Acoustic Guitars - 00-18 (2025)",
+      "finish": "Natural",
+      "year": "",
+      "title": "Martin Acoustic Guitars - 00-18 (2025)",
+      "created_at": "2025-08-15T11:10:14-05:00",
+      "shop_name": "Mass Street Music",
+      "shop": {
+        "slug": "mass-street-music",
+        "preferred_seller": true
+      },
+      "description": "<p>This&nbsp;<strong>00-18&nbsp;</strong>from Martin is an extremely versatile guitar, and as a part of the Standard Series brings a ton of pre-war specs back to this classic build. A satin neck with a Golden Era Modified Low Oval profile, high-performance taper, and 24.9\" scale length, the 00-18 is very comfortable to play while still projecting well. Featuring a Spruce top with a hint of aging toner for a more vintage look, along with a set of Mahogany back and sides, the 00 is right at home in the 18-style line of Martins. With the classic early '30s nut width and string spacing it's great for flat-picking or fingerstyle players alike. Includes a free setup from our team of luthiers and a hardshell case.</p>\n<ul>\n<li>00-14 fret body with Dovetail neck joint construction</li>\n<li>Solid Spruce top with GE-scalloped X-bracing, Style 18 rosette, Tortoise Pattern pickguard, Aging toner, Tortoise style binding</li>\n<li>Mahogany back and sides with Old Style 18 back purfling</li>\n<li>24.9\" scale length</li>\n<li>Select hardwood neck with Modified Low Oval profile with High-Performance taper\n</li>\n<li>Ebony fingerboard with Old Style 18 Abalone inlays and 20 frets</li>\n<li>1 3/4\" nut width, Bone</li>\n<li>Drop-in Compensated Bone Saddle, 16\" radius, with 2 5/32\" string spacing</li>\n<li>1930s style Belly bridge</li>\n<li>Nickel Open-Geared tuners with Butterbean knobs</li>\n<li>Original Hardshell case included</li>\n</ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "2899.00",
+        "amount_cents": 289900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$2,899"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "2899.00",
+        "amount_cents": 289900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$2,899"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2025-08-15T11:10:18-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 29093,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": true,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "10Y250018",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--Vh6nsaqm--/quality=medium-low,height=800,width=800,fit=contain/ejuybtpegnryofuvkt44.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/91823494-martin-acoustic-guitars-00-18-2025"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/91823494-martin-acoustic-guitars-00-18-2025/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/91823494-martin-acoustic-guitars-00-18-2025"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/91823494"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/91823494-martin-acoustic-guitars-00-18-2025"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--Vh6nsaqm--/quality=medium-low,height=800,width=800,fit=contain/ejuybtpegnryofuvkt44.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--vi6EGY5N--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/ejuybtpegnryofuvkt44.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--Vh6nsaqm--/quality=medium-low,height=800,width=800,fit=contain/ejuybtpegnryofuvkt44.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--vi6EGY5N--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/ejuybtpegnryofuvkt44.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 83194422,
+      "make": "DoBa",
+      "model": "Acoustic Guitars",
+      "finish": "",
+      "year": "2024",
+      "title": "ADM Weissenborn Hollow-Neck Hawaiian-Style Slide Acoustic Guitar for Enthusiasts-Full Size",
+      "created_at": "2024-06-25T22:27:26-05:00",
+      "shop_name": "Ozici Music (CA)",
+      "shop": {
+        "slug": "joels-gear-locker-672",
+        "preferred_seller": false
+      },
+      "description": "Highlights \n<p>Exquisite Look- Special teardrop design Hawaiian guitar with stain finish, Bring a different visual experience</p>\n<p>Unique Sound-Hollow neck, use metal sliders to play together, the sound is gorgeous, brisk and melodious</p>\n<p>Selected wood-Made of sapele plywood top/back/sides, technical wooden fingerboard and bridge, maple binding</p>\n<p>Quality Assurance-The quality of all covered machine head, tuning is more accurate and stable</p>\n<p>Best Choice-Music guarantees quality and affordability</p>\n Specification \n<p>Brand:ADM</p>\n Details \n\n<p>How to play the Hawaiian guitar: The player sits on a chair with a suitable height; with both feet on the ground; and puts the guitar on the leg steadily; the right forearm should have proper pressure to make the guitar more stable on the lap and avoid any guitar doing anything Unnecessary movement. Press the string in one hand with the metal slider; and pluck the string in the other hand to play.</p>\n\n\n",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "229.00",
+        "amount_cents": 22900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$229"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "229.00",
+        "amount_cents": 22900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$229"
+      },
+      "inventory": 10,
+      "has_inventory": true,
+      "offers_enabled": true,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-06-25T22:27:28-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 4017641,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "D0102HHQGNY-Full Size",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--d5utMYpp--/quality=medium-low,height=800,width=800,fit=contain/zs2bpskwxxusglqazkdk.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/83194422-adm-weissenborn-hollow-neck-hawaiian-style-slide-acoustic-guitar-for-enthusiasts-full-size"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/83194422-adm-weissenborn-hollow-neck-hawaiian-style-slide-acoustic-guitar-for-enthusiasts-full-size/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/83194422-adm-weissenborn-hollow-neck-hawaiian-style-slide-acoustic-guitar-for-enthusiasts-full-size"
+        },
+        "make_offer": {
+          "href": "https://api.reverb.com/api/listings/83194422-adm-weissenborn-hollow-neck-hawaiian-style-slide-acoustic-guitar-for-enthusiasts-full-size/offer",
+          "method": "POST"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/83194422"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/83194422-adm-weissenborn-hollow-neck-hawaiian-style-slide-acoustic-guitar-for-enthusiasts-full-size"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--d5utMYpp--/quality=medium-low,height=800,width=800,fit=contain/zs2bpskwxxusglqazkdk.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--KTjWxiby--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/zs2bpskwxxusglqazkdk.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--d5utMYpp--/quality=medium-low,height=800,width=800,fit=contain/zs2bpskwxxusglqazkdk.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--KTjWxiby--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/zs2bpskwxxusglqazkdk.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 83196164,
+      "make": "Winzz",
+      "model": "Acoustic Guitars",
+      "finish": "",
+      "year": "2025",
+      "title": "WINZZ 41-Inch Flamed Ash Dreadnought Acoustic Guitar \u2013 Night Glow Inlays, Player Comfort Armrest",
+      "created_at": "2024-06-26T02:40:03-05:00",
+      "shop_name": "Ozici Music (CA)",
+      "shop": {
+        "slug": "joels-gear-locker-672",
+        "preferred_seller": false
+      },
+      "description": "<p>ONE</p><p>A perfect blend of beauty and tone</p><p><b><strong>Flame-grain beauty meets bright, crisp tone</strong></b><br><br>Combining striking looks with exceptional tone, this&nbsp;flame ash&nbsp;guitar features a naturally unique grain that exudes premium character. Its bright, articulate sound shines both on stage and in the studio.<br><br></p><p>TWO</p><p>Visual depth&amp;Ergonomic design</p><p>Adds strength and style with white ABS and celluloid detailing.<br>The guitar features an&nbsp;<b><strong>ergonomic armrest</strong></b>&nbsp;for maximum playing comfort.<br><br></p><p><br></p><p>THREE</p><p>Stability Meets Effortless Playability</p><p><br>The three-piece neck design offers enhanced strength and resistance to warping, while the matte finish provides a smooth, non-sticky feel for effortless playability\u2014even during long sessions.<br></p><p>Innovative Design</p><ul><li>18:1 Sealed gear tuner18:1 sealed gear tuners offer precise tuning, smooth adjustment, and long-term stability with dust-proof, durable construction.<br></li><li>Ergonomic Armrest with ABS Binding \u2013 Built for Comfort and StyleFeatures an ergonomic armrest for added playing comfort, accented with white ABS binding and celluloid inlay for refined craftsmanship and a premium visual appeal.</li><li>Smooth Feel, Better VisibilitySmooth rounded frets ensure comfortable transitions across the neck, while glow-in-the-dark droplet inlays enhance visibility in low-light settings\u2014combining playability with stage-ready style.</li></ul>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "239.00",
+        "amount_cents": 23900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$239"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "239.00",
+        "amount_cents": 23900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$239"
+      },
+      "original_price": {
+        "tax_included": false,
+        "amount": "292.38",
+        "amount_cents": 29238,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$292.38"
+      },
+      "ribbon": {
+        "display": "$53.38 price drop",
+        "reason": "price_drop"
+      },
+      "inventory": 10,
+      "has_inventory": true,
+      "offers_enabled": true,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-06-26T02:40:06-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 4017641,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          },
+          {
+            "region_code": "HK",
+            "rate": {
+              "amount": "80.00",
+              "amount_cents": 8000,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$80"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "SET B",
+      "price_drop": {
+        "percent": 19,
+        "display": "19% price drop",
+        "original_price": {
+          "tax_included": false,
+          "amount": "292.38",
+          "amount_cents": 29238,
+          "currency": "USD",
+          "symbol": "$",
+          "display": "$292.38"
+        }
+      },
+      "us_outlet": false,
+      "original_price_description": "Original price",
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--7gvSgkPu--/quality=medium-low,height=800,width=800,fit=contain/t8w23zmpwk1ht9reblmb.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/83196164-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/83196164-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/83196164-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest"
+        },
+        "make_offer": {
+          "href": "https://api.reverb.com/api/listings/83196164-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest/offer",
+          "method": "POST"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/83196164"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/83196164-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--7gvSgkPu--/quality=medium-low,height=800,width=800,fit=contain/t8w23zmpwk1ht9reblmb.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--jq9aaS_2--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/t8w23zmpwk1ht9reblmb.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--7gvSgkPu--/quality=medium-low,height=800,width=800,fit=contain/t8w23zmpwk1ht9reblmb.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--jq9aaS_2--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/t8w23zmpwk1ht9reblmb.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 83194424,
+      "make": "Glarry",
+      "model": "Acoustic Guitars",
+      "finish": "",
+      "year": "2025",
+      "title": "Glarry GMB101 4 string Electric Acoustic Bass Guitar w/ 4-Band Equalizer EQ-7545R Black",
+      "created_at": "2024-06-25T22:27:27-05:00",
+      "shop_name": "Ozici Music (CA)",
+      "shop": {
+        "slug": "joels-gear-locker-672",
+        "preferred_seller": false
+      },
+      "description": " Details \n \n\n<p><strong>Introductions:</strong><br>Glarry GMB101 4 string Electric Acoustic Bass Guitar have a Basswood Top, Back and Sides, ABS nut, Rosewood Bridge and Fingerboard. The body length 44.5 in has a better resonance, making the sound fuller. <br>The GMB101 body shape features a crisp midrange, bright treble and balanced tone with a straight fingerboard for fingerpicking and sweeping. Also Glarry GMB101 have an adjustable truss rods, effectively keeps the neck of the bass guitar straight and allows you to adjust the distance between the strings and the fingerboard to get the most comfortable playing experience.<br>The EQ-7545R bass preamp to produces high-quality sound with Built-in Volume control and the 4-bands equalizer adjustment of bass, middle, treble, and presence. You can play bass guitar with or without an amp.<br><br></p>\n<p><strong>Features:</strong><br>1. GMB101 Full Size, body length 44.5 in.<br>2. GMB101 have an adjustable truss rods.<br>3. 4-Band Equalizer EQ-7545R adjustment of bass, middle, treble,and presence.<br>4. The set Includes: Aoustic Bass Guitar, Bag, Cable, Wrench adjustment tool, Strap, Plectrum.&nbsp; 9V battery not included.</p>\n<p><strong>Specifications:</strong><br>1. Brand: Glarry<br>2. Size: 44.5 in<br>3. Model:GMB101<br>4. Guitar Color: Black<br>5. Top/Back/Side Panel Material: Basswood<br>6. Fingerboard /Bridge Material: Rosewood<br>7. Neck Material:Maple<br>8. Nut Material: ABS Plastic<br>9. Tuning Peg Material: Metal Full Closed String Axis<br>10. Frets: 21<br>11. Nut Width : 1.65 in<br>12. Scale Length: 30 in<br>13. Guitar Dimensions: 44.5 in * 15.4 in *4.3 in<br>14. Guitar Weight: 4.8 lb / 2.2 kg<br><br>Equalizer EQ-7545R<br>1. Presence Control: \u00b112dB at 8KHz<br>2. Bass Control: \u00b112dB at 600Hz<br>3. Middle Control: \u00b112dB at 600Hz<br>4. Treble Control: \u00b112dB at 2.2KHz<br>5. Input impedance: 10MOhm<br>6. Frequency Response: 20Hz - 20KHz<br>7. Battery: 9V battery (not included)</p>\n<p><strong>Package Includes:</strong><br>1 x Aoustic Bass Guitar<br>1 x Guitar Bag<br>1 x Cable<br>1 x Wrench adjustment tool<br>1 x Strap<br>1 x Plectrum</p>\n\n<br>\n \n\n \n ",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "119.00",
+        "amount_cents": 11900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$119"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "119.00",
+        "amount_cents": 11900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$119"
+      },
+      "inventory": 10,
+      "has_inventory": true,
+      "offers_enabled": true,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-06-25T22:27:29-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 4017641,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          },
+          {
+            "region_code": "HK",
+            "rate": {
+              "amount": "80.00",
+              "amount_cents": 8000,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$80"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "D0102HGZ767",
+      "us_outlet": false,
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--GkJ8rZR6--/quality=medium-low,height=800,width=800,fit=contain/myq461mel0p7hxbi65yv.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/83194424-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-black"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/83194424-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-black/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/83194424-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-black"
+        },
+        "make_offer": {
+          "href": "https://api.reverb.com/api/listings/83194424-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-black/offer",
+          "method": "POST"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/83194424"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/83194424-glarry-gmb101-4-string-electric-acoustic-bass-guitar-w-4-band-equalizer-eq-7545r-black"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--GkJ8rZR6--/quality=medium-low,height=800,width=800,fit=contain/myq461mel0p7hxbi65yv.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--upaFf6Mz--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/myq461mel0p7hxbi65yv.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--GkJ8rZR6--/quality=medium-low,height=800,width=800,fit=contain/myq461mel0p7hxbi65yv.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--upaFf6Mz--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/myq461mel0p7hxbi65yv.jpg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 83501556,
+      "make": "Winzz",
+      "model": "Acoustic Guitars",
+      "finish": "",
+      "year": "2025",
+      "title": "WINZZ 41-Inch Flamed Ash Dreadnought Acoustic Guitar \u2013 Night Glow Inlays, Player Comfort Armrest",
+      "created_at": "2024-07-10T04:22:04-05:00",
+      "shop_name": "Ozici Music (CA)",
+      "shop": {
+        "slug": "joels-gear-locker-672",
+        "preferred_seller": false
+      },
+      "description": "<p>ONE</p><p>A perfect blend of beauty and tone</p><p><b><strong>Flame-grain beauty meets bright, crisp tone</strong></b><br><br>Combining striking looks with exceptional tone, this&nbsp;flame ash&nbsp;guitar features a naturally unique grain that exudes premium character. Its bright, articulate sound shines both on stage and in the studio.<br><br></p><p>TWO</p><p>Visual depth&amp;Ergonomic design</p><p>Adds strength and style with white ABS and celluloid detailing.<br>The guitar features an&nbsp;<b><strong>ergonomic armrest</strong></b>&nbsp;for maximum playing comfort.<br><br></p><p>THREE</p><p>Stability Meets Effortless Playability</p><p><br>The three-piece neck design offers enhanced strength and resistance to warping, while the matte finish provides a smooth, non-sticky feel for effortless playability\u2014even during long sessions.<br></p><p>Innovative Design</p><ul><li>18:1 Sealed gear tuner18:1 sealed gear tuners offer precise tuning, smooth adjustment, and long-term stability with dust-proof, durable construction.<br></li><li>Ergonomic Armrest with ABS Binding \u2013 Built for Comfort and StyleFeatures an ergonomic armrest for added playing comfort, accented with white ABS binding and celluloid inlay for refined craftsmanship and a premium visual appeal.</li><li>Smooth Feel, Better VisibilitySmooth rounded frets ensure comfortable transitions across the neck, while glow-in-the-dark droplet inlays enhance visibility in low-light settings\u2014combining playability with stage-ready style.</li></ul><p>ONE-MONTH FREE LESSON</p><p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "219.00",
+        "amount_cents": 21900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$219"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "219.00",
+        "amount_cents": 21900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$219"
+      },
+      "original_price": {
+        "tax_included": false,
+        "amount": "229.00",
+        "amount_cents": 22900,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$229"
+      },
+      "ribbon": {
+        "display": "$10 price drop",
+        "reason": "price_drop"
+      },
+      "inventory": 10,
+      "has_inventory": true,
+      "offers_enabled": true,
+      "categories": [
+        {
+          "uuid": "3ca3eb03-7eac-477d-b253-15ce603d2550",
+          "full_name": "Acoustic Guitars"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2024-07-10T04:25:07-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 4017641,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          },
+          {
+            "region_code": "HK",
+            "rate": {
+              "amount": "80.00",
+              "amount_cents": 8000,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$80"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            },
+            "display": {
+              "amount": "0.00",
+              "amount_cents": 0,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "FREE"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "SET A",
+      "price_drop": {
+        "percent": 5,
+        "display": "5% price drop",
+        "original_price": {
+          "tax_included": false,
+          "amount": "229.00",
+          "amount_cents": 22900,
+          "currency": "USD",
+          "symbol": "$",
+          "display": "$229"
+        }
+      },
+      "us_outlet": false,
+      "original_price_description": "Original price",
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--bqFgCTL5--/quality=medium-low,height=800,width=800,fit=contain/shuxygf2kdmaviewpohz.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/83501556-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/83501556-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/83501556-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest"
+        },
+        "make_offer": {
+          "href": "https://api.reverb.com/api/listings/83501556-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest/offer",
+          "method": "POST"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/83501556"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/83501556-winzz-41-inch-flamed-ash-dreadnought-acoustic-guitar-night-glow-inlays-player-comfort-armrest"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--bqFgCTL5--/quality=medium-low,height=800,width=800,fit=contain/shuxygf2kdmaviewpohz.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--tfzPL8C0--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/shuxygf2kdmaviewpohz.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--bqFgCTL5--/quality=medium-low,height=800,width=800,fit=contain/shuxygf2kdmaviewpohz.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--tfzPL8C0--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/shuxygf2kdmaviewpohz.jpg"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "ships_to": "Everywhere Else"
+}

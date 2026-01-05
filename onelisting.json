@@ -1,0 +1,163 @@
+{
+      "id": 40270500,
+      "make": "J.N Guitars",
+      "model": "Acoustic Guitars",
+      "finish": "",
+      "year": "",
+      "title": "J.N GUITARS Asyla series 4/4 dreadnought acoustic-electric guitar with solid spruce top ASY-DCE",
+      "created_at": "2021-04-26T10:03:39-05:00",
+      "shop_name": "Maxwell's House of Music",
+      "shop": {
+        "slug": "maxwells-house-of-music",
+        "preferred_seller": true
+      },
+      "description": "- Back and sides: Mahogany\n- Neck: Mahogany, Oval C shape, satin finish\n- Fingerboard: Blackwood, with dot inlays\n- Bridge: Blackwood\n- Nut and (compensated) saddle: NuBone\n- Rosette: Tortoiseshell pattern\n- Body binding: White ABS with black purfling\n- Machine heads: Diecast, nickel\n- Strings: D'Addario EXP\n- Active preamp system: Under saddle pick-up, JN MET-A16 equaliser with built-in chromatic tuner, volume, bass, middle and treble control and low battery indicator\n- Colour: Natural\n- Finish: Open pore varnish<br><br> <br><br>*Please Note - shipping times may be longer.  Some items may be special order or pre-order.  Please contact us with any questions, prior to purchase. <br><br>Pictures may be for reference/color reference only.  Finish may vary.  Please contact us with any questions prior to purchase.  If you need something you don't see, contact us!<br><br>J.N GUITARS Asyla series 4/4 dreadnought acoustic-electric guitar with solid spruce top ASY-DCE",
+      "condition": {
+        "uuid": "7c3f45de-2ae0-4c81-8400-fdb6b1d74890",
+        "display_name": "Brand New",
+        "slug": "brand-new"
+      },
+      "price": {
+        "tax_included": false,
+        "amount": "339.99",
+        "amount_cents": 33999,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$339.99"
+      },
+      "buyer_price": {
+        "tax_included": false,
+        "amount": "339.99",
+        "amount_cents": 33999,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$339.99"
+      },
+      "original_price": {
+        "tax_included": false,
+        "amount": "559.99",
+        "amount_cents": 55999,
+        "currency": "USD",
+        "symbol": "$",
+        "display": "$559.99"
+      },
+      "ribbon": {
+        "display": "$220 price drop",
+        "reason": "price_drop"
+      },
+      "inventory": 1,
+      "has_inventory": true,
+      "offers_enabled": false,
+      "categories": [
+        {
+          "uuid": "09ea109a-5df1-4156-b00c-7456a3e5abf3",
+          "full_name": "Acoustic Guitars / Built-in Electronics"
+        },
+        {
+          "uuid": "630dc140-45e2-4371-b569-19405de321cc",
+          "full_name": "Acoustic Guitars / Dreadnought"
+        }
+      ],
+      "listing_currency": "USD",
+      "published_at": "2022-05-17T15:40:31-05:00",
+      "state": {
+        "slug": "live",
+        "description": "Live"
+      },
+      "auction": false,
+      "shop_id": 76390,
+      "shipping": {
+        "free_expedited_shipping": false,
+        "local": false,
+        "rates": [
+          {
+            "region_code": "US_CON",
+            "rate": {
+              "amount": "29.99",
+              "amount_cents": 2999,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$29.99"
+            },
+            "carrier_calculated": false,
+            "regional": false,
+            "destination_postal_code_needed": false
+          }
+        ],
+        "initial_offer_rate": {
+          "region_code": "US_CON",
+          "rate": {
+            "original": {
+              "amount": "29.99",
+              "amount_cents": 2999,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$29.99"
+            },
+            "display": {
+              "amount": "29.99",
+              "amount_cents": 2999,
+              "currency": "USD",
+              "symbol": "$",
+              "display": "$29.99"
+            }
+          },
+          "carrier_calculated": false,
+          "regional": false,
+          "destination_postal_code_needed": false
+        }
+      },
+      "sku": "ASY-DCE",
+      "price_drop": {
+        "percent": 40,
+        "display": "40% price drop",
+        "original_price": {
+          "tax_included": false,
+          "amount": "559.99",
+          "amount_cents": 55999,
+          "currency": "USD",
+          "symbol": "$",
+          "display": "$559.99"
+        }
+      },
+      "us_outlet": false,
+      "original_price_description": "Original price",
+      "_links": {
+        "photo": {
+          "href": "https://rvb-img.reverb.com/i/s--A1pbZh88--/quality=medium-low,height=800,width=800,fit=contain/uzubxnlkgs9ujn0pwkfj.jpg"
+        },
+        "self": {
+          "href": "https://api.reverb.com/api/listings/40270500-j-n-guitars-asyla-series-4-4-dreadnought-acoustic-electric-guitar-with-solid-spruce-top-asy-dce"
+        },
+        "edit": {
+          "href": "https://api.reverb.com/api/listings/40270500-j-n-guitars-asyla-series-4-4-dreadnought-acoustic-electric-guitar-with-solid-spruce-top-asy-dce/edit"
+        },
+        "web": {
+          "href": "https://reverb.com/item/40270500-j-n-guitars-asyla-series-4-4-dreadnought-acoustic-electric-guitar-with-solid-spruce-top-asy-dce"
+        },
+        "cart": {
+          "href": "https://api.reverb.com/api/cart/40270500"
+        },
+        "watchlist": {
+          "href": "https://api.reverb.com/api/wants/40270500-j-n-guitars-asyla-series-4-4-dreadnought-acoustic-electric-guitar-with-solid-spruce-top-asy-dce"
+        }
+      },
+      "photos": [
+        {
+          "_links": {
+            "large_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--A1pbZh88--/quality=medium-low,height=800,width=800,fit=contain/uzubxnlkgs9ujn0pwkfj.jpg"
+            },
+            "small_crop": {
+              "href": "https://rvb-img.reverb.com/i/s--h7PZa4NB--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/uzubxnlkgs9ujn0pwkfj.jpg"
+            },
+            "full": {
+              "href": "https://rvb-img.reverb.com/i/s--A1pbZh88--/quality=medium-low,height=800,width=800,fit=contain/uzubxnlkgs9ujn0pwkfj.jpg"
+            },
+            "thumbnail": {
+              "href": "https://rvb-img.reverb.com/i/s--h7PZa4NB--/quality=medium-low,height=400,width=400,fit=cover,gravity=bottom/uzubxnlkgs9ujn0pwkfj.jpg"
+            }
+          }
+        }
+      ]
+    }
