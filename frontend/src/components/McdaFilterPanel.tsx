@@ -212,13 +212,17 @@ export default function McdaFilterPanel({
 
           const [sectionKey, optionValue] = (active.id as string).split(':');
           const [, overValue] = (over.id as string).split(':');
-          const current = selectedOrder[sectionKey] || [];
-          const oldIndex = current.indexOf(optionValue);
-          const newIndex = current.indexOf(overValue);
-          setSelectedOrder((prev) => ({
-            ...prev,
-            [sectionKey]: arrayMove(current, oldIndex, newIndex)
-          }));
+          setSelectedOrder((prev) => {
+            const current = prev[sectionKey] || [];
+            if (!overValue) return prev;
+            const oldIndex = current.indexOf(optionValue);
+            const newIndex = current.indexOf(overValue);
+            if (oldIndex < 0 || newIndex < 0) return prev;
+            return {
+              ...prev,
+              [sectionKey]: arrayMove(current, oldIndex, newIndex)
+            };
+          });
         }}
       >
         <SortableContext items={sectionOrder} strategy={verticalListSortingStrategy}>
@@ -523,7 +527,7 @@ export default function McdaFilterPanel({
                                 return (
                                   <SortableItem key={`${sectionKey}:${item}`} id={`${sectionKey}:${item}`}>
                                     {({ handleProps: itemHandleProps }) => (
-                                      <label className="mcda-selected-item">
+                                      <div className="mcda-selected-item">
                                         <input
                                           type="checkbox"
                                           checked
@@ -541,7 +545,7 @@ export default function McdaFilterPanel({
                                         >
                                           ☰
                                         </span>
-                                      </label>
+                                      </div>
                                     )}
                                   </SortableItem>
                                 );

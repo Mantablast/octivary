@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { categories } from '../data/categories';
 import McdaFilterPanel from '../components/McdaFilterPanel';
 import McdaItemList from '../components/McdaItemList';
+import ReverbAcousticGuitarsResultCard from '../components/results/ReverbAcousticGuitarsResultCard';
 import type {
   CriteriaConfig,
   FilterConfig,
@@ -412,6 +413,8 @@ export default function FilterPage() {
   const totalCount = isBackend
     ? backendPageInfo?.total ?? filteredItems.length
     : filteredItems.length;
+  const renderItem =
+    configKey === 'reverb-acoustic-guitars' ? ReverbAcousticGuitarsResultCard : undefined;
 
   return (
     <section className="mcda-shell">
@@ -454,6 +457,7 @@ export default function FilterPage() {
               isLoading={isLoadingItems}
               error={itemsError ? new Error(itemsError) : null}
               onPageChange={(nextPage) => setPage(nextPage)}
+              renderItem={renderItem}
               display={display}
               sections={criteriaSections}
             />

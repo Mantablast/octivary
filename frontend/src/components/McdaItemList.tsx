@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import type { ReactNode } from 'react';
 import type { CriteriaConfig, DisplayMetadata, ResultsDisplay } from '../types';
 import { normalize, resolvePath } from '../utils/dataAccess';
 
@@ -22,10 +23,12 @@ type Props = {
   error?: Error | null;
   onRetry?: () => void;
   onPageChange?: (page: number) => void;
+  renderItem?: (props: McdaResultCardProps) => ReactNode;
   display: ResultsDisplay;
   sections: CriteriaConfig[];
 };
 
+const SECTION_DOMINANCE_BASE = 5;
 const VALUE_DECAY = 0.65;
 const HIGH_PRIORITY_VALUE_WEIGHT_THRESHOLD = 0.5;
 
@@ -38,33 +41,68 @@ const renderTemplate = (template: string, item: Record<string, any>) =>
 
 const stripHtml = (value: string) => value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 
-const buildSelectionTokens = (
+const canonicalSectionWeight = (totalSections: number, index: number) => {
+  const dominancePower = Math.max(0, totalSections - index - 1);
+  return Math.pow(SECTION_DOMINANCE_BASE, dominancePower);
+};
+
+const canonicalValueWeight = (rank: number) => Math.pow(VALUE_DECAY, rank);
+
+type PrioritySpec = {
+  sections: string[];
+  selectedValues: Record<string, string[]>;
+  tokenWeights: Map<string, number>;
+  selectedTokens: Set<string>;
+  highPriorityTokens: Set<string>;
+  totalSelectedCount: number;
+};
+
+const buildPrioritySpec = (
   sectionOrder: string[] = [],
   selectedOrder: Record<string, string[] | undefined> = {}
-) => {
-  const highPriorityTokens = new Set<string>();
+): PrioritySpec => {
+  const sections: string[] = [];
+  const selectedValues: Record<string, string[]> = {};
+  const tokenWeights = new Map<string, number>();
   const selectedTokens = new Set<string>();
+  const highPriorityTokens = new Set<string>();
   let totalSelectedCount = 0;
 
   sectionOrder.forEach((sectionKey) => {
-    const key = normalize(sectionKey);
-    if (!key) return;
-    const rawItems = selectedOrder[sectionKey] ?? selectedOrder[key];
+    const normalizedSection = normalize(sectionKey);
+    if (!normalizedSection) return;
+    const rawItems = selectedOrder[sectionKey] ?? selectedOrder[normalizedSection];
     const items = Array.isArray(rawItems) ? (rawItems as string[]) : [];
-    items.forEach((item, index) => {
+    const normalizedItems: string[] = [];
+    const seen = new Set<string>();
+    items.forEach((item) => {
       const normalizedItem = normalize(item ?? '');
-      if (!normalizedItem) return;
-      const token = `${key}:${normalizedItem}`;
+      if (!normalizedItem || seen.has(normalizedItem)) return;
+      seen.add(normalizedItem);
+      normalizedItems.push(normalizedItem);
+    });
+    if (normalizedItems.length === 0) return;
+    sections.push(sectionKey);
+    selectedValues[sectionKey] = normalizedItems;
+    totalSelectedCount += normalizedItems.length;
+  });
+
+  const totalSections = sections.length;
+  sections.forEach((sectionKey, sectionIndex) => {
+    const sectionWeight = canonicalSectionWeight(totalSections, sectionIndex);
+    const values = selectedValues[sectionKey] || [];
+    values.forEach((value, valueIndex) => {
+      const valueWeight = canonicalValueWeight(valueIndex);
+      const token = `${sectionKey}:${value}`;
+      tokenWeights.set(token, sectionWeight * valueWeight);
       selectedTokens.add(token);
-      totalSelectedCount += 1;
-      const valueWeight = Math.pow(VALUE_DECAY, index);
       if (valueWeight >= HIGH_PRIORITY_VALUE_WEIGHT_THRESHOLD) {
         highPriorityTokens.add(token);
       }
     });
   });
 
-  return { selectedTokens, highPriorityTokens, totalSelectedCount };
+  return { sections, selectedValues, tokenWeights, selectedTokens, highPriorityTokens, totalSelectedCount };
 };
 
 const extractTokens = (item: Record<string, any>, section: CriteriaConfig) => {
@@ -146,6 +184,17 @@ const formatMatchBadge = (score: number | undefined, topScore: number) => {
   return `Match Score: ${Math.max(1, Math.min(99, pct))}%`;
 };
 
+export type McdaResultCardProps = {
+  item: Record<string, any>;
+  badgeLabel: string;
+  scoreLabel: string | number;
+  derivedScore: number;
+  totalMatches: number;
+  highPriorityMatches: number;
+  totalSelectedCount: number;
+  display: ResultsDisplay;
+};
+
 export default function McdaItemList({
   items,
   totalCount,
@@ -157,6 +206,7 @@ export default function McdaItemList({
   error = null,
   onRetry,
   onPageChange,
+  renderItem,
   display,
   sections
 }: Props) {
@@ -193,11 +243,18 @@ export default function McdaItemList({
     );
   }
 
-  const selectionTokens = useMemo(
-    () => buildSelectionTokens(sectionOrder, selectedOrder),
+  const prioritySpec = useMemo(
+    () => buildPrioritySpec(sectionOrder, selectedOrder),
     [sectionOrder, selectedOrder]
   );
-  const { selectedTokens, highPriorityTokens, totalSelectedCount } = selectionTokens;
+  const {
+    sections: prioritySectionKeys,
+    selectedValues,
+    tokenWeights,
+    selectedTokens,
+    highPriorityTokens,
+    totalSelectedCount
+  } = prioritySpec;
   const sectionMap = useMemo(() => {
     const map: Record<string, CriteriaConfig> = {};
     sections.forEach((section) => (map[section.key] = section));
@@ -207,40 +264,66 @@ export default function McdaItemList({
     () => sections.filter((section) => section.ui === 'search_terms' || section.type === 'search_terms'),
     [sections]
   );
+  const prioritySectionSet = useMemo(() => new Set(prioritySectionKeys), [prioritySectionKeys]);
+  const prioritySections = useMemo(
+    () =>
+      prioritySectionKeys
+        .map((key) => sectionMap[key])
+        .filter((section): section is CriteriaConfig => Boolean(section))
+        .filter((section) => !(section.ui === 'search_terms' || section.type === 'search_terms')),
+    [prioritySectionKeys, sectionMap]
+  );
+  const prioritySearchSections = useMemo(
+    () => searchTermSections.filter((section) => prioritySectionSet.has(section.key)),
+    [searchTermSections, prioritySectionSet]
+  );
 
   const scoredItems = useMemo(() => {
-    return items.map((item) => {
+    const scored = items.map((item, index) => {
       const itemTokens = new Set<string>();
-      Object.values(sectionMap).forEach((section) => {
+      prioritySections.forEach((section) => {
         extractTokens(item, section).forEach((token) => itemTokens.add(token));
       });
-      searchTermSections.forEach((section) => {
+      prioritySearchSections.forEach((section) => {
         const raw = resolvePath(item, section.path);
         if (typeof raw !== 'string') return;
         const haystack = normalize(stripHtml(raw));
-        const selected = selectedOrder[section.key] || [];
-        selected.forEach((term) => {
-          const normalizedTerm = normalize(term);
-          if (!normalizedTerm) return;
-          if (haystack.includes(normalizedTerm)) {
-            itemTokens.add(`${section.key}:${normalizedTerm}`);
+        const terms = selectedValues[section.key] || [];
+        terms.forEach((term) => {
+          if (!term) return;
+          if (haystack.includes(term)) {
+            itemTokens.add(`${section.key}:${term}`);
           }
         });
       });
 
       let totalMatches = 0;
       let highPriorityMatches = 0;
+      let derivedScore = 0;
       itemTokens.forEach((token) => {
         if (selectedTokens.has(token)) {
           totalMatches += 1;
           if (highPriorityTokens.has(token)) highPriorityMatches += 1;
+          derivedScore += tokenWeights.get(token) ?? 0;
         }
       });
 
-      const derivedScore = typeof item.score === 'number' ? item.score : totalMatches;
-      return { item, totalMatches, highPriorityMatches, derivedScore };
+      return { item, totalMatches, highPriorityMatches, derivedScore, index };
     });
-  }, [items, sectionMap, selectedTokens, highPriorityTokens, searchTermSections, selectedOrder]);
+    if (totalSelectedCount > 0) {
+      return [...scored].sort((a, b) => b.derivedScore - a.derivedScore || a.index - b.index);
+    }
+    return scored;
+  }, [
+    items,
+    prioritySections,
+    prioritySearchSections,
+    selectedTokens,
+    highPriorityTokens,
+    tokenWeights,
+    selectedValues,
+    totalSelectedCount
+  ]);
 
   const topScore = scoredItems.reduce((max, entry) => Math.max(max, entry.derivedScore), 0);
 
@@ -267,7 +350,25 @@ export default function McdaItemList({
       <div className="mcda-results-list">
         {scoredItems.map(({ item, totalMatches, highPriorityMatches, derivedScore }) => {
           const badgeLabel = formatMatchBadge(derivedScore, topScore);
-          const scoreLabel = totalSelectedCount > 0 ? derivedScore : '—';
+          const scoreLabel = totalSelectedCount > 0 ? Math.round(derivedScore * 100) / 100 : '—';
+          const cardProps: McdaResultCardProps = {
+            item,
+            badgeLabel,
+            scoreLabel,
+            derivedScore,
+            totalMatches,
+            highPriorityMatches,
+            totalSelectedCount,
+            display
+          };
+
+          if (renderItem) {
+            return (
+              <div key={item.id ?? item.item_id}>
+                {renderItem(cardProps)}
+              </div>
+            );
+          }
           const metadataEntries = display.metadata ?? [];
           const priceEntry = metadataEntries[0];
           const extraMetadata = metadataEntries.slice(1);
