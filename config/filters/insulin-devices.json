@@ -1,0 +1,233 @@
+{
+  "config_key": "insulin-devices",
+  "category_key": "diabetes-care",
+  "title": "Insulin & CGM Devices",
+  "description": "Compare continuous glucose monitoring devices by wear time, connectivity, pump integration, and estimated costs.",
+  "datasets": {
+    "primary": {
+      "label": "Devices",
+      "data_source": {
+        "type": "local_json",
+        "provider_key": "insulin_devices_v1"
+      }
+    }
+  },
+  "filters": [
+    {
+      "key": "manufacturer",
+      "label": "Manufacturer",
+      "type": "checkboxes",
+      "path": "manufacturer",
+      "options": [
+        "Abbott",
+        "Dexcom",
+        "Medtronic",
+        "Senseonics / Ascensia"
+      ]
+    },
+    {
+      "key": "system_type",
+      "label": "System type",
+      "type": "checkboxes",
+      "path": "system_type",
+      "options": [
+        "Intermittently scanned CGM (flash)",
+        "Real-time CGM (phone-only)",
+        "Real-time CGM",
+        "Pump-integrated CGM",
+        "Implantable CGM"
+      ]
+    },
+    {
+      "key": "integration_type",
+      "label": "Pump integration",
+      "type": "checkboxes",
+      "path": "integration_type",
+      "options": [
+        "Standalone CGM",
+        "Pump-integrated"
+      ]
+    },
+    {
+      "key": "scan_required",
+      "label": "Scan required for reading",
+      "type": "select",
+      "path": "scan_required",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "key": "implant_type",
+      "label": "Sensor placement",
+      "type": "checkboxes",
+      "path": "implant_type",
+      "options": [
+        "Wearable",
+        "Implantable"
+      ]
+    },
+    {
+      "key": "transmitter_type",
+      "label": "Transmitter setup",
+      "type": "checkboxes",
+      "path": "transmitter_type",
+      "options": [
+        "Integrated sensor",
+        "Separate transmitter"
+      ]
+    },
+    {
+      "key": "sensor_wear_duration_days",
+      "label": "Sensor wear duration (days)",
+      "type": "checkboxes",
+      "path": "sensor_wear_duration_days",
+      "options": [
+        "7",
+        "10",
+        "14",
+        "15",
+        "180"
+      ]
+    },
+    {
+      "key": "warmup_minutes",
+      "label": "Warm-up time (minutes)",
+      "type": "checkboxes",
+      "path": "warmup_minutes",
+      "options": [
+        "30",
+        "60"
+      ]
+    },
+    {
+      "key": "estimated_initial_cost_cad",
+      "label": "Estimated initial cost (CAD)",
+      "type": "range",
+      "path": "estimated_initial_cost_cad",
+      "min": 50,
+      "max": 5000
+    },
+    {
+      "key": "estimated_monthly_cost_cad",
+      "label": "Estimated monthly cost (CAD)",
+      "type": "range",
+      "path": "estimated_monthly_cost_cad",
+      "min": 150,
+      "max": 1000
+    },
+    {
+      "key": "phone_models",
+      "label": "Phone model",
+      "type": "select",
+      "path": "phone_models",
+      "options": [
+        "iPhone 7",
+        "iPhone 7 Plus",
+        "iPhone 8",
+        "iPhone 8 Plus",
+        "iPhone X",
+        "iPhone XR",
+        "iPhone XS",
+        "iPhone XS Max",
+        "iPhone 11",
+        "iPhone 11 Pro",
+        "iPhone 11 Pro Max",
+        "iPhone 12",
+        "iPhone 12 mini",
+        "iPhone 12 Pro",
+        "iPhone 12 Pro Max",
+        "iPhone 13",
+        "iPhone 13 mini",
+        "iPhone 13 Pro",
+        "iPhone 13 Pro Max",
+        "iPhone 14",
+        "iPhone 14 Plus",
+        "iPhone 14 Pro",
+        "iPhone 14 Pro Max",
+        "iPhone 15",
+        "iPhone 15 Plus",
+        "iPhone 15 Pro",
+        "iPhone 15 Pro Max",
+        "iPhone 16",
+        "iPhone 16 Plus",
+        "iPhone 16 Pro",
+        "iPhone 16 Pro Max",
+        "iPhone SE (2nd gen)",
+        "iPhone SE (3rd gen)",
+        "Android 5+ (NFC required)",
+        "Android 13"
+      ]
+    },
+    {
+      "key": "insurance_notes",
+      "label": "Insurance notes",
+      "type": "text",
+      "path": "insurance_notes",
+      "placeholder": "private coverage, provincial programs, pump criteria",
+      "allow_custom": true
+    },
+    {
+      "key": "additional_notes",
+      "label": "Text Search",
+      "type": "text",
+      "path": "additional_notes",
+      "placeholder": "insertion, training, accuracy, alerts",
+      "allow_custom": true
+    }
+  ],
+  "sections": [
+    {
+      "title": "Cost & coverage",
+      "filters": ["estimated_initial_cost_cad", "estimated_monthly_cost_cad", "insurance_notes"]
+    },
+    {
+      "title": "Text notes",
+      "filters": ["additional_notes"]
+    },
+    {
+      "title": "Wear & comfort",
+      "filters": ["sensor_wear_duration_days", "warmup_minutes", "implant_type"]
+    },
+    {
+      "title": "System setup",
+      "filters": ["system_type", "scan_required", "transmitter_type", "integration_type"]
+    },
+    {
+      "title": "Phone & apps",
+      "filters": ["phone_models"]
+    },
+    {
+      "title": "Brand",
+      "filters": ["manufacturer"]
+    }
+  ],
+  "priorities": [
+    { "key": "estimated_initial_cost_cad", "label": "Initial cost" },
+    { "key": "estimated_monthly_cost_cad", "label": "Monthly cost" },
+    { "key": "sensor_wear_duration_days", "label": "Wear duration" },
+    { "key": "warmup_minutes", "label": "Warm-up time" },
+    { "key": "integration_type", "label": "Pump integration" },
+    { "key": "scan_required", "label": "Scan required" },
+    { "key": "phone_models", "label": "Phone model" },
+    { "key": "manufacturer", "label": "Manufacturer" }
+  ],
+  "display": {
+    "currency": "CAD",
+    "unit": "device",
+    "title_template": "{product_name}",
+    "subtitle_template": "{manufacturer} · {system_type}",
+    "image_path": "images[0]",
+    "empty_image": "/assets/insulin/device-sensor.svg",
+    "metadata": [
+      { "label": "Est. initial", "path": "estimated_initial_cost_cad", "format": "currency", "currency": "CAD" },
+      { "label": "Est. monthly", "path": "estimated_monthly_cost_cad", "format": "currency", "currency": "CAD" },
+      { "label": "Wear days", "path": "sensor_wear_duration_days", "suffix": " days" },
+      { "label": "Warm-up", "path": "warmup_minutes", "suffix": " min" },
+      { "label": "Scan required", "path": "scan_required" },
+      { "label": "Pump integration", "path": "integration_type" },
+      { "label": "Phone model", "path": "phone_models" }
+    ]
+  }
+}

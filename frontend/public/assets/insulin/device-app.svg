@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Mobile app display">
+  <rect width="800" height="600" fill="#f7f3ff" />
+  <rect x="110" y="60" width="580" height="480" rx="48" fill="#e8ddff" />
+  <rect x="250" y="120" width="300" height="360" rx="28" fill="#ffffff" />
+  <rect x="290" y="170" width="220" height="24" rx="12" fill="#c7b5ff" />
+  <rect x="290" y="220" width="220" height="12" rx="6" fill="#e0d6ff" />
+  <rect x="290" y="250" width="180" height="12" rx="6" fill="#e0d6ff" />
+  <circle cx="400" cy="330" r="70" fill="#6b4bd6" />
+  <circle cx="400" cy="330" r="36" fill="#ffffff" />
+  <text x="400" y="510" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#4a3690">App View</text>
+</svg>

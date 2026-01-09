@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="CGM sensor overview">
+  <rect width="800" height="600" fill="#f4f7ff" />
+  <rect x="70" y="70" width="660" height="460" rx="40" fill="#e2e8ff" />
+  <circle cx="400" cy="300" r="150" fill="#ffffff" stroke="#4f67d6" stroke-width="12" />
+  <circle cx="400" cy="300" r="46" fill="#4f67d6" />
+  <circle cx="400" cy="300" r="20" fill="#ffffff" />
+  <text x="400" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#3a4aa1">Sensor</text>
+</svg>

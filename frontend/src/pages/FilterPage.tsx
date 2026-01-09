@@ -4,6 +4,7 @@ import { categories } from '../data/categories';
 import McdaFilterPanel from '../components/McdaFilterPanel';
 import McdaItemList from '../components/McdaItemList';
 import ReverbAcousticGuitarsResultCard from '../components/results/ReverbAcousticGuitarsResultCard';
+import InsulinDevicesResultCard from '../components/results/InsulinDevicesResultCard';
 import type {
   CriteriaConfig,
   FilterConfig,
@@ -12,9 +13,11 @@ import type {
   ResultsDisplay
 } from '../types';
 import { normalize, resolvePath } from '../utils/dataAccess';
+import { parseSearchTermItemKey } from '../utils/searchTerms';
 
 const LOCAL_DATASETS: Record<string, string> = {
-  'reverb-acoustic-guitars': '/data/reverb-acoustic-guitars.json'
+  'reverb-acoustic-guitars': '/data/reverb-acoustic-guitars.json',
+  'insulin-devices': '/data/insulin-devices.json'
 };
 
 const PER_PAGE = 24;
@@ -29,13 +32,11 @@ type PageInfo = {
 };
 
 const buildSectionKeys = (config: FilterConfig) => {
-  const filterKeys = new Set((config.filters || []).map((filter) => filter.key));
+  const filters = config.filters || [];
+  const filterKeys = new Set(filters.map((filter) => filter.key));
   const sectionKeys =
     config.sections?.flatMap((section) => section.filters).filter((key) => filterKeys.has(key)) ?? [];
-  if (sectionKeys.length > 0) {
-    return sectionKeys;
-  }
-  return (config.filters || []).map((filter) => filter.key);
+  return sectionKeys.length > 0 ? sectionKeys : filters.map((filter) => filter.key);
 };
 
 const buildInitialFilters = (filters: FilterDefinition[]) => {
@@ -153,6 +154,9 @@ const matchesFilter = (item: Record<string, any>, filter: FilterDefinition, filt
   if (filter.type === 'select') {
     const selected = filters[filter.key];
     if (!selected) return true;
+    if (Array.isArray(rawValue)) {
+      return rawValue.some((value) => normalize(value) === normalize(selected));
+    }
     return normalize(selected) === normalize(rawValue);
   }
 
@@ -343,21 +347,36 @@ export default function FilterPage() {
 
   const criteriaSections = useMemo(() => {
     if (!config) return [];
-    const filterMap = new Map((config.filters || []).map((filter) => [filter.key, filter]));
-    return sectionKeys
+    const filters = config.filters || [];
+    const filterMap = new Map(filters.map((filter) => [filter.key, filter]));
+    const baseOrderedKeys = sectionOrder.length > 0 ? sectionOrder : sectionKeys;
+    return baseOrderedKeys
       .map((key) => {
+        const termItem = parseSearchTermItemKey(key);
+        if (termItem) {
+          const baseFilter = filterMap.get(termItem.baseKey);
+          if (!baseFilter) return null;
+          const baseConfig = toCriteriaConfig(baseFilter);
+          const termLabel = termItem.baseKey === 'additional_notes' ? 'Text' : baseConfig.label;
+          return {
+            ...baseConfig,
+            key,
+            label: `${termLabel} - ${termItem.term}`,
+            type: 'search_terms',
+            ui: 'search_term_item'
+          };
+        }
         const filter = filterMap.get(key);
         if (!filter) return null;
         return toCriteriaConfig(filter);
       })
       .filter((section): section is CriteriaConfig => Boolean(section));
-  }, [config, sectionKeys]);
+  }, [config, sectionKeys, sectionOrder]);
 
   const filteredItems = useMemo(() => {
-    if (!config || !config.filters) return [];
     if (!items.length) return [];
-    return items.filter((item) => config.filters!.every((filter) => matchesFilter(item, filter, filters)));
-  }, [items, config, filters]);
+    return items;
+  }, [items]);
 
   const visibleItems = useMemo(() => {
     if (isBackend) return filteredItems;
@@ -414,7 +433,11 @@ export default function FilterPage() {
     ? backendPageInfo?.total ?? filteredItems.length
     : filteredItems.length;
   const renderItem =
-    configKey === 'reverb-acoustic-guitars' ? ReverbAcousticGuitarsResultCard : undefined;
+    configKey === 'reverb-acoustic-guitars'
+      ? ReverbAcousticGuitarsResultCard
+      : configKey === 'insulin-devices'
+      ? InsulinDevicesResultCard
+      : undefined;
 
   return (
     <section className="mcda-shell">
@@ -423,16 +446,6 @@ export default function FilterPage() {
           <p className="mcda-eyebrow">{categoryLabel}</p>
           <h1>{config.title}</h1>
           <p className="mcda-lead">{config.description}</p>
-          <div className="mcda-meta">
-            <div>
-              <span>Config key</span>
-              <strong>{config.config_key}</strong>
-            </div>
-            <div>
-              <span>Provider</span>
-              <strong>{config.datasets?.primary?.data_source?.provider_key}</strong>
-            </div>
-          </div>
         </header>
 
         <div className="mcda-main">
@@ -454,6 +467,7 @@ export default function FilterPage() {
               pageInfo={pageInfo ?? undefined}
               sectionOrder={sectionOrder}
               selectedOrder={selectedOrder}
+              filters={filters}
               isLoading={isLoadingItems}
               error={itemsError ? new Error(itemsError) : null}
               onPageChange={(nextPage) => setPage(nextPage)}

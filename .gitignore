@@ -40,3 +40,6 @@ cdk.out/
 
 # OS
 .DS_Store
+
+devstartup.txt
+/webdata/*

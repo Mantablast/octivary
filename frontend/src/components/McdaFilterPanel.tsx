@@ -15,6 +15,7 @@ import {
 } from '@dnd-kit/sortable';
 import type { CriteriaConfig, FiltersState } from '../types';
 import SortableItem from './SortableItem';
+import { buildSearchTermItemKey, parseSearchTermItemKey } from '../utils/searchTerms';
 
 type Props = {
   sections: CriteriaConfig[];
@@ -79,6 +80,7 @@ export default function McdaFilterPanel({
   const isSearchTermsSection = (section?: CriteriaConfig) =>
     section?.ui === 'search_terms' || section?.type === 'search_terms';
 
+
   const toggleOption = (sectionKey: string, value: string) => {
     startTransition(() => {
       setSelectedOrder((prev) => {
@@ -129,33 +131,50 @@ export default function McdaFilterPanel({
   const addSearchTerm = (sectionKey: string, term: string) => {
     const normalized = term.trim();
     if (!normalized) return;
+    const termKey = buildSearchTermItemKey(sectionKey, normalized);
     onSectionTouched?.(sectionKey);
     startTransition(() => {
       setSelectedOrder((prev) => {
-        const current = prev[sectionKey] || [];
-        if (current.includes(normalized)) return prev;
-        return { ...prev, [sectionKey]: [...current, normalized] };
+        if (prev[termKey]?.includes(normalized)) return prev;
+        return { ...prev, [termKey]: [normalized] };
+      });
+
+      setSectionOrder((prev) => {
+        if (prev.includes(termKey)) return prev;
+        const baseIndex = prev.indexOf(sectionKey);
+        if (baseIndex < 0) return [...prev, termKey];
+        return [...prev.slice(0, baseIndex + 1), termKey, ...prev.slice(baseIndex + 1)];
       });
 
       setFilters((prev) => {
-        const current = Array.isArray(prev[sectionKey]) ? [...(prev[sectionKey] as string[])] : [];
-        if (current.includes(normalized)) return prev;
-        return { ...prev, [sectionKey]: [...current, normalized] };
+        if (Array.isArray(prev[sectionKey]) && (prev[sectionKey] as string[]).length === 0) {
+          return prev;
+        }
+        return { ...prev, [sectionKey]: [] };
       });
     });
   };
 
   const removeSearchTerm = (sectionKey: string, term: string) => {
     onSectionTouched?.(sectionKey);
+    const termKey = buildSearchTermItemKey(sectionKey, term);
     startTransition(() => {
       setSelectedOrder((prev) => {
-        const current = prev[sectionKey] || [];
-        return { ...prev, [sectionKey]: current.filter((item) => item !== term) };
+        const next = { ...prev };
+        delete next[termKey];
+        if (Array.isArray(next[sectionKey])) {
+          next[sectionKey] = next[sectionKey]?.filter((item) => item !== term) ?? [];
+        }
+        return next;
       });
 
+      setSectionOrder((prev) => prev.filter((key) => key !== termKey));
+
       setFilters((prev) => {
-        const current = Array.isArray(prev[sectionKey]) ? [...(prev[sectionKey] as string[])] : [];
-        return { ...prev, [sectionKey]: current.filter((item) => item !== term) };
+        if (Array.isArray(prev[sectionKey]) && (prev[sectionKey] as string[]).length === 0) {
+          return prev;
+        }
+        return { ...prev, [sectionKey]: [] };
       });
     });
   };
@@ -178,7 +197,7 @@ export default function McdaFilterPanel({
       return Boolean(value);
     }
     if (isSearchTermsSection(section)) {
-      const selected = selectedOrder[sectionKey] || [];
+      const selected = Array.isArray(filters[sectionKey]) ? (filters[sectionKey] as string[]) : [];
       return selected.length > 0;
     }
     const selected = selectedOrder[sectionKey] || [];
@@ -228,6 +247,38 @@ export default function McdaFilterPanel({
         <SortableContext items={sectionOrder} strategy={verticalListSortingStrategy}>
           {sectionOrder.map((sectionKey) => {
             const section = sectionMap[sectionKey];
+            const termItem = parseSearchTermItemKey(sectionKey);
+            if (termItem && section) {
+              return (
+                <SortableItem key={sectionKey} id={sectionKey}>
+                  {({ handleProps }) => (
+                    <div className="mcda-section mcda-section--term">
+                      <div className="mcda-section-header">
+                        <span
+                          {...handleProps.attributes}
+                          {...handleProps.listeners}
+                          ref={handleProps.ref}
+                          className="mcda-handle"
+                          title="Drag section"
+                        >
+                          ☰
+                        </span>
+                        <span className="mcda-section-title mcda-section-title--active">
+                          {section.label}
+                        </span>
+                        <button
+                          type="button"
+                          className="mcda-link"
+                          onClick={() => removeSearchTerm(termItem.baseKey, termItem.term)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </SortableItem>
+              );
+            }
             if (!section) return null;
             const selectedItems = selectedOrder[sectionKey] || [];
             const options = section.options || [];
@@ -318,6 +369,7 @@ export default function McdaFilterPanel({
             if (isSearchTermsSection(section)) {
               const inputValue = searchInputs[sectionKey] ?? '';
               const placeholder = section.placeholder ?? 'Type a keyword...';
+              const selectedTerms = Array.isArray(filters[sectionKey]) ? (filters[sectionKey] as string[]) : [];
               return (
                 <SortableItem key={sectionKey} id={sectionKey}>
                   {({ handleProps }) => (
@@ -366,42 +418,10 @@ export default function McdaFilterPanel({
                               +
                             </button>
                           </div>
-
-                          {selectedItems.length > 0 && (
-                            <SortableContext
-                              items={selectedItems.map((item) => `${sectionKey}:${item}`)}
-                              strategy={verticalListSortingStrategy}
-                            >
-                              <div className="mcda-selected-list">
-                                {selectedItems.map((item) => (
-                                  <SortableItem key={`${sectionKey}:${item}`} id={`${sectionKey}:${item}`}>
-                                    {({ handleProps }) => (
-                                      <div className="mcda-selected-item">
-                                        <span className="mcda-selected-label">{item}</span>
-                                        <div className="mcda-selected-actions">
-                                          <button
-                                            type="button"
-                                            className="mcda-link"
-                                            onClick={() => removeSearchTerm(sectionKey, item)}
-                                          >
-                                            Remove
-                                          </button>
-                                          <span
-                                            {...handleProps.attributes}
-                                            {...handleProps.listeners}
-                                            ref={handleProps.ref}
-                                            className="mcda-handle mcda-handle--compact"
-                                            title="Drag to reprioritize"
-                                          >
-                                            ☰
-                                          </span>
-                                        </div>
-                                      </div>
-                                    )}
-                                  </SortableItem>
-                                ))}
-                              </div>
-                            </SortableContext>
+                          {selectedTerms.length > 0 && (
+                            <p className="mcda-help">
+                              Prioritized terms: <strong>{selectedTerms.length}</strong>
+                            </p>
                           )}
                         </div>
                       )}
@@ -417,6 +437,9 @@ export default function McdaFilterPanel({
                 raw && typeof raw === 'object' && !Array.isArray(raw) ? (raw as Record<string, unknown>) : null;
               const minValue = typeof range?.min === 'number' ? (range.min as number) : '';
               const maxValue = typeof range?.max === 'number' ? (range.max as number) : '';
+              const shouldShowCurrency =
+                /price|cost/i.test(section.key ?? '') || /price|cost/i.test(section.label ?? '');
+              const prefix = shouldShowCurrency ? '$' : '';
               return (
                 <SortableItem key={sectionKey} id={sectionKey}>
                   {({ handleProps }) => (
@@ -441,7 +464,7 @@ export default function McdaFilterPanel({
                           <label className="mcda-range-row">
                             <span className="mcda-range-label">Min</span>
                             <div className="mcda-range-input">
-                              <span className="mcda-range-prefix">$</span>
+                              {prefix && <span className="mcda-range-prefix">{prefix}</span>}
                               <input
                                 type="number"
                                 inputMode="numeric"
@@ -465,7 +488,7 @@ export default function McdaFilterPanel({
                           <label className="mcda-range-row">
                             <span className="mcda-range-label">Max</span>
                             <div className="mcda-range-input">
-                              <span className="mcda-range-prefix">$</span>
+                              {prefix && <span className="mcda-range-prefix">{prefix}</span>}
                               <input
                                 type="number"
                                 inputMode="numeric"

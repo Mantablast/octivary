@@ -87,6 +87,18 @@ export const categories: Category[] = [
     ]
   },
   {
+    key: 'diabetes-care',
+    label: 'Health Care',
+    description: 'Tools and devices for day-to-day diabetes management.',
+    filterConfigs: [
+      {
+        key: 'insulin-devices',
+        label: 'Insulin & CGM Devices',
+        description: 'Compare wear time, connectivity, and pump integration.'
+      }
+    ]
+  },
+  {
     key: 'entertainment',
     label: 'Entertainment',
     description: 'Tickets, events, and experiences.',
