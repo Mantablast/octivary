@@ -8,6 +8,7 @@ import FilterPage from './pages/FilterPage';
 import Account from './pages/Account';
 import SavedSearchDetail from './pages/SavedSearchDetail';
 import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/filters/:configKey" element={<FilterPage />} />
           <Route path="/account" element={<Account />} />
           <Route path="/saved/:id" element={<SavedSearchDetail />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route
             path="*"

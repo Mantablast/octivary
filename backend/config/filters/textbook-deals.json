@@ -3,6 +3,7 @@
   "category_key": "books",
   "title": "Textbook Deals",
   "description": "Affordable course essentials.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

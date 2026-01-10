@@ -3,6 +3,7 @@
   "category_key": "vehicles",
   "title": "Electric Sedans",
   "description": "Range-forward daily drivers.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

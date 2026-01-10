@@ -3,6 +3,7 @@
   "category_key": "clothing",
   "title": "Vintage Denim",
   "description": "Curated denim drops and washes.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

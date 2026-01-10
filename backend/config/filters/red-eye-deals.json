@@ -3,6 +3,7 @@
   "category_key": "flights",
   "title": "Red-Eye Deals",
   "description": "Overnight flights with savings.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

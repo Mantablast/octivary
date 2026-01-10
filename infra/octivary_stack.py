@@ -36,6 +36,21 @@ class OctivaryStack(Stack):
             ),
         )
 
+        user_pool = cognito.UserPool(
+            self,
+            'UserPool',
+            self_sign_up_enabled=True,
+            sign_in_aliases=cognito.SignInAliases(email=True),
+            standard_attributes=cognito.StandardAttributes(email=cognito.StandardAttribute(required=True)),
+        )
+
+        user_pool_client = cognito.UserPoolClient(
+            self,
+            'UserPoolClient',
+            user_pool=user_pool,
+            generate_secret=False,
+        )
+
         api_lambda = _lambda.Function(
             self,
             'ApiLambda',
@@ -47,6 +62,13 @@ class OctivaryStack(Stack):
             environment={
                 'MAX_MONTHLY_COST': '50',
                 'OCTIVARY_PAUSED': '0',
+                'AUTH_REQUIRED': '1',
+                'COGNITO_USER_POOL_ID': user_pool.user_pool_id,
+                'COGNITO_CLIENT_ID': user_pool_client.user_pool_client_id,
+                'COGNITO_REGION': Stack.of(self).region,
+                'RATE_LIMIT_PER_MINUTE': '90',
+                'CACHE_TTL_SECONDS': '120',
+                'CACHE_MAX_ENTRIES': '256',
             },
         )
 
@@ -71,6 +93,16 @@ class OctivaryStack(Stack):
                 name='search_id',
                 type=dynamodb.AttributeType.STRING,
             ),
+            global_secondary_indexes=[
+                dynamodb.GlobalSecondaryIndex(
+                    index_name='UserIdIndex',
+                    partition_key=dynamodb.Attribute(
+                        name='user_id',
+                        type=dynamodb.AttributeType.STRING,
+                    ),
+                    projection_type=dynamodb.ProjectionType.ALL,
+                ),
+            ],
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
             removal_policy=RemovalPolicy.RETAIN,
         )
@@ -97,24 +129,11 @@ class OctivaryStack(Stack):
             removal_policy=RemovalPolicy.RETAIN,
         )
 
+        api_lambda.add_environment('SAVED_SEARCHES_TABLE', saved_searches_table.table_name)
+
         saved_searches_table.grant_read_write_data(api_lambda)
         users_table.grant_read_write_data(api_lambda)
         priority_events_table.grant_read_write_data(api_lambda)
-
-        user_pool = cognito.UserPool(
-            self,
-            'UserPool',
-            self_sign_up_enabled=True,
-            sign_in_aliases=cognito.SignInAliases(email=True),
-            standard_attributes=cognito.StandardAttributes(email=cognito.StandardAttribute(required=True)),
-        )
-
-        user_pool_client = cognito.UserPoolClient(
-            self,
-            'UserPoolClient',
-            user_pool=user_pool,
-            generate_secret=False,
-        )
 
         guardrail_lambda = _lambda.Function(
             self,

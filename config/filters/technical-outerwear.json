@@ -3,6 +3,7 @@
   "category_key": "clothing",
   "title": "Technical Outerwear",
   "description": "Weather-ready layers and shells.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

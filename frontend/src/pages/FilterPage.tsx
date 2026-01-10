@@ -12,13 +12,7 @@ import type {
   FiltersState,
   ResultsDisplay
 } from '../types';
-import { normalize, resolvePath } from '../utils/dataAccess';
 import { parseSearchTermItemKey } from '../utils/searchTerms';
-
-const LOCAL_DATASETS: Record<string, string> = {
-  'reverb-acoustic-guitars': '/data/reverb-acoustic-guitars.json',
-  'insulin-devices': '/data/insulin-devices.json'
-};
 
 const PER_PAGE = 24;
 
@@ -111,57 +105,6 @@ const buildDisplay = (config: FilterConfig): ResultsDisplay => {
   };
 };
 
-const stripHtml = (value: string) => value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-
-const matchesFilter = (item: Record<string, any>, filter: FilterDefinition, filters: FiltersState) => {
-  const rawValue = resolvePath(item, filter.path);
-
-  if (filter.type === 'checkboxes') {
-    const selected = Array.isArray(filters[filter.key]) ? (filters[filter.key] as string[]) : [];
-    if (selected.length === 0) return true;
-    const selectedSet = new Set(selected.map((option) => normalize(option)));
-    const values = Array.isArray(rawValue) ? rawValue : [rawValue];
-    return values.some((value) => selectedSet.has(normalize(value)));
-  }
-
-  if (filter.type === 'boolean') {
-    const isEnabled = Boolean(filters[filter.key]);
-    if (!isEnabled) return true;
-    return Boolean(rawValue);
-  }
-
-  if (filter.type === 'range') {
-    const range = filters[filter.key];
-    if (!range || typeof range !== 'object' || Array.isArray(range)) return true;
-    const rangeValue = range as Record<string, unknown>;
-    const min = typeof rangeValue.min === 'number' ? rangeValue.min : null;
-    const max = typeof rangeValue.max === 'number' ? rangeValue.max : null;
-    if (min === null && max === null) return true;
-    const numericValue = Number(rawValue);
-    if (Number.isNaN(numericValue)) return false;
-    if (min !== null && numericValue < min) return false;
-    if (max !== null && numericValue > max) return false;
-    return true;
-  }
-
-  if (filter.type === 'text') {
-    const terms = Array.isArray(filters[filter.key]) ? (filters[filter.key] as string[]) : [];
-    if (terms.length === 0) return true;
-    const haystack = normalize(stripHtml(String(rawValue || '')));
-    return terms.some((term) => haystack.includes(normalize(term)));
-  }
-
-  if (filter.type === 'select') {
-    const selected = filters[filter.key];
-    if (!selected) return true;
-    if (Array.isArray(rawValue)) {
-      return rawValue.some((value) => normalize(value) === normalize(selected));
-    }
-    return normalize(selected) === normalize(rawValue);
-  }
-
-  return true;
-};
 
 export default function FilterPage() {
   const { configKey } = useParams<{ configKey: string }>();
@@ -175,11 +118,12 @@ export default function FilterPage() {
   const [isLoadingItems, setIsLoadingItems] = useState(false);
   const [page, setPage] = useState(1);
   const [backendPageInfo, setBackendPageInfo] = useState<PageInfo | null>(null);
-  const [useLocalFallback, setUseLocalFallback] = useState(false);
-  const filtersSignature = useMemo(() => JSON.stringify(filters), [filters]);
-  const lastFiltersSignature = useRef(filtersSignature);
+  const querySignature = useMemo(
+    () => JSON.stringify({ filters, selectedOrder, sectionOrder }),
+    [filters, selectedOrder, sectionOrder]
+  );
+  const lastQuerySignature = useRef(querySignature);
   const apiBase = (import.meta.env.VITE_API_BASE || '').trim();
-  const isBackend = Boolean(apiBase) && !useLocalFallback;
 
   useEffect(() => {
     let mounted = true;
@@ -190,7 +134,6 @@ export default function FilterPage() {
     setSelectedOrder({});
     setPage(1);
     setBackendPageInfo(null);
-    setUseLocalFallback(false);
 
     if (!configKey) {
       setError('Missing filter config key.');
@@ -231,45 +174,44 @@ export default function FilterPage() {
       mounted = false;
     };
 
-    const dataset = LOCAL_DATASETS[configKey];
-    const backendUrl = apiBase ? `${apiBase}/api/reverb/listings` : '';
+    if (!config) {
+      return () => {
+        mounted = false;
+      };
+    }
 
-    if (lastFiltersSignature.current !== filtersSignature && page !== 1) {
-      lastFiltersSignature.current = filtersSignature;
+    const dataSource = config?.datasets?.primary?.data_source;
+    const backendUrl = apiBase ? `${apiBase}/api/reverb/listings` : '';
+    const scoringUrl = apiBase ? `${apiBase}/api/listings/search` : '';
+    const useServerScoring = Boolean(apiBase) && dataSource?.type === 'local_json';
+
+    if (lastQuerySignature.current !== querySignature && page !== 1) {
+      lastQuerySignature.current = querySignature;
       setPage(1);
       return () => {
         mounted = false;
       };
     }
 
-    lastFiltersSignature.current = filtersSignature;
+    lastQuerySignature.current = querySignature;
     setItemsError('');
     setIsLoadingItems(false);
     setItems([]);
     setBackendPageInfo(null);
 
-    const fetchListings = async (url: string, errorLabel: string) => {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(errorLabel);
+    const fetchListingsWithFilters = async (url: string, errorLabel: string, payload: Record<string, unknown>) => {
+      const headers: Record<string, string> = {
+        accept: 'application/json',
+        'content-type': 'application/json'
+      };
+      const apiToken = (import.meta.env.VITE_API_TOKEN || '').trim();
+      if (apiToken) {
+        headers.Authorization = `Bearer ${apiToken}`;
       }
-      const data = await response.json();
-      return Array.isArray(data?.listings) ? data.listings : [];
-    };
-
-    const fetchListingsWithFilters = async (url: string, errorLabel: string) => {
       const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          accept: 'application/json',
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          config_key: configKey,
-          filters,
-          page,
-          per_page: PER_PAGE
-        })
+        headers,
+        body: JSON.stringify(payload)
       });
       if (!response.ok) {
         throw new Error(errorLabel);
@@ -280,52 +222,50 @@ export default function FilterPage() {
     const loadListings = async () => {
       setIsLoadingItems(true);
       try {
-        if (backendUrl) {
-          const data = await fetchListingsWithFilters(backendUrl, 'Failed to reach Reverb API.');
-          const listings = Array.isArray(data?.listings) ? data.listings : [];
-          const total = typeof data?.total === 'number' ? data.total : listings.length;
-          const perPage = typeof data?.per_page === 'number' ? data.per_page : PER_PAGE;
-          const currentPage = typeof data?.current_page === 'number' ? data.current_page : page;
-          const totalPages =
-            typeof data?.total_pages === 'number'
-              ? data.total_pages
-              : Math.max(1, Math.ceil(total / perPage));
-          if (!mounted) return;
-          setItems(listings);
-          setBackendPageInfo({
-            limit: perPage,
-            offset: (currentPage - 1) * perPage,
-            returned: listings.length,
-            total,
-            hasNextPage: currentPage < totalPages,
-            hasPrevPage: currentPage > 1
-          });
-          setUseLocalFallback(false);
+        if (!apiBase) {
+          setItemsError('API base is not configured. Set VITE_API_BASE to use MCDA filters.');
           return;
         }
-        if (dataset) {
-          const listings = await fetchListings(dataset, 'Missing sample data.');
-          if (!mounted) return;
-          setItems(listings);
-          setUseLocalFallback(true);
-          return;
-        }
+        const data = await fetchListingsWithFilters(
+          useServerScoring ? scoringUrl : backendUrl,
+          'Failed to reach listings API.',
+          useServerScoring
+            ? {
+                config_key: configKey,
+                filters,
+                selected_order: selectedOrder,
+                section_order: sectionOrder,
+                page,
+                per_page: PER_PAGE
+              }
+            : {
+                config_key: configKey,
+                filters,
+                page,
+                per_page: PER_PAGE
+              }
+        );
+        const listings = Array.isArray(data?.listings) ? data.listings : [];
+        const total = typeof data?.total === 'number' ? data.total : listings.length;
+        const perPage = typeof data?.per_page === 'number' ? data.per_page : PER_PAGE;
+        const currentPage = typeof data?.current_page === 'number' ? data.current_page : page;
+        const totalPages =
+          typeof data?.total_pages === 'number'
+            ? data.total_pages
+            : Math.max(1, Math.ceil(total / perPage));
+        if (!mounted) return;
+        setItems(listings);
+        setBackendPageInfo({
+          limit: perPage,
+          offset: (currentPage - 1) * perPage,
+          returned: listings.length,
+          total,
+          hasNextPage: currentPage < totalPages,
+          hasPrevPage: currentPage > 1
+        });
+        return;
       } catch (err) {
         if (!mounted) return;
-        if (backendUrl && dataset) {
-          try {
-            const listings = await fetchListings(dataset, 'Missing sample data.');
-            if (!mounted) return;
-            setItems(listings);
-            setUseLocalFallback(true);
-            return;
-          } catch (fallbackError) {
-            setItemsError(
-              fallbackError instanceof Error ? fallbackError.message : 'Failed to load listings.'
-            );
-            return;
-          }
-        }
         setItemsError(err instanceof Error ? err.message : 'Failed to load listings.');
       } finally {
         if (!mounted) return;
@@ -341,7 +281,7 @@ export default function FilterPage() {
       mounted = false;
       window.clearTimeout(timer);
     };
-  }, [configKey, filtersSignature, page, apiBase]);
+  }, [configKey, querySignature, page, apiBase, config]);
 
   const sectionKeys = useMemo(() => (config ? buildSectionKeys(config) : []), [config]);
 
@@ -373,39 +313,7 @@ export default function FilterPage() {
       .filter((section): section is CriteriaConfig => Boolean(section));
   }, [config, sectionKeys, sectionOrder]);
 
-  const filteredItems = useMemo(() => {
-    if (!items.length) return [];
-    return items;
-  }, [items]);
-
-  const visibleItems = useMemo(() => {
-    if (isBackend) return filteredItems;
-    const start = (page - 1) * PER_PAGE;
-    return filteredItems.slice(start, start + PER_PAGE);
-  }, [filteredItems, page, isBackend]);
-
-  const localPageInfo = useMemo<PageInfo | null>(() => {
-    if (isBackend) return null;
-    const total = filteredItems.length;
-    const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
-    const safePage = Math.min(page, totalPages);
-    return {
-      limit: PER_PAGE,
-      offset: (safePage - 1) * PER_PAGE,
-      returned: visibleItems.length,
-      total,
-      hasNextPage: safePage < totalPages,
-      hasPrevPage: safePage > 1
-    };
-  }, [filteredItems.length, visibleItems.length, page, isBackend]);
-
-  useEffect(() => {
-    if (isBackend) return;
-    const totalPages = Math.max(1, Math.ceil(filteredItems.length / PER_PAGE));
-    if (page > totalPages) {
-      setPage(1);
-    }
-  }, [filteredItems.length, page, isBackend]);
+  const visibleItems = items;
 
   if (error) {
     return (
@@ -428,10 +336,9 @@ export default function FilterPage() {
   const category = categories.find((entry) => entry.key === config.category_key);
   const categoryLabel = category?.label ?? config.category_key;
   const display = buildDisplay(config);
-  const pageInfo = isBackend ? backendPageInfo : localPageInfo;
-  const totalCount = isBackend
-    ? backendPageInfo?.total ?? filteredItems.length
-    : filteredItems.length;
+  const disclaimer = (config.disclaimer || '').trim();
+  const pageInfo = backendPageInfo ?? undefined;
+  const totalCount = backendPageInfo?.total ?? items.length;
   const renderItem =
     configKey === 'reverb-acoustic-guitars'
       ? ReverbAcousticGuitarsResultCard
@@ -443,6 +350,7 @@ export default function FilterPage() {
     <section className="mcda-shell">
       <div className="mcda-container">
         <header className="mcda-header">
+          <div className="mcda-disclaimer">{disclaimer}</div>
           <p className="mcda-eyebrow">{categoryLabel}</p>
           <h1>{config.title}</h1>
           <p className="mcda-lead">{config.description}</p>
@@ -465,15 +373,11 @@ export default function FilterPage() {
               items={visibleItems}
               totalCount={totalCount}
               pageInfo={pageInfo ?? undefined}
-              sectionOrder={sectionOrder}
-              selectedOrder={selectedOrder}
-              filters={filters}
               isLoading={isLoadingItems}
               error={itemsError ? new Error(itemsError) : null}
               onPageChange={(nextPage) => setPage(nextPage)}
               renderItem={renderItem}
               display={display}
-              sections={criteriaSections}
             />
           </div>
         </div>

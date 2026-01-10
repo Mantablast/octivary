@@ -83,6 +83,7 @@ export type FilterConfig = {
   category_key: string;
   title: string;
   description: string;
+  disclaimer?: string;
   datasets: {
     primary: Dataset;
   };

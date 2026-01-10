@@ -3,6 +3,7 @@
   "category_key": "entertainment",
   "title": "Concert Tickets",
   "description": "Live music and tours.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

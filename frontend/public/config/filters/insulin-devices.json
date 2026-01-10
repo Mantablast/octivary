@@ -3,6 +3,7 @@
   "category_key": "diabetes-care",
   "title": "Insulin & CGM Devices",
   "description": "Compare continuous glucose monitoring devices by wear time, connectivity, pump integration, and estimated costs.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Devices",

@@ -3,6 +3,7 @@
   "category_key": "musical-instruments",
   "title": "Reverb Acoustic Guitars",
   "description": "Acoustic guitar listings curated from Reverb.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

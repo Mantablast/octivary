@@ -3,6 +3,7 @@
   "category_key": "vehicles",
   "title": "Adventure SUVs",
   "description": "Roomy SUVs ready for road trips.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

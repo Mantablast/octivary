@@ -3,6 +3,7 @@
   "category_key": "musical-instruments",
   "title": "Reverb Cymbals",
   "description": "Crash, ride, and hi-hat cymbals from Reverb.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

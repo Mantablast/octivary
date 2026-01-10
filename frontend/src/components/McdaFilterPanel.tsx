@@ -80,6 +80,65 @@ export default function McdaFilterPanel({
   const isSearchTermsSection = (section?: CriteriaConfig) =>
     section?.ui === 'search_terms' || section?.type === 'search_terms';
 
+  const hasTermSections = (baseKey: string) =>
+    sectionOrder.some((key) => {
+      const termItem = parseSearchTermItemKey(key);
+      return termItem?.baseKey === baseKey;
+    });
+
+  const resetSection = (sectionKey: string, section?: CriteriaConfig) => {
+    onSectionTouched?.(sectionKey);
+    const termItem = parseSearchTermItemKey(sectionKey);
+    if (termItem) {
+      removeSearchTerm(termItem.baseKey, termItem.term);
+      return;
+    }
+
+    setSearchInputs((prev) => {
+      if (!prev[sectionKey]) return prev;
+      return { ...prev, [sectionKey]: '' };
+    });
+
+    startTransition(() => {
+      if (isSearchTermsSection(section)) {
+        setSectionOrder((prev) =>
+          prev.filter((key) => {
+            const parsed = parseSearchTermItemKey(key);
+            return !(parsed && parsed.baseKey === sectionKey);
+          })
+        );
+        setSelectedOrder((prev) => {
+          const next = { ...prev };
+          Object.keys(next).forEach((key) => {
+            const parsed = parseSearchTermItemKey(key);
+            if (parsed && parsed.baseKey === sectionKey) {
+              delete next[key];
+            }
+          });
+          next[sectionKey] = [];
+          return next;
+        });
+        setFilters((prev) => ({ ...prev, [sectionKey]: [] }));
+        return;
+      }
+
+      setSelectedOrder((prev) => ({ ...prev, [sectionKey]: [] }));
+      setFilters((prev) => {
+        const next = { ...prev };
+        if (isRangeSection(section)) {
+          next[sectionKey] = { min: null, max: null };
+        } else if (isDropdownSection(section)) {
+          next[sectionKey] = null;
+        } else if (isToggleSection(section)) {
+          next[sectionKey] = false;
+        } else {
+          next[sectionKey] = [];
+        }
+        return next;
+      });
+    });
+  };
+
 
   const toggleOption = (sectionKey: string, value: string) => {
     startTransition(() => {
@@ -189,6 +248,9 @@ export default function McdaFilterPanel({
   };
 
   const hasSelection = (sectionKey: string, section?: CriteriaConfig) => {
+    if (parseSearchTermItemKey(sectionKey)) {
+      return true;
+    }
     if (isRangeSection(section)) {
       return hasRangeSelection(sectionKey);
     }
@@ -198,7 +260,7 @@ export default function McdaFilterPanel({
     }
     if (isSearchTermsSection(section)) {
       const selected = Array.isArray(filters[sectionKey]) ? (filters[sectionKey] as string[]) : [];
-      return selected.length > 0;
+      return selected.length > 0 || hasTermSections(sectionKey);
     }
     const selected = selectedOrder[sectionKey] || [];
     return selected.length > 0;
@@ -269,9 +331,9 @@ export default function McdaFilterPanel({
                         <button
                           type="button"
                           className="mcda-link"
-                          onClick={() => removeSearchTerm(termItem.baseKey, termItem.term)}
+                          onClick={() => resetSection(sectionKey, section)}
                         >
-                          Remove
+                          Reset
                         </button>
                       </div>
                     </div>
@@ -304,6 +366,15 @@ export default function McdaFilterPanel({
                           ☰
                         </span>
                         <span className={titleClass}>{section.label}</span>
+                        {hasSelection(sectionKey, section) && (
+                          <button
+                            type="button"
+                            className="mcda-link"
+                            onClick={() => resetSection(sectionKey, section)}
+                          >
+                            Reset
+                          </button>
+                        )}
                         <label className="mcda-switch">
                           <input
                             type="checkbox"
@@ -340,6 +411,15 @@ export default function McdaFilterPanel({
                           {section.label}
                           <span className="mcda-chevron">{isOpen ? '▲' : '▼'}</span>
                         </button>
+                        {hasSelection(sectionKey, section) && (
+                          <button
+                            type="button"
+                            className="mcda-link"
+                            onClick={() => resetSection(sectionKey, section)}
+                          >
+                            Reset
+                          </button>
+                        )}
                       </div>
                       {isOpen && (
                         <div className="mcda-section-body">
@@ -388,6 +468,15 @@ export default function McdaFilterPanel({
                           {section.label}
                           <span className="mcda-chevron">{isOpen ? '▲' : '▼'}</span>
                         </button>
+                        {hasSelection(sectionKey, section) && (
+                          <button
+                            type="button"
+                            className="mcda-link"
+                            onClick={() => resetSection(sectionKey, section)}
+                          >
+                            Reset
+                          </button>
+                        )}
                       </div>
                       {isOpen && (
                         <div className="mcda-section-body">
@@ -458,6 +547,15 @@ export default function McdaFilterPanel({
                           {section.label}
                           <span className="mcda-chevron">{isOpen ? '▲' : '▼'}</span>
                         </button>
+                        {hasSelection(sectionKey, section) && (
+                          <button
+                            type="button"
+                            className="mcda-link"
+                            onClick={() => resetSection(sectionKey, section)}
+                          >
+                            Reset
+                          </button>
+                        )}
                       </div>
                       {isOpen && (
                         <div className="mcda-section-body mcda-range-body">
@@ -535,6 +633,15 @@ export default function McdaFilterPanel({
                         {section.label}
                         <span className="mcda-chevron">{isOpen ? '▲' : '▼'}</span>
                       </button>
+                      {hasSelection(sectionKey, section) && (
+                        <button
+                          type="button"
+                          className="mcda-link"
+                          onClick={() => resetSection(sectionKey, section)}
+                        >
+                          Reset
+                        </button>
+                      )}
                     </div>
 
                     {isOpen && (

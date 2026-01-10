@@ -3,6 +3,7 @@
   "category_key": "entertainment",
   "title": "Festival Passes",
   "description": "Multi-day lineups and perks.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

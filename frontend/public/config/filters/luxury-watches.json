@@ -3,6 +3,7 @@
   "category_key": "wearable-accessories",
   "title": "Luxury Watches",
   "description": "Heritage timepieces and icons.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

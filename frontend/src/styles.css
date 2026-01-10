@@ -827,6 +827,12 @@ p {
   gap: 12px;
 }
 
+.mcda-disclaimer {
+  min-height: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--mcda-muted);
+}
+
 .mcda-eyebrow {
   font-size: 0.75rem;
   letter-spacing: 0.12em;

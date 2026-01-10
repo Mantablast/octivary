@@ -3,6 +3,7 @@
   "category_key": "books",
   "title": "Rare Books",
   "description": "First editions and collector finds.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

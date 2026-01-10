@@ -3,6 +3,7 @@
   "category_key": "flights",
   "title": "Weekend Getaways",
   "description": "Quick trips with flexible timing.",
+  "disclaimer": "",
   "datasets": {
     "primary": {
       "label": "Listings",

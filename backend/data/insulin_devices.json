@@ -1,0 +1,575 @@
+{
+  "category": "continuous_glucose_monitoring_devices",
+  "generated_at": "2026-01-08",
+  "currency": "CAD",
+  "listings": [
+    {
+      "id": "freestyle-libre-2",
+      "product_name": "FreeStyle Libre 2",
+      "manufacturer": "Abbott",
+      "official_info_url": "https://www.freestyle.abbott/ca-en/products/freestyle-libre-2.html",
+      "longwear_implant": false,
+      "implant_type": "Wearable",
+      "system_type": "Intermittently scanned CGM (flash)",
+      "scan_required_for_current_reading": true,
+      "scan_required": "Yes",
+      "transmitter_is_sensor": true,
+      "transmitter_type": "Integrated sensor",
+      "integration_type": "Standalone CGM",
+      "mandatory_pump": false,
+      "components_included": {
+        "sensor": true,
+        "transmitter": false,
+        "scanner_reader": "Optional dedicated reader",
+        "phone_app": true,
+        "insulin_pump": false
+      },
+      "dedicated_receiver": true,
+      "phone_app": true,
+      "phone_platforms": [
+        "iOS",
+        "Android"
+      ],
+      "phone_models": [
+        "iPhone 7",
+        "iPhone 7 Plus",
+        "iPhone 8",
+        "iPhone 8 Plus",
+        "iPhone X",
+        "iPhone XR",
+        "iPhone XS",
+        "iPhone XS Max",
+        "iPhone 11",
+        "iPhone 11 Pro",
+        "iPhone 11 Pro Max",
+        "iPhone 12",
+        "iPhone 12 mini",
+        "iPhone 12 Pro",
+        "iPhone 12 Pro Max",
+        "iPhone 13",
+        "iPhone 13 mini",
+        "iPhone 13 Pro",
+        "iPhone 13 Pro Max",
+        "iPhone 14",
+        "iPhone 14 Plus",
+        "iPhone 14 Pro",
+        "iPhone 14 Pro Max",
+        "iPhone 15",
+        "iPhone 15 Plus",
+        "iPhone 15 Pro",
+        "iPhone 15 Pro Max",
+        "iPhone 16",
+        "iPhone 16 Plus",
+        "iPhone 16 Pro",
+        "iPhone 16 Pro Max",
+        "iPhone SE (2nd gen)",
+        "iPhone SE (3rd gen)",
+        "Android 5+ (NFC required)"
+      ],
+      "sensor_wear_duration_days": 14,
+      "warmup_minutes": 60,
+      "estimated_initial_cost_cad": 102,
+      "estimated_monthly_cost_cad": 219,
+      "pricing_components_cad": {
+        "sensor": 102,
+        "reader_optional": 59
+      },
+      "pricing_notes": "Monthly estimate uses a 30-day month. Reader optional if using the phone app.",
+      "insurance_notes": "Historically covered by many private plans and some provincial programs.",
+      "additional_notes": "",
+      "images": [
+        "/assets/listings/freestyle-libre-2-sensor.jpeg",
+        "/assets/listings/freestyle-libre-2-appview.png",
+        "/assets/listings/freestyle-libre-2-starterkit.png"
+      ],
+      "phone_compatibility": {
+        "ios_minimum": "iOS 11+",
+        "ios_models": [
+          "iPhone 7",
+          "iPhone 7 Plus",
+          "iPhone 8",
+          "iPhone 8 Plus",
+          "iPhone X",
+          "iPhone XR",
+          "iPhone XS",
+          "iPhone XS Max",
+          "iPhone 11",
+          "iPhone 11 Pro",
+          "iPhone 11 Pro Max",
+          "iPhone 12",
+          "iPhone 12 mini",
+          "iPhone 12 Pro",
+          "iPhone 12 Pro Max",
+          "iPhone 13",
+          "iPhone 13 mini",
+          "iPhone 13 Pro",
+          "iPhone 13 Pro Max",
+          "iPhone 14",
+          "iPhone 14 Plus",
+          "iPhone 14 Pro",
+          "iPhone 14 Pro Max",
+          "iPhone 15",
+          "iPhone 15 Plus",
+          "iPhone 15 Pro",
+          "iPhone 15 Pro Max",
+          "iPhone 16",
+          "iPhone 16 Plus",
+          "iPhone 16 Pro",
+          "iPhone 16 Pro Max",
+          "iPhone SE (2nd gen)",
+          "iPhone SE (3rd gen)"
+        ],
+        "android_minimum": "Android 5+ (NFC required)",
+        "notes": "Exact supported models listed on Abbott compatibility page."
+      },
+      "pricing_sources": [
+        {
+          "label": "Freestyle Libre 2 Sensor (1/box) - Diabetes Depot",
+          "url": "https://diabetesdepot.ca/index.php/product/freestyle-libre-2-sensor-1-box/",
+          "price_cad": 102
+        },
+        {
+          "label": "FreeStyle Libre2 Reader - Diabetes Depot",
+          "url": "https://diabetesdepot.ca/index.php/product/freestyle-libre/",
+          "price_cad": 59,
+          "note": "Optional reader"
+        }
+      ]
+    },
+    {
+      "id": "freestyle-libre-3",
+      "product_name": "FreeStyle Libre 3 / Libre 3 Plus",
+      "manufacturer": "Abbott",
+      "official_info_url": "https://www.freestyle.abbott/ca-en/products/freestyle-libre-3.html",
+      "longwear_implant": false,
+      "implant_type": "Wearable",
+      "system_type": "Real-time CGM (phone-only)",
+      "scan_required_for_current_reading": false,
+      "scan_required": "No",
+      "transmitter_is_sensor": true,
+      "transmitter_type": "Integrated sensor",
+      "integration_type": "Standalone CGM",
+      "mandatory_pump": false,
+      "components_included": {
+        "sensor": true,
+        "transmitter": false,
+        "scanner_reader": "Region dependent",
+        "phone_app": true,
+        "insulin_pump": false
+      },
+      "dedicated_receiver": false,
+      "phone_app": true,
+      "phone_platforms": [
+        "iOS"
+      ],
+      "phone_models": [
+        "iPhone 11",
+        "iPhone 11 Pro",
+        "iPhone 11 Pro Max",
+        "iPhone 12",
+        "iPhone 12 mini",
+        "iPhone 12 Pro",
+        "iPhone 12 Pro Max",
+        "iPhone 13",
+        "iPhone 13 mini",
+        "iPhone 13 Pro",
+        "iPhone 13 Pro Max",
+        "iPhone 14",
+        "iPhone 14 Plus",
+        "iPhone 14 Pro",
+        "iPhone 14 Pro Max",
+        "iPhone 15",
+        "iPhone 15 Plus",
+        "iPhone 15 Pro",
+        "iPhone 15 Pro Max",
+        "iPhone SE (2nd gen)",
+        "iPhone SE (3rd gen)"
+      ],
+      "sensor_wear_duration_days": 15,
+      "warmup_minutes": 60,
+      "estimated_initial_cost_cad": 120,
+      "estimated_monthly_cost_cad": 240,
+      "pricing_components_cad": {
+        "sensor": 120,
+        "reader_optional": 75
+      },
+      "pricing_notes": "Monthly estimate uses a 30-day month. Reader optional if using the phone app.",
+      "insurance_notes": "Coverage expanding; approval varies by insurer and province.",
+      "additional_notes": "",
+      "images": [
+        "/assets/listings/freestyle-libre-3-sensor.png",
+        "/assets/listings/freestyle-libre-3-appview.png",
+        "/assets/listings/freestyle-libre-3-starterkit.png"
+      ],
+      "phone_compatibility": {
+        "ios_models": [
+          "iPhone 11",
+          "iPhone 11 Pro",
+          "iPhone 11 Pro Max",
+          "iPhone 12",
+          "iPhone 12 mini",
+          "iPhone 12 Pro",
+          "iPhone 12 Pro Max",
+          "iPhone 13",
+          "iPhone 13 mini",
+          "iPhone 13 Pro",
+          "iPhone 13 Pro Max",
+          "iPhone 14",
+          "iPhone 14 Plus",
+          "iPhone 14 Pro",
+          "iPhone 14 Pro Max",
+          "iPhone 15",
+          "iPhone 15 Plus",
+          "iPhone 15 Pro",
+          "iPhone 15 Pro Max",
+          "iPhone SE (2nd gen)",
+          "iPhone SE (3rd gen)"
+        ],
+        "notes": "Compatibility is strict; users must verify model + OS."
+      },
+      "pricing_sources": [
+        {
+          "label": "Freestyle Libre 3 Plus Sensor - Diabetes Depot",
+          "url": "https://diabetesdepot.ca/index.php/product/new-freestyle-libre-3-plus-sensor/",
+          "price_cad": 120
+        },
+        {
+          "label": "Freestyle Libre 3 Reader - Diabetes Depot",
+          "url": "https://diabetesdepot.ca/index.php/product/new-freestyle-libre-3-reader/",
+          "price_cad": 75,
+          "note": "Optional reader"
+        }
+      ]
+    },
+    {
+      "id": "dexcom-g7",
+      "product_name": "Dexcom G7",
+      "manufacturer": "Dexcom",
+      "official_info_url": "https://www.dexcom.com/en-ca/g7-cgm-system",
+      "longwear_implant": false,
+      "implant_type": "Wearable",
+      "system_type": "Real-time CGM",
+      "scan_required_for_current_reading": false,
+      "scan_required": "No",
+      "transmitter_is_sensor": true,
+      "transmitter_type": "Integrated sensor",
+      "integration_type": "Standalone CGM",
+      "mandatory_pump": false,
+      "components_included": {
+        "sensor": true,
+        "transmitter": false,
+        "receiver": "Optional",
+        "phone_app": true,
+        "insulin_pump": false
+      },
+      "dedicated_receiver": true,
+      "phone_app": true,
+      "phone_platforms": [
+        "iOS",
+        "Android"
+      ],
+      "sensor_wear_duration_days": 10,
+      "warmup_minutes": 30,
+      "estimated_initial_cost_cad": 88,
+      "estimated_monthly_cost_cad": 263,
+      "pricing_components_cad": {
+        "sensor": 87.5,
+        "receiver_optional": 74
+      },
+      "pricing_notes": "Monthly estimate uses a 30-day month. Optional receiver if not using the phone app.",
+      "insurance_notes": "Widely covered by private insurers; pharmacy-distributed in Canada.",
+      "additional_notes": "",
+      "images": [
+        "/assets/listings/dexcom-g7-sensor.png",
+        "/assets/listings/dexcom-g7-appview.png",
+        "/assets/listings/dexcom-g7-starterkit.png"
+      ],
+      "phone_compatibility": {
+        "ios_models": [
+          "iPhone 11",
+          "iPhone 11 Pro",
+          "iPhone 11 Pro Max",
+          "iPhone 12",
+          "iPhone 12 mini",
+          "iPhone 12 Pro",
+          "iPhone 12 Pro Max",
+          "iPhone 13",
+          "iPhone 13 mini",
+          "iPhone 13 Pro",
+          "iPhone 13 Pro Max",
+          "iPhone 14",
+          "iPhone 14 Plus",
+          "iPhone 14 Pro",
+          "iPhone 14 Pro Max",
+          "iPhone 15",
+          "iPhone 15 Plus",
+          "iPhone 15 Pro",
+          "iPhone 15 Pro Max",
+          "iPhone SE (2nd gen)",
+          "iPhone SE (3rd gen)"
+        ],
+        "android_minimum": "Android 13",
+        "notes": "Dexcom publishes a detailed Canada-specific compatibility list."
+      },
+      "phone_models": [
+        "iPhone 11",
+        "iPhone 11 Pro",
+        "iPhone 11 Pro Max",
+        "iPhone 12",
+        "iPhone 12 mini",
+        "iPhone 12 Pro",
+        "iPhone 12 Pro Max",
+        "iPhone 13",
+        "iPhone 13 mini",
+        "iPhone 13 Pro",
+        "iPhone 13 Pro Max",
+        "iPhone 14",
+        "iPhone 14 Plus",
+        "iPhone 14 Pro",
+        "iPhone 14 Pro Max",
+        "iPhone 15",
+        "iPhone 15 Plus",
+        "iPhone 15 Pro",
+        "iPhone 15 Pro Max",
+        "iPhone SE (2nd gen)",
+        "iPhone SE (3rd gen)",
+        "Android 13"
+      ],
+      "pricing_sources": [
+        {
+          "label": "Dexcom G7 Sensor (1-pk) - Diabetes Depot",
+          "url": "https://diabetesdepot.ca/index.php/product/new-dexcom-g7-sensor-1-pk/",
+          "price_cad": 87.5
+        },
+        {
+          "label": "Dexcom G7 Receiver (1-unit) - Diabetes Depot",
+          "url": "https://diabetesdepot.ca/index.php/product/new-dexcom-g7-receiver-1-unit/",
+          "price_cad": 74,
+          "note": "Optional receiver"
+        }
+      ]
+    },
+    {
+      "id": "dexcom-g6",
+      "product_name": "Dexcom G6",
+      "manufacturer": "Dexcom",
+      "official_info_url": "https://www.dexcom.com/en-ca/g6-cgm-system",
+      "longwear_implant": false,
+      "implant_type": "Wearable",
+      "system_type": "Real-time CGM",
+      "scan_required_for_current_reading": false,
+      "scan_required": "No",
+      "transmitter_is_sensor": false,
+      "transmitter_type": "Separate transmitter",
+      "integration_type": "Standalone CGM",
+      "mandatory_pump": false,
+      "components_included": {
+        "sensor": true,
+        "transmitter": true,
+        "receiver": "Optional",
+        "phone_app": true,
+        "insulin_pump": false
+      },
+      "dedicated_receiver": true,
+      "phone_app": true,
+      "phone_platforms": [
+        "iOS"
+      ],
+      "phone_models": [
+        "iPhone XR",
+        "iPhone XS",
+        "iPhone XS Max",
+        "iPhone 11",
+        "iPhone 11 Pro",
+        "iPhone 11 Pro Max",
+        "iPhone 12",
+        "iPhone 12 mini",
+        "iPhone 12 Pro",
+        "iPhone 12 Pro Max",
+        "iPhone 13",
+        "iPhone 13 mini",
+        "iPhone 13 Pro",
+        "iPhone 13 Pro Max",
+        "iPhone 14",
+        "iPhone 14 Plus",
+        "iPhone 14 Pro",
+        "iPhone 14 Pro Max",
+        "iPhone 15",
+        "iPhone 15 Plus",
+        "iPhone 15 Pro",
+        "iPhone 15 Pro Max",
+        "iPhone 16",
+        "iPhone 16 Plus",
+        "iPhone 16 Pro",
+        "iPhone 16 Pro Max",
+        "iPhone SE (2nd gen)",
+        "iPhone SE (3rd gen)"
+      ],
+      "sensor_wear_duration_days": 10,
+      "warmup_minutes": 30,
+      "transmitter_replacement_days": 90,
+      "estimated_initial_cost_cad": 379,
+      "estimated_monthly_cost_cad": 356,
+      "pricing_components_cad": {
+        "sensor_3pack": 344,
+        "transmitter": 35,
+        "transmitter_replacement_days": 90
+      },
+      "pricing_notes": "Monthly estimate uses a 30-day month. Transmitter price listed with MSRP on the product page.",
+      "insurance_notes": "Well-established reimbursement pathways in Canada.",
+      "additional_notes": "",
+      "images": [
+        "/assets/listings/dexcom-g6-sensor.png",
+        "/assets/listings/dexcom-g6-appview.png",
+        "/assets/listings/dexcom-g6-starterkit.png"
+      ],
+      "phone_compatibility": {
+        "ios_models": [
+          "iPhone XR",
+          "iPhone XS",
+          "iPhone XS Max",
+          "iPhone 11",
+          "iPhone 11 Pro",
+          "iPhone 11 Pro Max",
+          "iPhone 12",
+          "iPhone 12 mini",
+          "iPhone 12 Pro",
+          "iPhone 12 Pro Max",
+          "iPhone 13",
+          "iPhone 13 mini",
+          "iPhone 13 Pro",
+          "iPhone 13 Pro Max",
+          "iPhone 14",
+          "iPhone 14 Plus",
+          "iPhone 14 Pro",
+          "iPhone 14 Pro Max",
+          "iPhone 15",
+          "iPhone 15 Plus",
+          "iPhone 15 Pro",
+          "iPhone 15 Pro Max",
+          "iPhone 16",
+          "iPhone 16 Plus",
+          "iPhone 16 Pro",
+          "iPhone 16 Pro Max",
+          "iPhone SE (2nd gen)",
+          "iPhone SE (3rd gen)"
+        ],
+        "notes": "Broad but still model- and OS-specific."
+      },
+      "pricing_sources": [
+        {
+          "label": "Dexcom G6 Sensor (3-pk) - Diabetes Depot",
+          "url": "https://diabetesdepot.ca/index.php/product/dexcom-g6-sensor-3-pk/",
+          "price_cad": 344
+        },
+        {
+          "label": "Dexcom G6 Transmitter (1-pk) - Diabetes Depot",
+          "url": "https://diabetesdepot.ca/index.php/product/dexcom-g6-transmitter-1-pk/",
+          "price_cad": 35,
+          "msrp_cad": 289
+        }
+      ]
+    },
+    {
+      "id": "medtronic-guardian-4",
+      "product_name": "Medtronic Guardian 4 (MiniMed 780G)",
+      "manufacturer": "Medtronic",
+      "official_info_url": "https://www.medtronicdiabetes.com/products/guardian-4-sensor",
+      "longwear_implant": false,
+      "implant_type": "Wearable",
+      "system_type": "Pump-integrated CGM",
+      "scan_required_for_current_reading": false,
+      "scan_required": "No",
+      "transmitter_is_sensor": false,
+      "transmitter_type": "Separate transmitter",
+      "integration_type": "Pump-integrated",
+      "mandatory_pump": true,
+      "components_included": {
+        "sensor": true,
+        "transmitter": true,
+        "insulin_pump": true
+      },
+      "dedicated_receiver": false,
+      "phone_app": false,
+      "phone_platforms": [],
+      "sensor_wear_duration_days": 7,
+      "estimated_initial_cost_cad": 390,
+      "estimated_monthly_cost_cad": 334,
+      "pricing_components_cad": {
+        "sensor_box_of_5": 390
+      },
+      "pricing_notes": "Monthly estimate uses a 30-day month. Pump and transmitter costs not included.",
+      "insurance_notes": "Typically covered when pump therapy criteria are met.",
+      "additional_notes": "",
+      "images": [
+        "/assets/listings/medtronic-guardian-4-sensor.avif",
+        "/assets/listings/medtronic-guardian-4-appview.avif",
+        "/assets/listings/medtronic-guardian-4-starterkit.avif"
+      ],
+      "phone_compatibility": {
+        "notes": "Phone optional; pump is primary interface. Compatibility chart published by Medtronic."
+      },
+      "pricing_sources": [
+        {
+          "label": "Guardian 4 Sensor (5/bx) - Diabetes Depot",
+          "url": "https://diabetesdepot.ca/index.php/product/guardian-4-sensor-5-sensor-bx/",
+          "price_cad": 390,
+          "note": "Listing notes transmitter available free from Medtronic."
+        }
+      ]
+    },
+    {
+      "id": "eversense-e3",
+      "product_name": "Eversense E3",
+      "manufacturer": "Senseonics / Ascensia",
+      "official_info_url": "https://www.eversensecgm.com",
+      "longwear_implant": true,
+      "implant_type": "Implantable",
+      "system_type": "Implantable CGM",
+      "scan_required_for_current_reading": false,
+      "scan_required": "No",
+      "transmitter_is_sensor": false,
+      "transmitter_type": "Separate transmitter",
+      "integration_type": "Standalone CGM",
+      "mandatory_pump": false,
+      "components_included": {
+        "sensor": true,
+        "transmitter": true,
+        "phone_app": true,
+        "insulin_pump": false
+      },
+      "dedicated_receiver": false,
+      "phone_app": true,
+      "phone_platforms": [
+        "iOS"
+      ],
+      "sensor_wear_duration_days": 180,
+      "estimated_initial_cost_cad": 3945,
+      "estimated_monthly_cost_cad": 658,
+      "pricing_components_cad": {
+        "system_estimate_usd": 2900,
+        "usd_to_cad_rate": 1.36,
+        "system_estimate_cad": 3945
+      },
+      "pricing_notes": "Converted from USD at 1.36 CAD/USD. Monthly estimate assumes a 180-day sensor (~6 months).",
+      "insurance_notes": "Coverage varies significantly; requires clinician insertion/removal.",
+      "additional_notes": "",
+      "images": [
+        "/assets/listings/eversense-e3-sensor.webp",
+        "/assets/listings/eversense-e3-appview.png",
+        "/assets/listings/eversense-e3-starterkit.webp"
+      ],
+      "phone_compatibility": {
+        "notes": "Compatibility varies by region; Apple Watch support documented."
+      },
+      "pricing_sources": [
+        {
+          "label": "diaTribe: Eversense 365 cleared by FDA (E3 cost estimate)",
+          "url": "https://diatribe.org/diabetes-technology/eversense-365-1-year-cgm-cleared-fda",
+          "price_usd": 2900,
+          "note": "Out-of-pocket estimate for 180-day E3 including sensor, transmitter, and procedure."
+        }
+      ]
+    }
+  ]
+}

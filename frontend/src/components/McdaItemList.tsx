@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { ComponentType, ReactNode } from 'react';
-import type { CriteriaConfig, DisplayMetadata, FiltersState, ResultsDisplay } from '../types';
-import { normalize, resolvePath } from '../utils/dataAccess';
+import type { DisplayMetadata, ResultsDisplay } from '../types';
+import { resolvePath } from '../utils/dataAccess';
 
 type PageInfo = {
   limit: number;
@@ -17,21 +17,13 @@ type Props = {
   totalCount: number;
   pageInfo?: PageInfo;
   debugMeta?: Record<string, unknown>;
-  sectionOrder?: string[];
-  selectedOrder?: Record<string, string[]>;
-  filters?: FiltersState;
   isLoading?: boolean;
   error?: Error | null;
   onRetry?: () => void;
   onPageChange?: (page: number) => void;
   renderItem?: ComponentType<McdaResultCardProps>;
   display: ResultsDisplay;
-  sections: CriteriaConfig[];
 };
-
-const SECTION_DOMINANCE_BASE = 5;
-const VALUE_DECAY = 0.65;
-const HIGH_PRIORITY_VALUE_WEIGHT_THRESHOLD = 0.5;
 
 const renderTemplate = (template: string, item: Record<string, any>) =>
   template.replace(/\{([^}]+)\}/g, (_, path) => {
@@ -39,181 +31,6 @@ const renderTemplate = (template: string, item: Record<string, any>) =>
     if (value === undefined || value === null) return '';
     return String(value);
   });
-
-const stripHtml = (value: string) => value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-
-const TEXT_SEARCH_FIELDS = [
-  'system_type',
-  'scanner_reader',
-  'phone_models',
-  'scan_required',
-  'scan_required_for_current_reading',
-  'pricing_notes',
-  'insurance_notes',
-  'product_name',
-  'notes'
-];
-
-const pushValue = (bucket: string[], value: unknown) => {
-  if (value === null || value === undefined) return;
-  if (Array.isArray(value)) {
-    value.forEach((entry) => pushValue(bucket, entry));
-    return;
-  }
-  if (typeof value === 'object') {
-    Object.values(value as Record<string, unknown>).forEach((entry) => pushValue(bucket, entry));
-    return;
-  }
-  bucket.push(String(value));
-};
-
-const buildTextSearchHaystack = (item: Record<string, any>) => {
-  const parts: string[] = [];
-  TEXT_SEARCH_FIELDS.forEach((path) => {
-    const value = resolvePath(item, path);
-    pushValue(parts, value);
-  });
-  const pricingSources = resolvePath(item, 'pricing_sources');
-  if (Array.isArray(pricingSources)) {
-    pricingSources.forEach((source) => {
-      if (source && typeof source === 'object') {
-        pushValue(parts, (source as Record<string, unknown>).label);
-      }
-    });
-  }
-  const scanRequired = resolvePath(item, 'scan_required');
-  if (typeof scanRequired === 'string') {
-    if (normalize(scanRequired) === 'no') parts.push('no scanning');
-    if (normalize(scanRequired) === 'yes') parts.push('scan required');
-  } else if (typeof scanRequired === 'boolean') {
-    parts.push(scanRequired ? 'scan required' : 'no scanning');
-  }
-  const scanRequiredForReading = resolvePath(item, 'scan_required_for_current_reading');
-  if (typeof scanRequiredForReading === 'boolean') {
-    parts.push(scanRequiredForReading ? 'scan required' : 'no scanning');
-  }
-  return normalize(stripHtml(parts.join(' ')));
-};
-
-const canonicalSectionWeight = (totalSections: number, index: number) => {
-  const dominancePower = Math.max(0, totalSections - index - 1);
-  return Math.pow(SECTION_DOMINANCE_BASE, dominancePower);
-};
-
-const canonicalValueWeight = (rank: number) => Math.pow(VALUE_DECAY, rank);
-
-type PrioritySpec = {
-  sections: string[];
-  selectedValues: Record<string, string[]>;
-  tokenWeights: Map<string, number>;
-  sectionWeights: Map<string, number>;
-  selectedTokens: Set<string>;
-  highPriorityTokens: Set<string>;
-  totalSelectedCount: number;
-};
-
-const buildPrioritySpec = (
-  sectionOrder: string[] = [],
-  selectedOrder: Record<string, string[] | undefined> = {},
-  rangeSelections: Set<string> = new Set()
-): PrioritySpec => {
-  const sections: string[] = [];
-  const selectedValues: Record<string, string[]> = {};
-  const tokenWeights = new Map<string, number>();
-  const sectionWeights = new Map<string, number>();
-  const selectedTokens = new Set<string>();
-  const highPriorityTokens = new Set<string>();
-  let totalSelectedCount = 0;
-  const totalSections = sectionOrder.length;
-
-  sectionOrder.forEach((sectionKey, sectionIndex) => {
-    const normalizedSection = normalize(sectionKey);
-    if (!normalizedSection) return;
-    const rawItems = selectedOrder[sectionKey] ?? selectedOrder[normalizedSection];
-    const items = Array.isArray(rawItems) ? (rawItems as string[]) : [];
-    const normalizedItems: string[] = [];
-    const seen = new Set<string>();
-    items.forEach((item) => {
-      const normalizedItem = normalize(item ?? '');
-      if (!normalizedItem || seen.has(normalizedItem)) return;
-      seen.add(normalizedItem);
-      normalizedItems.push(normalizedItem);
-    });
-
-    const hasRange = rangeSelections.has(sectionKey);
-    if (normalizedItems.length === 0 && !hasRange) {
-      return;
-    }
-
-    sections.push(sectionKey);
-    if (normalizedItems.length > 0) {
-      selectedValues[sectionKey] = normalizedItems;
-      totalSelectedCount += normalizedItems.length;
-    } else {
-      totalSelectedCount += 1;
-    }
-
-    const sectionWeight = canonicalSectionWeight(totalSections, sectionIndex);
-    sectionWeights.set(sectionKey, sectionWeight);
-    normalizedItems.forEach((value, valueIndex) => {
-      const valueWeight = canonicalValueWeight(valueIndex);
-      const token = `${sectionKey}:${value}`;
-      tokenWeights.set(token, sectionWeight * valueWeight);
-      selectedTokens.add(token);
-      if (valueWeight >= HIGH_PRIORITY_VALUE_WEIGHT_THRESHOLD) {
-        highPriorityTokens.add(token);
-      }
-    });
-  });
-
-  return {
-    sections,
-    selectedValues,
-    tokenWeights,
-    sectionWeights,
-    selectedTokens,
-    highPriorityTokens,
-    totalSelectedCount
-  };
-};
-
-const extractTokens = (item: Record<string, any>, section: CriteriaConfig) => {
-  const sectionType = section.type || 'scalar';
-  const path = section.path;
-  const allowCustom = Boolean(section.allow_custom);
-  const value = resolvePath(item, path);
-
-  if (sectionType === 'scalar' || sectionType === 'match_any' || sectionType === 'checkboxes') {
-    if (Array.isArray(value)) {
-      return value
-        .map((entry) => normalize(entry))
-        .filter(Boolean)
-        .map((normalizedValue) => `${section.key}:${normalizedValue}`);
-    }
-    const normalizedValue = normalize(value);
-    return normalizedValue ? [`${section.key}:${normalizedValue}`] : [];
-  }
-
-  if (sectionType === 'array') {
-    if (!Array.isArray(value)) return [];
-    return value
-      .map((entry) => normalize(entry))
-      .filter(Boolean)
-      .map((normalizedValue) => `${section.key}:${normalizedValue}`);
-  }
-
-  if (sectionType === 'boolean' || sectionType === 'toggle') {
-    if (value === null || value === undefined) return [];
-    return [`${section.key}:${value ? 'true' : 'false'}`];
-  }
-
-  if (allowCustom) {
-    const normalizedValue = normalize(value);
-    return normalizedValue ? [`${section.key}:${normalizedValue}`] : [];
-  }
-
-  return [];
-};
 
 const formatMetadataValue = (item: Record<string, any>, entry: DisplayMetadata) => {
   const raw = entry.path ? resolvePath(item, entry.path) : null;
@@ -273,146 +90,33 @@ export default function McdaItemList({
   totalCount,
   pageInfo,
   debugMeta,
-  sectionOrder = [],
-  selectedOrder = {},
-  filters = {},
   isLoading = false,
   error = null,
   onRetry,
   onPageChange,
   renderItem,
-  display,
-  sections
+  display
 }: Props) {
-  const rangeSelections = useMemo(() => {
-    const selections = new Map<string, { min: number | null; max: number | null }>();
-    sections.forEach((section) => {
-      if (section.type !== 'range') return;
-      const raw = filters[section.key];
-      if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return;
-      const range = raw as Record<string, unknown>;
-      const min = typeof range.min === 'number' ? (range.min as number) : null;
-      const max = typeof range.max === 'number' ? (range.max as number) : null;
-      if (min === null && max === null) return;
-      selections.set(section.key, { min, max });
-    });
-    return selections;
-  }, [sections, filters]);
-
-  const prioritySpec = useMemo(
-    () => buildPrioritySpec(sectionOrder, selectedOrder, new Set(rangeSelections.keys())),
-    [sectionOrder, selectedOrder, rangeSelections]
-  );
-  const {
-    sections: prioritySectionKeys,
-    selectedValues,
-    tokenWeights,
-    sectionWeights,
-    selectedTokens,
-    highPriorityTokens,
-    totalSelectedCount
-  } = prioritySpec;
-  const sectionMap = useMemo(() => {
-    const map: Record<string, CriteriaConfig> = {};
-    sections.forEach((section) => (map[section.key] = section));
-    return map;
-  }, [sections]);
-  const searchTermSections = useMemo(
+  const scoredItems = useMemo(
     () =>
-      sections.filter(
-        (section) =>
-          section.ui === 'search_terms' ||
-          section.ui === 'search_term_item' ||
-          section.type === 'search_terms'
-      ),
-    [sections]
-  );
-  const prioritySectionSet = useMemo(() => new Set(prioritySectionKeys), [prioritySectionKeys]);
-  const prioritySections = useMemo(
-    () =>
-      prioritySectionKeys
-        .map((key) => sectionMap[key])
-        .filter((section): section is CriteriaConfig => Boolean(section))
-        .filter(
-          (section) =>
-            !(
-              section.ui === 'search_terms' ||
-              section.ui === 'search_term_item' ||
-              section.type === 'search_terms'
-            )
-        ),
-    [prioritySectionKeys, sectionMap]
-  );
-  const prioritySearchSections = useMemo(
-    () => searchTermSections.filter((section) => prioritySectionSet.has(section.key)),
-    [searchTermSections, prioritySectionSet]
+      items.map((item, index) => {
+        const mcda = item?._mcda || {};
+        return {
+          item,
+          totalMatches: mcda.total_matches ?? 0,
+          highPriorityMatches: mcda.high_priority_matches ?? 0,
+          derivedScore: mcda.derived_score ?? 0,
+          rangeMatches: mcda.range_matches ?? 0,
+          index
+        };
+      }),
+    [items]
   );
 
-  const scoredItems = useMemo(() => {
-    const sectionMap = new Map(sections.map((section) => [section.key, section]));
-    const scored = items.map((item, index) => {
-      const itemTokens = new Set<string>();
-      prioritySections.forEach((section) => {
-        extractTokens(item, section).forEach((token) => itemTokens.add(token));
-      });
-      prioritySearchSections.forEach((section) => {
-        const haystack = buildTextSearchHaystack(item);
-        const terms = selectedValues[section.key] || [];
-        terms.forEach((term) => {
-          if (!term) return;
-          if (haystack.includes(term)) {
-            itemTokens.add(`${section.key}:${term}`);
-          }
-        });
-      });
-
-      let totalMatches = 0;
-      let highPriorityMatches = 0;
-      let derivedScore = 0;
-      let rangeMatches = 0;
-      itemTokens.forEach((token) => {
-        if (selectedTokens.has(token)) {
-          totalMatches += 1;
-          if (highPriorityTokens.has(token)) highPriorityMatches += 1;
-          derivedScore += tokenWeights.get(token) ?? 0;
-        }
-      });
-
-      if (rangeSelections.size > 0) {
-        rangeSelections.forEach((range, sectionKey) => {
-          const section = sectionMap.get(sectionKey);
-          if (!section?.path) return;
-          const rawValue = resolvePath(item, section.path);
-          const numericValue = Number(rawValue);
-          if (Number.isNaN(numericValue)) return;
-          if (range.min !== null && numericValue < range.min) return;
-          if (range.max !== null && numericValue > range.max) return;
-          totalMatches += 1;
-          highPriorityMatches += 1;
-          rangeMatches += 1;
-          derivedScore += sectionWeights.get(sectionKey) ?? 0;
-        });
-      }
-
-      return { item, totalMatches, highPriorityMatches, derivedScore, rangeMatches, index };
-    });
-    if (totalSelectedCount > 0) {
-      return [...scored].sort((a, b) => b.derivedScore - a.derivedScore || a.index - b.index);
-    }
-    return scored;
-  }, [
-    items,
-    sectionOrder,
-    prioritySections,
-    prioritySearchSections,
-    selectedTokens,
-    highPriorityTokens,
-    tokenWeights,
-    rangeSelections,
-    sectionWeights,
-    selectedValues,
-    totalSelectedCount
-  ]);
+  const totalSelectedCount = useMemo(() => {
+    const first = items.find((item) => item?._mcda);
+    return typeof first?._mcda?.total_selected_count === 'number' ? first._mcda.total_selected_count : 0;
+  }, [items]);
 
   const topScore = scoredItems.reduce((max, entry) => Math.max(max, entry.derivedScore), 0);
 

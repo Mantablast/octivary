@@ -1,15 +1,32 @@
+import hashlib
+import json
 import os
 import re
+from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Request, status
+from dotenv import load_dotenv
+from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 import requests
 
+load_dotenv(Path(__file__).resolve().parents[1] / '.env')
+
+from .auth import require_user
+from .cache import response_cache
 from .config_loader import list_config_keys, load_filter_config
 from .cost_guardrail import guard_if_paused
-from .models import ItemsRequest, ItemResult, SavedSearchCreate, ReverbListingsRequest
+from .listings_store import load_local_listings
+from .mcda_scoring import score_listings
+from .models import (
+    ItemsRequest,
+    ItemResult,
+    ListingsSearchRequest,
+    SavedSearchCreate,
+    ReverbListingsRequest,
+)
 from .provider_registry import resolve_provider
+from .rate_limit import enforce_rate_limit
 from .storage import (
     create_saved_search,
     delete_saved_search,
@@ -21,14 +38,14 @@ app = FastAPI(title='Octivary API', version='0.1.0')
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['*'],
+    allow_origins=[origin for origin in os.getenv('CORS_ALLOW_ORIGINS', '*').split(',') if origin],
     allow_methods=['*'],
     allow_headers=['*'],
 )
 
 
 def _user_id_from_request(request: Request) -> str:
-    return request.headers.get('x-user-id', 'demo-user')
+    return getattr(request.state, 'user_id', None) or request.headers.get('x-user-id', 'demo-user')
 
 
 @app.on_event('startup')
@@ -196,12 +213,15 @@ def _fetch_reverb_listings(params: dict) -> dict:
 
 @app.get('/api/reverb/listings')
 async def get_reverb_listings(
+    request: Request,
+    _claims: dict = Depends(require_user),
     config_key: str | None = None,
     query: str | None = None,
     category_uuid: str | None = None,
     page: int = 1,
     per_page: int = 24,
 ) -> dict:
+    enforce_rate_limit(request)
     try:
         params = _build_reverb_params(config_key, query, category_uuid, page, per_page, {})
     except FileNotFoundError as exc:
@@ -210,7 +230,12 @@ async def get_reverb_listings(
 
 
 @app.post('/api/reverb/listings')
-async def post_reverb_listings(payload: ReverbListingsRequest) -> dict:
+async def post_reverb_listings(
+    request: Request,
+    payload: ReverbListingsRequest,
+    _claims: dict = Depends(require_user),
+) -> dict:
+    enforce_rate_limit(request)
     try:
         params = _build_reverb_params(
             payload.config_key,
@@ -228,7 +253,10 @@ async def post_reverb_listings(payload: ReverbListingsRequest) -> dict:
 @app.post('/api/items', response_model=list[ItemResult])
 async def get_items(payload: ItemsRequest) -> list[ItemResult]:
     guard_if_paused()
-    config = load_filter_config(payload.config_key)
+    try:
+        config = load_filter_config(payload.config_key)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
     provider_key = config['datasets']['primary']['data_source']['provider_key']
     resolve_provider(provider_key)
     return [
@@ -238,22 +266,88 @@ async def get_items(payload: ItemsRequest) -> list[ItemResult]:
     ]
 
 
+def _payload_cache_key(payload: ListingsSearchRequest, user_id: str) -> str:
+    digest = hashlib.sha256(
+        json.dumps(payload.model_dump(), sort_keys=True, default=str).encode('utf-8')
+    ).hexdigest()
+    return f"listings:{user_id}:{digest}"
+
+
+@app.post('/api/listings/search')
+async def search_listings(
+    payload: ListingsSearchRequest,
+    request: Request,
+    _claims: dict = Depends(require_user),
+) -> dict:
+    guard_if_paused()
+    enforce_rate_limit(request)
+    user_id = _user_id_from_request(request)
+    cache_key = _payload_cache_key(payload, user_id)
+    cached = response_cache.get(cache_key)
+    if cached:
+        return cached
+
+    config = load_filter_config(payload.config_key)
+    data_source = config['datasets']['primary']['data_source']
+    provider_key = data_source.get('provider_key', '')
+    source_type = data_source.get('type')
+
+    if source_type == 'local_json':
+        listings = load_local_listings(provider_key)
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='Unsupported data source for server-side scoring.',
+        )
+
+    scored, _ = score_listings(
+        listings=listings,
+        config=config,
+        filters=payload.filters,
+        selected_order=payload.selected_order,
+        section_order=payload.section_order,
+    )
+
+    per_page = max(1, min(int(payload.per_page), 50))
+    page = max(1, int(payload.page))
+    total = len(scored)
+    total_pages = max(1, (total + per_page - 1) // per_page)
+    start = (page - 1) * per_page
+    response = {
+        'listings': scored[start : start + per_page],
+        'total': total,
+        'per_page': per_page,
+        'current_page': page,
+        'total_pages': total_pages,
+    }
+    response_cache.set(cache_key, response)
+    return response
+
+
 @app.get('/api/saved-searches')
-async def get_saved_searches(request: Request) -> list[dict]:
+async def get_saved_searches(request: Request, _claims: dict = Depends(require_user)) -> list[dict]:
     guard_if_paused()
     user_id = _user_id_from_request(request)
     return [search.model_dump() for search in list_saved_searches(user_id)]
 
 
 @app.post('/api/saved-searches')
-async def create_search(request: Request, payload: SavedSearchCreate) -> dict:
+async def create_search(
+    request: Request,
+    payload: SavedSearchCreate,
+    _claims: dict = Depends(require_user),
+) -> dict:
     guard_if_paused()
     user_id = _user_id_from_request(request)
     return create_saved_search(user_id, payload).model_dump()
 
 
 @app.get('/api/saved-searches/{search_id}')
-async def get_search(request: Request, search_id: str) -> dict:
+async def get_search(
+    request: Request,
+    search_id: str,
+    _claims: dict = Depends(require_user),
+) -> dict:
     guard_if_paused()
     search = get_saved_search(search_id)
     if not search:
@@ -262,7 +356,11 @@ async def get_search(request: Request, search_id: str) -> dict:
 
 
 @app.delete('/api/saved-searches/{search_id}')
-async def delete_search(request: Request, search_id: str) -> dict:
+async def delete_search(
+    request: Request,
+    search_id: str,
+    _claims: dict = Depends(require_user),
+) -> dict:
     guard_if_paused()
     deleted = delete_saved_search(search_id)
     if not deleted:
