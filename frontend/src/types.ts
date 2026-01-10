@@ -18,6 +18,7 @@ export type FilterDefinition = {
   path?: string;
   placeholder?: string;
   allow_custom?: boolean;
+  helper_text?: string;
 };
 
 export type FilterStateValue =
@@ -47,6 +48,7 @@ export type CriteriaConfig = {
   allow_custom?: boolean;
   ui?: string;
   placeholder?: string;
+  helper_text?: string;
 };
 
 export type DisplayMetadata = {

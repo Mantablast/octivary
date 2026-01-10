@@ -80,7 +80,8 @@ const toCriteriaConfig = (filter: FilterDefinition): CriteriaConfig => {
     options,
     allow_custom: filter.allow_custom,
     ui,
-    placeholder: filter.placeholder
+    placeholder: filter.placeholder,
+    helper_text: filter.helper_text
   };
 };
 

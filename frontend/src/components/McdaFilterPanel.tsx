@@ -80,6 +80,11 @@ export default function McdaFilterPanel({
   const isSearchTermsSection = (section?: CriteriaConfig) =>
     section?.ui === 'search_terms' || section?.type === 'search_terms';
 
+  const renderHelperText = (section?: CriteriaConfig) => {
+    if (!section?.helper_text) return null;
+    return <p className="mcda-help">{section.helper_text}</p>;
+  };
+
   const hasTermSections = (baseKey: string) =>
     sectionOrder.some((key) => {
       const termItem = parseSearchTermItemKey(key);
@@ -423,6 +428,7 @@ export default function McdaFilterPanel({
                       </div>
                       {isOpen && (
                         <div className="mcda-section-body">
+                          {renderHelperText(section)}
                           <select
                             className="mcda-input"
                             value={selectedValue}
@@ -480,6 +486,7 @@ export default function McdaFilterPanel({
                       </div>
                       {isOpen && (
                         <div className="mcda-section-body">
+                          {renderHelperText(section)}
                           <div className="mcda-search-row">
                             <input
                               type="text"
@@ -559,6 +566,7 @@ export default function McdaFilterPanel({
                       </div>
                       {isOpen && (
                         <div className="mcda-section-body mcda-range-body">
+                          {renderHelperText(section)}
                           <label className="mcda-range-row">
                             <span className="mcda-range-label">Min</span>
                             <div className="mcda-range-input">
@@ -646,6 +654,7 @@ export default function McdaFilterPanel({
 
                     {isOpen && (
                       <div className="mcda-section-body">
+                        {renderHelperText(section)}
                         {selectedItems.length > 0 && (
                           <SortableContext
                             items={selectedItems.map((item) => `${sectionKey}:${item}`)}

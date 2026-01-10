@@ -97,6 +97,7 @@
       "label": "Warm-up time (minutes)",
       "type": "checkboxes",
       "path": "warmup_minutes",
+      "helper_text": "Check the options you would be willing to work with for setting up a sensor.",
       "options": [
         "30",
         "60"
