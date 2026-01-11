@@ -238,6 +238,13 @@ p {
   width: 100%;
 }
 
+.dropdown-item.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background: var(--surface);
+  border-style: dashed;
+}
+
 .nav-subdropdown .subdropdown-panel {
   position: absolute;
   top: 0;
@@ -1164,6 +1171,13 @@ p {
   flex-wrap: wrap;
 }
 
+.mcda-results-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .mcda-results-title {
   font-size: 1.6rem;
   font-weight: 700;
@@ -1173,6 +1187,19 @@ p {
 .mcda-results-count {
   font-size: 0.85rem;
   color: var(--mcda-muted);
+}
+
+.mcda-results-per-page {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--mcda-muted);
+}
+
+.mcda-results-per-page .mcda-input {
+  min-width: 84px;
+  padding: 6px 10px;
 }
 
 .mcda-results-empty,
@@ -1902,5 +1929,119 @@ p {
 
   .insulin-card-price-block {
     align-items: flex-start;
+  }
+}
+
+.game-card {
+  background: var(--mcda-surface-strong);
+  border: 1px solid var(--mcda-border);
+  border-radius: 24px;
+  padding: 18px;
+  box-shadow: var(--mcda-shadow);
+}
+
+.game-card-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.game-card-hero {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface-muted);
+}
+
+.game-card-hero img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.game-card-thumbs {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: 8px;
+}
+
+.game-card-thumb {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--mcda-border);
+  background: var(--surface);
+}
+
+.game-card-thumb img {
+  width: 100%;
+  height: 60px;
+  object-fit: cover;
+  display: block;
+}
+
+.game-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.game-card-subtitle {
+  color: var(--mcda-muted);
+  margin-top: 6px;
+}
+
+.game-card-score {
+  display: grid;
+  gap: 4px;
+  text-align: right;
+  font-size: 0.85rem;
+  color: var(--mcda-muted);
+}
+
+.game-card-rating {
+  font-weight: 700;
+  color: var(--mcda-text);
+}
+
+.game-card-score-label {
+  font-weight: 600;
+}
+
+.game-card-meta {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.game-card-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mcda-muted);
+}
+
+.game-card-actions {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .game-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-card-score {
+    text-align: left;
   }
 }

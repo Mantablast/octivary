@@ -112,6 +112,11 @@ export const categories: Category[] = [
         key: 'festival-passes',
         label: 'Festival Passes',
         description: 'Multi-day lineups and perks.'
+      },
+      {
+        key: 'video-games',
+        label: 'Video Games',
+        description: 'Consoles, PC, and mobile releases.'
       }
     ]
   },

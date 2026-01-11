@@ -5,6 +5,7 @@ import { categories } from '../data/categories';
 
 export default function SecondaryNavbar() {
   const navRef = useRef<HTMLDivElement>(null);
+  const enabledConfigs = new Set(['reverb-acoustic-guitars', 'insulin-devices', 'video-games']);
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
@@ -65,15 +66,25 @@ export default function SecondaryNavbar() {
             <div className="dropdown-panel">
               <p>{category.description}</p>
               <div className="dropdown-items">
-                {category.filterConfigs.map((config) => (
-                  <Link
-                    key={config.key}
-                    to={`/filters/${config.key}`}
-                    className="dropdown-item"
-                  >
-                    <strong>{config.label}</strong>
-                  </Link>
-                ))}
+                {category.filterConfigs.map((config) => {
+                  const isAvailable = enabledConfigs.has(config.key);
+                  if (!isAvailable) {
+                    return (
+                      <div key={config.key} className="dropdown-item is-disabled" aria-disabled="true">
+                        <strong>{config.label}</strong>
+                      </div>
+                    );
+                  }
+                  return (
+                    <Link
+                      key={config.key}
+                      to={`/filters/${config.key}`}
+                      className="dropdown-item"
+                    >
+                      <strong>{config.label}</strong>
+                    </Link>
+                  );
+                })}
               </div>
               <Link to={`/categories#${category.key}`} className="dropdown-link">
                 View all filters

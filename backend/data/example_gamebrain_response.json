@@ -1,0 +1,642 @@
+{
+    "sorting": {
+        "key": null,
+        "direction": null
+    },
+    "active_filter_options": [
+        {
+            "key": "genre",
+            "connection": "AND",
+            "values": [
+                {
+                    "match": "strateg",
+                    "value": "strategy"
+                }
+            ]
+        }
+    ],
+    "query": "medieval strategy games",
+    "total_results": 395,
+    "limit": 10,
+    "offset": 0,
+    "results": [
+        {
+            "id": 64591,
+            "year": 2006,
+            "name": "Medieval II: Total War",
+            "genre": "Tactical Turn-based Strategy",
+            "image": "https://img.gamebrain.co/games/549/medieval_ii_total_war_thecreativeassembly_2006_1.jpg",
+            "link": "https://gamebrain.co/game/medieval-2-total-war",
+            "rating": {
+                "mean": 0.9443982348415567,
+                "count": 12782
+            },
+            "adult_only": false,
+            "screenshots": [
+                "https://img.gamebrain.co/games/601/medieval_ii_total_war_thecreativeassembly_2006_23.jpg",
+                "https://img.gamebrain.co/games/603/medieval_ii_total_war_thecreativeassembly_2006_25.jpg",
+                "https://img.gamebrain.co/games/600/medieval_ii_total_war_thecreativeassembly_2006_22.jpg",
+                "https://img.gamebrain.co/games/607/medieval_ii_total_war_thecreativeassembly_2006_47.jpg",
+                "https://img.gamebrain.co/games/603/medieval_ii_total_war_thecreativeassembly_2006_16.jpg"
+            ],
+            "micro_trailer": "https://cdn.akamai.steamstatic.com/steam/apps/256736340/microtrailer.webm",
+            "gameplay": "https://www.youtube-nocookie.com/embed/PFZhh9p22Iw",
+            "short_description": "\"Medieval II: Total War\" is a real-time strategy game, offering both single-player and multiplayer options. Players command armies, expand reigns, and conquer cities across the Western and Middle Eastern world from 1080-1530 AD. The game features dynamic battles with thousands of troops, emphasizing warfare, religion, and politics during the Middle Ages' most turbulent era, including the Crusades, gunpowder's rise, and the discovery of the Americas.",
+            "platforms": [
+                {
+                    "value": "pc",
+                    "name": "PC"
+                },
+                {
+                    "value": "windows",
+                    "name": "Windows"
+                },
+                {
+                    "value": "linux",
+                    "name": "Linux"
+                },
+                {
+                    "value": "mac_os",
+                    "name": "Mac OS"
+                }
+            ]
+        },
+        {
+            "id": 313424,
+            "year": 2021,
+            "name": "Medieval Dynasty",
+            "genre": "Survival Role Playing",
+            "image": "https://img.gamebrain.co/games/68/medieval_dynasty_rendercube_2020_3.jpg",
+            "link": "https://gamebrain.co/game/medieval-dynasty",
+            "rating": {
+                "mean": 0.8146983181818181,
+                "count": 36527
+            },
+            "adult_only": false,
+            "screenshots": [
+                "https://img.gamebrain.co/games/177/medieval_dynasty_rendercube_2021_483.jpg",
+                "https://img.gamebrain.co/games/119/medieval_dynasty_rendercube_2021_32.jpg",
+                "https://img.gamebrain.co/games/128/medieval_dynasty_rendercube_2021_77.jpg"
+            ],
+            "micro_trailer": "https://cdn.akamai.steamstatic.com/steam/apps/256922139/microtrailer.webm",
+            "gameplay": "https://www.youtube-nocookie.com/embed/Chxm1RZf0uE",
+            "short_description": "Medieval Dynasty is a single-player and multiplayer role-playing game set in the early Middle Ages. As a penniless refugee, you'll hunt, gather resources, and craft your way to becoming a leader and founder of a prosperous dynasty. With stunning visuals, phenomenal music, and a challenging environment, this game offers a unique and immersive gameplay experience.",
+            "arcadia": false,
+            "platforms": [
+                {
+                    "value": "pc",
+                    "name": "PC"
+                },
+                {
+                    "value": "xbox",
+                    "name": "Xbox"
+                },
+                {
+                    "value": "xbox_series_xs",
+                    "name": "Xbox Series X|S"
+                },
+                {
+                    "value": "playstation_5",
+                    "name": "Playstation 5"
+                },
+                {
+                    "value": "playstation_4",
+                    "name": "Playstation 4"
+                },
+                {
+                    "value": "windows",
+                    "name": "Windows"
+                },
+                {
+                    "value": "playstation",
+                    "name": "Playstation"
+                },
+                {
+                    "value": "x_box_game_pass",
+                    "name": "Xbox Game Pass"
+                },
+                {
+                    "value": "cloud_platform",
+                    "name": "Cloud Platform"
+                },
+                {
+                    "value": "xbox_one",
+                    "name": "Xbox One"
+                },
+                {
+                    "value": "x_box_cloud_gaming",
+                    "name": "Xbox Cloud Gaming"
+                }
+            ]
+        },
+        {
+            "id": 622788,
+            "year": 2006,
+            "name": "Total War: MEDIEVAL II",
+            "genre": "Casual Strategy",
+            "image": "https://img.gamebrain.co/games/879/total_war_medieval_ii_creativeassembly_2006_1.jpg",
+            "link": "https://gamebrain.co/game/total-war-medieval-2",
+            "rating": {
+                "mean": 0.958449,
+                "count": 14753
+            },
+            "adult_only": false,
+            "screenshots": [
+                "https://img.gamebrain.co/games/883/total_war_medieval_ii_creativeassembly_2006_5.jpg",
+                "https://img.gamebrain.co/games/885/total_war_medieval_ii_creativeassembly_2006_7.jpg",
+                "https://img.gamebrain.co/games/887/total_war_medieval_ii_creativeassembly_2006_9.jpg"
+            ],
+            "micro_trailer": "https://video.akamai.steamstatic.com/store_trailers/256736340/microtrailer.webm",
+            "gameplay": "https://video.akamai.steamstatic.com/store_trailers/256736340/microtrailer.webm",
+            "short_description": "Total War: MEDIEVAL II – Definitive Edition is a strategy game that allows you to command massive armies and expand your reign across the Medieval world. This definitive edition includes all DLC and feature updates since the game’s release, as well as four new campaigns centered on expanded maps of the British Isles, Teutonic Northern Europe, the Middle East, and the Americas. With hundreds of hours of gameplay and content, you can direct battles with up to 10,000 troops and lead some of the greatest nations of the Western and Middle Eastern world during a turbulent era.",
+            "arcadia": false,
+            "platforms": [
+                {
+                    "value": "pc",
+                    "name": "PC"
+                },
+                {
+                    "value": "phone",
+                    "name": "Phone"
+                },
+                {
+                    "value": "tablet",
+                    "name": "Tablet"
+                },
+                {
+                    "value": "windows",
+                    "name": "Windows"
+                },
+                {
+                    "value": "mobile_platform",
+                    "name": "Mobile"
+                },
+                {
+                    "value": "cloud_platform",
+                    "name": "Cloud Platform"
+                },
+                {
+                    "value": "mac_os",
+                    "name": "Mac OS"
+                },
+                {
+                    "value": "android",
+                    "name": "Android"
+                }
+            ]
+        }
+    ],
+    "filter_options": [
+        {
+            "name": "Review Rating",
+            "key": "review_rating",
+            "values": [
+                {
+                    "name": "Brilliant (95+)",
+                    "key": "brilliant",
+                    "count": 2
+                },
+                {
+                    "name": "Amazing (90+)",
+                    "key": "amazing",
+                    "count": 4
+                },
+                {
+                    "name": "Great (80+)",
+                    "key": "great",
+                    "count": 9
+                },
+                {
+                    "name": "Good (70+)",
+                    "key": "good",
+                    "count": 12
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "XOR"
+        },
+        {
+            "name": "Release Date",
+            "key": "release_date",
+            "values": [
+                {
+                    "name": "Last Month",
+                    "key": "last_month",
+                    "count": 2
+                },
+                {
+                    "name": "Last Year",
+                    "key": "last_year",
+                    "count": 9
+                },
+                {
+                    "name": "Last 5 Years",
+                    "key": "last_5_years",
+                    "count": 32
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "XOR"
+        },
+        {
+            "name": "Platform",
+            "key": "platform",
+            "values": [
+                {
+                    "name": "Android",
+                    "key": "android",
+                    "count": 12
+                },
+                {
+                    "name": "Cloud Platform",
+                    "key": "cloud_platform",
+                    "count": 1
+                },
+                {
+                    "name": "iOS",
+                    "key": "ios",
+                    "count": 16
+                },
+                {
+                    "name": "iPad",
+                    "key": "ipad",
+                    "count": 16
+                },
+                {
+                    "name": "Linux",
+                    "key": "linux",
+                    "count": 6
+                },
+                {
+                    "name": "Mac OS",
+                    "key": "mac_os",
+                    "count": 10
+                },
+                {
+                    "name": "Mobile Phone",
+                    "key": "mobile_platform",
+                    "count": 28
+                },
+                {
+                    "name": "Nintendo Switch",
+                    "key": "nintendo_switch",
+                    "count": 1
+                },
+                {
+                    "name": "PC",
+                    "key": "pc",
+                    "count": 28
+                },
+                {
+                    "name": "Phone",
+                    "key": "phone",
+                    "count": 28
+                },
+                {
+                    "name": "Tablet",
+                    "key": "tablet",
+                    "count": 24
+                },
+                {
+                    "name": "Browser",
+                    "key": "web_browser",
+                    "count": 8
+                },
+                {
+                    "name": "Windows",
+                    "key": "windows",
+                    "count": 36
+                },
+                {
+                    "name": "XBox One",
+                    "key": "xbox_one",
+                    "count": 1
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "OR"
+        },
+        {
+            "name": "Genre",
+            "key": "genre",
+            "values": [
+                {
+                    "name": "4X",
+                    "key": "4x",
+                    "count": 4
+                },
+                {
+                    "name": "Action",
+                    "key": "action",
+                    "count": 12
+                },
+                {
+                    "name": "Card Game",
+                    "key": "card_game",
+                    "count": 2
+                },
+                {
+                    "name": "Casual",
+                    "key": "casual",
+                    "count": 12
+                },
+                {
+                    "name": "City Builder",
+                    "key": "city_builder",
+                    "count": 1
+                },
+                {
+                    "name": "Hack and Slash",
+                    "key": "hack_and_slash",
+                    "count": 1
+                },
+                {
+                    "name": "Management",
+                    "key": "management",
+                    "count": 2
+                },
+                {
+                    "name": "Musical",
+                    "key": "musical",
+                    "count": 1
+                },
+                {
+                    "name": "Real Time Strategy",
+                    "key": "real_time_strategy",
+                    "count": 9
+                },
+                {
+                    "name": "Role Playing",
+                    "key": "role_playing",
+                    "count": 1
+                },
+                {
+                    "name": "Sandbox",
+                    "key": "sandbox",
+                    "count": 1
+                },
+                {
+                    "name": "Simulation",
+                    "key": "simulation",
+                    "count": 16
+                },
+                {
+                    "name": "Strategy",
+                    "key": "strategy",
+                    "count": 70
+                },
+                {
+                    "name": "Survival",
+                    "key": "survival",
+                    "count": 2
+                },
+                {
+                    "name": "Tactical",
+                    "key": "tactical",
+                    "count": 8
+                },
+                {
+                    "name": "Turn Based Strategy",
+                    "key": "turn_based_strategy",
+                    "count": 11
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "OR"
+        },
+        {
+            "name": "Theme",
+            "key": "theme",
+            "values": [
+                {
+                    "name": "Fantasy",
+                    "key": "fantasy",
+                    "count": 6
+                },
+                {
+                    "name": "Historical",
+                    "key": "historical",
+                    "count": 12
+                },
+                {
+                    "name": "Warfare",
+                    "key": "warfare",
+                    "count": 4
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "OR"
+        },
+        {
+            "name": "Play Mode",
+            "key": "play_mode",
+            "values": [
+                {
+                    "name": "Co-Op",
+                    "key": "co_op",
+                    "count": 2
+                },
+                {
+                    "name": "Local Multi-Player",
+                    "key": "local_multiplayer",
+                    "count": 1
+                },
+                {
+                    "name": "Multi-Player",
+                    "key": "multiplayer",
+                    "count": 14
+                },
+                {
+                    "name": "PvP",
+                    "key": "pvp",
+                    "count": 4
+                },
+                {
+                    "name": "Single-Player",
+                    "key": "single_player",
+                    "count": 68
+                },
+                {
+                    "name": "Split Screen",
+                    "key": "splitscreen",
+                    "count": 1
+                },
+                {
+                    "name": "2-Players",
+                    "key": "two_players",
+                    "count": 5
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "OR"
+        },
+        {
+            "name": "Age Rating",
+            "key": "content_rating_normalized",
+            "values": [
+                {
+                    "name": "Teenager",
+                    "key": "age_rating_teens",
+                    "count": 13
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "OR"
+        },
+        {
+            "name": "Input Mode",
+            "key": "input_mode",
+            "values": [
+                {
+                    "name": "Controller",
+                    "key": "controller",
+                    "count": 31
+                },
+                {
+                    "name": "Mouse and Keyboard",
+                    "key": "mouse_and_keyboard",
+                    "count": 47
+                },
+                {
+                    "name": "Touch",
+                    "key": "touch",
+                    "count": 28
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "OR"
+        },
+        {
+            "name": "Price",
+            "key": "price",
+            "values": [
+                {
+                    "name": "Free",
+                    "key": "free",
+                    "count": 3
+                },
+                {
+                    "name": "under $5",
+                    "key": "under_5",
+                    "count": 16
+                },
+                {
+                    "name": "under $15",
+                    "key": "under_15",
+                    "count": 25
+                },
+                {
+                    "name": "under $25",
+                    "key": "under_25",
+                    "count": 28
+                },
+                {
+                    "name": "under $40",
+                    "key": "under_40",
+                    "count": 28
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "XOR"
+        },
+        {
+            "name": "Tag",
+            "key": "tag",
+            "values": [
+                {
+                    "name": "Play Now",
+                    "key": "arcade_enabled",
+                    "count": 4
+                },
+                {
+                    "name": "Early Access",
+                    "key": "early_access",
+                    "count": 2
+                },
+                {
+                    "name": "Free to Play",
+                    "key": "free_to_play",
+                    "count": 3
+                },
+                {
+                    "name": "Indie",
+                    "key": "indie",
+                    "count": 33
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "OR"
+        },
+        {
+            "name": "Important",
+            "key": "feature",
+            "values": [
+                {
+                    "name": "Free",
+                    "key": "free",
+                    "count": 3
+                },
+                {
+                    "name": "50h+ playtime",
+                    "key": "50h_playtime",
+                    "count": 4
+                },
+                {
+                    "name": "Great Story",
+                    "key": "great_story",
+                    "count": 2
+                },
+                {
+                    "name": "Beautiful Graphics",
+                    "key": "beautiful_graphics",
+                    "count": 3
+                },
+                {
+                    "name": "Hilarious",
+                    "key": "hilarious",
+                    "count": 5
+                },
+                {
+                    "name": "Good Gameplay",
+                    "key": "good_gameplay",
+                    "count": 5
+                },
+                {
+                    "name": "Emotional",
+                    "key": "emotional",
+                    "count": 2
+                },
+                {
+                    "name": "Wonderful Music",
+                    "key": "wonderful_music",
+                    "count": 4
+                },
+                {
+                    "name": "High Replayability",
+                    "key": "high_replayability",
+                    "count": 2
+                }
+            ],
+            "filter_type": "COLLECTION",
+            "filter_connection": "AND"
+        }
+    ],
+    "sorting_options": [
+        {
+            "name": "Rating",
+            "sort": "DESC",
+            "key": "computed_rating"
+        },
+        {
+            "name": "Price",
+            "sort": "ASC",
+            "key": "price"
+        },
+        {
+            "name": "Release Date",
+            "sort": "DESC",
+            "key": "release_date"
+        }
+    ]
+}
+					

@@ -1,0 +1,180 @@
+{
+  "config_key": "video-games",
+  "category_key": "entertainment",
+  "title": "Video Games",
+  "description": "Compare video games by genre, rating, platform, and content themes.",
+  "disclaimer": "",
+  "datasets": {
+    "primary": {
+      "label": "Games",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "gamebrain_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "query": "video games"
+  },
+  "text_search_fields": [
+    "short_description",
+    "name"
+  ],
+  "filters": [
+    {
+      "key": "year",
+      "label": "Release year",
+      "type": "range",
+      "path": "year",
+      "min": 1980,
+      "max": 2026
+    },
+    {
+      "key": "genre_tags",
+      "label": "Genre",
+      "type": "checkboxes",
+      "path": "genre_tags",
+      "options": [
+        "4X",
+        "Action",
+        "Card Game",
+        "Casual",
+        "City Builder",
+        "Hack and Slash",
+        "Management",
+        "Musical",
+        "Real Time Strategy",
+        "Role Playing",
+        "Sandbox",
+        "Simulation",
+        "Strategy",
+        "Survival",
+        "Tactical",
+        "Turn Based Strategy"
+      ]
+    },
+    {
+      "key": "rating_bucket",
+      "label": "Rating",
+      "type": "checkboxes",
+      "path": "rating_bucket",
+      "options": [
+        "Brilliant (95+)",
+        "Amazing (90+)",
+        "Great (80+)",
+        "Good (70+)"
+      ]
+    },
+    {
+      "key": "adult_only",
+      "label": "Contains adult themes",
+      "type": "boolean",
+      "path": "adult_only",
+      "helper_text": "Toggle on if you want mature-only content."
+    },
+    {
+      "key": "platform_names",
+      "label": "Platforms",
+      "type": "checkboxes",
+      "path": "platform_names",
+      "options": [
+        "Android",
+        "iOS",
+        "iPad",
+        "Linux",
+        "Mac OS",
+        "Mobile",
+        "Mobile Phone",
+        "Nintendo Switch",
+        "PC",
+        "Tablet",
+        "Browser",
+        "Windows",
+        "Xbox",
+        "Xbox One",
+        "Xbox Series X|S",
+        "Playstation 4",
+        "Playstation 5"
+      ]
+    },
+    {
+      "key": "arcade_game",
+      "label": "Arcade Game",
+      "type": "boolean",
+      "path": "arcade_game",
+      "helper_text": "Toggle on if you want games with an arcade-style experience."
+    },
+    {
+      "key": "text_search",
+      "label": "Text Search",
+      "type": "text",
+      "path": "short_description",
+      "placeholder": "medieval strategy, co-op, story rich",
+      "helper_text": "Add keywords and prioritize them to influence the ranking.",
+      "allow_custom": true,
+      "search_fields": [
+        "short_description",
+        "name"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Basics",
+      "filters": [
+        "year",
+        "genre_tags",
+        "platform_names"
+      ]
+    },
+    {
+      "title": "Content & rating",
+      "filters": [
+        "rating_bucket",
+        "adult_only",
+        "arcade_game"
+      ]
+    },
+    {
+      "title": "Text Search",
+      "filters": [
+        "text_search"
+      ]
+    }
+  ],
+  "priorities": [
+    {
+      "key": "year",
+      "label": "Release year"
+    },
+    {
+      "key": "genre_tags",
+      "label": "Genre"
+    },
+    {
+      "key": "platform_names",
+      "label": "Platforms"
+    },
+    {
+      "key": "rating_bucket",
+      "label": "Rating"
+    },
+    {
+      "key": "adult_only",
+      "label": "Adult themes"
+    },
+    {
+      "key": "arcade_game",
+      "label": "Arcade game"
+    },
+    {
+      "key": "text_search",
+      "label": "Text search"
+    }
+  ],
+  "display": {
+    "title_template": "{name}",
+    "subtitle_template": "{genre}",
+    "image_path": "image"
+  }
+}

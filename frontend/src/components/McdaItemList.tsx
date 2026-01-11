@@ -21,6 +21,9 @@ type Props = {
   error?: Error | null;
   onRetry?: () => void;
   onPageChange?: (page: number) => void;
+  perPage?: number;
+  perPageOptions?: number[];
+  onPerPageChange?: (perPage: number) => void;
   renderItem?: ComponentType<McdaResultCardProps>;
   display: ResultsDisplay;
 };
@@ -94,6 +97,9 @@ export default function McdaItemList({
   error = null,
   onRetry,
   onPageChange,
+  perPage,
+  perPageOptions,
+  onPerPageChange,
   renderItem,
   display
 }: Props) {
@@ -122,6 +128,8 @@ export default function McdaItemList({
 
   const currentPage = pageInfo ? Math.floor(pageInfo.offset / pageInfo.limit) + 1 : 1;
   const totalPages = pageInfo ? Math.max(1, Math.ceil(pageInfo.total / pageInfo.limit)) : 1;
+  const pageSize = pageInfo?.limit ?? perPage ?? 0;
+  const canSelectPerPage = Boolean(onPerPageChange && perPageOptions && perPageOptions.length > 0);
 
   if (isLoading) {
     return (
@@ -160,9 +168,27 @@ export default function McdaItemList({
     <div className="mcda-results">
       <div className="mcda-results-header">
         <h2 className="mcda-results-title">Results</h2>
-        <div className="mcda-results-count">
-          Showing {items.length} of {totalCount} listings
-          {pageInfo && pageInfo.hasNextPage ? ' • more available' : ''}
+        <div className="mcda-results-controls">
+          <div className="mcda-results-count">
+            Showing {items.length} of {totalCount} listings
+            {pageInfo && pageInfo.hasNextPage ? ' • more available' : ''}
+          </div>
+          {canSelectPerPage && (
+            <label className="mcda-results-per-page">
+              Per page
+              <select
+                className="mcda-input"
+                value={pageSize || perPageOptions?.[0] || 50}
+                onChange={(event) => onPerPageChange?.(Number(event.target.value))}
+              >
+                {perPageOptions?.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
         </div>
       </div>
 

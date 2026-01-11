@@ -3,7 +3,7 @@
   "category_key": "diabetes-care",
   "title": "Insulin & CGM Devices",
   "description": "Compare continuous glucose monitoring devices by wear time, connectivity, pump integration, and estimated costs.",
-  "disclaimer": "",
+  "disclaimer": "Octivary does not provide medical advice. This tool compares publicly available product information to support personal decision-making. It is not a substitute for professional medical guidance. Always consult a qualified healthcare provider when making medical decisions.",
   "datasets": {
     "primary": {
       "label": "Devices",
@@ -182,54 +182,137 @@
   "sections": [
     {
       "title": "Cost & coverage",
-      "filters": ["estimated_initial_cost_cad", "estimated_monthly_cost_cad", "insurance_notes"]
+      "filters": [
+        "estimated_initial_cost_cad",
+        "estimated_monthly_cost_cad",
+        "insurance_notes"
+      ]
     },
     {
       "title": "Text notes",
-      "filters": ["additional_notes"]
+      "filters": [
+        "additional_notes"
+      ]
     },
     {
       "title": "Wear & comfort",
-      "filters": ["sensor_wear_duration_days", "warmup_minutes", "implant_type"]
+      "filters": [
+        "sensor_wear_duration_days",
+        "warmup_minutes",
+        "implant_type"
+      ]
     },
     {
       "title": "System setup",
-      "filters": ["system_type", "scan_required", "transmitter_type", "integration_type"]
+      "filters": [
+        "system_type",
+        "scan_required",
+        "transmitter_type",
+        "integration_type"
+      ]
     },
     {
       "title": "Phone & apps",
-      "filters": ["phone_models"]
+      "filters": [
+        "phone_models"
+      ]
     },
     {
       "title": "Brand",
-      "filters": ["manufacturer"]
+      "filters": [
+        "manufacturer"
+      ]
     }
   ],
   "priorities": [
-    { "key": "estimated_initial_cost_cad", "label": "Initial cost" },
-    { "key": "estimated_monthly_cost_cad", "label": "Monthly cost" },
-    { "key": "sensor_wear_duration_days", "label": "Wear duration" },
-    { "key": "warmup_minutes", "label": "Warm-up time" },
-    { "key": "integration_type", "label": "Pump integration" },
-    { "key": "scan_required", "label": "Scan required" },
-    { "key": "phone_models", "label": "Phone model" },
-    { "key": "manufacturer", "label": "Manufacturer" }
+    {
+      "key": "estimated_initial_cost_cad",
+      "label": "Initial cost"
+    },
+    {
+      "key": "estimated_monthly_cost_cad",
+      "label": "Monthly cost"
+    },
+    {
+      "key": "sensor_wear_duration_days",
+      "label": "Wear duration"
+    },
+    {
+      "key": "warmup_minutes",
+      "label": "Warm-up time"
+    },
+    {
+      "key": "integration_type",
+      "label": "Pump integration"
+    },
+    {
+      "key": "scan_required",
+      "label": "Scan required"
+    },
+    {
+      "key": "phone_models",
+      "label": "Phone model"
+    },
+    {
+      "key": "manufacturer",
+      "label": "Manufacturer"
+    }
   ],
   "display": {
     "currency": "CAD",
     "unit": "device",
     "title_template": "{product_name}",
-    "subtitle_template": "{manufacturer} · {system_type}",
+    "subtitle_template": "{manufacturer} \u00b7 {system_type}",
     "image_path": "images[0]",
     "empty_image": "/assets/insulin/device-sensor.svg",
     "metadata": [
-      { "label": "Est. initial", "path": "estimated_initial_cost_cad", "format": "currency", "currency": "CAD" },
-      { "label": "Est. monthly", "path": "estimated_monthly_cost_cad", "format": "currency", "currency": "CAD" },
-      { "label": "Wear days", "path": "sensor_wear_duration_days", "suffix": " days" },
-      { "label": "Warm-up", "path": "warmup_minutes", "suffix": " min" },
-      { "label": "Scan required", "path": "scan_required" },
-      { "label": "Pump integration", "path": "integration_type" },
-      { "label": "Phone model", "path": "phone_models" }
+      {
+        "label": "Est. initial",
+        "path": "estimated_initial_cost_cad",
+        "format": "currency",
+        "currency": "CAD"
+      },
+      {
+        "label": "Est. monthly",
+        "path": "estimated_monthly_cost_cad",
+        "format": "currency",
+        "currency": "CAD"
+      },
+      {
+        "label": "Wear days",
+        "path": "sensor_wear_duration_days",
+        "suffix": " days"
+      },
+      {
+        "label": "Warm-up",
+        "path": "warmup_minutes",
+        "suffix": " min"
+      },
+      {
+        "label": "Scan required",
+        "path": "scan_required"
+      },
+      {
+        "label": "Pump integration",
+        "path": "integration_type"
+      },
+      {
+        "label": "Phone model",
+        "path": "phone_models"
+      }
     ]
-  }
+  },
+  "text_search_fields": [
+    "system_type",
+    "scanner_reader",
+    "components_included.scanner_reader",
+    "phone_models",
+    "scan_required",
+    "scan_required_for_current_reading",
+    "pricing_notes",
+    "insurance_notes",
+    "additional_notes",
+    "product_name",
+    "pricing_sources"
+  ]
 }

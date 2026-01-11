@@ -5,6 +5,7 @@ import McdaFilterPanel from '../components/McdaFilterPanel';
 import McdaItemList from '../components/McdaItemList';
 import ReverbAcousticGuitarsResultCard from '../components/results/ReverbAcousticGuitarsResultCard';
 import InsulinDevicesResultCard from '../components/results/InsulinDevicesResultCard';
+import VideoGamesResultCard from '../components/results/VideoGamesResultCard';
 import type {
   CriteriaConfig,
   FilterConfig,
@@ -14,7 +15,8 @@ import type {
 } from '../types';
 import { parseSearchTermItemKey } from '../utils/searchTerms';
 
-const PER_PAGE = 24;
+const DEFAULT_PER_PAGE = 24;
+const GAMEBRAIN_DEFAULT_PER_PAGE = 50;
 
 type PageInfo = {
   limit: number;
@@ -118,10 +120,11 @@ export default function FilterPage() {
   const [itemsError, setItemsError] = useState('');
   const [isLoadingItems, setIsLoadingItems] = useState(false);
   const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(DEFAULT_PER_PAGE);
   const [backendPageInfo, setBackendPageInfo] = useState<PageInfo | null>(null);
   const querySignature = useMemo(
-    () => JSON.stringify({ filters, selectedOrder, sectionOrder }),
-    [filters, selectedOrder, sectionOrder]
+    () => JSON.stringify({ filters, selectedOrder, sectionOrder, perPage }),
+    [filters, selectedOrder, sectionOrder, perPage]
   );
   const lastQuerySignature = useRef(querySignature);
   const apiBase = (import.meta.env.VITE_API_BASE || '').trim();
@@ -134,6 +137,7 @@ export default function FilterPage() {
     setSectionOrder([]);
     setSelectedOrder({});
     setPage(1);
+    setPerPage(configKey === 'video-games' ? GAMEBRAIN_DEFAULT_PER_PAGE : DEFAULT_PER_PAGE);
     setBackendPageInfo(null);
 
     if (!configKey) {
@@ -184,7 +188,12 @@ export default function FilterPage() {
     const dataSource = config?.datasets?.primary?.data_source;
     const backendUrl = apiBase ? `${apiBase}/api/reverb/listings` : '';
     const scoringUrl = apiBase ? `${apiBase}/api/listings/search` : '';
-    const useServerScoring = Boolean(apiBase) && dataSource?.type === 'local_json';
+    const providerKey = dataSource?.provider_key;
+    const useReverbListings = dataSource?.type === 'external_api' && providerKey === 'reverb_v1';
+    const useServerScoring =
+      Boolean(apiBase) &&
+      (dataSource?.type === 'local_json' || (dataSource?.type === 'external_api' && !useReverbListings));
+    const listingsUrl = useReverbListings ? backendUrl : scoringUrl;
 
     if (lastQuerySignature.current !== querySignature && page !== 1) {
       lastQuerySignature.current = querySignature;
@@ -228,7 +237,7 @@ export default function FilterPage() {
           return;
         }
         const data = await fetchListingsWithFilters(
-          useServerScoring ? scoringUrl : backendUrl,
+          listingsUrl,
           'Failed to reach listings API.',
           useServerScoring
             ? {
@@ -237,28 +246,28 @@ export default function FilterPage() {
                 selected_order: selectedOrder,
                 section_order: sectionOrder,
                 page,
-                per_page: PER_PAGE
+                per_page: perPage
               }
             : {
                 config_key: configKey,
                 filters,
                 page,
-                per_page: PER_PAGE
+                per_page: perPage
               }
         );
         const listings = Array.isArray(data?.listings) ? data.listings : [];
         const total = typeof data?.total === 'number' ? data.total : listings.length;
-        const perPage = typeof data?.per_page === 'number' ? data.per_page : PER_PAGE;
+        const perPageValue = typeof data?.per_page === 'number' ? data.per_page : perPage;
         const currentPage = typeof data?.current_page === 'number' ? data.current_page : page;
         const totalPages =
           typeof data?.total_pages === 'number'
             ? data.total_pages
-            : Math.max(1, Math.ceil(total / perPage));
+            : Math.max(1, Math.ceil(total / perPageValue));
         if (!mounted) return;
         setItems(listings);
         setBackendPageInfo({
-          limit: perPage,
-          offset: (currentPage - 1) * perPage,
+          limit: perPageValue,
+          offset: (currentPage - 1) * perPageValue,
           returned: listings.length,
           total,
           hasNextPage: currentPage < totalPages,
@@ -282,7 +291,7 @@ export default function FilterPage() {
       mounted = false;
       window.clearTimeout(timer);
     };
-  }, [configKey, querySignature, page, apiBase, config]);
+  }, [configKey, querySignature, page, apiBase, config, perPage]);
 
   const sectionKeys = useMemo(() => (config ? buildSectionKeys(config) : []), [config]);
 
@@ -313,6 +322,13 @@ export default function FilterPage() {
       })
       .filter((section): section is CriteriaConfig => Boolean(section));
   }, [config, sectionKeys, sectionOrder]);
+
+  const perPageOptions = useMemo(() => {
+    if (config?.datasets?.primary?.data_source?.provider_key === 'reverb_v1') return [];
+    const baseOptions = [50, 100, 200];
+    const merged = new Set([perPage, ...baseOptions]);
+    return Array.from(merged).sort((a, b) => a - b);
+  }, [config, perPage]);
 
   const visibleItems = items;
 
@@ -345,6 +361,8 @@ export default function FilterPage() {
       ? ReverbAcousticGuitarsResultCard
       : configKey === 'insulin-devices'
       ? InsulinDevicesResultCard
+      : configKey === 'video-games'
+      ? VideoGamesResultCard
       : undefined;
 
   return (
@@ -377,6 +395,12 @@ export default function FilterPage() {
               isLoading={isLoadingItems}
               error={itemsError ? new Error(itemsError) : null}
               onPageChange={(nextPage) => setPage(nextPage)}
+              perPage={perPage}
+              perPageOptions={perPageOptions}
+              onPerPageChange={(nextPerPage) => {
+                setPerPage(nextPerPage);
+                setPage(1);
+              }}
               renderItem={renderItem}
               display={display}
             />

@@ -8,7 +8,7 @@ VALUE_DECAY = 0.65
 HIGH_PRIORITY_VALUE_WEIGHT_THRESHOLD = 0.5
 SEARCH_TERM_ITEM_PREFIX = "search_term_item:"
 
-TEXT_SEARCH_FIELDS = [
+DEFAULT_TEXT_SEARCH_FIELDS = [
     "system_type",
     "scanner_reader",
     "components_included.scanner_reader",
@@ -17,7 +17,9 @@ TEXT_SEARCH_FIELDS = [
     "scan_required_for_current_reading",
     "pricing_notes",
     "insurance_notes",
+    "additional_notes",
     "product_name",
+    "pricing_sources",
     "notes",
 ]
 
@@ -40,14 +42,14 @@ def resolve_path(data: Any, path: str | None) -> Any:
         if value is None:
             return None
         if isinstance(value, list):
-            match = re.match(r"(.+)\\[(\\d+)\\]$", segment)
+            match = re.match(r"(.+)\[(\d+)\]$", segment)
             if match:
                 key, idx = match.group(1), int(match.group(2))
                 collection = [entry.get(key) if isinstance(entry, dict) else None for entry in value]
                 return collection[idx] if idx < len(collection) else None
             return None
         if isinstance(value, dict):
-            match = re.match(r"(.+)\\[(\\d+)\\]$", segment)
+            match = re.match(r"(.+)\[(\d+)\]$", segment)
             if match:
                 key, idx = match.group(1), int(match.group(2))
                 inner = value.get(key)
@@ -93,26 +95,35 @@ def _push_value(bucket: List[str], value: Any) -> None:
     bucket.append(str(value))
 
 
-def build_text_search_haystack(item: Dict[str, Any]) -> str:
+def build_text_search_haystack(item: Dict[str, Any], fields: Iterable[str]) -> str:
     parts: List[str] = []
-    for path in TEXT_SEARCH_FIELDS:
+    fields_list = list(fields)
+    fields_set = set(fields_list)
+    for path in fields_list:
+        if path.endswith(".label"):
+            base_path = path[: -len(".label")]
+            base_value = resolve_path(item, base_path)
+            if isinstance(base_value, list):
+                for entry in base_value:
+                    if isinstance(entry, dict):
+                        _push_value(parts, entry.get("label"))
+                continue
         _push_value(parts, resolve_path(item, path))
-    pricing_sources = resolve_path(item, "pricing_sources")
-    if isinstance(pricing_sources, list):
-        for entry in pricing_sources:
-            if isinstance(entry, dict):
-                _push_value(parts, entry.get("label"))
-    scan_required = resolve_path(item, "scan_required")
-    if isinstance(scan_required, str):
-        if normalize(scan_required) == "no":
-            parts.append("no scanning")
-        if normalize(scan_required) == "yes":
-            parts.append("scan required")
-    elif isinstance(scan_required, bool):
-        parts.append("scan required" if scan_required else "no scanning")
-    scan_required_for_reading = resolve_path(item, "scan_required_for_current_reading")
-    if isinstance(scan_required_for_reading, bool):
-        parts.append("scan required" if scan_required_for_reading else "no scanning")
+
+    if "scan_required" in fields_set:
+        scan_required = resolve_path(item, "scan_required")
+        if isinstance(scan_required, str):
+            if normalize(scan_required) == "no":
+                parts.append("no scanning")
+            if normalize(scan_required) == "yes":
+                parts.append("scan required")
+        elif isinstance(scan_required, bool):
+            parts.append("scan required" if scan_required else "no scanning")
+    if "scan_required_for_current_reading" in fields_set:
+        scan_required_for_reading = resolve_path(item, "scan_required_for_current_reading")
+        if isinstance(scan_required_for_reading, bool):
+            parts.append("scan required" if scan_required_for_reading else "no scanning")
+
     return normalize(strip_html(" ".join(parts)))
 
 
@@ -276,6 +287,8 @@ def score_listings(
         key for key in priority_section_keys if _filter_is_text(key, filter_map.get(key))
     ]
 
+    config_fields = tuple(config.get("text_search_fields") or DEFAULT_TEXT_SEARCH_FIELDS)
+
     scored: List[Tuple[Dict[str, Any], float, int, int, int]] = []
     for index, item in enumerate(listings):
         item_tokens: set[str] = set()
@@ -284,8 +297,20 @@ def score_listings(
                 item_tokens.add(token)
 
         if priority_search_sections:
-            haystack = build_text_search_haystack(item)
+            default_haystack = build_text_search_haystack(item, config_fields)
+            haystack_cache: Dict[Tuple[str, ...], str] = {config_fields: default_haystack}
             for section_key in priority_search_sections:
+                spec = filter_map.get(section_key)
+                if not spec and section_key.startswith(SEARCH_TERM_ITEM_PREFIX):
+                    parsed = parse_search_term_item_key(section_key)
+                    if parsed:
+                        spec = filter_map.get(parsed["base_key"])
+                search_fields = spec.get("search_fields") if isinstance(spec, dict) else None
+                fields_tuple = tuple(search_fields) if search_fields else config_fields
+                haystack = haystack_cache.get(fields_tuple)
+                if haystack is None:
+                    haystack = build_text_search_haystack(item, fields_tuple)
+                    haystack_cache[fields_tuple] = haystack
                 terms = selected_values.get(section_key) or []
                 for term in terms:
                     if term and term in haystack:

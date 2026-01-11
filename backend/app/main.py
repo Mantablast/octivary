@@ -16,8 +16,9 @@ from .auth import require_user
 from .cache import response_cache
 from .config_loader import list_config_keys, load_filter_config
 from .cost_guardrail import guard_if_paused
+from .gamebrain_client import fetch_gamebrain_listings
 from .listings_store import load_local_listings
-from .mcda_scoring import score_listings
+from .mcda_scoring import parse_search_term_item_key, score_listings
 from .models import (
     ItemsRequest,
     ItemResult,
@@ -110,6 +111,69 @@ def _merge_query(base: str | None, extras: list[str]) -> str | None:
     if not parts:
         return None
     return ' '.join(parts)
+
+
+def _dedupe_terms(terms: list[str]) -> list[str]:
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for term in terms:
+        if term in seen:
+            continue
+        seen.add(term)
+        ordered.append(term)
+    return ordered
+
+
+def _collect_text_terms(
+    filters: dict,
+    selected_order: dict,
+    text_keys: list[str],
+) -> list[str]:
+    terms: list[str] = []
+    text_keys_set = set(text_keys)
+    for key in text_keys:
+        raw = filters.get(key)
+        if isinstance(raw, list):
+            terms.extend([str(term).strip() for term in raw if str(term).strip()])
+        elif isinstance(raw, str) and raw.strip():
+            terms.append(raw.strip())
+
+    for key, values in selected_order.items():
+        parsed = parse_search_term_item_key(key)
+        if not parsed or parsed["base_key"] not in text_keys_set:
+            continue
+        if isinstance(values, list) and values:
+            terms.extend([str(term).strip() for term in values if str(term).strip()])
+        elif parsed["term"]:
+            terms.append(parsed["term"])
+
+    return _dedupe_terms([term for term in terms if term])
+
+
+def _build_gamebrain_query(payload: ListingsSearchRequest, config: dict) -> str:
+    text_filters = config.get("filters") or []
+    text_keys = [
+        entry.get("key")
+        for entry in text_filters
+        if isinstance(entry, dict) and entry.get("type") == "text" and entry.get("key")
+    ]
+    terms = _collect_text_terms(payload.filters, payload.selected_order, text_keys)
+    preset_query = (config.get("preset_filters") or {}).get("query")
+    return _merge_query(preset_query, terms) or ""
+
+
+def _gamebrain_error_detail(exc: requests.RequestException) -> str:
+    detail = "Failed to reach Gamebrain API."
+    response = getattr(exc, "response", None)
+    if response is None:
+        return detail
+    status_code = getattr(response, "status_code", None)
+    if status_code:
+        detail = f"{detail} Upstream status {status_code}."
+    body = getattr(response, "text", "")
+    if body:
+        detail = f"{detail} {body[:300]}"
+    return detail
 
 
 def _build_reverb_params(
@@ -273,6 +337,16 @@ def _payload_cache_key(payload: ListingsSearchRequest, user_id: str) -> str:
     return f"listings:{user_id}:{digest}"
 
 
+def _payload_sample_cache_key(payload: ListingsSearchRequest, user_id: str) -> str:
+    sample_payload = payload.model_dump()
+    sample_payload["page"] = 0
+    sample_payload["per_page"] = 0
+    digest = hashlib.sha256(
+        json.dumps(sample_payload, sort_keys=True, default=str).encode('utf-8')
+    ).hexdigest()
+    return f"listings:sample:{user_id}:{digest}"
+
+
 @app.post('/api/listings/search')
 async def search_listings(
     payload: ListingsSearchRequest,
@@ -292,29 +366,88 @@ async def search_listings(
     provider_key = data_source.get('provider_key', '')
     source_type = data_source.get('type')
 
+    per_page = max(1, min(int(payload.per_page), 200))
+    page = max(1, int(payload.page))
+
     if source_type == 'local_json':
         listings = load_local_listings(provider_key)
+        scored, _ = score_listings(
+            listings=listings,
+            config=config,
+            filters=payload.filters,
+            selected_order=payload.selected_order,
+            section_order=payload.section_order,
+        )
+        total = len(scored)
+        total_pages = max(1, (total + per_page - 1) // per_page)
+        start = (page - 1) * per_page
+        response_listings = scored[start : start + per_page]
+    elif source_type == 'external_api' and provider_key == 'gamebrain_v1':
+        query = _build_gamebrain_query(payload, config)
+        genre_options = []
+        for entry in config.get("filters") or []:
+            if isinstance(entry, dict) and entry.get("key") == "genre_tags":
+                options = entry.get("options")
+                if isinstance(options, list):
+                    genre_options = [str(option) for option in options if option]
+                break
+        sample_cache_key = _payload_sample_cache_key(payload, user_id)
+        cached_sample = response_cache.get(sample_cache_key)
+        if isinstance(cached_sample, dict) and "scored" in cached_sample:
+            scored = cached_sample["scored"]
+        else:
+            sample_size = max(1, int(os.getenv("GAMEBRAIN_SCORE_SAMPLE_SIZE", "500")))
+            fetch_limit = max(1, int(os.getenv("GAMEBRAIN_FETCH_LIMIT", "100")))
+            listings = []
+            seen_ids: set[str] = set()
+            offset = 0
+            while len(listings) < sample_size:
+                page_limit = min(fetch_limit, sample_size - len(listings))
+                try:
+                    page_listings, total_available = await fetch_gamebrain_listings(
+                        query=query,
+                        offset=offset,
+                        limit=page_limit,
+                        genre_options=genre_options,
+                    )
+                except requests.RequestException as exc:
+                    if listings:
+                        break
+                    raise HTTPException(status_code=502, detail=_gamebrain_error_detail(exc)) from exc
+                returned_count = len(page_listings)
+                if returned_count == 0:
+                    break
+                for item in page_listings:
+                    item_id = item.get("id")
+                    if item_id is not None:
+                        item_id_str = str(item_id)
+                        if item_id_str in seen_ids:
+                            continue
+                        seen_ids.add(item_id_str)
+                    listings.append(item)
+                offset += returned_count
+                if offset >= total_available:
+                    break
+            scored, _ = score_listings(
+                listings=listings,
+                config=config,
+                filters=payload.filters,
+                selected_order=payload.selected_order,
+                section_order=payload.section_order,
+            )
+            response_cache.set(sample_cache_key, {"scored": scored})
+        total = len(scored)
+        total_pages = max(1, (total + per_page - 1) // per_page)
+        start = (page - 1) * per_page
+        response_listings = scored[start : start + per_page]
     else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail='Unsupported data source for server-side scoring.',
         )
 
-    scored, _ = score_listings(
-        listings=listings,
-        config=config,
-        filters=payload.filters,
-        selected_order=payload.selected_order,
-        section_order=payload.section_order,
-    )
-
-    per_page = max(1, min(int(payload.per_page), 50))
-    page = max(1, int(payload.page))
-    total = len(scored)
-    total_pages = max(1, (total + per_page - 1) // per_page)
-    start = (page - 1) * per_page
     response = {
-        'listings': scored[start : start + per_page],
+        'listings': response_listings,
         'total': total,
         'per_page': per_page,
         'current_page': page,
