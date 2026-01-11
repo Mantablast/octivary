@@ -141,10 +141,11 @@ export default function McdaItemList({
   }
 
   if (error) {
+    const errorMessage = error?.message || 'Having trouble reaching the server.';
     return (
       <div className="mcda-results">
         <div className="mcda-results-error">
-          <p>Having trouble reaching the server.</p>
+          <p>{errorMessage}</p>
           {onRetry && (
             <button onClick={onRetry} className="mcda-button mcda-button--ghost">
               Try again

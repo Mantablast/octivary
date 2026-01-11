@@ -176,6 +176,40 @@ def _gamebrain_error_detail(exc: requests.RequestException) -> str:
     return detail
 
 
+def _count_active_sections(filters: dict, selected_order: dict, config: dict) -> int:
+    filter_map = {
+        entry.get("key"): entry
+        for entry in config.get("filters") or []
+        if isinstance(entry, dict) and entry.get("key")
+    }
+    section_keys = [entry.get("key") for entry in config.get("filters") or [] if entry.get("key")]
+    count = 0
+
+    for key in section_keys:
+        spec = filter_map.get(key, {})
+        value = filters.get(key)
+        filter_type = spec.get("type")
+        if filter_type == "range":
+            if isinstance(value, dict):
+                if value.get("min") is not None or value.get("max") is not None:
+                    count += 1
+        elif filter_type == "boolean":
+            if value is True:
+                count += 1
+        elif isinstance(value, list):
+            if any(str(item).strip() for item in value):
+                count += 1
+        else:
+            if value not in (None, ""):
+                count += 1
+
+    for key, values in (selected_order or {}).items():
+        if parse_search_term_item_key(key) and values:
+            count += 1
+
+    return count
+
+
 def _build_reverb_params(
     config_key: str | None,
     query: str | None,
@@ -347,6 +381,11 @@ def _payload_sample_cache_key(payload: ListingsSearchRequest, user_id: str) -> s
     return f"listings:sample:{user_id}:{digest}"
 
 
+def _reverb_sample_cache_key(config_key: str | None) -> str:
+    key = config_key or "reverb"
+    return f"listings:sample:reverb:{key}"
+
+
 @app.post('/api/listings/search')
 async def search_listings(
     payload: ListingsSearchRequest,
@@ -371,6 +410,69 @@ async def search_listings(
 
     if source_type == 'local_json':
         listings = load_local_listings(provider_key)
+        scored, _ = score_listings(
+            listings=listings,
+            config=config,
+            filters=payload.filters,
+            selected_order=payload.selected_order,
+            section_order=payload.section_order,
+        )
+        total = len(scored)
+        total_pages = max(1, (total + per_page - 1) // per_page)
+        start = (page - 1) * per_page
+        response_listings = scored[start : start + per_page]
+    elif source_type == 'external_api' and provider_key == 'reverb_v1':
+        min_required = int(os.getenv("REVERB_MIN_ACTIVE_SECTIONS", "3"))
+        active_count = _count_active_sections(payload.filters, payload.selected_order, config)
+        if active_count < min_required:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Select at least {min_required} filter sections to load results.",
+            )
+        sample_cache_key = _reverb_sample_cache_key(payload.config_key)
+        cached_sample = response_cache.get(sample_cache_key)
+        if isinstance(cached_sample, dict) and "listings" in cached_sample:
+            listings = cached_sample["listings"]
+        else:
+            reverb_per_page = max(1, min(int(os.getenv("REVERB_FETCH_PER_PAGE", "50")), 50))
+            max_pages = max(1, int(os.getenv("REVERB_SCORE_SAMPLE_PAGES", "50")))
+            params = _build_reverb_params(
+                payload.config_key,
+                None,
+                None,
+                1,
+                reverb_per_page,
+                {},
+            )
+            listings = []
+            seen_ids: set[str] = set()
+            current_page = 1
+            total_pages = None
+            while current_page <= max_pages and (total_pages is None or current_page <= total_pages):
+                params["page"] = current_page
+                try:
+                    data = _fetch_reverb_listings(params)
+                except HTTPException as exc:
+                    if listings:
+                        break
+                    raise exc
+                page_listings = data.get("listings") if isinstance(data, dict) else None
+                if total_pages is None:
+                    total_pages = data.get("total_pages") if isinstance(data, dict) else None
+                if not page_listings:
+                    break
+                for item in page_listings:
+                    if not isinstance(item, dict):
+                        continue
+                    item_id = item.get("id")
+                    if item_id is not None:
+                        item_id_str = str(item_id)
+                        if item_id_str in seen_ids:
+                            continue
+                        seen_ids.add(item_id_str)
+                    listings.append(item)
+                current_page += 1
+            response_cache.set(sample_cache_key, {"listings": listings})
         scored, _ = score_listings(
             listings=listings,
             config=config,

@@ -16,7 +16,7 @@ import type {
 import { parseSearchTermItemKey } from '../utils/searchTerms';
 
 const DEFAULT_PER_PAGE = 24;
-const GAMEBRAIN_DEFAULT_PER_PAGE = 50;
+const DEFAULT_EXTERNAL_PER_PAGE = 50;
 
 type PageInfo = {
   limit: number;
@@ -51,6 +51,49 @@ const buildInitialFilters = (filters: FilterDefinition[]) => {
     }
   });
   return initial;
+};
+
+const countActiveSections = (
+  config: FilterConfig | null,
+  filters: FiltersState,
+  sectionOrder: string[]
+) => {
+  if (!config) return 0;
+  const filterMap = new Map((config.filters || []).map((filter) => [filter.key, filter]));
+  const keys = sectionOrder.length > 0 ? sectionOrder : buildSectionKeys(config);
+  let count = 0;
+
+  keys.forEach((key) => {
+    if (parseSearchTermItemKey(key)) {
+      count += 1;
+      return;
+    }
+    const filter = filterMap.get(key);
+    if (!filter) return;
+    const value = filters[key];
+    if (filter.type === 'range') {
+      if (value && typeof value === 'object' && !Array.isArray(value)) {
+        const range = value as Record<string, unknown>;
+        const min = typeof range.min === 'number' ? range.min : null;
+        const max = typeof range.max === 'number' ? range.max : null;
+        if (min !== null || max !== null) count += 1;
+      }
+      return;
+    }
+    if (filter.type === 'boolean') {
+      if (value === true) count += 1;
+      return;
+    }
+    if (Array.isArray(value)) {
+      if (value.some((item) => String(item).trim() !== '')) count += 1;
+      return;
+    }
+    if (value !== null && value !== undefined && String(value).trim() !== '') {
+      count += 1;
+    }
+  });
+
+  return count;
 };
 
 const toCriteriaConfig = (filter: FilterDefinition): CriteriaConfig => {
@@ -137,7 +180,11 @@ export default function FilterPage() {
     setSectionOrder([]);
     setSelectedOrder({});
     setPage(1);
-    setPerPage(configKey === 'video-games' ? GAMEBRAIN_DEFAULT_PER_PAGE : DEFAULT_PER_PAGE);
+    const defaultPerPage =
+      configKey === 'video-games' || configKey === 'reverb-acoustic-guitars'
+        ? DEFAULT_EXTERNAL_PER_PAGE
+        : DEFAULT_PER_PAGE;
+    setPerPage(defaultPerPage);
     setBackendPageInfo(null);
 
     if (!configKey) {
@@ -186,14 +233,10 @@ export default function FilterPage() {
     }
 
     const dataSource = config?.datasets?.primary?.data_source;
-    const backendUrl = apiBase ? `${apiBase}/api/reverb/listings` : '';
     const scoringUrl = apiBase ? `${apiBase}/api/listings/search` : '';
     const providerKey = dataSource?.provider_key;
-    const useReverbListings = dataSource?.type === 'external_api' && providerKey === 'reverb_v1';
-    const useServerScoring =
-      Boolean(apiBase) &&
-      (dataSource?.type === 'local_json' || (dataSource?.type === 'external_api' && !useReverbListings));
-    const listingsUrl = useReverbListings ? backendUrl : scoringUrl;
+    const useServerScoring = Boolean(apiBase);
+    const listingsUrl = scoringUrl;
 
     if (lastQuerySignature.current !== querySignature && page !== 1) {
       lastQuerySignature.current = querySignature;
@@ -234,6 +277,12 @@ export default function FilterPage() {
       try {
         if (!apiBase) {
           setItemsError('API base is not configured. Set VITE_API_BASE to use MCDA filters.');
+          return;
+        }
+        const minRequired = providerKey === 'reverb_v1' ? 3 : 0;
+        const activeSections = countActiveSections(config, filters, sectionOrder);
+        if (minRequired && activeSections < minRequired) {
+          setItemsError(`Select at least ${minRequired} filter sections to load results.`);
           return;
         }
         const data = await fetchListingsWithFilters(
@@ -324,11 +373,10 @@ export default function FilterPage() {
   }, [config, sectionKeys, sectionOrder]);
 
   const perPageOptions = useMemo(() => {
-    if (config?.datasets?.primary?.data_source?.provider_key === 'reverb_v1') return [];
     const baseOptions = [50, 100, 200];
     const merged = new Set([perPage, ...baseOptions]);
     return Array.from(merged).sort((a, b) => a - b);
-  }, [config, perPage]);
+  }, [perPage]);
 
   const visibleItems = items;
 

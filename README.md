@@ -46,6 +46,32 @@ Canonical filter configs live in `config/filters/`. For local dev and deploys, m
 
 Follow `secure-provider-config.md` for provider key resolution and secret handling.
 
+
+## Vehicle Catalog Generator (NHTSA vPIC)
+
+This repo includes a local vehicle catalog builder (not for-sale listings) using the free NHTSA vPIC API.
+
+Build the catalog:
+
+```
+python build_catalog.py --db vehicles_catalog.db --years 20 --export-json vehicles_catalog.json
+```
+
+Python helper queries:
+
+```
+from catalog_db import CatalogDB
+
+db = CatalogDB('vehicles_catalog.db')
+print(db.list_makes(prefix='TO', limit=10))
+print(db.list_models('TOYOTA', year=2020, contains='Cam'))
+print(db.search_catalog(2015, 2020, makes=['TOYOTA', 'HONDA'], q='civic'))
+```
+
+Notes:
+- Requires Python 3 and `requests` (install with `pip install requests`).
+- JSON export includes an `images` array placeholder for future listing-like media.
+
 ## Notes
 
 - This is a scaffold: endpoints and infra are minimal and include placeholders for cost guardrails.
