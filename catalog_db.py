@@ -184,8 +184,10 @@ class CatalogDB:
         rows = self.conn.execute(sql, params).fetchall()
         results: List[Dict[str, Any]] = []
         for row in rows:
+            entry_id = f"{row['year']}-{row['make_name']}-{row['model_name']}"
             results.append(
                 {
+                    "id": entry_id,
                     "year": row["year"],
                     "make": row["make_name"],
                     "model": row["model_name"],
@@ -206,8 +208,10 @@ class CatalogDB:
         ).fetchall()
         records: List[Dict[str, Any]] = []
         for row in rows:
+            entry_id = f"{row['year']}-{row['make_name']}-{row['model_name']}"
             records.append(
                 {
+                    "id": entry_id,
                     "year": row["year"],
                     "make": row["make_name"],
                     "model": row["model_name"],

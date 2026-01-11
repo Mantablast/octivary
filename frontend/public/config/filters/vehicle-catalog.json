@@ -1,0 +1,97 @@
+{
+  "config_key": "vehicle-catalog",
+  "category_key": "vehicles",
+  "title": "Passenger Vehicle Catalog",
+  "description": "Explore passenger vehicle makes and models from the last 20 years.",
+  "disclaimer": "",
+  "datasets": {
+    "primary": {
+      "label": "Catalog",
+      "data_source": {
+        "type": "local_json",
+        "provider_key": "vehicles_catalog_v1"
+      }
+    }
+  },
+  "text_search_fields": ["make_name", "model_name", "vehicle_type"],
+  "filters": [
+    {
+      "key": "make_name",
+      "label": "Make",
+      "type": "checkboxes",
+      "path": "make_name",
+      "options": [
+        "Toyota",
+        "Ford",
+        "Volkswagen",
+        "Honda",
+        "Chevrolet",
+        "Nissan",
+        "Kia",
+        "Hyundai",
+        "Mercedes-Benz",
+        "BMW",
+        "Audi",
+        "Lexus",
+        "Porsche",
+        "Ferrari",
+        "Tesla",
+        "Jeep",
+        "Dodge",
+        "Ram",
+        "Chrysler",
+        "Land Rover",
+        "Volvo",
+        "Mazda",
+        "Subaru",
+        "Mitsubishi",
+        "GMC",
+        "Buick",
+        "Cadillac",
+        "Genesis",
+        "Fiat",
+        "Alfa Romeo",
+        "Skoda"
+      ],
+      "helper_text": "Choose passenger vehicle makes to prioritize."
+    },
+    {
+      "key": "model_name",
+      "label": "Model",
+      "type": "text",
+      "path": "model_name",
+      "placeholder": "Camry, Civic, Model 3",
+      "allow_custom": true,
+      "helper_text": "Add model keywords and prioritize them.",
+      "search_fields": ["model_name", "make_name"]
+    },
+    {
+      "key": "year",
+      "label": "Year",
+      "type": "range",
+      "path": "year",
+      "min": 2007,
+      "max": 2026
+    }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["make_name", "model_name"] },
+    { "title": "Year", "filters": ["year"] }
+  ],
+  "priorities": [
+    { "key": "make_name", "label": "Make" },
+    { "key": "model_name", "label": "Model" },
+    { "key": "year", "label": "Year" }
+  ],
+  "display": {
+    "title_template": "{make_name} {model_name}",
+    "subtitle_template": "Year {year}",
+    "image_path": "images[0]",
+    "empty_image": "/assets/octonotes.png",
+    "metadata": [
+      { "label": "Year", "path": "year" },
+      { "label": "Vehicle type", "path": "vehicle_type" },
+      { "label": "Source", "path": "source" }
+    ]
+  }
+}

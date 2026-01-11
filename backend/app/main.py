@@ -2,6 +2,7 @@ import hashlib
 import json
 import os
 import re
+import sqlite3
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -70,6 +71,32 @@ async def get_config(config_key: str) -> dict:
         return load_filter_config(config_key)
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get('/api/catalog/options')
+async def get_catalog_options(
+    request: Request,
+    source: str,
+    limit: int = 2000,
+    _claims: dict = Depends(require_user),
+) -> dict:
+    guard_if_paused()
+    enforce_rate_limit(request)
+    if source == "vehicle_makes_passenger":
+        options = _fetch_vehicle_makes(passenger_only=True, limit=limit)
+        if options:
+            return {"options": options}
+        allow_fallback = os.getenv("VEHICLE_CATALOG_PASSENGER_FALLBACK_ALL", "1") == "1"
+        if not allow_fallback:
+            return {"options": []}
+        fallback_options = _fetch_vehicle_makes(passenger_only=False, limit=limit)
+        return {
+            "options": fallback_options,
+            "note": "Passenger-only makes are still building; showing all makes for now."
+        }
+    if source == "vehicle_makes_all":
+        return {"options": _fetch_vehicle_makes(passenger_only=False, limit=limit)}
+    raise HTTPException(status_code=400, detail="Unsupported options source.")
 
 
 def _slugify(value: str) -> str:
@@ -174,6 +201,35 @@ def _gamebrain_error_detail(exc: requests.RequestException) -> str:
     if body:
         detail = f"{detail} {body[:300]}"
     return detail
+
+
+def _vehicle_catalog_db_path() -> Path:
+    env_path = os.getenv("VEHICLE_CATALOG_DB_PATH")
+    if env_path:
+        return Path(env_path)
+    return Path(__file__).resolve().parents[2] / "vehicles_catalog.db"
+
+
+def _fetch_vehicle_makes(passenger_only: bool, limit: int) -> list[str]:
+    db_path = _vehicle_catalog_db_path()
+    if not db_path.exists():
+        raise HTTPException(status_code=404, detail=f"Vehicle catalog DB not found: {db_path}")
+    conn = sqlite3.connect(str(db_path))
+    conn.row_factory = sqlite3.Row
+    try:
+        query = "SELECT DISTINCT make_name FROM v_catalog"
+        params: list[str] = []
+        if passenger_only:
+            query += " WHERE lower(vehicle_type) LIKE ?"
+            params.append("%passenger%")
+        query += " ORDER BY make_name ASC"
+        if limit > 0:
+            query += " LIMIT ?"
+            params.append(limit)
+        rows = conn.execute(query, params).fetchall()
+    finally:
+        conn.close()
+    return [row["make_name"] for row in rows]
 
 
 def _count_active_sections(filters: dict, selected_order: dict, config: dict) -> int:

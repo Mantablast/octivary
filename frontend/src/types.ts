@@ -15,10 +15,12 @@ export type FilterDefinition = {
   min?: number;
   max?: number;
   options?: string[];
+  options_source?: string;
   path?: string;
   placeholder?: string;
   allow_custom?: boolean;
   helper_text?: string;
+  search_fields?: string[];
 };
 
 export type FilterStateValue =

@@ -170,6 +170,7 @@ export default function FilterPage() {
     [filters, selectedOrder, sectionOrder, perPage]
   );
   const lastQuerySignature = useRef(querySignature);
+  const loadedOptionSources = useRef(new Set<string>());
   const apiBase = (import.meta.env.VITE_API_BASE || '').trim();
 
   useEffect(() => {
@@ -185,6 +186,7 @@ export default function FilterPage() {
         ? DEFAULT_EXTERNAL_PER_PAGE
         : DEFAULT_PER_PAGE;
     setPerPage(defaultPerPage);
+    loadedOptionSources.current = new Set();
     setBackendPageInfo(null);
 
     if (!configKey) {
@@ -218,6 +220,80 @@ export default function FilterPage() {
       mounted = false;
     };
   }, [configKey]);
+
+  useEffect(() => {
+    let mounted = true;
+    if (!config || !apiBase) {
+      return () => {
+        mounted = false;
+      };
+    }
+    const filters = config.filters || [];
+    const sources = Array.from(
+      new Set(
+        filters
+          .map((filter) => filter.options_source)
+          .filter((source): source is string => Boolean(source))
+      )
+    ).filter((source) => !loadedOptionSources.current.has(source));
+
+    if (sources.length === 0) {
+      return () => {
+        mounted = false;
+      };
+    }
+
+    const loadOptions = async () => {
+      const optionsBySource = new Map<string, string[]>();
+      const notesBySource = new Map<string, string>();
+      await Promise.all(
+        sources.map(async (source) => {
+          const headers: Record<string, string> = { accept: 'application/json' };
+          const apiToken = (import.meta.env.VITE_API_TOKEN || '').trim();
+          if (apiToken) {
+            headers.Authorization = `Bearer ${apiToken}`;
+          }
+          try {
+            const response = await fetch(
+              `${apiBase}/api/catalog/options?source=${encodeURIComponent(source)}`,
+              { headers }
+            );
+            if (!response.ok) return;
+            const data = await response.json();
+            if (Array.isArray(data?.options)) {
+              optionsBySource.set(source, data.options);
+              if (typeof data?.note === 'string' && data.note.trim()) {
+                notesBySource.set(source, data.note.trim());
+              }
+            }
+          } finally {
+            loadedOptionSources.current.add(source);
+          }
+        })
+      );
+      if (!mounted || optionsBySource.size === 0) return;
+      setConfig((prev) => {
+        if (!prev) return prev;
+        const nextFilters = (prev.filters || []).map((filter) => {
+          const source = filter.options_source;
+          if (!source || !optionsBySource.has(source)) return filter;
+          const note = notesBySource.get(source);
+          let helperText = filter.helper_text;
+          if (note && !helperText?.includes(note)) {
+            helperText = helperText ? `${helperText} ${note}` : note;
+          }
+          return { ...filter, options: optionsBySource.get(source), helper_text: helperText };
+        });
+        return { ...prev, filters: nextFilters };
+      });
+    };
+
+    loadOptions();
+
+    return () => {
+      mounted = false;
+    };
+  }, [config, apiBase]);
 
   useEffect(() => {
     let mounted = true;

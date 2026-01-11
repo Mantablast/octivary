@@ -58,6 +58,11 @@ export const categories: Category[] = [
     description: 'Cars, bikes, and mobility options.',
     filterConfigs: [
       {
+        key: 'vehicle-catalog',
+        label: 'Passenger Vehicle Catalog',
+        description: 'Makes and models from the last 20 years.'
+      },
+      {
         key: 'electric-sedans',
         label: 'Electric Sedans',
         description: 'Range-forward daily drivers.'
