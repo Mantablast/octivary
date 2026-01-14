@@ -13,7 +13,7 @@
       }
     }
   },
-  "text_search_fields": ["make_name", "model_name", "vehicle_type"],
+  "text_search_fields": ["make_name", "model_name", "vehicle_type", "body_style"],
   "filters": [
     {
       "key": "make_name",
@@ -56,6 +56,23 @@
       "helper_text": "Choose passenger vehicle makes to prioritize."
     },
     {
+      "key": "body_style",
+      "label": "Body style",
+      "type": "checkboxes",
+      "path": "body_style",
+      "options": [
+        "Sedan",
+        "Hatchback",
+        "SUV",
+        "Crossover",
+        "Coupe",
+        "Convertible",
+        "Station wagon",
+        "Pickup truck"
+      ],
+      "helper_text": "Choose the body styles that fit your needs."
+    },
+    {
       "key": "model_name",
       "label": "Model",
       "type": "text",
@@ -75,11 +92,12 @@
     }
   ],
   "sections": [
-    { "title": "Basics", "filters": ["make_name", "model_name"] },
+    { "title": "Basics", "filters": ["make_name", "body_style", "model_name"] },
     { "title": "Year", "filters": ["year"] }
   ],
   "priorities": [
     { "key": "make_name", "label": "Make" },
+    { "key": "body_style", "label": "Body style" },
     { "key": "model_name", "label": "Model" },
     { "key": "year", "label": "Year" }
   ],
@@ -90,6 +108,7 @@
     "empty_image": "/assets/octonotes.png",
     "metadata": [
       { "label": "Year", "path": "year" },
+      { "label": "Body style", "path": "body_style" },
       { "label": "Vehicle type", "path": "vehicle_type" },
       { "label": "Source", "path": "source" }
     ]

@@ -1370,6 +1370,66 @@ p {
   margin-bottom: 4px;
 }
 
+.bible-card {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.bible-card .mcda-result-image {
+  background: rgba(247, 242, 234, 0.9);
+}
+
+.bible-card .mcda-result-image img {
+  object-fit: contain;
+  background: rgba(247, 242, 234, 0.9);
+}
+
+.bible-card-isbn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.bible-card-zoom {
+  border: none;
+  padding: 0;
+  width: 100%;
+  background: transparent;
+  cursor: zoom-in;
+  display: block;
+}
+
+.bible-copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--mcda-border);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--mcda-text);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.bible-copy-button svg {
+  width: 12px;
+  height: 12px;
+}
+
+.bible-copy-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.bible-copy-button--copied {
+  color: var(--mcda-accent);
+  border-color: var(--mcda-accent);
+}
+
 .reverb-card {
   background: rgba(255, 255, 255, 0.78);
 }

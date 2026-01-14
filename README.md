@@ -72,6 +72,29 @@ Notes:
 - Requires Python 3 and `requests` (install with `pip install requests`).
 - JSON export includes an `images` array placeholder for future listing-like media.
 
+## Bible Catalog Builder (Open Library metadata)
+
+This repo includes a metadata-only Bible catalog builder using Open Library. It does not store any scripture text.
+
+Build the catalog:
+
+```
+python build_bible_catalog.py --db bible_catalog.db --max-results-per-query 300 --export-json bible_catalog.json
+```
+
+Query examples:
+
+```
+python query_bible_catalog.py list_translations
+python query_bible_catalog.py search --translation ESV,NIV --study-bible --print-size large --limit 25
+python query_bible_catalog.py search --publisher Zondervan --format hardcover --red-letter
+```
+
+Notes:
+- Requires Python 3 and `requests` (install with `pip install requests`).
+- Use `--enable-wikidata` to enrich missing publisher/language/date fields.
+- Data is metadata-only (ISBNs, titles, bindings, features). No copyrighted scripture text is stored.
+
 ## Notes
 
 - This is a scaffold: endpoints and infra are minimal and include placeholders for cost guardrails.

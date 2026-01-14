@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { categories } from '../data/categories';
 import McdaFilterPanel from '../components/McdaFilterPanel';
 import McdaItemList from '../components/McdaItemList';
+import BibleCatalogResultCard from '../components/results/BibleCatalogResultCard';
 import ReverbAcousticGuitarsResultCard from '../components/results/ReverbAcousticGuitarsResultCard';
 import InsulinDevicesResultCard from '../components/results/InsulinDevicesResultCard';
 import VideoGamesResultCard from '../components/results/VideoGamesResultCard';
@@ -481,7 +482,9 @@ export default function FilterPage() {
   const pageInfo = backendPageInfo ?? undefined;
   const totalCount = backendPageInfo?.total ?? items.length;
   const renderItem =
-    configKey === 'reverb-acoustic-guitars'
+    configKey === 'bible-catalog'
+      ? BibleCatalogResultCard
+      : configKey === 'reverb-acoustic-guitars'
       ? ReverbAcousticGuitarsResultCard
       : configKey === 'insulin-devices'
       ? InsulinDevicesResultCard

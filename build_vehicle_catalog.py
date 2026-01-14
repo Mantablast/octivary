@@ -12,6 +12,28 @@ def compute_years(current_year: int, span_years: int) -> List[int]:
     return list(range(current_year, start_year - 1, -1))
 
 
+def infer_body_style(model_name: str, vehicle_type: str | None) -> str | None:
+    if not model_name:
+        return None
+    name = model_name.lower()
+    if vehicle_type and "motorcycle" in vehicle_type.lower():
+        return None
+    checks = [
+        ("Pickup truck", ["pickup", "pick-up"]),
+        ("SUV", ["suv", "sport utility"]),
+        ("Crossover", ["crossover", "cuv"]),
+        ("Station wagon", ["wagon", "estate"]),
+        ("Hatchback", ["hatchback"]),
+        ("Convertible", ["convertible", "cabriolet", "roadster", "spyder", "spider"]),
+        ("Coupe", ["coupe"]),
+        ("Sedan", ["sedan", "saloon"]),
+    ]
+    for label, keywords in checks:
+        if any(keyword in name for keyword in keywords):
+            return label
+    return None
+
+
 def append_run_log(message: str) -> None:
     log_path = Path("run_log.txt")
     with log_path.open("a", encoding="utf-8") as handle:
@@ -94,6 +116,8 @@ def main() -> None:
                     model_name = model.get("model_name")
                     if not model_name:
                         continue
+                    vehicle_type = model.get("vehicle_type")
+                    body_style = infer_body_style(model_name, vehicle_type)
                     cached = model_cache[make_id].get(model_name)
                     if cached:
                         model_id = cached
@@ -103,7 +127,8 @@ def main() -> None:
                     db.insert_model_year(
                         model_id=model_id,
                         year=year,
-                        vehicle_type=model.get("vehicle_type"),
+                        vehicle_type=vehicle_type,
+                        body_style=body_style,
                     )
 
             db.set_progress(f"completed_year_{year}", "true")

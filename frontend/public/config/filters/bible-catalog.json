@@ -1,0 +1,243 @@
+{
+  "config_key": "bible-catalog",
+  "category_key": "books",
+  "title": "Bible Catalog",
+  "description": "Explore Bible editions by translation, format, and study features.",
+  "disclaimer": "Listings are sourced from Open Library metadata.",
+  "datasets": {
+    "primary": {
+      "label": "Catalog",
+      "data_source": {
+        "type": "local_json",
+        "provider_key": "bible_catalog_v1"
+      }
+    }
+  },
+  "text_search_fields": [
+    "title",
+    "subtitle",
+    "publisher",
+    "translation",
+    "translation_raw",
+    "language",
+    "format",
+    "cover_color"
+  ],
+  "filters": [
+    {
+      "key": "translation",
+      "label": "Translation",
+      "type": "checkboxes",
+      "path": "translation",
+      "options": [
+        "KJV",
+        "NKJV",
+        "ESV",
+        "NIV",
+        "NLT",
+        "NASB",
+        "CSB",
+        "NRSV",
+        "RSV",
+        "AMP",
+        "CEB",
+        "GNT",
+        "ASV"
+      ],
+      "helper_text": "Choose translations to prioritize."
+    },
+    {
+      "key": "language",
+      "label": "Language",
+      "type": "checkboxes",
+      "path": "language",
+      "options": [
+        "English",
+        "Spanish",
+        "French",
+        "German",
+        "Hebrew",
+        "Greek",
+        "Latin"
+      ],
+      "helper_text": "Pick the languages you want."
+    },
+    {
+      "key": "format",
+      "label": "Cover material",
+      "type": "checkboxes",
+      "path": "format",
+      "options": [
+        "leather",
+        "bonded leather",
+        "imitation leather",
+        "hardcover",
+        "paperback",
+        "cloth"
+      ],
+      "helper_text": "Prioritize cover materials."
+    },
+    {
+      "key": "print_size",
+      "label": "Print size",
+      "type": "checkboxes",
+      "path": "print_size",
+      "options": [
+        "giant",
+        "large",
+        "personal",
+        "compact"
+      ],
+      "helper_text": "Choose preferred print sizes."
+    },
+    {
+      "key": "cover_color",
+      "label": "Cover color",
+      "type": "checkboxes",
+      "path": "cover_color",
+      "options": [
+        "black",
+        "brown",
+        "burgundy",
+        "navy",
+        "blue",
+        "red",
+        "green",
+        "pink",
+        "gray",
+        "white",
+        "tan"
+      ],
+      "helper_text": "Pick a few cover colors."
+    },
+    {
+      "key": "red_letter",
+      "label": "Red letter",
+      "type": "boolean",
+      "path": "red_letter",
+      "ui": "toggle",
+      "helper_text": "Highlight the words of Christ."
+    },
+    {
+      "key": "study_bible",
+      "label": "Study Bible",
+      "type": "boolean",
+      "path": "study_bible",
+      "ui": "toggle",
+      "helper_text": "Add study notes and commentary."
+    },
+    {
+      "key": "journaling",
+      "label": "Journaling",
+      "type": "boolean",
+      "path": "journaling",
+      "ui": "toggle",
+      "helper_text": "Wide margins for notes."
+    },
+    {
+      "key": "thumb_indexed",
+      "label": "Thumb indexed",
+      "type": "boolean",
+      "path": "thumb_indexed",
+      "ui": "toggle",
+      "helper_text": "Thumb index tabs for fast navigation."
+    },
+    {
+      "key": "maps",
+      "label": "Maps",
+      "type": "boolean",
+      "path": "maps",
+      "ui": "toggle",
+      "helper_text": "Include Bible maps."
+    },
+    {
+      "key": "reading_plan",
+      "label": "Reading plan",
+      "type": "boolean",
+      "path": "reading_plan",
+      "ui": "toggle",
+      "helper_text": "Includes a built-in reading plan."
+    },
+    {
+      "key": "publish_year",
+      "label": "Publish year",
+      "type": "range",
+      "path": "publish_year",
+      "min": 1980,
+      "max": 2026
+    },
+    {
+      "key": "page_count",
+      "label": "Page count",
+      "type": "range",
+      "path": "page_count",
+      "min": 500,
+      "max": 2500
+    },
+    {
+      "key": "font_size",
+      "label": "Font size (pt)",
+      "type": "range",
+      "path": "font_size",
+      "min": 7,
+      "max": 14
+    },
+    {
+      "key": "title",
+      "label": "Title keywords",
+      "type": "text",
+      "path": "title",
+      "placeholder": "Study, journaling, wide margin",
+      "allow_custom": true,
+      "helper_text": "Add title keywords to prioritize.",
+      "search_fields": ["title", "subtitle", "publisher"]
+    },
+    {
+      "key": "publisher",
+      "label": "Publisher",
+      "type": "text",
+      "path": "publisher",
+      "placeholder": "Zondervan, Crossway",
+      "allow_custom": true,
+      "helper_text": "Prioritize publishers you trust.",
+      "search_fields": ["publisher", "title", "subtitle"]
+    }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["translation", "language", "format", "print_size", "cover_color"] },
+    { "title": "Features", "filters": ["red_letter", "study_bible", "journaling", "thumb_indexed", "maps", "reading_plan"] },
+    { "title": "Details", "filters": ["publish_year", "page_count", "font_size", "title", "publisher"] }
+  ],
+  "priorities": [
+    { "key": "translation", "label": "Translation" },
+    { "key": "language", "label": "Language" },
+    { "key": "format", "label": "Cover material" },
+    { "key": "print_size", "label": "Print size" },
+    { "key": "cover_color", "label": "Cover color" },
+    { "key": "red_letter", "label": "Red letter" },
+    { "key": "study_bible", "label": "Study Bible" },
+    { "key": "journaling", "label": "Journaling" },
+    { "key": "thumb_indexed", "label": "Thumb indexed" },
+    { "key": "maps", "label": "Maps" },
+    { "key": "reading_plan", "label": "Reading plan" },
+    { "key": "publish_year", "label": "Publish year" },
+    { "key": "page_count", "label": "Page count" },
+    { "key": "font_size", "label": "Font size" },
+    { "key": "title", "label": "Title" },
+    { "key": "publisher", "label": "Publisher" }
+  ],
+  "display": {
+    "title_template": "{title}",
+    "subtitle_template": "{translation} · {format}",
+    "image_path": "images[0]",
+    "empty_image": "/assets/octonotes.png",
+    "metadata": [
+      { "label": "Translation", "path": "translation" },
+      { "label": "Publisher", "path": "publisher" },
+      { "label": "Publish date", "path": "publish_date", "format": "date" },
+      { "label": "Page count", "path": "page_count" },
+      { "label": "Print size", "path": "print_size" },
+      { "label": "Cover", "path": "cover_color" }
+    ]
+  }
+}

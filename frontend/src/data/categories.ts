@@ -12,6 +12,11 @@ export const categories: Category[] = [
         description: 'First editions and collector finds.'
       },
       {
+        key: 'bible-catalog',
+        label: 'Bible Catalog',
+        description: 'Translation, format, and feature comparisons.'
+      },
+      {
         key: 'textbook-deals',
         label: 'Textbook Deals',
         description: 'Affordable course essentials.'

@@ -95,6 +95,8 @@ class VpicClient:
             if response is not None and response.status_code == 404:
                 return []
             raise
+        except (requests.exceptions.JSONDecodeError, ValueError):
+            return []
         results = data.get("Results") or []
         models: List[Dict[str, Any]] = []
         seen = set()

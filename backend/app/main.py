@@ -38,9 +38,18 @@ from .storage import (
 
 app = FastAPI(title='Octivary API', version='0.1.0')
 
+
+def _cors_allowlist() -> list[str]:
+    raw = os.getenv('CORS_ALLOW_ORIGINS')
+    if raw is None:
+        return ['*']
+    origins = [origin.strip() for origin in raw.split(',') if origin.strip()]
+    return origins or ['*']
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[origin for origin in os.getenv('CORS_ALLOW_ORIGINS', '*').split(',') if origin],
+    allow_origins=_cors_allowlist(),
     allow_methods=['*'],
     allow_headers=['*'],
 )

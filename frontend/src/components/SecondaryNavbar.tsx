@@ -5,7 +5,7 @@ import { categories } from '../data/categories';
 
 export default function SecondaryNavbar() {
   const navRef = useRef<HTMLDivElement>(null);
-  const enabledConfigs = new Set(['reverb-acoustic-guitars', 'insulin-devices', 'vehicle-catalog']);
+  const enabledConfigs = new Set(['reverb-acoustic-guitars', 'insulin-devices', 'bible-catalog']);
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
