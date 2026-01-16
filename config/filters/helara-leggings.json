@@ -1,0 +1,163 @@
+{
+  "config_key": "helara-leggings",
+  "category_key": "clothing",
+  "title": "Helara Leggings",
+  "description": "Halara leggings with priority-based match scoring.",
+  "disclaimer": "",
+  "datasets": {
+    "primary": {
+      "label": "Listings",
+      "data_source": {
+        "type": "external_api",
+        "provider_key": "halara_v1"
+      }
+    }
+  },
+  "preset_filters": {
+    "searchKey": "leggings",
+    "pmui": "30.1.foot.menu1.6-Leggings.affiliate",
+    "pmuih": "affiliate",
+    "promo": "foot.menu1.6-Leggings",
+    "color[0]": 52,
+    "color[1]": 54,
+    "color[2]": 47,
+    "color[3]": 60,
+    "color[4]": 46,
+    "color[5]": 53,
+    "color[6]": 55,
+    "color[7]": 57,
+    "color[8]": 61,
+    "color[9]": 51,
+    "color[10]": 56,
+    "color[11]": 1587,
+    "color[12]": 323,
+    "fabric[0]": 12,
+    "fabric[1]": 23,
+    "fabric[2]": 9,
+    "fabric[3]": 8,
+    "fabric[4]": 2,
+    "fabric[5]": 4,
+    "fabric[6]": 5,
+    "fabric[7]": 24,
+    "fabric[8]": 20,
+    "fabric[9]": 13,
+    "fabric[10]": 11,
+    "fabric[11]": 10,
+    "fabric[12]": 22,
+    "size[0]": 133,
+    "size[1]": 4043,
+    "size[2]": 132,
+    "size[3]": 131,
+    "size[4]": 134,
+    "size[5]": 130,
+    "price[0]": 38,
+    "price[1]": 90,
+    "inseamLength[0]": "7/8 Length",
+    "inseamLength[1]": "Petite",
+    "inseamLength[2]": "Full Length",
+    "inseamLength[3]": "Regular",
+    "inseamLength[4]": "ultratall",
+    "inseamLength[5]": "Tall",
+    "inseamLength[6]": "extall",
+    "handleName": "leggings",
+    "style": "collection",
+    "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27"
+  },
+  "text_search_fields": ["title", "searchKey", "color_labels", "feature_tags"],
+  "filters": [
+    {
+      "key": "price",
+      "label": "Price (USD)",
+      "type": "range",
+      "path": "price_amount",
+      "min": 0,
+      "max": 200
+    },
+    {
+      "key": "color_labels",
+      "label": "Color",
+      "type": "checkboxes",
+      "path": "color_labels",
+      "options": [
+        "Black",
+        "White",
+        "Dawn Brown",
+        "Walnut",
+        "Anemone",
+        "Aura Orange",
+        "Carbon",
+        "Deep Woodland Green",
+        "Dusky Evening purple",
+        "Grass Grey Green",
+        "Hazelnut Black",
+        "June Bug",
+        "Light Gray Plum Purple",
+        "Mood Indigo",
+        "Mountain Blue",
+        "Night's Purple",
+        "Peacoat",
+        "Smoke Purple Blue",
+        "Volcanic Ash",
+        "Washington Gray Green",
+        "Wild Ginger"
+      ]
+    },
+    {
+      "key": "feature_tags",
+      "label": "Features",
+      "type": "checkboxes",
+      "path": "feature_tags",
+      "options": [
+        "UltraSculpt",
+        "SoftlyZero",
+        "Patitoff",
+        "High Waisted",
+        "Tummy Control",
+        "Butt Lifting",
+        "Scrunch",
+        "Crossover",
+        "Pockets",
+        "Bootcut",
+        "Flare",
+        "7/8 Length",
+        "Fleece",
+        "Pet Hair Resistant",
+        "Lace",
+        "Heat"
+      ]
+    },
+    {
+      "key": "keywords",
+      "label": "Keyword search",
+      "type": "text",
+      "placeholder": "Add style keywords",
+      "allow_custom": true,
+      "search_fields": ["title", "searchKey", "color_labels", "feature_tags"]
+    }
+  ],
+  "sections": [
+    { "title": "Basics", "filters": ["price", "color_labels"] },
+    { "title": "Style", "filters": ["feature_tags"] },
+    { "title": "Search", "filters": ["keywords"] }
+  ],
+  "priorities": [
+    { "key": "price", "label": "Price" },
+    { "key": "color_labels", "label": "Color" },
+    { "key": "feature_tags", "label": "Features" },
+    { "key": "keywords", "label": "Keyword match" }
+  ],
+  "display": {
+    "currency": "USD",
+    "unit": "legging",
+    "title_template": "{title}",
+    "subtitle_template": "{searchKey}",
+    "image_path": "colors[0].skcImageUrl",
+    "empty_image": "/assets/octonotes.png",
+    "metadata": [
+      { "label": "Price", "path": "price_amount", "format": "currency", "currency": "USD" },
+      { "label": "List Price", "path": "line_price_amount", "format": "currency", "currency": "USD" },
+      { "label": "Colors", "path": "color_labels" },
+      { "label": "Features", "path": "feature_tags" }
+    ]
+  }
+}

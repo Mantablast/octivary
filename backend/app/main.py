@@ -3,6 +3,7 @@ import json
 import os
 import re
 import sqlite3
+import time
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -158,6 +159,143 @@ def _dedupe_terms(terms: list[str]) -> list[str]:
         seen.add(term)
         ordered.append(term)
     return ordered
+
+
+HALARA_ENDPOINT_PATH = "/mall-goods-rest/api/v1/product-list"
+HALARA_FEATURE_TAGS = {
+    "UltraSculpt": ["ultrasculpt"],
+    "SoftlyZero": ["softlyzero"],
+    "Patitoff": ["patitoff"],
+    "High Waisted": ["high waisted", "high-waisted", "super high waisted", "super-high-waisted"],
+    "Tummy Control": ["tummy control"],
+    "Butt Lifting": ["butt lifting", "butt-lifting"],
+    "Scrunch": ["scrunch"],
+    "Crossover": ["crossover"],
+    "Pockets": ["pocket"],
+    "Bootcut": ["bootcut"],
+    "Flare": ["flare"],
+    "7/8 Length": ["7/8", "7-8"],
+    "Fleece": ["fleece"],
+    "Pet Hair Resistant": ["pet hair resistant", "pet-hair"],
+    "Lace": ["lace"],
+    "Heat": ["heat", "extra heat"],
+}
+
+
+def _parse_price(value: object) -> float | None:
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    if isinstance(value, str):
+        cleaned = value.replace("$", "").replace(",", "").strip()
+        if not cleaned:
+            return None
+        try:
+            return float(cleaned)
+        except ValueError:
+            return None
+    return None
+
+
+def _halara_feature_tags(item: dict) -> list[str]:
+    raw_title = item.get("title") or ""
+    raw_search_key = item.get("searchKey") or ""
+    haystack = f"{raw_title} {raw_search_key}".lower()
+    tags = []
+    for label, needles in HALARA_FEATURE_TAGS.items():
+        if any(needle in haystack for needle in needles):
+            tags.append(label)
+    return _dedupe_terms(tags)
+
+
+def _halara_color_labels(item: dict) -> list[str]:
+    colors = item.get("colors") if isinstance(item.get("colors"), list) else []
+    labels = []
+    for entry in colors:
+        if isinstance(entry, dict):
+            label = entry.get("label")
+            if label:
+                labels.append(str(label))
+    return _dedupe_terms(labels)
+
+
+def _normalize_halara_listing(item: dict) -> dict:
+    price_amount = _parse_price(item.get("basePrice") or item.get("price"))
+    line_price_amount = _parse_price(item.get("baseLinePrice") or item.get("linePrice"))
+    normalized = dict(item)
+    normalized["price_amount"] = price_amount
+    normalized["line_price_amount"] = line_price_amount
+    normalized["color_labels"] = _halara_color_labels(item)
+    normalized["feature_tags"] = _halara_feature_tags(item)
+    if "id" not in normalized and "product_id" in normalized:
+        normalized["id"] = normalized.get("product_id")
+    return normalized
+
+
+def _build_halara_params(config: dict, page: int, per_page: int, filters: dict) -> dict:
+    preset = config.get("preset_filters") or {}
+    params: dict[str, object] = {}
+    if isinstance(preset, dict):
+        for key, value in preset.items():
+            if value is None or value == "":
+                continue
+            params[str(key)] = value
+
+    per_page = max(1, min(int(per_page), 60))
+    page = max(1, int(page))
+    params["pageNum"] = page
+    params["pageSize"] = per_page
+
+    price_min, price_max = _extract_range(filters.get("price"))
+    if price_min is not None:
+        params["price[0]"] = price_min
+    if price_max is not None:
+        params["price[1]"] = price_max
+
+    timestamp = params.get("timestamp")
+    if not timestamp:
+        timestamp = int(time.time() * 1000)
+        params["timestamp"] = timestamp
+    if not params.get("hash"):
+        params["hash"] = timestamp
+
+    return params
+
+
+def _fetch_halara_listings(params: dict) -> dict:
+    provider = resolve_provider("halara_v1")
+    base_url = provider.base_url.rstrip("/")
+    headers = {"accept": "application/json"}
+    if provider.api_key:
+        headers["Authorization"] = f"Bearer {provider.api_key}"
+
+    try:
+        response = requests.get(
+            f"{base_url}{HALARA_ENDPOINT_PATH}",
+            headers=headers,
+            params=params,
+            timeout=12,
+        )
+    except requests.RequestException as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+
+    if not response.ok:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+    data = response.json()
+    payload = data.get("data") if isinstance(data, dict) else {}
+    listings = payload.get("data") if isinstance(payload, dict) else None
+    count = payload.get("count") if isinstance(payload, dict) else None
+    try:
+        total = int(count)
+    except (TypeError, ValueError):
+        total = None
+    return {"listings": listings or [], "total": total}
+
+
+def _halara_sample_cache_key(config_key: str | None) -> str:
+    key = config_key or "halara"
+    return f"listings:sample:halara:{key}"
 
 
 def _collect_text_terms(
@@ -536,6 +674,52 @@ async def search_listings(
                             continue
                         seen_ids.add(item_id_str)
                     listings.append(item)
+                current_page += 1
+            response_cache.set(sample_cache_key, {"listings": listings})
+        scored, _ = score_listings(
+            listings=listings,
+            config=config,
+            filters=payload.filters,
+            selected_order=payload.selected_order,
+            section_order=payload.section_order,
+        )
+        total = len(scored)
+        total_pages = max(1, (total + per_page - 1) // per_page)
+        start = (page - 1) * per_page
+        response_listings = scored[start : start + per_page]
+    elif source_type == 'external_api' and provider_key == 'halara_v1':
+        sample_cache_key = _halara_sample_cache_key(payload.config_key)
+        cached_sample = response_cache.get(sample_cache_key)
+        if isinstance(cached_sample, dict) and "listings" in cached_sample:
+            listings = cached_sample["listings"]
+        else:
+            halara_per_page = max(1, min(int(os.getenv("HALARA_FETCH_PER_PAGE", "24")), 60))
+            max_pages = max(1, int(os.getenv("HALARA_SCORE_SAMPLE_PAGES", "8")))
+            listings = []
+            seen_ids: set[str] = set()
+            current_page = 1
+            total_pages = None
+            total_available = None
+            while current_page <= max_pages and (total_pages is None or current_page <= total_pages):
+                params = _build_halara_params(config, current_page, halara_per_page, {})
+                data = _fetch_halara_listings(params)
+                page_listings = data.get("listings") if isinstance(data, dict) else None
+                if total_available is None:
+                    total_available = data.get("total") if isinstance(data, dict) else None
+                    if isinstance(total_available, int):
+                        total_pages = max(1, (total_available + halara_per_page - 1) // halara_per_page)
+                if not page_listings:
+                    break
+                for item in page_listings:
+                    if not isinstance(item, dict):
+                        continue
+                    item_id = item.get("id") or item.get("product_id")
+                    if item_id is not None:
+                        item_id_str = str(item_id)
+                        if item_id_str in seen_ids:
+                            continue
+                        seen_ids.add(item_id_str)
+                    listings.append(_normalize_halara_listing(item))
                 current_page += 1
             response_cache.set(sample_cache_key, {"listings": listings})
         scored, _ = score_listings(

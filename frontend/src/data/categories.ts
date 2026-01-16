@@ -54,6 +54,11 @@ export const categories: Category[] = [
         key: 'technical-outerwear',
         label: 'Technical Outerwear',
         description: 'Weather-ready layers and shells.'
+      },
+      {
+        key: 'helara-leggings',
+        label: 'Helara Leggings',
+        description: 'UltraSculpt and SoftlyZero leggings.'
       }
     ]
   },

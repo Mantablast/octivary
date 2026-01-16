@@ -1,0 +1,3133 @@
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "title": "Leggings",
+        "collectionSubTitle": "",
+        "collectionPcImg": "",
+        "collectionAppImg": "",
+        "topImageUrl": "",
+        "count": 110,
+        "cookies": [],
+        "seo": {
+            "keyWord": "",
+            "seoTitle": "Women's Leggings - Halara",
+            "seoDesc": "Shop Women's Leggings, Halara Butt Lifting Leggings, Halara SoCinched Leggings and More at Halara, Always Made From Activewear-Inspired Fabrics and Featuring Innovative Designs. Enjoy Free Shipping."
+        },
+        "seoFaqInfo": {
+            "title": "FAQs + Styling Tips",
+            "faqList": [
+                {
+                    "id": 1068,
+                    "businessId": 100084,
+                    "mainTitle": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">Why Are Leggings So Comfortable?</span></p>\n",
+                    "subDesc": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">Leggings provide comfort and support for any activity. Halara leggings provide secure confidence in shaping, tummy control, and butt-lifting styles that allow for total flexibility and enhance your natural shape comfortably.</span></p>\n"
+                },
+                {
+                    "id": 1069,
+                    "businessId": 100084,
+                    "mainTitle": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">What Type of Leggings Are The Most Flattering?</span></p>\n",
+                    "subDesc": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">The most flattering types of leggings are high-waisted, seamless leggings. Halara offers high waisted, seamless leggings that sculpt, provide tummy control, and feature butt-lifting designs for the most flattering look.</span></p>\n"
+                },
+                {
+                    "id": 1070,
+                    "businessId": 100084,
+                    "mainTitle": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">What's the Difference Between Gym Leggings and Regular Leggings?</span></p>\n",
+                    "subDesc": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">Leggings worn to the gym should ensure comfort and flexibility, be ideal for any workout, and be non-see-through. We recommend Halara's Ultrasculpt leggings for support in shaping and smoothing.</span></p>\n"
+                },
+                {
+                    "id": 1071,
+                    "businessId": 100084,
+                    "mainTitle": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">Shop Halara's Women's Leggings</span></p>\n",
+                    "subDesc": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">Explore Halara's wide range of leggings to discover the styles ideal for you and your wellness goals. From tummy-shaping and butt-lifting to pet hair-resistant styles, you'll get a comfortable fit that supports your every move.</span></p>\n"
+                },
+                {
+                    "id": 1072,
+                    "businessId": 100084,
+                    "mainTitle": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">How Can I Prevent Leggings From Rolling Down During Workouts?</span></p>\n",
+                    "subDesc": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">Look for high-waisted leggings with a wide, supportive waistband. Compression fabrics and seamless designs also help keep leggings in place while ensuring a secure, flattering fit.</span></p>\n"
+                },
+                {
+                    "id": 1073,
+                    "businessId": 100084,
+                    "mainTitle": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">How Do I Choose the Right Leggings for My Workout Style?</span></p>\n",
+                    "subDesc": "<p style=\"text-align:start;\"><span style=\"color: rgb(0,0,0);\">For high-intensity workouts, opt for compression leggings with moisture-wicking fabric. For yoga or low-impact activities, choose soft, stretchable leggings that allow for unrestricted movement.</span></p>\n"
+                }
+            ]
+        },
+        "seoTagInfo": {
+            "title": "Related Categories",
+            "tagSource": 0,
+            "tagList": [
+                {
+                    "id": 527367308,
+                    "businessId": 100084,
+                    "tagName": "Yoga",
+                    "urlType": 1,
+                    "tagUrl": "/collections/yoga",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367309,
+                    "businessId": 100084,
+                    "tagName": "Everyday Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/everyday-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367310,
+                    "businessId": 100084,
+                    "tagName": "Pocket Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/pocket-leggings-3",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367311,
+                    "businessId": 100084,
+                    "tagName": "Crossover Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/crossover-leggings-1",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367312,
+                    "businessId": 100084,
+                    "tagName": "Butt Lifting Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/butt-lifting-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367313,
+                    "businessId": 100084,
+                    "tagName": "Side Pocket Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/side-pocket-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367314,
+                    "businessId": 100084,
+                    "tagName": "Flare Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/flare-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367315,
+                    "businessId": 100084,
+                    "tagName": "FLARE LEGGINGS",
+                    "urlType": 1,
+                    "tagUrl": "/collections/flare-leggings-1",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367316,
+                    "businessId": 100084,
+                    "tagName": "Halara Picks",
+                    "urlType": 1,
+                    "tagUrl": "/collections/halara-picks",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367317,
+                    "businessId": 100084,
+                    "tagName": "White Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/white-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367318,
+                    "businessId": 100084,
+                    "tagName": "Bottoms",
+                    "urlType": 1,
+                    "tagUrl": "/collections/bottoms-push",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367319,
+                    "businessId": 100084,
+                    "tagName": "Split leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/split-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367320,
+                    "businessId": 100084,
+                    "tagName": "High Waisted Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/high-waisted-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367321,
+                    "businessId": 100084,
+                    "tagName": "Patitoff™ Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/patitoff-leggings-lg001",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367322,
+                    "businessId": 100084,
+                    "tagName": "Women's casual leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Women-casual-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367323,
+                    "businessId": 100084,
+                    "tagName": "Women's yoga leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Women-yoga-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367324,
+                    "businessId": 100084,
+                    "tagName": "Women's fleece leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Women-fleece-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367325,
+                    "businessId": 100084,
+                    "tagName": "Women's black leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Women-black-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367326,
+                    "businessId": 100084,
+                    "tagName": "Women's tiktok leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Women-tiktok-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367327,
+                    "businessId": 100084,
+                    "tagName": "Seamless Flow Leggings ",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Women-seamless-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367328,
+                    "businessId": 100084,
+                    "tagName": "Women's workout leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Women-workout-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367329,
+                    "businessId": 100084,
+                    "tagName": "Capri Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/capri-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367330,
+                    "businessId": 100084,
+                    "tagName": "Denim Leggings ",
+                    "urlType": 1,
+                    "tagUrl": "/collections/denim-legging",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367331,
+                    "businessId": 100084,
+                    "tagName": "Tummy Control Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Tummy-Control-Leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367332,
+                    "businessId": 100084,
+                    "tagName": "cargo-leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/cargo-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367333,
+                    "businessId": 100084,
+                    "tagName": "Training Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/training-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367334,
+                    "businessId": 100084,
+                    "tagName": "Faux Leather Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Faux-Leather-Leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367335,
+                    "businessId": 100084,
+                    "tagName": "SoftlyZero™ Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/softlyzero-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367336,
+                    "businessId": 100084,
+                    "tagName": "SpeedWave™ Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/speedwave-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367337,
+                    "businessId": 100084,
+                    "tagName": "UltraSculpt™ Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/ultraSculpt-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367338,
+                    "businessId": 100084,
+                    "tagName": "New Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/new-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367339,
+                    "businessId": 100084,
+                    "tagName": "Studio Junkie ",
+                    "urlType": 1,
+                    "tagUrl": "/collections/studio-junkie",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367340,
+                    "businessId": 100084,
+                    "tagName": "Lace Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/lace-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367341,
+                    "businessId": 100084,
+                    "tagName": "Leather Pants",
+                    "urlType": 1,
+                    "tagUrl": "/collections/womens-leather-pants",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367342,
+                    "businessId": 100084,
+                    "tagName": "Fleece Legging",
+                    "urlType": 1,
+                    "tagUrl": "/collections/womens-fleece-legging",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367343,
+                    "businessId": 100084,
+                    "tagName": "Pocket Legging",
+                    "urlType": 1,
+                    "tagUrl": "/collections/womens-pocket-legging",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367344,
+                    "businessId": 100084,
+                    "tagName": "Plus Size Legging",
+                    "urlType": 1,
+                    "tagUrl": "/collections/womens-plus-size-legging",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367345,
+                    "businessId": 100084,
+                    "tagName": "Butt Legging",
+                    "urlType": 1,
+                    "tagUrl": "/collections/womens-butt-legging",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367346,
+                    "businessId": 100084,
+                    "tagName": "Leather Legging",
+                    "urlType": 1,
+                    "tagUrl": "/collections/womens-leather-legging",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367347,
+                    "businessId": 100084,
+                    "tagName": "Womens Legging",
+                    "urlType": 1,
+                    "tagUrl": "/collections/womens-womens-legging",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367348,
+                    "businessId": 100084,
+                    "tagName": "Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/womens-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367349,
+                    "businessId": 100084,
+                    "tagName": "Plus Size Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/womens-plus-size-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367350,
+                    "businessId": 100084,
+                    "tagName": "White Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/white-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367351,
+                    "businessId": 100084,
+                    "tagName": "Leggings & Shorts",
+                    "urlType": 1,
+                    "tagUrl": "/collections/leggings-shorts",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367352,
+                    "businessId": 100084,
+                    "tagName": "Fleece Lined Leggings",
+                    "urlType": 1,
+                    "tagUrl": "/collections/fleece-lined-leggings",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367353,
+                    "businessId": 100084,
+                    "tagName": "Faux leather legging",
+                    "urlType": 1,
+                    "tagUrl": "/collections/faux-leather-legging",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367354,
+                    "businessId": 100084,
+                    "tagName": "Black Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Black-Jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367355,
+                    "businessId": 100084,
+                    "tagName": "Tummy Control Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Tummy-Control-Jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367356,
+                    "businessId": 100084,
+                    "tagName": "True Religion Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/true-religion-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367357,
+                    "businessId": 100084,
+                    "tagName": "Wrangler Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/wrangler-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367358,
+                    "businessId": 100084,
+                    "tagName": "Good American Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/good-american-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367359,
+                    "businessId": 100084,
+                    "tagName": "Lucky Brand Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/lucky-brand-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367360,
+                    "businessId": 100084,
+                    "tagName": "ag jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/ag-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367361,
+                    "businessId": 100084,
+                    "tagName": "Jeans For Women",
+                    "urlType": 1,
+                    "tagUrl": "/collections/jeans-for-women",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367362,
+                    "businessId": 100084,
+                    "tagName": "Kancan Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/kancan-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367363,
+                    "businessId": 100084,
+                    "tagName": "Shop Jeans on Sale",
+                    "urlType": 1,
+                    "tagUrl": "/collections/shop-jeans-on-sale",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367364,
+                    "businessId": 100084,
+                    "tagName": "7s Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/7s-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367365,
+                    "businessId": 100084,
+                    "tagName": "Agolde Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/agolde-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367366,
+                    "businessId": 100084,
+                    "tagName": "Democracy Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/democracy-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367367,
+                    "businessId": 100084,
+                    "tagName": "Chrome Hearts Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/chrome-hearts-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367368,
+                    "businessId": 100084,
+                    "tagName": "Ed Hardy Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/ed-hardy-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367369,
+                    "businessId": 100084,
+                    "tagName": "RTA Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/rta-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367370,
+                    "businessId": 100084,
+                    "tagName": "Cinch Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/cinch-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367371,
+                    "businessId": 100084,
+                    "tagName": "Denim Tears Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/denim-tears-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367372,
+                    "businessId": 100084,
+                    "tagName": "Evisu Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/evisu-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367373,
+                    "businessId": 100084,
+                    "tagName": "seven jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/seven-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367374,
+                    "businessId": 100084,
+                    "tagName": "Lucky Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/lucky-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367375,
+                    "businessId": 100084,
+                    "tagName": "Maternity Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/maternity-jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367376,
+                    "businessId": 100084,
+                    "tagName": "Butt Lifting Jeans",
+                    "urlType": 1,
+                    "tagUrl": "/collections/Butt-Lifting-Jeans",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367377,
+                    "businessId": 100084,
+                    "tagName": "Halara UltraSculpt™ Heat & Extra Heat",
+                    "urlType": 1,
+                    "tagUrl": "/collections/ultrasculp-heat",
+                    "tagSource": 2
+                },
+                {
+                    "id": 527367378,
+                    "businessId": 100084,
+                    "tagName": "Halara HeatCore Oneform Seamless",
+                    "urlType": 1,
+                    "tagUrl": "/collections/heatcore-seamless",
+                    "tagSource": 2
+                }
+            ]
+        },
+        "data": [
+            {
+                "requestId": "ba7353fd-dc8e-48ce-b2fc-85a551b775fc",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "427361",
+                "title": "Halara UltraSculpt™ High Waisted Anti-Roll Tummy Control Shaping Yoga 7/8 Leggings with Pockets",
+                "searchKey": "halara-ultrasculpt-high-waisted-anti-roll-tummy-control-shaping-yoga-7-8-leggings-with-pockets-10-158",
+                "price": "$39.95",
+                "linePrice": "$49.95",
+                "currency": "USD",
+                "basePrice": "39.95",
+                "baseLinePrice": "49.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$39.95",
+                "spuMaxPrice": "$39.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 2,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2439080,
+                        "label": "Dawn Brown",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/37/10/17/05/23/_6805157127.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$49.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/12/15/11/51/034563553634.jpeg",
+                        "skuList": [
+                            {
+                                "skuId": "5075978",
+                                "shopifySkuId": 5075978
+                            },
+                            {
+                                "skuId": "5075979",
+                                "shopifySkuId": 5075979
+                            },
+                            {
+                                "skuId": "5075980",
+                                "shopifySkuId": 5075980
+                            },
+                            {
+                                "skuId": "5075981",
+                                "shopifySkuId": 5075981
+                            },
+                            {
+                                "skuId": "5075982",
+                                "shopifySkuId": 5075982
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2439081,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$49.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/12/11/10/21/440095535722.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "5075983",
+                                "shopifySkuId": 5075983
+                            },
+                            {
+                                "skuId": "5075984",
+                                "shopifySkuId": 5075984
+                            },
+                            {
+                                "skuId": "5075985",
+                                "shopifySkuId": 5075985
+                            },
+                            {
+                                "skuId": "5075986",
+                                "shopifySkuId": 5075986
+                            },
+                            {
+                                "skuId": "5075987",
+                                "shopifySkuId": 5075987
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "d3966dec-6a96-4162-8748-3d3ba6a6b7ef",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "205128",
+                "title": "Patitoff™ 2.0 Pet Hair Resistant High Waisted Crossover Side Pocket Yoga Leggings",
+                "searchKey": "patitoff®-2-0-pet-hair-resistant-high-waisted-crossover-side-pocket-yoga-leggings",
+                "price": "$39.95",
+                "linePrice": "$44.95",
+                "currency": "USD",
+                "basePrice": "39.95",
+                "baseLinePrice": "44.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$39.95",
+                "spuMaxPrice": "$39.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 8,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 1815419,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/57/10/25/11/24/_5989105571.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "1739125",
+                                "shopifySkuId": 44442207092902
+                            },
+                            {
+                                "skuId": "1739126",
+                                "shopifySkuId": 44442207125670
+                            },
+                            {
+                                "skuId": "1739127",
+                                "shopifySkuId": 44442207158438
+                            },
+                            {
+                                "skuId": "1739128",
+                                "shopifySkuId": 44442207191206
+                            },
+                            {
+                                "skuId": "1739129",
+                                "shopifySkuId": 44442207223974
+                            },
+                            {
+                                "skuId": "1745093",
+                                "shopifySkuId": 44442207256742
+                            },
+                            {
+                                "skuId": "1745094",
+                                "shopifySkuId": 44442207289510
+                            },
+                            {
+                                "skuId": "1745095",
+                                "shopifySkuId": 44442207322278
+                            },
+                            {
+                                "skuId": "1745096",
+                                "shopifySkuId": 44442207355046
+                            },
+                            {
+                                "skuId": "1745097",
+                                "shopifySkuId": 44442207387814
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 1815421,
+                        "label": "Mountain Blue",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/33/16/10/08/23/_1397839897.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/21/23/12/11/24/_0245016512.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "1739135",
+                                "shopifySkuId": 44442208075942
+                            },
+                            {
+                                "skuId": "1739136",
+                                "shopifySkuId": 44442208108710
+                            },
+                            {
+                                "skuId": "1739137",
+                                "shopifySkuId": 44442208141478
+                            },
+                            {
+                                "skuId": "1739138",
+                                "shopifySkuId": 44442208174246
+                            },
+                            {
+                                "skuId": "1739139",
+                                "shopifySkuId": 44442208207014
+                            },
+                            {
+                                "skuId": "1745108",
+                                "shopifySkuId": 44442208239782
+                            },
+                            {
+                                "skuId": "1745109",
+                                "shopifySkuId": 44442208272550
+                            },
+                            {
+                                "skuId": "1745110",
+                                "shopifySkuId": 44442208305318
+                            },
+                            {
+                                "skuId": "1745111",
+                                "shopifySkuId": 44442208338086
+                            },
+                            {
+                                "skuId": "1745112",
+                                "shopifySkuId": 44442208370854
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 1832712,
+                        "label": "Anemone",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/10/769894655209.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/17/23/12/11/24/_3434996556.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "1831685",
+                                "shopifySkuId": 44652291719334
+                            },
+                            {
+                                "skuId": "1831686",
+                                "shopifySkuId": 44652291752102
+                            },
+                            {
+                                "skuId": "1831687",
+                                "shopifySkuId": 44652291784870
+                            },
+                            {
+                                "skuId": "1831688",
+                                "shopifySkuId": 44652291817638
+                            },
+                            {
+                                "skuId": "1831689",
+                                "shopifySkuId": 44652291850406
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 1815420,
+                        "label": "Wild Ginger",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/10/756390674930.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/25/23/12/11/24/_8835511690.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "1739130",
+                                "shopifySkuId": 44442207748262
+                            },
+                            {
+                                "skuId": "1739131",
+                                "shopifySkuId": 44442207781030
+                            },
+                            {
+                                "skuId": "1739132",
+                                "shopifySkuId": 44442207813798
+                            },
+                            {
+                                "skuId": "1739133",
+                                "shopifySkuId": 44442207846566
+                            },
+                            {
+                                "skuId": "1739134",
+                                "shopifySkuId": 44442207879334
+                            },
+                            {
+                                "skuId": "1745103",
+                                "shopifySkuId": 44442207912102
+                            },
+                            {
+                                "skuId": "1745104",
+                                "shopifySkuId": 44442207944870
+                            },
+                            {
+                                "skuId": "1745105",
+                                "shopifySkuId": 44442207977638
+                            },
+                            {
+                                "skuId": "1745106",
+                                "shopifySkuId": 44442208010406
+                            },
+                            {
+                                "skuId": "1745107",
+                                "shopifySkuId": 44442208043174
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 1832710,
+                        "label": "June Bug",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/14/56/274961869134.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/19/23/12/11/24/_0866305386.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "1831675",
+                                "shopifySkuId": 44665793740966
+                            },
+                            {
+                                "skuId": "1831676",
+                                "shopifySkuId": 44665793773734
+                            },
+                            {
+                                "skuId": "1831677",
+                                "shopifySkuId": 44665793806502
+                            },
+                            {
+                                "skuId": "1831678",
+                                "shopifySkuId": 44665793839270
+                            },
+                            {
+                                "skuId": "1831679",
+                                "shopifySkuId": 44665793872038
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 1815649,
+                        "label": "Washington Gray Green",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/08/13/28/09/23/_5635970552.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/24/23/12/11/24/_5918569977.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "1740359",
+                                "shopifySkuId": 44442208403622
+                            },
+                            {
+                                "skuId": "1740360",
+                                "shopifySkuId": 44442208436390
+                            },
+                            {
+                                "skuId": "1740361",
+                                "shopifySkuId": 44442208469158
+                            },
+                            {
+                                "skuId": "1740362",
+                                "shopifySkuId": 44442208501926
+                            },
+                            {
+                                "skuId": "1740363",
+                                "shopifySkuId": 44442208534694
+                            },
+                            {
+                                "skuId": "1745113",
+                                "shopifySkuId": 44442208567462
+                            },
+                            {
+                                "skuId": "1745114",
+                                "shopifySkuId": 44442208600230
+                            },
+                            {
+                                "skuId": "1745115",
+                                "shopifySkuId": 44442208632998
+                            },
+                            {
+                                "skuId": "1745116",
+                                "shopifySkuId": 44442208665766
+                            },
+                            {
+                                "skuId": "1745117",
+                                "shopifySkuId": 44442208698534
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 1832715,
+                        "label": "Smoke Purple Blue",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/24/19/11/12/23/_3753557925.jpg",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/23/23/12/11/24/_9717362133.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "1831700",
+                                "shopifySkuId": 44652291555494
+                            },
+                            {
+                                "skuId": "1831701",
+                                "shopifySkuId": 44652291588262
+                            },
+                            {
+                                "skuId": "1831702",
+                                "shopifySkuId": 44652291621030
+                            },
+                            {
+                                "skuId": "1831703",
+                                "shopifySkuId": 44652291653798
+                            },
+                            {
+                                "skuId": "1831704",
+                                "shopifySkuId": 44652291686566
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 1815650,
+                        "label": "Light Gray Plum Purple",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/08/13/28/09/23/_3471736016.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/20/23/12/11/24/_0085467082.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "1740364",
+                                "shopifySkuId": 44442207420582
+                            },
+                            {
+                                "skuId": "1740365",
+                                "shopifySkuId": 44442207453350
+                            },
+                            {
+                                "skuId": "1740366",
+                                "shopifySkuId": 44442207486118
+                            },
+                            {
+                                "skuId": "1740367",
+                                "shopifySkuId": 44442207518886
+                            },
+                            {
+                                "skuId": "1740368",
+                                "shopifySkuId": 44442207551654
+                            },
+                            {
+                                "skuId": "1745098",
+                                "shopifySkuId": 44442207584422
+                            },
+                            {
+                                "skuId": "1745099",
+                                "shopifySkuId": 44442207617190
+                            },
+                            {
+                                "skuId": "1745100",
+                                "shopifySkuId": 44442207649958
+                            },
+                            {
+                                "skuId": "1745101",
+                                "shopifySkuId": 44442207682726
+                            },
+                            {
+                                "skuId": "1745102",
+                                "shopifySkuId": 44442207715494
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "951294d5-d1c3-4d01-97f9-a66976afd5b5",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "403136",
+                "title": "Halara UltraSculpt™ High Waisted Tummy Control Butt Lifting Shaping Yoga Bootcut Leggings with Pockets",
+                "searchKey": "halara-ultrasculpt-socinched-high-waisted-tummy-control-butt-lifting-shaping-yoga-bootcut-leggings-with-pockets-10-871",
+                "price": "$54.95",
+                "linePrice": "$59.95",
+                "currency": "USD",
+                "basePrice": "54.95",
+                "baseLinePrice": "59.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$54.95",
+                "spuMaxPrice": "$54.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 5,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2369034,
+                        "label": "Dawn Brown",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/37/10/17/05/23/_6805157127.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "spuLinePrice": "$59.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/09/28/16/35/520878327276.jpeg",
+                        "skuList": [
+                            {
+                                "skuId": "4669866",
+                                "shopifySkuId": 4669866
+                            },
+                            {
+                                "skuId": "4669867",
+                                "shopifySkuId": 4669867
+                            },
+                            {
+                                "skuId": "4669868",
+                                "shopifySkuId": 4669868
+                            },
+                            {
+                                "skuId": "4669869",
+                                "shopifySkuId": 4669869
+                            },
+                            {
+                                "skuId": "4669870",
+                                "shopifySkuId": 4669870
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2369035,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "spuLinePrice": "$59.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/10/13/19/07/365439862978.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4669871",
+                                "shopifySkuId": 4669871
+                            },
+                            {
+                                "skuId": "4669872",
+                                "shopifySkuId": 4669872
+                            },
+                            {
+                                "skuId": "4669873",
+                                "shopifySkuId": 4669873
+                            },
+                            {
+                                "skuId": "4669874",
+                                "shopifySkuId": 4669874
+                            },
+                            {
+                                "skuId": "4669875",
+                                "shopifySkuId": 4669875
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2432655,
+                        "label": "Volcanic Ash",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/24/762562731551.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "spuLinePrice": "$59.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/11/19/14/33/570777629455.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "5039678",
+                                "shopifySkuId": 5039678
+                            },
+                            {
+                                "skuId": "5039679",
+                                "shopifySkuId": 5039679
+                            },
+                            {
+                                "skuId": "5039680",
+                                "shopifySkuId": 5039680
+                            },
+                            {
+                                "skuId": "5039681",
+                                "shopifySkuId": 5039681
+                            },
+                            {
+                                "skuId": "5039682",
+                                "shopifySkuId": 5039682
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2427937,
+                        "label": "Mood Indigo",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/14/55/652410628809.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "spuLinePrice": "$59.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/11/19/14/33/043944684773.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "5011117",
+                                "shopifySkuId": 5011117
+                            },
+                            {
+                                "skuId": "5011118",
+                                "shopifySkuId": 5011118
+                            },
+                            {
+                                "skuId": "5011119",
+                                "shopifySkuId": 5011119
+                            },
+                            {
+                                "skuId": "5011120",
+                                "shopifySkuId": 5011120
+                            },
+                            {
+                                "skuId": "5011121",
+                                "shopifySkuId": 5011121
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2432656,
+                        "label": "Deep Woodland Green",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/36/10/20/04/23/_2401674807.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "spuLinePrice": "$59.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/12/30/13/41/284737307844.jpeg",
+                        "skuList": [
+                            {
+                                "skuId": "5039683",
+                                "shopifySkuId": 5039683
+                            },
+                            {
+                                "skuId": "5039684",
+                                "shopifySkuId": 5039684
+                            },
+                            {
+                                "skuId": "5039685",
+                                "shopifySkuId": 5039685
+                            },
+                            {
+                                "skuId": "5039686",
+                                "shopifySkuId": 5039686
+                            },
+                            {
+                                "skuId": "5039687",
+                                "shopifySkuId": 5039687
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "f90df9bb-12ad-4410-a161-f227bc0b6768",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "412568",
+                "title": "Halara UltraSculpt™ Extra Heat High Waisted Tummy Control Yoga Bootcut Leggings with Pockets",
+                "searchKey": "halara-ultrasculpt-fleece-high-waisted-tummy-control-yoga-bootcut-leggings-with-pockets-10-906",
+                "price": "$49.95",
+                "linePrice": "$69.95",
+                "currency": "USD",
+                "basePrice": "49.95",
+                "baseLinePrice": "69.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$49.95",
+                "spuMaxPrice": "$49.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 2,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2396188,
+                        "label": "Grass Grey Green",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/47/15/06/02/23/_9056918168.png",
+                        "skcColorRgb": "",
+                        "price": "$49.95",
+                        "spuLinePrice": "$69.95",
+                        "skcMinPrice": "$49.95",
+                        "skcDefaultPrice": "$49.95",
+                        "skcDefaultLinePrice": "$49.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/11/10/14/41/155337229828.jpeg",
+                        "skuList": [
+                            {
+                                "skuId": "4826163",
+                                "shopifySkuId": 4826163
+                            },
+                            {
+                                "skuId": "4826164",
+                                "shopifySkuId": 4826164
+                            },
+                            {
+                                "skuId": "4826165",
+                                "shopifySkuId": 4826165
+                            },
+                            {
+                                "skuId": "4826166",
+                                "shopifySkuId": 4826166
+                            },
+                            {
+                                "skuId": "4826167",
+                                "shopifySkuId": 4826167
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2396189,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$49.95",
+                        "spuLinePrice": "$69.95",
+                        "skcMinPrice": "$49.95",
+                        "skcDefaultPrice": "$49.95",
+                        "skcDefaultLinePrice": "$49.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/10/30/13/57/443755012199.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4826168",
+                                "shopifySkuId": 4826168
+                            },
+                            {
+                                "skuId": "4826169",
+                                "shopifySkuId": 4826169
+                            },
+                            {
+                                "skuId": "4826170",
+                                "shopifySkuId": 4826170
+                            },
+                            {
+                                "skuId": "4826171",
+                                "shopifySkuId": 4826171
+                            },
+                            {
+                                "skuId": "4826172",
+                                "shopifySkuId": 4826172
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "9579cb5a-c0cc-4f12-8d63-2fd9107aad8d",
+                "spuCoverList": [],
+                "resType": 1,
+                "id": "417421",
+                "title": "Halara UltraSculpt™ Extra Heat High Waisted Scrunch Butt Lifting Tummy Control Yoga Leggings with Pockets",
+                "searchKey": "halara-ultrasculpt-extra-heat-high-waisted-scrunch-butt-lifting-tummy-control-yoga-leggings-with-pockets-10-890",
+                "price": "$44.95",
+                "linePrice": "$59.95",
+                "currency": "USD",
+                "basePrice": "44.95",
+                "baseLinePrice": "59.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$44.95",
+                "spuMaxPrice": "$44.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 2,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": ""
+                        },
+                        "skcId": 2409048,
+                        "label": "Grass Grey Green",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/47/15/06/02/23/_9056918168.png",
+                        "skcColorRgb": "",
+                        "price": "$44.95",
+                        "spuLinePrice": "$59.95",
+                        "skcMinPrice": "$44.95",
+                        "skcDefaultPrice": "$44.95",
+                        "skcDefaultLinePrice": "$44.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/11/10/14/45/755605671287.jpeg",
+                        "skuList": [
+                            {
+                                "skuId": "4896368",
+                                "shopifySkuId": 4896368
+                            },
+                            {
+                                "skuId": "4896369",
+                                "shopifySkuId": 4896369
+                            },
+                            {
+                                "skuId": "4896370",
+                                "shopifySkuId": 4896370
+                            },
+                            {
+                                "skuId": "4896371",
+                                "shopifySkuId": 4896371
+                            },
+                            {
+                                "skuId": "4896372",
+                                "shopifySkuId": 4896372
+                            },
+                            {
+                                "skuId": "5226178",
+                                "shopifySkuId": 5226178
+                            },
+                            {
+                                "skuId": "5226179",
+                                "shopifySkuId": 5226179
+                            },
+                            {
+                                "skuId": "5226180",
+                                "shopifySkuId": 5226180
+                            },
+                            {
+                                "skuId": "5226181",
+                                "shopifySkuId": 5226181
+                            },
+                            {
+                                "skuId": "5226182",
+                                "shopifySkuId": 5226182
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": ""
+                        },
+                        "skcId": 2409049,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$44.95",
+                        "spuLinePrice": "$59.95",
+                        "skcMinPrice": "$44.95",
+                        "skcDefaultPrice": "$44.95",
+                        "skcDefaultLinePrice": "$44.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/11/06/19/16/372552339132.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4896373",
+                                "shopifySkuId": 4896373
+                            },
+                            {
+                                "skuId": "4896374",
+                                "shopifySkuId": 4896374
+                            },
+                            {
+                                "skuId": "4896375",
+                                "shopifySkuId": 4896375
+                            },
+                            {
+                                "skuId": "4896376",
+                                "shopifySkuId": 4896376
+                            },
+                            {
+                                "skuId": "4896377",
+                                "shopifySkuId": 4896377
+                            },
+                            {
+                                "skuId": "5220450",
+                                "shopifySkuId": 5220450
+                            },
+                            {
+                                "skuId": "5220451",
+                                "shopifySkuId": 5220451
+                            },
+                            {
+                                "skuId": "5220452",
+                                "shopifySkuId": 5220452
+                            },
+                            {
+                                "skuId": "5220453",
+                                "shopifySkuId": 5220453
+                            },
+                            {
+                                "skuId": "5220454",
+                                "shopifySkuId": 5220454
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "f8260143-ced6-4e9d-95c8-cb07d20c8b1c",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "314014",
+                "title": "SoftlyZero™ High Waisted Crossover Pocket Contrast Lace 7/8 Yoga Leggings-UPF50+",
+                "searchKey": "Softlyzero-High-Waisted-Crossover-Side-Pocket-Contrast-Lace-78-Yoga-Leggings-UPF50-10-685",
+                "price": "$39.95",
+                "currency": "USD",
+                "basePrice": "39.95",
+                "baseLinePrice": "39.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$39.95",
+                "spuMaxPrice": "$39.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 4,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2133203,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/09/05/17/48/047532773223.png",
+                        "skuList": [
+                            {
+                                "skuId": "3355284",
+                                "shopifySkuId": 3355284
+                            },
+                            {
+                                "skuId": "3355285",
+                                "shopifySkuId": 3355285
+                            },
+                            {
+                                "skuId": "3355286",
+                                "shopifySkuId": 3355286
+                            },
+                            {
+                                "skuId": "3355287",
+                                "shopifySkuId": 3355287
+                            },
+                            {
+                                "skuId": "3355288",
+                                "shopifySkuId": 3355288
+                            },
+                            {
+                                "skuId": "3763533",
+                                "shopifySkuId": 3763533
+                            },
+                            {
+                                "skuId": "3763534",
+                                "shopifySkuId": 3763534
+                            },
+                            {
+                                "skuId": "3763535",
+                                "shopifySkuId": 3763535
+                            },
+                            {
+                                "skuId": "3763536",
+                                "shopifySkuId": 3763536
+                            },
+                            {
+                                "skuId": "3763537",
+                                "shopifySkuId": 3763537
+                            },
+                            {
+                                "skuId": "4018091",
+                                "shopifySkuId": 0
+                            },
+                            {
+                                "skuId": "4018092",
+                                "shopifySkuId": 0
+                            },
+                            {
+                                "skuId": "4018093",
+                                "shopifySkuId": 0
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2133204,
+                        "label": "Peacoat",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/28/982410809426.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/2/18/11/0/271908232493.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "3355289",
+                                "shopifySkuId": 3355289
+                            },
+                            {
+                                "skuId": "3355290",
+                                "shopifySkuId": 3355290
+                            },
+                            {
+                                "skuId": "3355291",
+                                "shopifySkuId": 3355291
+                            },
+                            {
+                                "skuId": "3355292",
+                                "shopifySkuId": 3355292
+                            },
+                            {
+                                "skuId": "3355293",
+                                "shopifySkuId": 3355293
+                            },
+                            {
+                                "skuId": "3763538",
+                                "shopifySkuId": 3763538
+                            },
+                            {
+                                "skuId": "3763539",
+                                "shopifySkuId": 3763539
+                            },
+                            {
+                                "skuId": "3763540",
+                                "shopifySkuId": 3763540
+                            },
+                            {
+                                "skuId": "3763541",
+                                "shopifySkuId": 3763541
+                            },
+                            {
+                                "skuId": "3763542",
+                                "shopifySkuId": 3763542
+                            },
+                            {
+                                "skuId": "4018091",
+                                "shopifySkuId": 0
+                            },
+                            {
+                                "skuId": "4018092",
+                                "shopifySkuId": 0
+                            },
+                            {
+                                "skuId": "4018093",
+                                "shopifySkuId": 0
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2212012,
+                        "label": "White",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/54/20/26/07/22/_1874959519.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/3/19/18/58/553827125697.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "3780957",
+                                "shopifySkuId": 3780957
+                            },
+                            {
+                                "skuId": "3780958",
+                                "shopifySkuId": 3780958
+                            },
+                            {
+                                "skuId": "3780959",
+                                "shopifySkuId": 3780959
+                            },
+                            {
+                                "skuId": "3780960",
+                                "shopifySkuId": 3780960
+                            },
+                            {
+                                "skuId": "3780961",
+                                "shopifySkuId": 3780961
+                            },
+                            {
+                                "skuId": "4018091",
+                                "shopifySkuId": 0
+                            },
+                            {
+                                "skuId": "4018092",
+                                "shopifySkuId": 0
+                            },
+                            {
+                                "skuId": "4018093",
+                                "shopifySkuId": 0
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2242085,
+                        "label": "Dusky Evening purple",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/16/15/10/03/23/_0732116987.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/6/16/18/36/055229630609.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "3942586",
+                                "shopifySkuId": 3942586
+                            },
+                            {
+                                "skuId": "3942587",
+                                "shopifySkuId": 3942587
+                            },
+                            {
+                                "skuId": "3942588",
+                                "shopifySkuId": 3942588
+                            },
+                            {
+                                "skuId": "3942589",
+                                "shopifySkuId": 3942589
+                            },
+                            {
+                                "skuId": "3942590",
+                                "shopifySkuId": 3942590
+                            },
+                            {
+                                "skuId": "4018091",
+                                "shopifySkuId": 0
+                            },
+                            {
+                                "skuId": "4018092",
+                                "shopifySkuId": 0
+                            },
+                            {
+                                "skuId": "4018093",
+                                "shopifySkuId": 0
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "a62ec03d-e980-46d6-b15d-fb38e7c2cf1a",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "389748",
+                "title": "Halara Ultrasculpt™ Heat High Waisted Tummy Control Fleece Yoga Leggings with Pockets",
+                "searchKey": "socinched-high-waisted-tummy-control-fleece-yoga-leggings-with-pockets-10-310",
+                "price": "$44.95",
+                "linePrice": "$54.95",
+                "currency": "USD",
+                "basePrice": "44.95",
+                "baseLinePrice": "54.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$44.95",
+                "spuMaxPrice": "$44.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 2,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2335392,
+                        "label": "Walnut",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/26/271579205432.png",
+                        "skcColorRgb": "",
+                        "price": "$44.95",
+                        "spuLinePrice": "$54.95",
+                        "skcMinPrice": "$44.95",
+                        "skcDefaultPrice": "$44.95",
+                        "skcDefaultLinePrice": "$44.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/10/30/18/52/573196800286.jpeg",
+                        "skuList": [
+                            {
+                                "skuId": "4472864",
+                                "shopifySkuId": 4472864
+                            },
+                            {
+                                "skuId": "4472865",
+                                "shopifySkuId": 4472865
+                            },
+                            {
+                                "skuId": "4472866",
+                                "shopifySkuId": 4472866
+                            },
+                            {
+                                "skuId": "4472867",
+                                "shopifySkuId": 4472867
+                            },
+                            {
+                                "skuId": "4472868",
+                                "shopifySkuId": 4472868
+                            },
+                            {
+                                "skuId": "5222842",
+                                "shopifySkuId": 5222842
+                            },
+                            {
+                                "skuId": "5222843",
+                                "shopifySkuId": 5222843
+                            },
+                            {
+                                "skuId": "5222844",
+                                "shopifySkuId": 5222844
+                            },
+                            {
+                                "skuId": "5222845",
+                                "shopifySkuId": 5222845
+                            },
+                            {
+                                "skuId": "5222846",
+                                "shopifySkuId": 5222846
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2, Get 1 Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2335391,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$44.95",
+                        "spuLinePrice": "$54.95",
+                        "skcMinPrice": "$44.95",
+                        "skcDefaultPrice": "$44.95",
+                        "skcDefaultLinePrice": "$44.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/09/29/11/06/240862356045.jpeg",
+                        "skuList": [
+                            {
+                                "skuId": "4472859",
+                                "shopifySkuId": 4472859
+                            },
+                            {
+                                "skuId": "4472860",
+                                "shopifySkuId": 4472860
+                            },
+                            {
+                                "skuId": "4472861",
+                                "shopifySkuId": 4472861
+                            },
+                            {
+                                "skuId": "4472862",
+                                "shopifySkuId": 4472862
+                            },
+                            {
+                                "skuId": "4472863",
+                                "shopifySkuId": 4472863
+                            },
+                            {
+                                "skuId": "5222847",
+                                "shopifySkuId": 5222847
+                            },
+                            {
+                                "skuId": "5222848",
+                                "shopifySkuId": 5222848
+                            },
+                            {
+                                "skuId": "5222849",
+                                "shopifySkuId": 5222849
+                            },
+                            {
+                                "skuId": "5222850",
+                                "shopifySkuId": 5222850
+                            },
+                            {
+                                "skuId": "5222851",
+                                "shopifySkuId": 5222851
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "dc633896-36d0-4500-826a-a1e6e45c1166",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "363596",
+                "title": "Halara UltraSculpt™ High Waisted Tummy Control Butt Lifting Scrunch Shaping Yoga Bootcut Leggings with Pockets",
+                "searchKey": "HalaraUltraSculptSoCinchedHighWaistedTummyControlButtLiftingScrunchShapingYogaBootcutLeggingswithPockets-10-736",
+                "price": "$54.95",
+                "currency": "USD",
+                "basePrice": "54.95",
+                "baseLinePrice": "54.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$54.95",
+                "spuMaxPrice": "$54.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 5,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2273457,
+                        "label": "Carbon",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/13/230570170177.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/7/28/17/0/352539733909.png",
+                        "skuList": [
+                            {
+                                "skuId": "4122895",
+                                "shopifySkuId": 4122895
+                            },
+                            {
+                                "skuId": "4122896",
+                                "shopifySkuId": 4122896
+                            },
+                            {
+                                "skuId": "4122897",
+                                "shopifySkuId": 4122897
+                            },
+                            {
+                                "skuId": "4122898",
+                                "shopifySkuId": 4122898
+                            },
+                            {
+                                "skuId": "4122899",
+                                "shopifySkuId": 4122899
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2476050,
+                        "label": "Aura Orange",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/14/56/661559086112.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2026/01/14/10/29/319935784638.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "5281823",
+                                "shopifySkuId": 5281823
+                            },
+                            {
+                                "skuId": "5281824",
+                                "shopifySkuId": 5281824
+                            },
+                            {
+                                "skuId": "5281825",
+                                "shopifySkuId": 5281825
+                            },
+                            {
+                                "skuId": "5281826",
+                                "shopifySkuId": 5281826
+                            },
+                            {
+                                "skuId": "5281827",
+                                "shopifySkuId": 5281827
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2461662,
+                        "label": "Volcanic Ash",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/24/762562731551.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/12/15/15/03/918704701506.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "5200742",
+                                "shopifySkuId": 5200742
+                            },
+                            {
+                                "skuId": "5200743",
+                                "shopifySkuId": 5200743
+                            },
+                            {
+                                "skuId": "5200744",
+                                "shopifySkuId": 5200744
+                            },
+                            {
+                                "skuId": "5200745",
+                                "shopifySkuId": 5200745
+                            },
+                            {
+                                "skuId": "5200746",
+                                "shopifySkuId": 5200746
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2453091,
+                        "label": "Night's Purple",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/24/16/08/09/23/_5792244821.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/12/11/14/47/430406042909.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "5152466",
+                                "shopifySkuId": 5152466
+                            },
+                            {
+                                "skuId": "5152467",
+                                "shopifySkuId": 5152467
+                            },
+                            {
+                                "skuId": "5152468",
+                                "shopifySkuId": 5152468
+                            },
+                            {
+                                "skuId": "5152469",
+                                "shopifySkuId": 5152469
+                            },
+                            {
+                                "skuId": "5152470",
+                                "shopifySkuId": 5152470
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2273458,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$54.95",
+                        "skcMinPrice": "$54.95",
+                        "skcDefaultPrice": "$54.95",
+                        "skcDefaultLinePrice": "$54.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/7/25/19/4/556716305288.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4122900",
+                                "shopifySkuId": 4122900
+                            },
+                            {
+                                "skuId": "4122901",
+                                "shopifySkuId": 4122901
+                            },
+                            {
+                                "skuId": "4122902",
+                                "shopifySkuId": 4122902
+                            },
+                            {
+                                "skuId": "4122903",
+                                "shopifySkuId": 4122903
+                            },
+                            {
+                                "skuId": "4122904",
+                                "shopifySkuId": 4122904
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "111514ce-3910-4023-9aa4-1a4e64db10e8",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "373987",
+                "title": "Halara UltraSculpt™ Super High Waisted Tummy Control Fishbone Shaping Training Leggings with Pockets",
+                "searchKey": "HalaraUltraSculptSoCinchedSuperHighWaistedTummyControlFishboneShapingTrainingLeggingswithPockets-10-835",
+                "price": "$39.95",
+                "linePrice": "$44.95",
+                "currency": "USD",
+                "basePrice": "39.95",
+                "baseLinePrice": "44.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$39.95",
+                "spuMaxPrice": "$39.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 8,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2298562,
+                        "label": "Dawn Brown",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/37/10/17/05/23/_6805157127.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/08/19/16/23/372882415455.png",
+                        "skuList": [
+                            {
+                                "skuId": "4263574",
+                                "shopifySkuId": 4263574
+                            },
+                            {
+                                "skuId": "4263575",
+                                "shopifySkuId": 4263575
+                            },
+                            {
+                                "skuId": "4263576",
+                                "shopifySkuId": 4263576
+                            },
+                            {
+                                "skuId": "4263577",
+                                "shopifySkuId": 4263577
+                            },
+                            {
+                                "skuId": "4263578",
+                                "shopifySkuId": 4263578
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2298561,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/08/14/19/02/074884044583.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4263569",
+                                "shopifySkuId": 4263569
+                            },
+                            {
+                                "skuId": "4263570",
+                                "shopifySkuId": 4263570
+                            },
+                            {
+                                "skuId": "4263571",
+                                "shopifySkuId": 4263571
+                            },
+                            {
+                                "skuId": "4263572",
+                                "shopifySkuId": 4263572
+                            },
+                            {
+                                "skuId": "4263573",
+                                "shopifySkuId": 4263573
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2370875,
+                        "label": "Hazelnut Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/50/18/16/08/24/_6471862046.jpg",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/10/09/15/49/679700182669.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4680196",
+                                "shopifySkuId": 4680196
+                            },
+                            {
+                                "skuId": "4680197",
+                                "shopifySkuId": 4680197
+                            },
+                            {
+                                "skuId": "4680198",
+                                "shopifySkuId": 4680198
+                            },
+                            {
+                                "skuId": "4680199",
+                                "shopifySkuId": 4680199
+                            },
+                            {
+                                "skuId": "4680200",
+                                "shopifySkuId": 4680200
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2365552,
+                        "label": "Volcanic Ash",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/24/762562731551.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/10/09/15/53/295421224376.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4647679",
+                                "shopifySkuId": 4647679
+                            },
+                            {
+                                "skuId": "4647680",
+                                "shopifySkuId": 4647680
+                            },
+                            {
+                                "skuId": "4647681",
+                                "shopifySkuId": 4647681
+                            },
+                            {
+                                "skuId": "4647682",
+                                "shopifySkuId": 4647682
+                            },
+                            {
+                                "skuId": "4647683",
+                                "shopifySkuId": 4647683
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2365553,
+                        "label": "Mood Indigo",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/14/55/652410628809.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/09/17/18/54/822990160662.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4647684",
+                                "shopifySkuId": 4647684
+                            },
+                            {
+                                "skuId": "4647685",
+                                "shopifySkuId": 4647685
+                            },
+                            {
+                                "skuId": "4647686",
+                                "shopifySkuId": 4647686
+                            },
+                            {
+                                "skuId": "4647687",
+                                "shopifySkuId": 4647687
+                            },
+                            {
+                                "skuId": "4647688",
+                                "shopifySkuId": 4647688
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2371357,
+                        "label": "Night's Purple",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/24/16/08/09/23/_5792244821.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/10/09/15/47/534858340055.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4682575",
+                                "shopifySkuId": 4682575
+                            },
+                            {
+                                "skuId": "4682576",
+                                "shopifySkuId": 4682576
+                            },
+                            {
+                                "skuId": "4682577",
+                                "shopifySkuId": 4682577
+                            },
+                            {
+                                "skuId": "4682578",
+                                "shopifySkuId": 4682578
+                            },
+                            {
+                                "skuId": "4682579",
+                                "shopifySkuId": 4682579
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2394738,
+                        "label": "Aura Orange",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/14/56/661559086112.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/10/09/15/47/523226474340.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4818070",
+                                "shopifySkuId": 4818070
+                            },
+                            {
+                                "skuId": "4818071",
+                                "shopifySkuId": 4818071
+                            },
+                            {
+                                "skuId": "4818072",
+                                "shopifySkuId": 4818072
+                            },
+                            {
+                                "skuId": "4818073",
+                                "shopifySkuId": 4818073
+                            },
+                            {
+                                "skuId": "4818074",
+                                "shopifySkuId": 4818074
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 3 Get 4th Free",
+                            "activityType": 7
+                        },
+                        "skcId": 2365268,
+                        "label": "Deep Woodland Green",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/36/10/20/04/23/_2401674807.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/12/30/11/44/108902016574.jpeg",
+                        "skuList": [
+                            {
+                                "skuId": "4645786",
+                                "shopifySkuId": 4645786
+                            },
+                            {
+                                "skuId": "4645787",
+                                "shopifySkuId": 4645787
+                            },
+                            {
+                                "skuId": "4645788",
+                                "shopifySkuId": 4645788
+                            },
+                            {
+                                "skuId": "4645789",
+                                "shopifySkuId": 4645789
+                            },
+                            {
+                                "skuId": "4645790",
+                                "shopifySkuId": 4645790
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "e2976c05-eba8-4354-aa2b-84f17b41a1e9",
+                "spuCoverList": [],
+                "resType": 1,
+                "id": "206108",
+                "title": "Halara UltraSculpt™ High Waisted Crossover Tummy Control Butt Lifting Pocket Yoga 7/8 Leggings",
+                "searchKey": "ultrasculpt™-high-waisted-crossover-butt-lifting-side-pocket-yoga-7-8-leggings",
+                "price": "$49.95",
+                "currency": "USD",
+                "basePrice": "49.95",
+                "baseLinePrice": "49.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$24.95",
+                "spuMaxPrice": "$49.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 3,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": ""
+                        },
+                        "skcId": 2158768,
+                        "label": "Carbon",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/13/230570170177.png",
+                        "skcColorRgb": "",
+                        "price": "$49.95",
+                        "skcMinPrice": "$49.95",
+                        "skcDefaultPrice": "$49.95",
+                        "skcDefaultLinePrice": "$49.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/5/27/16/57/889731485356.png",
+                        "skuList": [
+                            {
+                                "skuId": "3486745",
+                                "shopifySkuId": 3486745
+                            },
+                            {
+                                "skuId": "3486746",
+                                "shopifySkuId": 3486746
+                            },
+                            {
+                                "skuId": "3486747",
+                                "shopifySkuId": 3486747
+                            },
+                            {
+                                "skuId": "3486748",
+                                "shopifySkuId": 3486748
+                            },
+                            {
+                                "skuId": "3486749",
+                                "shopifySkuId": 3486749
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": ""
+                        },
+                        "skcId": 1817957,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$49.95",
+                        "skcMinPrice": "$49.95",
+                        "skcDefaultPrice": "$49.95",
+                        "skcDefaultLinePrice": "$49.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/26/11/27/12/24/_1362271378.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "1752582",
+                                "shopifySkuId": 44517492981926
+                            },
+                            {
+                                "skuId": "1752583",
+                                "shopifySkuId": 44517493014694
+                            },
+                            {
+                                "skuId": "1752584",
+                                "shopifySkuId": 44517493047462
+                            },
+                            {
+                                "skuId": "1752585",
+                                "shopifySkuId": 44517493080230
+                            },
+                            {
+                                "skuId": "1752586",
+                                "shopifySkuId": 44517493112998
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Limited-Time Sale"
+                        },
+                        "skcId": 2158769,
+                        "label": "Dawn Brown",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/37/10/17/05/23/_6805157127.png",
+                        "skcColorRgb": "",
+                        "price": "$24.95",
+                        "spuLinePrice": "$49.95",
+                        "skcMinPrice": "$24.95",
+                        "skcDefaultPrice": "$24.95",
+                        "skcDefaultLinePrice": "$24.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/3/24/10/28/280945072869.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "3486750",
+                                "shopifySkuId": 3486750
+                            },
+                            {
+                                "skuId": "3486751",
+                                "shopifySkuId": 3486751
+                            },
+                            {
+                                "skuId": "3486752",
+                                "shopifySkuId": 3486752
+                            },
+                            {
+                                "skuId": "3486753",
+                                "shopifySkuId": 3486753
+                            },
+                            {
+                                "skuId": "3486754",
+                                "shopifySkuId": 3486754
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "c68bbb63-ba65-45d2-8d45-29cc59fa2658",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "372763",
+                "title": "Halara UltraSculpt™ High Waisted Tummy Control Scrunch Shaping Yoga Leggings with Pockets",
+                "searchKey": "HalaraUltraSculptSoCinchedHighWaistedTummyControlScrunchShapingYogaLeggingswithPockets-10-820",
+                "price": "$39.95",
+                "currency": "USD",
+                "basePrice": "39.95",
+                "baseLinePrice": "39.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$39.95",
+                "spuMaxPrice": "$39.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 2,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 2295205,
+                        "label": "Carbon",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/13/230570170177.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/08/15/16/19/088905770007.png",
+                        "skuList": [
+                            {
+                                "skuId": "4246083",
+                                "shopifySkuId": 4246083
+                            },
+                            {
+                                "skuId": "4246084",
+                                "shopifySkuId": 4246084
+                            },
+                            {
+                                "skuId": "4246085",
+                                "shopifySkuId": 4246085
+                            },
+                            {
+                                "skuId": "4246086",
+                                "shopifySkuId": 4246086
+                            },
+                            {
+                                "skuId": "4246087",
+                                "shopifySkuId": 4246087
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Buy 2 For $59, 4 For $118",
+                            "activityType": 20
+                        },
+                        "skcId": 2295206,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/08/14/18/31/628799615055.jpg",
+                        "skuList": [
+                            {
+                                "skuId": "4246088",
+                                "shopifySkuId": 4246088
+                            },
+                            {
+                                "skuId": "4246089",
+                                "shopifySkuId": 4246089
+                            },
+                            {
+                                "skuId": "4246090",
+                                "shopifySkuId": 4246090
+                            },
+                            {
+                                "skuId": "4246091",
+                                "shopifySkuId": 4246091
+                            },
+                            {
+                                "skuId": "4246092",
+                                "shopifySkuId": 4246092
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            },
+            {
+                "requestId": "abc2b6c8-d158-4777-8665-34de8323d5ae",
+                "spuCoverConfig": {
+                    "backgroundColor": "#FFFFFF",
+                    "fontColor": "#B40A0A",
+                    "title": "SALE",
+                    "bellyBandCopy": "",
+                    "bellyBandBackColor": ""
+                },
+                "spuCoverList": [
+                    {
+                        "backgroundColor": "#FDFDFD",
+                        "fontColor": "#CF0D09",
+                        "txt": "Sale"
+                    }
+                ],
+                "resType": 1,
+                "id": "358643",
+                "title": "Halara UltraSculpt™ High Waisted Tummy Control Butt Lifting Shaping Yoga Flare Leggings",
+                "searchKey": "HalaraUltraSculptSoCinchedHighWaistedTummyControlButtLiftingShapingYogaFlareLeggings-10-712",
+                "price": "$39.95",
+                "linePrice": "$44.95",
+                "currency": "USD",
+                "basePrice": "39.95",
+                "baseLinePrice": "44.95",
+                "basePriceUnit": "$",
+                "baseCurrency": "USD",
+                "spuMinPrice": "$39.95",
+                "spuMaxPrice": "$39.95",
+                "source": "",
+                "listId": "9e79d2e5-35bc-4054-a388-784aa8060f27",
+                "resourceImg": "",
+                "resourceUrl": "",
+                "skcTotal": 2,
+                "isSkcMode": false,
+                "colors": [
+                    {
+                        "activity": {
+                            "activityLabel": "Mix & Match: 3 For $99",
+                            "activityType": 20
+                        },
+                        "skcId": 2261078,
+                        "label": "Black",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/31/10/16/03/23/_1164946498.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/7/21/19/24/996515430844.png",
+                        "skuList": [
+                            {
+                                "skuId": "4048776",
+                                "shopifySkuId": 4048776
+                            },
+                            {
+                                "skuId": "4048777",
+                                "shopifySkuId": 4048777
+                            },
+                            {
+                                "skuId": "4048778",
+                                "shopifySkuId": 4048778
+                            },
+                            {
+                                "skuId": "4048779",
+                                "shopifySkuId": 4048779
+                            },
+                            {
+                                "skuId": "4048780",
+                                "shopifySkuId": 4048780
+                            }
+                        ]
+                    },
+                    {
+                        "activity": {
+                            "activityLabel": "Mix & Match: 3 For $99",
+                            "activityType": 20
+                        },
+                        "skcId": 2261079,
+                        "label": "Volcanic Ash",
+                        "skcUrl": "https://mpi.halaracdn.com/upload/online/pu/2024/12/30/15/24/762562731551.png",
+                        "skcColorRgb": "",
+                        "price": "$39.95",
+                        "spuLinePrice": "$44.95",
+                        "skcMinPrice": "$39.95",
+                        "skcDefaultPrice": "$39.95",
+                        "skcDefaultLinePrice": "$39.95",
+                        "skcImageUrl": "https://mpi.halaracdn.com/upload/online/pu/2025/7/9/17/45/262235530547.png",
+                        "skuList": [
+                            {
+                                "skuId": "4048781",
+                                "shopifySkuId": 4048781
+                            },
+                            {
+                                "skuId": "4048782",
+                                "shopifySkuId": 4048782
+                            },
+                            {
+                                "skuId": "4048783",
+                                "shopifySkuId": 4048783
+                            },
+                            {
+                                "skuId": "4048784",
+                                "shopifySkuId": 4048784
+                            },
+                            {
+                                "skuId": "4048785",
+                                "shopifySkuId": 4048785
+                            }
+                        ]
+                    }
+                ],
+                "skcMode": false
+            }
+        ],
+        "abTest": {},
+        "singleShowCaseList": [],
+        "tagHandleList": [
+            {
+                "img": "https://mpi.halaracdn.com/upload/online/pu/2025/09/11/15/16/889947166610.jpg?width=2800&height=2800",
+                "tagHandle": "ultraSculpt-leggings",
+                "title": "UltraSculpt™ Leggings",
+                "subTitle": " Contour-sculpting leggings. "
+            },
+            {
+                "img": "https://mpi.halaracdn.com/upload/online/pu/2025/08/22/15/55/472131791914.jpg?width=2800&height=2800",
+                "tagHandle": "high-waisted-leggings",
+                "title": "High Waisted Leggings",
+                "subTitle": "Leggings with secure coverage"
+            },
+            {
+                "img": "https://mpi.halaracdn.com/upload/online/pu/2025/08/22/15/55/060937506855.jpg?width=2800&height=2800",
+                "tagHandle": "side-pocket-leggings",
+                "title": "Pocket Leggings",
+                "subTitle": "Leggings with storage for essentials"
+            },
+            {
+                "img": "https://mpi.halaracdn.com/upload/online/29/16/05/12/24/_3953160649.jpg?width=1500&height=1500",
+                "tagHandle": "butt-lifting-leggings",
+                "title": "Butt Lifting Leggings",
+                "subTitle": "Sculpting fit, ultimate support."
+            },
+            {
+                "img": "https://mpi.halaracdn.com/upload/online/pu/2025/08/22/15/57/556318191205.jpg?width=2800&height=2800",
+                "tagHandle": "Tummy-Control-Leggings",
+                "title": "Tummy Control Leggings",
+                "subTitle": "Confidence-enhancing leggings"
+            },
+            {
+                "img": "https://mpi.halaracdn.com/upload/online/pu/2026/01/15/15/03/133473428232.png?width=1624&height=1624",
+                "tagHandle": "Women-seamless-leggings",
+                "title": "Seamless Flow Leggings",
+                "subTitle": "Leggings with a seamless fit. "
+            },
+            {
+                "img": "https://mpi.halaracdn.com/upload/online/pu/2025/08/22/15/53/342238255364.jpg?width=2800&height=2800",
+                "tagHandle": "crossover-leggings-1",
+                "title": "Crossover Leggings",
+                "subTitle": "Waist-defining leggings"
+            },
+            {
+                "img": "https://mpi.halaracdn.com/upload/online/pu/2026/01/15/15/04/460083774186.png?width=1624&height=1624",
+                "tagHandle": "flare-leggings",
+                "title": "Flare Leggings",
+                "subTitle": "Retro-inspired leggings"
+            },
+            {
+                "img": "https://mpi.halaracdn.com/upload/online/55/18/16/10/24/_3186731635.jpg?width=1500&height=1500",
+                "tagHandle": "softlyzero-leggings",
+                "title": "Softlyzero™ Leggings",
+                "subTitle": "Ultra soft and light leggings."
+            }
+        ],
+        "collectionNavigationList": [
+            {
+                "resourceUrl": "/collections/flare-leggings",
+                "resourceImg": "https://mpi.halaracdn.com/upload/online/40/11/15/09/22/_6415358126.jpg?width=300&height=220",
+                "isSelected": 0,
+                "title": "Flare",
+                "resourceUrlType": 1,
+                "spuId": ""
+            },
+            {
+                "resourceUrl": "/collections/crossover-leggings-1",
+                "resourceImg": "https://mpi.halaracdn.com/upload/online/40/11/15/09/22/_4415138471.jpg?width=300&height=220",
+                "isSelected": 0,
+                "title": "Crossover",
+                "resourceUrlType": 1,
+                "spuId": ""
+            },
+            {
+                "resourceUrl": "/collections/butt-lifting-leggings",
+                "resourceImg": "https://mpi.halaracdn.com/upload/online/41/11/15/09/22/_7229438197.jpg?width=300&height=220",
+                "isSelected": 0,
+                "title": "Butt Lifting",
+                "resourceUrlType": 1,
+                "spuId": ""
+            },
+            {
+                "resourceUrl": "/collections/side-pocket-leggings",
+                "resourceImg": "https://mpi.halaracdn.com/upload/online/42/11/15/09/22/_6872785128.jpg?width=300&height=220",
+                "isSelected": 0,
+                "title": "Pockets",
+                "resourceUrlType": 1,
+                "spuId": ""
+            },
+            {
+                "resourceUrl": "/collections/softlyzero-leggings",
+                "resourceImg": "https://mpi.halaracdn.com/upload/online/09/19/18/09/24/_4514963989.jpg?width=1500&height=1500",
+                "isSelected": 0,
+                "title": "Softlyzero™ Leggings",
+                "resourceUrlType": 1,
+                "spuId": ""
+            }
+        ]
+    }
+}
