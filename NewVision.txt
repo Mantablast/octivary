@@ -1,0 +1,307 @@
+Dynamic MCDA Finder — Codex Ready Blueprint
+Author: Aimee / CozyCabinOps
+
+--------------------------------------------------
+1. VISION
+--------------------------------------------------
+
+Dynamic MCDA Finder allows a user to type any product into a search bar and automatically generate a comparison engine.
+
+Example:
+
+User types:
+double bass drum pedals
+
+System:
+- Collects product listings from trusted sources
+- Extracts factual attributes
+- Builds MCDA filters dynamically
+- Scores products based on user preferences
+- Continues discovering products while user interacts
+
+Goal:
+Evidence-based comparisons without hallucinated products.
+
+Important:
+This project must run locally first for development and testing.
+AWS deployment is the cloud target, not the only runtime.
+
+
+--------------------------------------------------
+2. CORE PRINCIPLES
+--------------------------------------------------
+
+1. Cheap to operate for a solo developer
+2. Scalable architecture if traffic grows
+3. Store factual data only
+4. Never invent products
+5. Respect source terms of service
+6. Progressive UI while data loads
+7. Must run locally for development and testing before cloud deployment
+
+
+--------------------------------------------------
+3. LOCAL-FIRST + CHEAP AWS ARCHITECTURE
+--------------------------------------------------
+
+Local Development Mode
+- Next.js frontend runs locally
+- Local API server runs locally
+- Local worker runs locally
+- SQLite can be used for local testing
+- LocalStack or simple mocks can be used for AWS service simulation
+- Product ingestion can run against local sample datasets first
+
+Cloud Deployment Mode
+- Frontend: Next.js (Vercel or AWS Amplify Hosting)
+- Authentication: Amazon Cognito User Pool
+- API Layer: API Gateway → Lambda
+- Async Processing: SQS Queue
+- Storage: DynamoDB
+- Artifacts: S3
+- Analytics: DynamoDB analytics events table
+
+Principle:
+Build once in a way that supports both:
+- local runtime
+- AWS runtime
+
+
+--------------------------------------------------
+4. HIGH LEVEL SYSTEM ARCHITECTURE
+--------------------------------------------------
+
+LOCAL MODE
+
+User Browser
+     |
+     v
+Next.js Frontend (local)
+     |
+     v
+Local API Server
+     |
+     v
+Local Search Job Store
+     |
+     v
+Local Worker
+     |
+     v
+SQLite or local JSON store
+     |
+     v
+Frontend polling
+
+CLOUD MODE
+
+User Browser
+     |
+     v
+Next.js Frontend
+     |
+     v
+API Gateway
+     |
+     v
+Lambda (Search Controller)
+     |
+     v
+Create SearchJob
+     |
+     v
+SQS Queue
+     |
+     v
+Ingestion Workers
+     |
+     v
+Normalize Listings
+     |
+     v
+DynamoDB Tables
+     |
+     v
+Frontend Polling
+
+
+--------------------------------------------------
+5. LOCAL DEVELOPMENT STRATEGY
+--------------------------------------------------
+
+The app should support two profiles:
+
+1. Local profile
+2. AWS profile
+
+Local profile should use:
+- local environment variables
+- SQLite for quick testing
+- filesystem or local JSON fixtures for sample listings
+- mocked auth or lightweight dev auth
+- local queue simulation using an in-process job runner
+
+AWS profile should use:
+- Cognito
+- DynamoDB
+- SQS
+- Lambda
+- S3
+
+Recommended approach:
+Abstract infrastructure dependencies behind interfaces so the app can swap providers.
+
+Example idea:
+
+StorageProvider
+- LocalStorageProvider
+- DynamoDbStorageProvider
+
+QueueProvider
+- LocalQueueProvider
+- SqsQueueProvider
+
+AuthProvider
+- DevAuthProvider
+- CognitoAuthProvider
+
+
+--------------------------------------------------
+6. REPOSITORY STRUCTURE
+--------------------------------------------------
+
+mcda-finder/
+
+apps/
+    web/
+    api/
+    worker/
+
+packages/
+    scoring-engine/
+    shared-types/
+    storage/
+    queue/
+    auth/
+    source-policy/
+
+infra/
+    cdk/
+
+docs/
+
+local-data/
+    sample-searches/
+    sample-listings/
+    sample-attributes/
+
+Goal:
+The same business logic should work in both local and cloud modes.
+
+
+--------------------------------------------------
+7. LOCAL TESTING WORKFLOW
+--------------------------------------------------
+
+Phase 1 local workflow
+
+1. Start frontend locally
+2. Start API locally
+3. Start worker locally
+4. Submit a search
+5. Load sample or trusted-source product data
+6. Build dynamic filters
+7. Score products
+8. Verify analytics events locally
+
+This lets you validate:
+- UI behavior
+- filter generation
+- ranking logic
+- local persistence
+- analytics capture
+
+before paying for AWS usage.
+
+
+--------------------------------------------------
+8. DATABASING STRATEGY
+--------------------------------------------------
+
+Local development:
+- SQLite is recommended for simplicity
+- can also use JSON files for early fixture testing
+
+Cloud deployment:
+- DynamoDB
+
+Recommendation:
+Do not tightly couple app logic directly to DynamoDB access patterns.
+Use a repository layer so you can develop locally without friction.
+
+
+--------------------------------------------------
+9. AUTH STRATEGY
+--------------------------------------------------
+
+Local development:
+- simple dev auth or mocked user session
+- no need to force Cognito during early local builds
+
+Cloud deployment:
+- Amazon Cognito User Pool
+
+Recommendation:
+Support a fake local signed-in user so you can test:
+- favorites
+- search history
+- saved searches
+- analytics
+
+
+--------------------------------------------------
+10. QUEUE STRATEGY
+--------------------------------------------------
+
+Local development:
+- in-process queue runner
+- simple Node background worker
+- optional Redis later, but not needed for v1
+
+Cloud deployment:
+- Amazon SQS
+
+Recommendation:
+Design job handlers so they can be triggered by:
+- local function call
+- SQS event
+
+
+--------------------------------------------------
+11. COST CONTROL STRATEGY
+--------------------------------------------------
+
+Use local mode heavily during development.
+
+Only use AWS when testing:
+- infrastructure
+- auth integration
+- deployment behavior
+- cloud scaling assumptions
+
+This keeps costs low while still preparing for scale.
+
+
+--------------------------------------------------
+12. FINAL PRINCIPLE
+--------------------------------------------------
+
+This project must be:
+
+- local-first for development
+- cloud-ready for deployment
+- cheap for a solo builder
+- scalable if successful
+
+"We do not generate imaginary comparisons.
+We assemble evidence-backed comparisons progressively."
