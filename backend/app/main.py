@@ -18,10 +18,14 @@ from .auth import require_user
 from .cache import response_cache
 from .config_loader import list_config_keys, load_filter_config
 from .cost_guardrail import guard_if_paused
+from .dynamic_search import build_dynamic_search_result
 from .gamebrain_client import fetch_gamebrain_listings
 from .listings_store import load_local_listings
 from .mcda_scoring import parse_search_term_item_key, score_listings
 from .models import (
+    DynamicSearchJob,
+    DynamicSearchJobCreate,
+    DynamicJobScoreRequest,
     ItemsRequest,
     ItemResult,
     ListingsSearchRequest,
@@ -30,6 +34,9 @@ from .models import (
 )
 from .provider_registry import resolve_provider
 from .rate_limit import enforce_rate_limit
+from .runtime import runtime_profile
+from .search_jobs import get_search_job_store
+from .search_queue import get_queue_provider
 from .storage import (
     create_saved_search,
     delete_saved_search,
@@ -58,6 +65,57 @@ app.add_middleware(
 
 def _user_id_from_request(request: Request) -> str:
     return getattr(request.state, 'user_id', None) or request.headers.get('x-user-id', 'demo-user')
+
+
+def _update_dynamic_job_progress(job_id: str, progress: float, message: str) -> None:
+    get_search_job_store().update_job(
+        job_id,
+        status="running",
+        progress=progress,
+        current_step=message,
+        error_message=None,
+    )
+
+
+def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
+    job_id = str(payload.get("job_id") or "").strip()
+    if not job_id:
+        return
+    store = get_search_job_store()
+    job = store.get_job(job_id)
+    if not job:
+        return
+    store.update_job(
+        job_id,
+        status="running",
+        progress=0.12,
+        current_step="Dequeued for local processing",
+        error_message=None,
+    )
+    try:
+        result = build_dynamic_search_result(
+            job.query,
+            limit=job.limit,
+            progress_callback=lambda progress, message: _update_dynamic_job_progress(job_id, progress, message),
+        )
+        if result.generated_config:
+            result.open_filter_path = f"/generated/{job_id}"
+        store.update_job(
+            job_id,
+            status="completed",
+            progress=1.0,
+            current_step="Comparison ready",
+            result=result,
+            error_message=None,
+        )
+    except Exception as exc:
+        store.update_job(
+            job_id,
+            status="failed",
+            progress=1.0,
+            current_step="Search job failed",
+            error_message=str(exc),
+        )
 
 
 @app.on_event('startup')
@@ -806,6 +864,92 @@ async def search_listings(
     }
     response_cache.set(cache_key, response)
     return response
+
+
+@app.get('/api/dynamic-search/jobs', response_model=list[DynamicSearchJob])
+async def list_dynamic_search_jobs(
+    request: Request,
+    limit: int = 20,
+    _claims: dict = Depends(require_user),
+) -> list[DynamicSearchJob]:
+    guard_if_paused()
+    user_id = _user_id_from_request(request)
+    return get_search_job_store().list_jobs(user_id, limit=max(1, min(limit, 50)))
+
+
+@app.post('/api/dynamic-search/jobs', response_model=DynamicSearchJob)
+async def create_dynamic_search_job(
+    payload: DynamicSearchJobCreate,
+    request: Request,
+    _claims: dict = Depends(require_user),
+) -> DynamicSearchJob:
+    guard_if_paused()
+    enforce_rate_limit(request)
+    query = payload.query.strip()
+    normalized = re.sub(r'[^a-zA-Z0-9]+', ' ', query).strip()
+    if len(query) < 2 or len(normalized) < 2:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='Enter at least two letters or numbers to build a comparison.',
+        )
+    limit = max(1, min(int(payload.limit), 24))
+    user_id = _user_id_from_request(request)
+    job = get_search_job_store().create_job(user_id, query, limit, runtime_profile())
+    queue = get_queue_provider(_process_dynamic_search_queue_message)
+    queue.enqueue({"job_id": job.job_id})
+    return job
+
+
+@app.get('/api/dynamic-search/jobs/{job_id}', response_model=DynamicSearchJob)
+async def get_dynamic_search_job(
+    request: Request,
+    job_id: str,
+    _claims: dict = Depends(require_user),
+) -> DynamicSearchJob:
+    guard_if_paused()
+    user_id = _user_id_from_request(request)
+    job = get_search_job_store().get_job(job_id)
+    if not job or job.user_id != user_id:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Search job not found')
+    return job
+
+
+@app.post('/api/dynamic-search/jobs/{job_id}/score')
+async def score_dynamic_search_job(
+    request: Request,
+    job_id: str,
+    payload: DynamicJobScoreRequest,
+    _claims: dict = Depends(require_user),
+) -> dict:
+    guard_if_paused()
+    enforce_rate_limit(request)
+    user_id = _user_id_from_request(request)
+    job = get_search_job_store().get_job(job_id)
+    if not job or job.user_id != user_id:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Search job not found')
+    if not job.result or not job.result.generated_config or not job.result.generated_listings:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Generated filter is not available for this job')
+
+    per_page = max(1, min(int(payload.per_page), 200))
+    page = max(1, int(payload.page))
+    scored, _ = score_listings(
+        listings=job.result.generated_listings,
+        config=job.result.generated_config,
+        filters=payload.filters,
+        selected_order=payload.selected_order,
+        section_order=payload.section_order,
+    )
+    total = len(scored)
+    total_pages = max(1, (total + per_page - 1) // per_page)
+    start = (page - 1) * per_page
+    response_listings = scored[start : start + per_page]
+    return {
+        'listings': response_listings,
+        'total': total,
+        'per_page': per_page,
+        'current_page': page,
+        'total_pages': total_pages,
+    }
 
 
 @app.get('/api/saved-searches')

@@ -1,28 +1,51 @@
-import { Link } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Home() {
+  const [query, setQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const trimmed = query.trim();
+    if (!trimmed) {
+      navigate('/finder');
+      return;
+    }
+    navigate(`/finder?q=${encodeURIComponent(trimmed)}`);
+  };
+
   return (
     <section className="home">
       <div className="hero">
         <div>
           <p className="eyebrow">MCDA filters, smarter choices</p>
-          <h1>Rank listings by what matters to you.</h1>
+          <h1>Type a product. Build a comparison from evidence.</h1>
           <p className="lead">
-            Octivary lets you tune priorities, compare live listings, and save your best searches.
+            Octivary now supports a local-first finder flow that turns a raw search term into a
+            comparison job with generated filters and ranked matches.
           </p>
-          <div className="hero-actions">
-            <Link className="cta" to="/categories">Explore filters</Link>
-            <Link className="ghost-link" to="/filters/electric-sedans">Try electric sedans</Link>
-          </div>
+          <form className="home-search" onSubmit={handleSubmit}>
+            <input
+              className="finder-input"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Dexcom G7, KJV study bible, Toyota Camry"
+            />
+            <div className="hero-actions">
+              <button className="cta" type="submit">Open finder</button>
+              <Link className="ghost-link" to="/categories">Browse existing filters</Link>
+            </div>
+          </form>
         </div>
         <div className="hero-card">
-          <h3>Priority mix preview</h3>
+          <h3>Progressive search preview</h3>
           <div className="priority-bars">
-            <div><span>Price</span><div className="bar" style={{ width: '72%' }} /></div>
-            <div><span>Quality</span><div className="bar" style={{ width: '58%' }} /></div>
-            <div><span>Speed</span><div className="bar" style={{ width: '40%' }} /></div>
+            <div><span>Search job created</span><div className="bar" style={{ width: '96%' }} /></div>
+            <div><span>Local evidence loaded</span><div className="bar" style={{ width: '78%' }} /></div>
+            <div><span>Dynamic filters generated</span><div className="bar" style={{ width: '62%' }} /></div>
           </div>
-          <p className="muted">Save this weighting and re-run anytime.</p>
+          <p className="muted">The local queue flow mirrors the planned cloud polling model.</p>
         </div>
       </div>
 

@@ -30,6 +30,7 @@ env/
 .coverage
 .coverage.*
 htmlcov/
+backend/data/search_jobs.db
 
 # CDK
 cdk.out/

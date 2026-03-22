@@ -110,3 +110,77 @@ export type Category = {
   description: string;
   filterConfigs: FilterConfigItem[];
 };
+
+export type DynamicSearchFilterOption = {
+  label: string;
+  value: string;
+  count?: number | null;
+};
+
+export type DynamicSearchFilterSummary = {
+  key: string;
+  label: string;
+  type: string;
+  option_count?: number | null;
+  options: DynamicSearchFilterOption[];
+  min?: number | null;
+  max?: number | null;
+  path?: string;
+  helper_text?: string | null;
+};
+
+export type DynamicSearchListingSummary = {
+  listing_id: string;
+  title: string;
+  subtitle?: string | null;
+  score: number;
+  image_url?: string | null;
+  metadata: Array<{ label: string; value: string }>;
+  source_url?: string | null;
+};
+
+export type DynamicSearchCandidate = {
+  config_key: string;
+  title: string;
+  category_key: string;
+  description: string;
+  match_score: number;
+  evidence_count: number;
+  source_type: string;
+  local_data_available: boolean;
+};
+
+export type DynamicSearchResult = {
+  query: string;
+  config_key?: string | null;
+  config_title?: string | null;
+  config_description?: string | null;
+  category_key?: string | null;
+  evidence_count: number;
+  prefill_filters: Record<string, unknown>;
+  prefill_selected_order: Record<string, string[]>;
+  prefill_section_order: string[];
+  generated_config?: FilterConfig | null;
+  generated_listings?: Record<string, unknown>[] | null;
+  generated_filters: DynamicSearchFilterSummary[];
+  listings: DynamicSearchListingSummary[];
+  candidates: DynamicSearchCandidate[];
+  local_only: boolean;
+  note?: string | null;
+  open_filter_path?: string | null;
+};
+
+export type DynamicSearchJob = {
+  job_id: string;
+  user_id: string;
+  query: string;
+  limit: number;
+  status: 'queued' | 'running' | 'completed' | 'failed';
+  progress: number;
+  current_step: string;
+  profile: string;
+  created_at: string;
+  updated_at: string;
+  error_message?: string | null;
+  result?: DynamicSearchResult | null;
+};

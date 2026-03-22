@@ -1,13 +1,53 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import type { DynamicSearchJob } from '../types';
+
+function buildHeaders(): Record<string, string> {
+  const headers: Record<string, string> = { accept: 'application/json' };
+  const apiToken = (import.meta.env.VITE_API_TOKEN || '').trim();
+  if (apiToken) {
+    headers.Authorization = `Bearer ${apiToken}`;
+  }
+  return headers;
+}
+
 export default function Account() {
+  const [jobs, setJobs] = useState<DynamicSearchJob[]>([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const apiBase = (import.meta.env.VITE_API_BASE || '').trim();
+    if (!apiBase) {
+      setError('Set VITE_API_BASE to load pending and previous filters.');
+      return;
+    }
+    fetch(`${apiBase}/api/dynamic-search/jobs?limit=20`, { headers: buildHeaders() })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to load your filter jobs.');
+        }
+        return response.json() as Promise<DynamicSearchJob[]>;
+      })
+      .then((data) => {
+        setJobs(data);
+      })
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : 'Failed to load your filter jobs.');
+      });
+  }, []);
+
+  const pendingJobs = jobs.filter((job) => job.status === 'queued' || job.status === 'running');
+  const previousJobs = jobs.filter((job) => job.status === 'completed');
+
   return (
     <section className="section">
       <h1>Account</h1>
       <p className="lead">
-        Sign in to save searches and sync priorities across devices.
+        Sign up to save filters, review pending builds, and reopen previous MCDA work.
       </p>
       <div className="grid">
         <div className="card">
-          <h2>Sign in</h2>
+          <h2>Sign up</h2>
           <label className="field">
             <span>Email</span>
             <input type="email" placeholder="you@example.com" />
@@ -18,14 +58,42 @@ export default function Account() {
           </label>
           <button className="cta">Continue</button>
         </div>
-        <div className="card">
-          <h2>Saved searches</h2>
-          <p className="muted">Sign in to view your saved priority mixes.</p>
-          <div className="placeholder-list">
-            <div>Weekend flight deals</div>
-            <div>Compact SUVs under $15k</div>
-            <div>Studio-ready synths</div>
-          </div>
+        <div className="card" id="pending">
+          <h2>Pending filters</h2>
+          {pendingJobs.length === 0 ? (
+            <p className="muted">No filters are building right now.</p>
+          ) : (
+            <div className="placeholder-list">
+              {pendingJobs.map((job) => (
+                <div key={job.job_id}>
+                  <strong>{job.query}</strong>
+                  <div className="muted">{job.status} · {job.current_step}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="card" id="previous">
+          <h2>Previous filters</h2>
+          {error ? <p className="muted">{error}</p> : null}
+          {previousJobs.length === 0 ? (
+            <p className="muted">No completed MCDA filters yet.</p>
+          ) : (
+            <div className="placeholder-list">
+              {previousJobs.map((job) => {
+                const href = job.result?.generated_config
+                  ? `/generated/${encodeURIComponent(job.job_id)}`
+                  : job.result?.config_key
+                  ? `/filters/${encodeURIComponent(job.result.config_key)}?dynamicJob=${encodeURIComponent(job.job_id)}`
+                  : `/finder?q=${encodeURIComponent(job.query)}`;
+                return (
+                  <Link key={job.job_id} to={href}>
+                    {job.query}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </section>

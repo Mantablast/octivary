@@ -81,11 +81,14 @@ export default function TopNavbar() {
         <details className="nav-dropdown" onToggle={handleToggle}>
           <summary>Account</summary>
           <div className="dropdown-panel account-panel">
-            <Link to="/saved/placeholder" className="dropdown-item">
-              <strong>Saved searches</strong>
+            <Link to="/account#pending" className="dropdown-item">
+              <strong>Pending filters</strong>
             </Link>
-            <Link to="/saved/items" className="dropdown-item">
-              <strong>Saved items</strong>
+            <Link to="/account#previous" className="dropdown-item">
+              <strong>Previous filters</strong>
+            </Link>
+            <Link to="/account" className="dropdown-item">
+              <strong>Sign up / account</strong>
             </Link>
             <details className="nav-subdropdown" onToggle={handleToggle}>
               <summary className="dropdown-item">
@@ -110,15 +113,9 @@ export default function TopNavbar() {
                 </button>
               </div>
             </details>
-            <Link to="/settings" className="dropdown-item">
-              <strong>Settings</strong>
-            </Link>
-            <button type="button" className="dropdown-item">
-              <strong>Log out</strong>
-            </button>
           </div>
         </details>
-        <button className="cta">Sign in</button>
+        <Link className="cta" to="/account">Sign up</Link>
       </nav>
     </header>
   );

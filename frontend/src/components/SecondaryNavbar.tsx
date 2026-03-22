@@ -98,6 +98,9 @@ export default function SecondaryNavbar() {
           </details>
         ))}
       </div>
+      <Link className="secondary-link" to="/finder">
+        Dynamic finder
+      </Link>
       <Link className="secondary-link" to="/categories">
         All filters
       </Link>

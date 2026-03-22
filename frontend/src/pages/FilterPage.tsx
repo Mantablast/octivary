@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { categories } from '../data/categories';
 import McdaFilterPanel from '../components/McdaFilterPanel';
 import McdaItemList from '../components/McdaItemList';
@@ -12,6 +12,7 @@ import type {
   FilterConfig,
   FilterDefinition,
   FiltersState,
+  DynamicSearchJob,
   ResultsDisplay
 } from '../types';
 import { parseSearchTermItemKey } from '../utils/searchTerms';
@@ -154,12 +155,17 @@ const buildDisplay = (config: FilterConfig): ResultsDisplay => {
 
 
 export default function FilterPage() {
-  const { configKey } = useParams<{ configKey: string }>();
+  const { configKey, jobId } = useParams<{ configKey?: string; jobId?: string }>();
+  const [searchParams] = useSearchParams();
+  const dynamicJobId = (searchParams.get('dynamicJob') || '').trim();
+  const generatedJobId = (jobId || '').trim();
+  const isGeneratedJob = Boolean(generatedJobId && !configKey);
   const [config, setConfig] = useState<FilterConfig | null>(null);
   const [error, setError] = useState('');
   const [filters, setFilters] = useState<FiltersState>({});
   const [sectionOrder, setSectionOrder] = useState<string[]>([]);
   const [selectedOrder, setSelectedOrder] = useState<Record<string, string[]>>({});
+  const [dynamicSearchQuery, setDynamicSearchQuery] = useState('');
   const [items, setItems] = useState<Record<string, any>[]>([]);
   const [itemsError, setItemsError] = useState('');
   const [isLoadingItems, setIsLoadingItems] = useState(false);
@@ -178,6 +184,7 @@ export default function FilterPage() {
     let mounted = true;
     setError('');
     setConfig(null);
+    setDynamicSearchQuery('');
     setFilters({});
     setSectionOrder([]);
     setSelectedOrder({});
@@ -189,6 +196,48 @@ export default function FilterPage() {
     setPerPage(defaultPerPage);
     loadedOptionSources.current = new Set();
     setBackendPageInfo(null);
+
+    if (isGeneratedJob) {
+      if (!apiBase) {
+        setError('API base is not configured. Set VITE_API_BASE to use generated filters.');
+        return () => {
+          mounted = false;
+        };
+      }
+      const headers: Record<string, string> = { accept: 'application/json' };
+      const apiToken = (import.meta.env.VITE_API_TOKEN || '').trim();
+      if (apiToken) {
+        headers.Authorization = `Bearer ${apiToken}`;
+      }
+      fetch(`${apiBase}/api/dynamic-search/jobs/${encodeURIComponent(generatedJobId)}`, { headers })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Generated filter job not found.');
+          }
+          return response.json() as Promise<DynamicSearchJob>;
+        })
+        .then((job) => {
+          const generatedConfig = job.result?.generated_config;
+          if (!mounted || !generatedConfig) return;
+          setConfig(generatedConfig);
+          const configFilters = generatedConfig.filters || [];
+          setFilters({ ...buildInitialFilters(configFilters), ...(job.result?.prefill_filters || {}) });
+          setSectionOrder(
+            job.result?.prefill_section_order?.length
+              ? job.result.prefill_section_order
+              : buildSectionKeys(generatedConfig)
+          );
+          setSelectedOrder(job.result?.prefill_selected_order || {});
+          setDynamicSearchQuery(job.result?.query || '');
+        })
+        .catch((err) => {
+          if (!mounted) return;
+          setError(err instanceof Error ? err.message : 'Failed to load generated filter.');
+        });
+      return () => {
+        mounted = false;
+      };
+    }
 
     if (!configKey) {
       setError('Missing filter config key.');
@@ -220,7 +269,51 @@ export default function FilterPage() {
     return () => {
       mounted = false;
     };
-  }, [configKey]);
+  }, [configKey, generatedJobId, isGeneratedJob, apiBase]);
+
+  useEffect(() => {
+    let mounted = true;
+    if (isGeneratedJob || !config || !configKey || !dynamicJobId || !apiBase) {
+      return () => {
+        mounted = false;
+      };
+    }
+
+    const headers: Record<string, string> = { accept: 'application/json' };
+    const apiToken = (import.meta.env.VITE_API_TOKEN || '').trim();
+    if (apiToken) {
+      headers.Authorization = `Bearer ${apiToken}`;
+    }
+
+    fetch(`${apiBase}/api/dynamic-search/jobs/${encodeURIComponent(dynamicJobId)}`, { headers })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to load the generated MCDA filter.');
+        }
+        return response.json() as Promise<DynamicSearchJob>;
+      })
+      .then((job) => {
+        if (!mounted || !job.result || job.result.config_key !== configKey) return;
+        const initialFilters = buildInitialFilters(config.filters || []);
+        setFilters({ ...initialFilters, ...(job.result.prefill_filters || {}) });
+        setSelectedOrder(job.result.prefill_selected_order || {});
+        setSectionOrder(
+          job.result.prefill_section_order?.length
+            ? job.result.prefill_section_order
+            : buildSectionKeys(config)
+        );
+        setDynamicSearchQuery(job.result.query || '');
+        setPage(1);
+      })
+      .catch((err) => {
+        if (!mounted) return;
+        setItemsError(err instanceof Error ? err.message : 'Failed to load the generated MCDA filter.');
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [config, configKey, dynamicJobId, apiBase, isGeneratedJob]);
 
   useEffect(() => {
     let mounted = true;
@@ -299,7 +392,7 @@ export default function FilterPage() {
   useEffect(() => {
     let mounted = true;
 
-    if (!configKey) return () => {
+    if (!configKey && !isGeneratedJob) return () => {
       mounted = false;
     };
 
@@ -310,7 +403,11 @@ export default function FilterPage() {
     }
 
     const dataSource = config?.datasets?.primary?.data_source;
-    const scoringUrl = apiBase ? `${apiBase}/api/listings/search` : '';
+    const scoringUrl = apiBase
+      ? isGeneratedJob
+        ? `${apiBase}/api/dynamic-search/jobs/${encodeURIComponent(generatedJobId)}/score`
+        : `${apiBase}/api/listings/search`
+      : '';
     const providerKey = dataSource?.provider_key;
     const useServerScoring = Boolean(apiBase);
     const listingsUrl = scoringUrl;
@@ -356,7 +453,7 @@ export default function FilterPage() {
           setItemsError('API base is not configured. Set VITE_API_BASE to use MCDA filters.');
           return;
         }
-        const minRequired = providerKey === 'reverb_v1' ? 3 : 0;
+        const minRequired = !isGeneratedJob && providerKey === 'reverb_v1' ? 3 : 0;
         const activeSections = countActiveSections(config, filters, sectionOrder);
         if (minRequired && activeSections < minRequired) {
           setItemsError(`Select at least ${minRequired} filter sections to load results.`);
@@ -365,7 +462,15 @@ export default function FilterPage() {
         const data = await fetchListingsWithFilters(
           listingsUrl,
           'Failed to reach listings API.',
-          useServerScoring
+          isGeneratedJob
+            ? {
+                filters,
+                selected_order: selectedOrder,
+                section_order: sectionOrder,
+                page,
+                per_page: perPage
+              }
+            : useServerScoring
             ? {
                 config_key: configKey,
                 filters,
@@ -417,7 +522,7 @@ export default function FilterPage() {
       mounted = false;
       window.clearTimeout(timer);
     };
-  }, [configKey, querySignature, page, apiBase, config, perPage]);
+  }, [configKey, generatedJobId, isGeneratedJob, querySignature, page, apiBase, config, perPage]);
 
   const sectionKeys = useMemo(() => (config ? buildSectionKeys(config) : []), [config]);
 
@@ -482,6 +587,9 @@ export default function FilterPage() {
   const pageInfo = backendPageInfo ?? undefined;
   const totalCount = backendPageInfo?.total ?? items.length;
   const renderItem =
+    isGeneratedJob
+      ? undefined
+      :
     configKey === 'bible-catalog'
       ? BibleCatalogResultCard
       : configKey === 'reverb-acoustic-guitars'
@@ -496,6 +604,11 @@ export default function FilterPage() {
     <section className="mcda-shell">
       <div className="mcda-container">
         <header className="mcda-header">
+          {dynamicSearchQuery ? (
+            <div className="mcda-disclaimer">
+              Generated from search: <strong>{dynamicSearchQuery}</strong>
+            </div>
+          ) : null}
           <div className="mcda-disclaimer">{disclaimer}</div>
           <p className="mcda-eyebrow">{categoryLabel}</p>
           <h1>{config.title}</h1>

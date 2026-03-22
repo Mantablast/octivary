@@ -35,6 +35,55 @@ Backend env:
 cp backend/.env.example backend/.env
 ```
 
+## OpenAI Setup
+
+Unknown-product searches only use the AI builder after you configure OpenAI on the backend.
+
+1. Create an API key in the OpenAI dashboard: https://platform.openai.com/api-keys
+2. Copy the backend env template if you have not done it yet:
+
+```
+cp backend/.env.example backend/.env
+```
+
+3. Set these values in `backend/.env`:
+
+```
+OPENAI_API_KEY=your_real_api_key
+OPENAI_MODEL=gpt-5-mini
+OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_TIMEOUT_SECONDS=120
+```
+
+4. Restart the backend after saving the env file:
+
+```
+cd backend
+source .venv/bin/activate
+uvicorn app.main:app --reload
+```
+
+Notes:
+
+- Keep `OPENAI_API_KEY` server-side only. Do not put it in Vite or any browser-exposed env var.
+- This project uses the Responses API plus the `web_search` tool for AI-built filters when no local MCDA config exists yet.
+- `OPENAI_MODEL=gpt-5-mini` is the current default in this repo because it supports the Responses API, structured outputs, and web search with lower latency and cost than larger models.
+- If you switch models, pick one that supports the Responses API and web search.
+
+Official docs:
+
+- Quickstart and API key setup: https://developers.openai.com/api/docs/quickstart
+- Responses API reference: https://developers.openai.com/api/reference/resources/responses/methods/create
+- Web search tool: https://developers.openai.com/api/docs/guides/tools-web-search
+- GPT-5 mini model page: https://developers.openai.com/api/docs/models/gpt-5-mini
+
+Dynamic finder:
+
+- Visit `/finder` in the frontend.
+- The frontend creates a search job, the backend stores it in local SQLite by default, and a local in-process worker resolves the job progressively.
+- Current local sample datasets are `insulin-devices`, `bible-catalog`, and `vehicle-catalog`.
+- For AWS-oriented testing later, switch `RUNTIME_PROFILE`, `SEARCH_JOB_STORE_BACKEND`, and `SEARCH_QUEUE_BACKEND`.
+
 ## Configs
 
 Canonical filter configs live in `config/filters/`. For local dev and deploys, mirror them into:
