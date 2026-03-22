@@ -166,6 +166,9 @@ export type DynamicSearchResult = {
   listings: DynamicSearchListingSummary[];
   candidates: DynamicSearchCandidate[];
   local_only: boolean;
+  is_partial?: boolean;
+  loaded_listing_count?: number;
+  target_listing_count?: number;
   note?: string | null;
   open_filter_path?: string | null;
 };

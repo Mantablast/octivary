@@ -26,3 +26,10 @@ def search_queue_backend() -> str:
     if configured:
         return configured
     return "local" if is_local_profile() else "sqs"
+
+
+def generated_filter_store_backend() -> str:
+    configured = os.getenv("GENERATED_FILTER_STORE_BACKEND", "").strip().lower()
+    if configured:
+        return configured
+    return "local" if is_local_profile() else "dynamodb"

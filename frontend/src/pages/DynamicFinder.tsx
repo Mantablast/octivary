@@ -3,7 +3,11 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import type { DynamicSearchJob } from '../types';
 
 const POLL_INTERVAL_MS = 1200;
-const RESULT_LIMIT = 12;
+const RESULT_LIMIT = 50;
+
+function autoSubmitSessionKey(query: string): string {
+  return `octivary-finder-autosubmit:${query.trim().toLowerCase()}`;
+}
 
 function buildHeaders(): Record<string, string> {
   const headers: Record<string, string> = {
@@ -48,7 +52,7 @@ export default function DynamicFinder() {
   const [recentJobs, setRecentJobs] = useState<DynamicSearchJob[]>([]);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const hasAutoSubmitted = useRef(false);
+  const handledQueryRef = useRef<string>('');
   const hasAutoOpenedFilter = useRef(false);
 
   const loadRecentJobs = async () => {
@@ -89,6 +93,8 @@ export default function DynamicFinder() {
         throw new Error(message || 'Failed to create a finder job.');
       }
       const nextJob = (await response.json()) as DynamicSearchJob;
+      handledQueryRef.current = trimmed.toLowerCase();
+      window.sessionStorage.setItem(autoSubmitSessionKey(trimmed), '1');
       setJob(nextJob);
       setSearchParams({ q: trimmed }, { replace: true });
       loadRecentJobs();
@@ -100,15 +106,20 @@ export default function DynamicFinder() {
   };
 
   useEffect(() => {
-    if (!initialQuery || hasAutoSubmitted.current) {
+    if (!initialQuery) {
       return;
     }
-    const sessionKey = `octivary-finder-autosubmit:${initialQuery.toLowerCase()}`;
+    const normalizedQuery = initialQuery.toLowerCase();
+    if (handledQueryRef.current === normalizedQuery) {
+      return;
+    }
+    const sessionKey = autoSubmitSessionKey(initialQuery);
     if (window.sessionStorage.getItem(sessionKey) === '1') {
+      handledQueryRef.current = normalizedQuery;
       return;
     }
     window.sessionStorage.setItem(sessionKey, '1');
-    hasAutoSubmitted.current = true;
+    handledQueryRef.current = normalizedQuery;
     submitQuery(initialQuery);
   }, [initialQuery]);
 
@@ -144,14 +155,14 @@ export default function DynamicFinder() {
   }, [job]);
 
   useEffect(() => {
-    if (!job || job.status !== 'completed' || hasAutoOpenedFilter.current) {
+    if (!job || job.status === 'failed' || hasAutoOpenedFilter.current) {
       return;
     }
-    if (!job.result?.config_key || !job.result?.evidence_count) {
+    if (!job.result?.open_filter_path || !job.result?.evidence_count) {
       return;
     }
     hasAutoOpenedFilter.current = true;
-    navigate(`/filters/${job.result.config_key}?dynamicJob=${encodeURIComponent(job.job_id)}`, {
+    navigate(`${job.result.open_filter_path}?dynamicJob=${encodeURIComponent(job.job_id)}`, {
       replace: true
     });
   }, [job, navigate]);

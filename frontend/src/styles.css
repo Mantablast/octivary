@@ -351,9 +351,14 @@ p {
   align-items: start;
 }
 
+.finder-layout > * {
+  min-width: 0;
+}
+
 .finder-results {
   display: grid;
   gap: 24px;
+  min-width: 0;
 }
 
 .finder-status-header,
@@ -365,10 +370,27 @@ p {
   justify-content: space-between;
   gap: 12px;
   align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.finder-status-header > div,
+.finder-summary-head > div,
+.finder-filter-head > div,
+.finder-listing-head > div,
+.finder-section-head > div,
+.finder-status-card,
+.finder-summary-card,
+.finder-filter-card,
+.finder-listing-card,
+.finder-candidate-card,
+.finder-history-card,
+.finder-history-item {
+  min-width: 0;
 }
 
 .finder-progress {
   width: 100%;
+  max-width: 100%;
   height: 10px;
   border-radius: 999px;
   background: var(--surface-muted);
@@ -376,6 +398,7 @@ p {
 }
 
 .finder-progress-bar {
+  max-width: 100%;
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -385,6 +408,9 @@ p {
 .finder-error {
   color: var(--accent);
   margin: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .status-pill {
@@ -396,6 +422,21 @@ p {
   font-size: 0.8rem;
   border: 1px solid var(--border);
   background: var(--surface-muted);
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.finder-status-card h2,
+.finder-summary-card h2,
+.finder-filter-card strong,
+.finder-listing-card strong,
+.finder-candidate-card strong,
+.finder-history-item strong,
+.finder-history-item span,
+.muted,
+.lead {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .status-completed {

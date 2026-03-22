@@ -5,8 +5,9 @@ from collections import Counter
 from typing import Any, Callable, Iterable
 from urllib.parse import quote
 
-from .ai_filter_builder import build_ai_generated_filter_result
+from .ai_filter_builder import build_ai_seed_filter_result
 from .config_loader import load_filter_config
+from .generated_filter_store import get_generated_filter_store
 from .listings_store import load_local_listings
 from .mcda_scoring import SEARCH_TERM_ITEM_PREFIX, normalize, resolve_path
 from .models import (
@@ -36,6 +37,15 @@ def _tokenize_query(query: str) -> list[str]:
     return list(dict.fromkeys(TOKEN_RE.findall(query.lower())))
 
 
+def _cached_generated_note(existing_note: str | None) -> str:
+    prefix = "This filter was recalled from stored web research for a previous matching search."
+    if not existing_note:
+        return prefix
+    if prefix in existing_note:
+        return existing_note
+    return f"{prefix} {existing_note}"
+
+
 def _configured_config_keys() -> list[str]:
     raw = os.getenv("DYNAMIC_SEARCH_CONFIG_KEYS", "")
     if raw.strip():
@@ -50,6 +60,48 @@ def _max_listings_per_config() -> int:
 def _step_delay_seconds() -> float:
     delay_ms = max(0, int(os.getenv("DYNAMIC_SEARCH_STEP_DELAY_MS", "120")))
     return delay_ms / 1000
+
+
+def _min_local_match_score() -> float:
+    return max(0.0, float(os.getenv("DYNAMIC_SEARCH_MIN_MATCH_SCORE", "6.0")))
+
+
+def find_reusable_generated_result(query: str, limit: int = 50) -> DynamicSearchResult | None:
+    normalized_query = _normalize_query(query)
+    if not normalized_query:
+        return None
+    store = get_generated_filter_store()
+    cached = store.get_record(normalized_query)
+    if not cached:
+        return None
+    result_payload = cached.result.model_dump()
+    if not result_payload.get("generated_config"):
+        return None
+    generated_listings = list(result_payload.get("generated_listings") or [])
+    if not generated_listings:
+        return None
+
+    store.record_reuse(normalized_query)
+    bounded_limit = max(1, int(limit))
+    truncated_listings = generated_listings[:bounded_limit]
+    target_listing_count = min(int(result_payload.get("target_listing_count") or len(generated_listings)), bounded_limit)
+    result_payload["query"] = query
+    result_payload["generated_listings"] = truncated_listings
+    result_payload["evidence_count"] = len(truncated_listings)
+    result_payload["loaded_listing_count"] = len(truncated_listings)
+    result_payload["target_listing_count"] = target_listing_count
+    result_payload["is_partial"] = len(truncated_listings) < target_listing_count
+    result_payload["note"] = _cached_generated_note(result_payload.get("note"))
+    return DynamicSearchResult(**result_payload)
+
+
+def save_reusable_generated_result(query: str, result: DynamicSearchResult) -> None:
+    normalized_query = _normalize_query(query)
+    if not normalized_query or not result.generated_config or not result.generated_listings:
+        return
+    payload = DynamicSearchResult(**result.model_dump())
+    payload.query = query
+    get_generated_filter_store().upsert_result(normalized_query, query, payload)
 
 
 def _push_strings(bucket: list[str], value: Any) -> None:
@@ -517,14 +569,18 @@ def _emit_progress(
 
 def build_dynamic_search_result(
     query: str,
-    limit: int = 12,
+    limit: int = 50,
     progress_callback: Callable[[float, str], None] | None = None,
 ) -> DynamicSearchResult:
     normalized_query = _normalize_query(query)
     terms = _tokenize_query(query)
 
     _emit_progress(progress_callback, 0.2, "Loading local sample datasets")
-    matches = _load_config_matches(normalized_query, terms)
+    matches = [
+        entry
+        for entry in _load_config_matches(normalized_query, terms)
+        if float(entry["combined_score"]) >= _min_local_match_score()
+    ]
 
     _emit_progress(progress_callback, 0.55, "Comparing factual attributes")
     candidates = [
@@ -542,9 +598,15 @@ def build_dynamic_search_result(
     ]
 
     if not matches:
-        _emit_progress(progress_callback, 0.45, "No existing filter found, researching live sources")
-        generated_result = build_ai_generated_filter_result(query)
+        _emit_progress(progress_callback, 0.45, "Checking saved generated filters")
+        cached_result = find_reusable_generated_result(query, limit=limit)
+        if cached_result is not None:
+            _emit_progress(progress_callback, 0.72, "Loaded saved comparison")
+            return cached_result
+        _emit_progress(progress_callback, 0.55, "No existing filter found, researching live sources")
+        generated_result = build_ai_seed_filter_result(query, target_limit=limit)
         if generated_result is not None:
+            save_reusable_generated_result(query, generated_result)
             return generated_result
         return DynamicSearchResult(
             query=query,
@@ -578,9 +640,15 @@ def build_dynamic_search_result(
     )
 
     if not listings:
-        _emit_progress(progress_callback, 0.45, "No exact local results, researching live sources")
-        generated_result = build_ai_generated_filter_result(query)
+        _emit_progress(progress_callback, 0.45, "Checking saved generated filters")
+        cached_result = find_reusable_generated_result(query, limit=limit)
+        if cached_result is not None:
+            _emit_progress(progress_callback, 0.72, "Loaded saved comparison")
+            return cached_result
+        _emit_progress(progress_callback, 0.55, "No exact local results, researching live sources")
+        generated_result = build_ai_seed_filter_result(query, target_limit=limit)
         if generated_result is not None:
+            save_reusable_generated_result(query, generated_result)
             return generated_result
 
     _emit_progress(progress_callback, 0.95, "Ranking evidence-backed matches")

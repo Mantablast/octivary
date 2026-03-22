@@ -161,6 +161,7 @@ export default function FilterPage() {
   const generatedJobId = (jobId || '').trim();
   const isGeneratedJob = Boolean(generatedJobId && !configKey);
   const [config, setConfig] = useState<FilterConfig | null>(null);
+  const [generatedJob, setGeneratedJob] = useState<DynamicSearchJob | null>(null);
   const [error, setError] = useState('');
   const [filters, setFilters] = useState<FiltersState>({});
   const [sectionOrder, setSectionOrder] = useState<string[]>([]);
@@ -178,12 +179,36 @@ export default function FilterPage() {
   );
   const lastQuerySignature = useRef(querySignature);
   const loadedOptionSources = useRef(new Set<string>());
+  const hasInitializedGeneratedJob = useRef(false);
   const apiBase = (import.meta.env.VITE_API_BASE || '').trim();
+
+  const syncGeneratedJob = (job: DynamicSearchJob) => {
+    setGeneratedJob(job);
+    const generatedConfig = job.result?.generated_config;
+    if (!generatedConfig) return;
+    setConfig(generatedConfig);
+    setDynamicSearchQuery(job.result?.query || '');
+
+    if (hasInitializedGeneratedJob.current) {
+      return;
+    }
+
+    const configFilters = generatedConfig.filters || [];
+    setFilters({ ...buildInitialFilters(configFilters), ...(job.result?.prefill_filters || {}) });
+    setSectionOrder(
+      job.result?.prefill_section_order?.length
+        ? job.result.prefill_section_order
+        : buildSectionKeys(generatedConfig)
+    );
+    setSelectedOrder(job.result?.prefill_selected_order || {});
+    hasInitializedGeneratedJob.current = true;
+  };
 
   useEffect(() => {
     let mounted = true;
     setError('');
     setConfig(null);
+    setGeneratedJob(null);
     setDynamicSearchQuery('');
     setFilters({});
     setSectionOrder([]);
@@ -195,6 +220,7 @@ export default function FilterPage() {
         : DEFAULT_PER_PAGE;
     setPerPage(defaultPerPage);
     loadedOptionSources.current = new Set();
+    hasInitializedGeneratedJob.current = false;
     setBackendPageInfo(null);
 
     if (isGeneratedJob) {
@@ -217,18 +243,8 @@ export default function FilterPage() {
           return response.json() as Promise<DynamicSearchJob>;
         })
         .then((job) => {
-          const generatedConfig = job.result?.generated_config;
-          if (!mounted || !generatedConfig) return;
-          setConfig(generatedConfig);
-          const configFilters = generatedConfig.filters || [];
-          setFilters({ ...buildInitialFilters(configFilters), ...(job.result?.prefill_filters || {}) });
-          setSectionOrder(
-            job.result?.prefill_section_order?.length
-              ? job.result.prefill_section_order
-              : buildSectionKeys(generatedConfig)
-          );
-          setSelectedOrder(job.result?.prefill_selected_order || {});
-          setDynamicSearchQuery(job.result?.query || '');
+          if (!mounted) return;
+          syncGeneratedJob(job);
         })
         .catch((err) => {
           if (!mounted) return;
@@ -270,6 +286,51 @@ export default function FilterPage() {
       mounted = false;
     };
   }, [configKey, generatedJobId, isGeneratedJob, apiBase]);
+
+  useEffect(() => {
+    let cancelled = false;
+    let timer = 0;
+
+    if (!isGeneratedJob || !generatedJobId || !apiBase || !generatedJob || generatedJob.status !== 'running') {
+      return () => {
+        cancelled = true;
+        window.clearTimeout(timer);
+      };
+    }
+
+    const headers: Record<string, string> = { accept: 'application/json' };
+    const apiToken = (import.meta.env.VITE_API_TOKEN || '').trim();
+    if (apiToken) {
+      headers.Authorization = `Bearer ${apiToken}`;
+    }
+
+    const poll = async () => {
+      try {
+        const response = await fetch(`${apiBase}/api/dynamic-search/jobs/${encodeURIComponent(generatedJobId)}`, {
+          headers,
+        });
+        if (!response.ok) {
+          throw new Error('Failed to refresh generated filter.');
+        }
+        const nextJob = (await response.json()) as DynamicSearchJob;
+        if (cancelled) return;
+        syncGeneratedJob(nextJob);
+        if (nextJob.status === 'completed' || nextJob.status === 'failed') {
+          return;
+        }
+      } catch (err) {
+        if (cancelled) return;
+        setItemsError(err instanceof Error ? err.message : 'Failed to refresh generated filter.');
+      }
+      timer = window.setTimeout(poll, 2000);
+    };
+
+    timer = window.setTimeout(poll, 2000);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [isGeneratedJob, generatedJobId, apiBase, generatedJob]);
 
   useEffect(() => {
     let mounted = true;
@@ -522,7 +583,7 @@ export default function FilterPage() {
       mounted = false;
       window.clearTimeout(timer);
     };
-  }, [configKey, generatedJobId, isGeneratedJob, querySignature, page, apiBase, config, perPage]);
+  }, [configKey, generatedJobId, isGeneratedJob, querySignature, page, apiBase, config, perPage, generatedJob?.updated_at]);
 
   const sectionKeys = useMemo(() => (config ? buildSectionKeys(config) : []), [config]);
 
@@ -607,6 +668,13 @@ export default function FilterPage() {
           {dynamicSearchQuery ? (
             <div className="mcda-disclaimer">
               Generated from search: <strong>{dynamicSearchQuery}</strong>
+            </div>
+          ) : null}
+          {isGeneratedJob && generatedJob?.result?.is_partial ? (
+            <div className="mcda-disclaimer">
+              Loading more products in the background: <strong>{generatedJob.result.loaded_listing_count || 0}</strong>
+              {' / '}
+              <strong>{generatedJob.result.target_listing_count || generatedJob.limit}</strong> ready so far.
             </div>
           ) : null}
           <div className="mcda-disclaimer">{disclaimer}</div>

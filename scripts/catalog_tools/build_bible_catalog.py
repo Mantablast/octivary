@@ -4,18 +4,18 @@ import re
 from datetime import datetime, timezone
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
-from catalog_db import BibleCatalogDB
-from feature_parser import (
+from .catalog_db import BibleCatalogDB
+from .feature_parser import (
     extract_cover_color,
     extract_format,
     extract_translation,
     parse_features,
     to_feature_evidence,
 )
-from openlibrary_client import OpenLibraryClient
+from .openlibrary_client import OpenLibraryClient
 
 try:
-    from wikidata_client import WikidataClient
+    from .wikidata_client import WikidataClient
 except ImportError:
     WikidataClient = None
 

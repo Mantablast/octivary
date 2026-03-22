@@ -3,8 +3,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List
 
-from catalog_db import CatalogDB
-from vpic_client import VpicClient
+from .catalog_db import CatalogDB
+from .vpic_client import VpicClient
 
 
 def compute_years(current_year: int, span_years: int) -> List[int]:

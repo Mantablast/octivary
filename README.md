@@ -52,7 +52,10 @@ cp backend/.env.example backend/.env
 OPENAI_API_KEY=your_real_api_key
 OPENAI_MODEL=gpt-5-mini
 OPENAI_BASE_URL=https://api.openai.com/v1
-OPENAI_TIMEOUT_SECONDS=120
+OPENAI_TIMEOUT_SECONDS=300
+OPENAI_MAX_RETRIES=3
+DYNAMIC_SEARCH_SEED_LISTING_COUNT=10
+DYNAMIC_SEARCH_ENRICH_BATCH_SIZE=10
 ```
 
 4. Restart the backend after saving the env file:
@@ -66,9 +69,15 @@ uvicorn app.main:app --reload
 Notes:
 
 - Keep `OPENAI_API_KEY` server-side only. Do not put it in Vite or any browser-exposed env var.
+- Keep all provider keys and secrets in backend environment variables only. Do not place secrets in `frontend/`, `VITE_*` vars, client-side local storage, or hard-coded source files.
 - This project uses the Responses API plus the `web_search` tool for AI-built filters when no local MCDA config exists yet.
 - `OPENAI_MODEL=gpt-5-mini` is the current default in this repo because it supports the Responses API, structured outputs, and web search with lower latency and cost than larger models.
+- `OPENAI_TIMEOUT_SECONDS=300` is the safer starting point for web-backed filter generation. Increase it further if your searches are broad and return a lot of product research work.
+- `OPENAI_MAX_RETRIES=3` lets the backend back off and retry if OpenAI returns transient rate limits. The retry path also reduces the listing target to improve the chance of a successful build.
+- `DYNAMIC_SEARCH_SEED_LISTING_COUNT=10` returns the first usable generated MCDA quickly instead of waiting for the full target listing count.
+- `DYNAMIC_SEARCH_ENRICH_BATCH_SIZE=10` controls how many additional products are appended per background enrichment pass.
 - If you switch models, pick one that supports the Responses API and web search.
+- The backend now redacts common secret formats before storing job failures or returning upstream error details to the browser, but secret safety still depends on keeping real keys out of committed files and frontend code.
 
 Official docs:
 
@@ -81,8 +90,11 @@ Dynamic finder:
 
 - Visit `/finder` in the frontend.
 - The frontend creates a search job, the backend stores it in local SQLite by default, and a local in-process worker resolves the job progressively.
+- Unknown-product AI builds now use a seed-and-enrich pipeline: the first generated MCDA opens after the initial batch, then additional products are appended in the background until the target count is reached.
+- Completed AI-generated filters are now cached by normalized query in a database so later searches can reuse the stored config, sections, display metadata, generated filters, and listings without rebuilding from scratch.
 - Current local sample datasets are `insulin-devices`, `bible-catalog`, and `vehicle-catalog`.
-- For AWS-oriented testing later, switch `RUNTIME_PROFILE`, `SEARCH_JOB_STORE_BACKEND`, and `SEARCH_QUEUE_BACKEND`.
+- Weak local config matches are filtered out with `DYNAMIC_SEARCH_MIN_MATCH_SCORE` so unrelated searches fall through to AI generation instead of opening the wrong MCDA.
+- For AWS-oriented testing later, switch `RUNTIME_PROFILE`, `SEARCH_JOB_STORE_BACKEND`, `SEARCH_QUEUE_BACKEND`, and `GENERATED_FILTER_STORE_BACKEND`.
 
 ## Configs
 
@@ -103,13 +115,13 @@ This repo includes a local vehicle catalog builder (not for-sale listings) using
 Build the catalog:
 
 ```
-python build_catalog.py --db vehicles_catalog.db --years 20 --export-json vehicles_catalog.json
+python -m scripts.catalog_tools.build_vehicle_catalog --db vehicles_catalog.db --years 20 --export-json vehicles_catalog.json
 ```
 
 Python helper queries:
 
 ```
-from catalog_db import CatalogDB
+from scripts.catalog_tools.catalog_db import CatalogDB
 
 db = CatalogDB('vehicles_catalog.db')
 print(db.list_makes(prefix='TO', limit=10))
@@ -128,15 +140,15 @@ This repo includes a metadata-only Bible catalog builder using Open Library. It 
 Build the catalog:
 
 ```
-python build_bible_catalog.py --db bible_catalog.db --max-results-per-query 300 --export-json bible_catalog.json
+python -m scripts.catalog_tools.build_bible_catalog --db bible_catalog.db --max-results-per-query 300 --export-json bible_catalog.json
 ```
 
 Query examples:
 
 ```
-python query_bible_catalog.py list_translations
-python query_bible_catalog.py search --translation ESV,NIV --study-bible --print-size large --limit 25
-python query_bible_catalog.py search --publisher Zondervan --format hardcover --red-letter
+python -m scripts.catalog_tools.query_bible_catalog list_translations
+python -m scripts.catalog_tools.query_bible_catalog search --translation ESV,NIV --study-bible --print-size large --limit 25
+python -m scripts.catalog_tools.query_bible_catalog search --publisher Zondervan --format hardcover --red-letter
 ```
 
 Notes:

@@ -2,7 +2,7 @@ import argparse
 import json
 from typing import List, Optional
 
-from catalog_db import BibleCatalogDB
+from .catalog_db import BibleCatalogDB
 
 
 def parse_bool_flag(args: argparse.Namespace, flag: str) -> Optional[int]:

@@ -15,10 +15,13 @@ import requests
 load_dotenv(Path(__file__).resolve().parents[1] / '.env')
 
 from .auth import require_user
+from .ai_filter_builder import enrich_ai_generated_filter_result
 from .cache import response_cache
 from .config_loader import list_config_keys, load_filter_config
 from .cost_guardrail import guard_if_paused
 from .dynamic_search import build_dynamic_search_result
+from .dynamic_search import find_reusable_generated_result
+from .dynamic_search import save_reusable_generated_result
 from .gamebrain_client import fetch_gamebrain_listings
 from .listings_store import load_local_listings
 from .mcda_scoring import parse_search_term_item_key, score_listings
@@ -26,6 +29,7 @@ from .models import (
     DynamicSearchJob,
     DynamicSearchJobCreate,
     DynamicJobScoreRequest,
+    DynamicSearchResult,
     ItemsRequest,
     ItemResult,
     ListingsSearchRequest,
@@ -37,6 +41,7 @@ from .rate_limit import enforce_rate_limit
 from .runtime import runtime_profile
 from .search_jobs import get_search_job_store
 from .search_queue import get_queue_provider
+from .secret_sanitizer import redact_sensitive_text, sanitize_exception_message
 from .storage import (
     create_saved_search,
     delete_saved_search,
@@ -67,6 +72,24 @@ def _user_id_from_request(request: Request) -> str:
     return getattr(request.state, 'user_id', None) or request.headers.get('x-user-id', 'demo-user')
 
 
+def _normalized_dynamic_query(query: str) -> str:
+    return re.sub(r'[^a-zA-Z0-9]+', ' ', query).strip().lower()
+
+
+def _find_existing_active_dynamic_job(user_id: str, query: str) -> DynamicSearchJob | None:
+    normalized_query = _normalized_dynamic_query(query)
+    if not normalized_query:
+        return None
+    jobs = get_search_job_store().list_jobs(user_id, limit=50)
+    for job in jobs:
+        if job.status not in {"queued", "running"}:
+            continue
+        if _normalized_dynamic_query(job.query) != normalized_query:
+            continue
+        return job
+    return None
+
+
 def _update_dynamic_job_progress(job_id: str, progress: float, message: str) -> None:
     get_search_job_store().update_job(
         job_id,
@@ -75,6 +98,12 @@ def _update_dynamic_job_progress(job_id: str, progress: float, message: str) -> 
         current_step=message,
         error_message=None,
     )
+
+
+def _generated_job_progress(loaded_listing_count: int, target_listing_count: int) -> float:
+    target = max(1, target_listing_count)
+    loaded = max(0, min(loaded_listing_count, target))
+    return min(0.98, 0.62 + (loaded / target) * 0.33)
 
 
 def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
@@ -93,13 +122,79 @@ def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
         error_message=None,
     )
     try:
-        result = build_dynamic_search_result(
+        resume_generated = bool(payload.get("resume_generated"))
+        existing_result = job.result if resume_generated and job.result and job.result.generated_config else None
+        result = existing_result or build_dynamic_search_result(
             job.query,
             limit=job.limit,
             progress_callback=lambda progress, message: _update_dynamic_job_progress(job_id, progress, message),
         )
         if result.generated_config:
             result.open_filter_path = f"/generated/{job_id}"
+            save_reusable_generated_result(job.query, result)
+            if result.is_partial and result.generated_listings:
+                store.update_job(
+                    job_id,
+                    status="running",
+                    progress=_generated_job_progress(result.loaded_listing_count, result.target_listing_count or job.limit),
+                    current_step=f"Seed comparison ready ({result.loaded_listing_count}/{result.target_listing_count or job.limit})",
+                    result=result,
+                    error_message=None,
+                )
+
+                latest_result = DynamicSearchResult(**result.model_dump())
+
+                def handle_enrichment_batch(intermediate_result: DynamicSearchResult) -> None:
+                    nonlocal latest_result
+                    intermediate_result.open_filter_path = f"/generated/{job_id}"
+                    latest_result = DynamicSearchResult(**intermediate_result.model_dump())
+                    save_reusable_generated_result(job.query, latest_result)
+                    store.update_job(
+                        job_id,
+                        status="running",
+                        progress=_generated_job_progress(
+                            latest_result.loaded_listing_count,
+                            latest_result.target_listing_count or job.limit,
+                        ),
+                        current_step=f"Adding more products ({latest_result.loaded_listing_count}/{latest_result.target_listing_count or job.limit})",
+                        result=latest_result,
+                        error_message=None,
+                    )
+
+                try:
+                    latest_result = enrich_ai_generated_filter_result(
+                        job.query,
+                        latest_result,
+                        target_limit=job.limit,
+                        on_batch=handle_enrichment_batch,
+                    )
+                    latest_result.open_filter_path = f"/generated/{job_id}"
+                    save_reusable_generated_result(job.query, latest_result)
+                    store.update_job(
+                        job_id,
+                        status="completed",
+                        progress=1.0,
+                        current_step="Comparison ready",
+                        result=latest_result,
+                        error_message=None,
+                    )
+                    return
+                except Exception:
+                    latest_result.note = (
+                        f"{latest_result.note or ''} Background enrichment paused before reaching the full listing target. "
+                        "The seed comparison is still ready to use."
+                    ).strip()
+                    save_reusable_generated_result(job.query, latest_result)
+                    store.update_job(
+                        job_id,
+                        status="completed",
+                        progress=1.0,
+                        current_step="Comparison ready",
+                        result=latest_result,
+                        error_message=None,
+                    )
+                    return
+
         store.update_job(
             job_id,
             status="completed",
@@ -114,7 +209,7 @@ def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
             status="failed",
             progress=1.0,
             current_step="Search job failed",
-            error_message=str(exc),
+            error_message=sanitize_exception_message(exc),
         )
 
 
@@ -336,10 +431,11 @@ def _fetch_halara_listings(params: dict) -> dict:
             timeout=12,
         )
     except requests.RequestException as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        raise HTTPException(status_code=502, detail=sanitize_exception_message(exc)) from exc
 
     if not response.ok:
-        raise HTTPException(status_code=response.status_code, detail=response.text)
+        detail = redact_sensitive_text(response.text) or "Upstream request failed."
+        raise HTTPException(status_code=response.status_code, detail=detail)
     data = response.json()
     payload = data.get("data") if isinstance(data, dict) else {}
     listings = payload.get("data") if isinstance(payload, dict) else None
@@ -563,10 +659,11 @@ def _fetch_reverb_listings(params: dict) -> dict:
             timeout=12,
         )
     except requests.RequestException as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        raise HTTPException(status_code=502, detail=sanitize_exception_message(exc)) from exc
 
     if not response.ok:
-        raise HTTPException(status_code=response.status_code, detail=response.text)
+        detail = redact_sensitive_text(response.text) or "Upstream request failed."
+        raise HTTPException(status_code=response.status_code, detail=detail)
     return response.json()
 
 
@@ -892,9 +989,44 @@ async def create_dynamic_search_job(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail='Enter at least two letters or numbers to build a comparison.',
         )
-    limit = max(1, min(int(payload.limit), 24))
+    limit = max(1, min(int(payload.limit), 50))
     user_id = _user_id_from_request(request)
-    job = get_search_job_store().create_job(user_id, query, limit, runtime_profile())
+    store = get_search_job_store()
+    existing_job = _find_existing_active_dynamic_job(user_id, query)
+    if existing_job is not None:
+        return existing_job
+    cached_result = find_reusable_generated_result(query, limit=limit)
+    job = store.create_job(user_id, query, limit, runtime_profile())
+    if cached_result and cached_result.generated_config:
+        cached_result.open_filter_path = f"/generated/{job.job_id}"
+        if cached_result.is_partial and os.getenv("OPENAI_API_KEY", "").strip():
+            running_job = store.update_job(
+                job.job_id,
+                status="running",
+                progress=_generated_job_progress(
+                    cached_result.loaded_listing_count or len(cached_result.generated_listings or []),
+                    cached_result.target_listing_count or limit,
+                ),
+                current_step="Loaded saved seed comparison",
+                result=cached_result,
+                error_message=None,
+            )
+            queue = get_queue_provider(_process_dynamic_search_queue_message)
+            queue.enqueue({"job_id": job.job_id, "resume_generated": True})
+            if running_job is not None:
+                return running_job
+            return job
+        completed_job = store.update_job(
+            job.job_id,
+            status="completed",
+            progress=1.0,
+            current_step="Loaded saved comparison",
+            result=cached_result,
+            error_message=None,
+        )
+        if completed_job is not None:
+            return completed_job
+        return job
     queue = get_queue_provider(_process_dynamic_search_queue_message)
     queue.enqueue({"job_id": job.job_id})
     return job

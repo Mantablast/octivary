@@ -50,7 +50,7 @@ class ListingsSearchRequest(BaseModel):
 
 class DynamicSearchJobCreate(BaseModel):
     query: str
-    limit: int = 12
+    limit: int = 50
 
 
 class DynamicSearchFilterOption(BaseModel):
@@ -113,6 +113,9 @@ class DynamicSearchResult(BaseModel):
     listings: List[DynamicSearchListingSummary] = Field(default_factory=list)
     candidates: List[DynamicSearchCandidate] = Field(default_factory=list)
     local_only: bool = True
+    is_partial: bool = False
+    loaded_listing_count: int = 0
+    target_listing_count: int = 0
     note: str | None = None
     open_filter_path: str | None = None
 
@@ -121,7 +124,7 @@ class DynamicSearchJob(BaseModel):
     job_id: str
     user_id: str
     query: str
-    limit: int = 12
+    limit: int = 50
     status: Literal["queued", "running", "completed", "failed"]
     progress: float = 0.0
     current_step: str
@@ -138,3 +141,13 @@ class DynamicJobScoreRequest(BaseModel):
     section_order: List[str] = Field(default_factory=list)
     page: int = 1
     per_page: int = 24
+
+
+class GeneratedFilterCacheEntry(BaseModel):
+    normalized_query: str
+    source_query: str
+    result: DynamicSearchResult
+    listing_count: int = 0
+    hit_count: int = 0
+    created_at: datetime
+    updated_at: datetime
