@@ -139,6 +139,7 @@ const buildDisplay = (config: FilterConfig): ResultsDisplay => {
     ...base,
     title_template: base.title_template || '{title}',
     subtitle_template: base.subtitle_template || '{make} {model}',
+    summary_path: base.summary_path || 'summary',
     image_path: base.image_path || 'photos[0]._links.large_crop.href',
     empty_image: base.empty_image || '/assets/octonotes.png',
     metadata:
@@ -169,6 +170,7 @@ export default function FilterPage() {
   const [dynamicSearchQuery, setDynamicSearchQuery] = useState('');
   const [items, setItems] = useState<Record<string, any>[]>([]);
   const [itemsError, setItemsError] = useState('');
+  const [generatedUpdateNotice, setGeneratedUpdateNotice] = useState('');
   const [isLoadingItems, setIsLoadingItems] = useState(false);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(DEFAULT_PER_PAGE);
@@ -183,11 +185,19 @@ export default function FilterPage() {
   const apiBase = (import.meta.env.VITE_API_BASE || '').trim();
 
   const syncGeneratedJob = (job: DynamicSearchJob) => {
+    const previousLoaded = generatedJob?.result?.loaded_listing_count || 0;
+    const nextLoaded = job.result?.loaded_listing_count || 0;
     setGeneratedJob(job);
     const generatedConfig = job.result?.generated_config;
     if (!generatedConfig) return;
     setConfig(generatedConfig);
     setDynamicSearchQuery(job.result?.query || '');
+    if (hasInitializedGeneratedJob.current && nextLoaded > previousLoaded) {
+      const delta = nextLoaded - previousLoaded;
+      setGeneratedUpdateNotice(
+        `${delta} new listing${delta === 1 ? '' : 's'} added. Showing ${nextLoaded} total so far.`
+      );
+    }
 
     if (hasInitializedGeneratedJob.current) {
       return;
@@ -210,6 +220,7 @@ export default function FilterPage() {
     setConfig(null);
     setGeneratedJob(null);
     setDynamicSearchQuery('');
+    setGeneratedUpdateNotice('');
     setFilters({});
     setSectionOrder([]);
     setSelectedOrder({});
@@ -288,10 +299,24 @@ export default function FilterPage() {
   }, [configKey, generatedJobId, isGeneratedJob, apiBase]);
 
   useEffect(() => {
+    if (!generatedUpdateNotice) return;
+    const timer = window.setTimeout(() => {
+      setGeneratedUpdateNotice('');
+    }, 3600);
+    return () => window.clearTimeout(timer);
+  }, [generatedUpdateNotice]);
+
+  useEffect(() => {
     let cancelled = false;
     let timer = 0;
 
-    if (!isGeneratedJob || !generatedJobId || !apiBase || !generatedJob || generatedJob.status !== 'running') {
+    if (
+      !isGeneratedJob ||
+      !generatedJobId ||
+      !apiBase ||
+      !generatedJob ||
+      generatedJob.result?.enrichment_status !== 'running'
+    ) {
       return () => {
         cancelled = true;
         window.clearTimeout(timer);
@@ -315,7 +340,7 @@ export default function FilterPage() {
         const nextJob = (await response.json()) as DynamicSearchJob;
         if (cancelled) return;
         syncGeneratedJob(nextJob);
-        if (nextJob.status === 'completed' || nextJob.status === 'failed') {
+        if (nextJob.status === 'failed' || nextJob.result?.enrichment_status !== 'running') {
           return;
         }
       } catch (err) {
@@ -676,6 +701,10 @@ export default function FilterPage() {
               {' / '}
               <strong>{generatedJob.result.target_listing_count || generatedJob.limit}</strong> ready so far.
             </div>
+          ) : null}
+          {generatedUpdateNotice ? <div className="mcda-disclaimer">{generatedUpdateNotice}</div> : null}
+          {isGeneratedJob && generatedJob?.result?.enrichment_message ? (
+            <div className="mcda-disclaimer">{generatedJob.result.enrichment_message}</div>
           ) : null}
           <div className="mcda-disclaimer">{disclaimer}</div>
           <p className="mcda-eyebrow">{categoryLabel}</p>

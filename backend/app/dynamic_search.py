@@ -5,7 +5,7 @@ from collections import Counter
 from typing import Any, Callable, Iterable
 from urllib.parse import quote
 
-from .ai_filter_builder import build_ai_seed_filter_result
+from .ai_filter_builder import build_ai_seed_filter_result, refresh_ai_generated_filter_result
 from .config_loader import load_filter_config
 from .generated_filter_store import get_generated_filter_store
 from .listings_store import load_local_listings
@@ -92,7 +92,10 @@ def find_reusable_generated_result(query: str, limit: int = 50) -> DynamicSearch
     result_payload["target_listing_count"] = target_listing_count
     result_payload["is_partial"] = len(truncated_listings) < target_listing_count
     result_payload["note"] = _cached_generated_note(result_payload.get("note"))
-    return DynamicSearchResult(**result_payload)
+    return refresh_ai_generated_filter_result(
+        DynamicSearchResult(**result_payload),
+        target_listing_count,
+    )
 
 
 def save_reusable_generated_result(query: str, result: DynamicSearchResult) -> None:
@@ -571,10 +574,16 @@ def build_dynamic_search_result(
     query: str,
     limit: int = 50,
     progress_callback: Callable[[float, str], None] | None = None,
+    should_cancel: Callable[[], bool] | None = None,
 ) -> DynamicSearchResult:
     normalized_query = _normalize_query(query)
     terms = _tokenize_query(query)
 
+    def check_cancelled() -> None:
+        if should_cancel and should_cancel():
+            raise RuntimeError("__dynamic_search_cancelled__")
+
+    check_cancelled()
     _emit_progress(progress_callback, 0.2, "Loading local sample datasets")
     matches = [
         entry
@@ -582,6 +591,7 @@ def build_dynamic_search_result(
         if float(entry["combined_score"]) >= _min_local_match_score()
     ]
 
+    check_cancelled()
     _emit_progress(progress_callback, 0.55, "Comparing factual attributes")
     candidates = [
         DynamicSearchCandidate(
@@ -598,6 +608,7 @@ def build_dynamic_search_result(
     ]
 
     if not matches:
+        check_cancelled()
         _emit_progress(progress_callback, 0.45, "Checking saved generated filters")
         cached_result = find_reusable_generated_result(query, limit=limit)
         if cached_result is not None:
@@ -619,6 +630,7 @@ def build_dynamic_search_result(
     config = top_match["config"]
     evidence_items = [item for _, item in top_match["listing_scores"][: max(limit * 3, 24)]]
 
+    check_cancelled()
     _emit_progress(progress_callback, 0.8, "Generating dynamic filters")
     generated_filters = _generated_filters(config, evidence_items)
     prefill_filters, prefill_selected_order, prefill_section_order = _prefill_payload(
@@ -640,6 +652,7 @@ def build_dynamic_search_result(
     )
 
     if not listings:
+        check_cancelled()
         _emit_progress(progress_callback, 0.45, "Checking saved generated filters")
         cached_result = find_reusable_generated_result(query, limit=limit)
         if cached_result is not None:
@@ -651,6 +664,7 @@ def build_dynamic_search_result(
             save_reusable_generated_result(query, generated_result)
             return generated_result
 
+    check_cancelled()
     _emit_progress(progress_callback, 0.95, "Ranking evidence-backed matches")
     return DynamicSearchResult(
         query=query,

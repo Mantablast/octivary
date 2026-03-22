@@ -86,6 +86,48 @@ Official docs:
 - Web search tool: https://developers.openai.com/api/docs/guides/tools-web-search
 - GPT-5 mini model page: https://developers.openai.com/api/docs/models/gpt-5-mini
 
+OpenAI backend flow:
+
+```mermaid
+flowchart TD
+    A[User submits product search in frontend] --> B[POST /api/dynamic-search/jobs]
+    B --> C{Reusable local config match?}
+    C -->|Yes| D[Build local MCDA result]
+    D --> E[Store completed job]
+    C -->|No| F{Cached generated filter exists?}
+    F -->|Yes, full| G[Load cached generated result]
+    G --> E
+    F -->|Yes, partial| H[Load cached seed result]
+    H --> I[Store job as completed with enrichment_status=running]
+    I --> J[Enqueue background enrichment]
+    F -->|No| K[Enqueue seed build worker]
+
+    K --> L[build_dynamic_search_result]
+    L --> M[build_ai_seed_filter_result]
+    M --> N[POST OpenAI Responses API with web_search + JSON schema]
+    N --> O[Normalize products, filters, sections, display metadata]
+    O --> P{Seed result partial?}
+    P -->|No| Q[Save generated result cache]
+    Q --> E
+    P -->|Yes| R[Save generated result cache]
+    R --> S[Store job as completed with first 10 listings]
+    S --> T[Enqueue background enrichment]
+
+    J --> U[enrich_ai_generated_filter_result]
+    T --> U
+    U --> V[POST OpenAI Responses API for next batch]
+    V --> W[Merge new listings into stored generated result]
+    W --> X[Refresh generated config, filters, metadata]
+    X --> Y[Update job result in DB]
+    Y --> Z{Target listing count reached?}
+    Z -->|No| U
+    Z -->|Yes| AA[Set enrichment_status=completed]
+
+    E --> AB[Frontend opens generated filter immediately]
+    Y --> AC[Filter page polls job and refreshes listings]
+    AC --> AD[User filter state stays intact while new batches appear]
+```
+
 Dynamic finder:
 
 - Visit `/finder` in the frontend.

@@ -11,11 +11,23 @@ function buildHeaders(): Record<string, string> {
   return headers;
 }
 
+async function cancelJob(jobId: string): Promise<DynamicSearchJob> {
+  const apiBase = (import.meta.env.VITE_API_BASE || '').trim();
+  const response = await fetch(`${apiBase}/api/dynamic-search/jobs/${jobId}/cancel`, {
+    method: 'POST',
+    headers: buildHeaders()
+  });
+  if (!response.ok) {
+    throw new Error('Failed to stop the filter build.');
+  }
+  return response.json() as Promise<DynamicSearchJob>;
+}
+
 export default function Account() {
   const [jobs, setJobs] = useState<DynamicSearchJob[]>([]);
   const [error, setError] = useState('');
 
-  useEffect(() => {
+  const loadJobs = () => {
     const apiBase = (import.meta.env.VITE_API_BASE || '').trim();
     if (!apiBase) {
       setError('Set VITE_API_BASE to load pending and previous filters.');
@@ -34,10 +46,29 @@ export default function Account() {
       .catch((err) => {
         setError(err instanceof Error ? err.message : 'Failed to load your filter jobs.');
       });
+  };
+
+  useEffect(() => {
+    loadJobs();
   }, []);
 
-  const pendingJobs = jobs.filter((job) => job.status === 'queued' || job.status === 'running');
-  const previousJobs = jobs.filter((job) => job.status === 'completed');
+  const handleCancel = async (jobId: string) => {
+    setError('');
+    try {
+      const cancelledJob = await cancelJob(jobId);
+      setJobs((current) => current.map((job) => (job.job_id === jobId ? cancelledJob : job)));
+      loadJobs();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to stop your filter build.');
+    }
+  };
+
+  const pendingJobs = jobs.filter(
+    (job) => job.status === 'queued' || job.status === 'running' || job.result?.enrichment_status === 'running'
+  );
+  const previousJobs = jobs.filter(
+    (job) => job.status === 'completed' && job.result?.enrichment_status !== 'running'
+  );
 
   return (
     <section className="section">
@@ -67,7 +98,17 @@ export default function Account() {
               {pendingJobs.map((job) => (
                 <div key={job.job_id}>
                   <strong>{job.query}</strong>
-                  <div className="muted">{job.status} · {job.current_step}</div>
+                  <div className="muted">
+                    {job.result?.enrichment_status === 'running' ? 'enriching' : job.status} ·{' '}
+                    {job.result?.enrichment_message || job.current_step}
+                  </div>
+                  <button
+                    type="button"
+                    className="mcda-button mcda-button--ghost finder-stop-button"
+                    onClick={() => handleCancel(job.job_id)}
+                  >
+                    Stop search
+                  </button>
                 </div>
               ))}
             </div>

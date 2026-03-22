@@ -357,6 +357,88 @@ def _refresh_generated_config_from_listings(config: dict[str, Any], listings: li
     return refreshed
 
 
+def _coverage_count(listings: list[dict[str, Any]], path: str) -> int:
+    count = 0
+    for listing in listings:
+        value = resolve_path(listing, path)
+        if value is None:
+            continue
+        if isinstance(value, str) and not value.strip():
+            continue
+        if isinstance(value, list) and not any(str(item).strip() for item in value):
+            continue
+        count += 1
+    return count
+
+
+def _metadata_priority(filter_entry: dict[str, Any]) -> int:
+    key = str(filter_entry.get("key") or "").strip().lower()
+    label = str(filter_entry.get("label") or "").strip().lower()
+    haystack = f"{key} {label}"
+    score = 0
+    for term, weight in (
+        ("price", -100),
+        ("brand", -90),
+        ("buy", -80),
+        ("site", -60),
+        ("model", 55),
+        ("capacity", 90),
+        ("size", 75),
+        ("power", 95),
+        ("watt", 95),
+        ("horsepower", 95),
+        ("battery", 95),
+        ("storage", 95),
+        ("memory", 85),
+        ("display", 80),
+        ("screen", 80),
+        ("weight", 70),
+        ("dimension", 70),
+        ("material", 70),
+        ("feature", 80),
+        ("preset", 80),
+        ("program", 80),
+        ("speed", 75),
+        ("noise", 75),
+        ("warranty", 85),
+    ):
+        if term in haystack:
+            score += weight
+    if filter_entry.get("type") == "boolean":
+        score += 40
+    return score
+
+
+def _display_metadata_from_filters(config: dict[str, Any], listings: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    metadata: list[dict[str, Any]] = [
+        {"label": "Price", "path": "price.amount", "format": "currency", "currency": "USD"},
+        {"label": "Buy site", "path": "buy_site"},
+        {"label": "Brand", "path": "brand"},
+    ]
+    candidate_filters: list[tuple[int, int, dict[str, Any]]] = []
+    for entry in config.get("filters") or []:
+        if not isinstance(entry, dict):
+            continue
+        key = str(entry.get("key") or "").strip()
+        label = str(entry.get("label") or key).strip()
+        path = str(entry.get("path") or key).strip()
+        filter_type = str(entry.get("type") or "").strip()
+        if not key or not label or not path or filter_type == "text":
+            continue
+        if key in {"price", "brand", "buy_site"}:
+            continue
+        coverage = _coverage_count(listings, path)
+        if coverage <= 0:
+            continue
+        priority = _metadata_priority(entry)
+        candidate_filters.append((priority, coverage, {"label": label, "path": path}))
+
+    candidate_filters.sort(key=lambda item: (-item[0], -item[1], item[2]["label"].lower()))
+    for _, _, entry in candidate_filters[:4]:
+        metadata.append(entry)
+    return metadata
+
+
 def _generated_filter_summaries(config: dict[str, Any], listings: list[dict[str, Any]]) -> list[DynamicSearchFilterSummary]:
     summaries: list[DynamicSearchFilterSummary] = []
     for entry in config.get("filters") or []:
@@ -458,6 +540,21 @@ def _refresh_generated_result_state(
 ) -> DynamicSearchResult:
     listings = list(result.generated_listings or [])
     config = _refresh_generated_config_from_listings(result.generated_config or {}, listings)
+    display = dict(config.get("display") or {})
+    price_currency = next(
+        (
+            resolve_path(listing, "price.currency")
+            for listing in listings
+            if resolve_path(listing, "price.currency")
+        ),
+        "USD",
+    )
+    metadata = _display_metadata_from_filters(config, listings)
+    if metadata and metadata[0].get("label") == "Price":
+        metadata[0]["currency"] = str(price_currency)
+    display["metadata"] = metadata
+    display.setdefault("summary_path", "summary")
+    config["display"] = display
     result.generated_config = config
     result.generated_filters = _generated_filter_summaries(config, listings)
     result.evidence_count = len(listings)
@@ -661,15 +758,13 @@ def _normalize_generated_payload(query: str, payload: dict[str, Any], target_lim
         "display": {
             "title_template": "{title}",
             "subtitle_template": "{brand} {model}",
+            "summary_path": "summary",
             "image_path": "images[0]",
             "empty_image": "/assets/octonotes.png",
-            "metadata": [
-                {"label": "Price", "path": "price.amount", "format": "currency", "currency": currency},
-                {"label": "Buy site", "path": "buy_site"},
-                {"label": "Brand", "path": "brand"},
-            ],
+            "metadata": [],
         },
     }
+    generated_config["display"]["metadata"] = _display_metadata_from_filters(generated_config, listings)
 
     result = DynamicSearchResult(
         query=query,
@@ -712,21 +807,32 @@ def build_ai_seed_filter_result(query: str, target_limit: int = 50) -> DynamicSe
     return build_ai_generated_filter_result(query, limit=seed_limit)
 
 
+def refresh_ai_generated_filter_result(
+    result: DynamicSearchResult,
+    target_limit: int | None = None,
+) -> DynamicSearchResult:
+    effective_target = target_limit or result.target_listing_count or len(result.generated_listings or [])
+    return _refresh_generated_result_state(
+        DynamicSearchResult(**result.model_dump()),
+        max(1, min(int(effective_target), 50)),
+    )
+
+
 def enrich_ai_generated_filter_result(
     query: str,
     result: DynamicSearchResult,
     target_limit: int = 50,
     on_batch: Callable[[DynamicSearchResult], None] | None = None,
+    should_cancel: Callable[[], bool] | None = None,
 ) -> DynamicSearchResult:
     if not result.generated_config or not result.generated_listings:
         return result
 
-    refreshed = _refresh_generated_result_state(
-        DynamicSearchResult(**result.model_dump()),
-        max(1, min(int(target_limit), 50)),
-    )
+    refreshed = refresh_ai_generated_filter_result(result, target_limit)
 
     while len(refreshed.generated_listings) < refreshed.target_listing_count:
+        if should_cancel and should_cancel():
+            raise RuntimeError("__dynamic_search_cancelled__")
         remaining = refreshed.target_listing_count - len(refreshed.generated_listings)
         batch_limit = min(_enrichment_batch_size(), remaining)
         parsed = _request_openai_json(
@@ -760,5 +866,7 @@ def enrich_ai_generated_filter_result(
         refreshed = _refresh_generated_result_state(refreshed, refreshed.target_listing_count)
         if on_batch:
             on_batch(DynamicSearchResult(**refreshed.model_dump()))
+        if should_cancel and should_cancel():
+            raise RuntimeError("__dynamic_search_cancelled__")
 
     return refreshed

@@ -116,6 +116,8 @@ class DynamicSearchResult(BaseModel):
     is_partial: bool = False
     loaded_listing_count: int = 0
     target_listing_count: int = 0
+    enrichment_status: Literal["idle", "running", "completed", "paused", "cancelled"] = "idle"
+    enrichment_message: str | None = None
     note: str | None = None
     open_filter_path: str | None = None
 
@@ -125,7 +127,7 @@ class DynamicSearchJob(BaseModel):
     user_id: str
     query: str
     limit: int = 50
-    status: Literal["queued", "running", "completed", "failed"]
+    status: Literal["queued", "running", "completed", "failed", "cancelled"]
     progress: float = 0.0
     current_step: str
     profile: str

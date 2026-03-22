@@ -67,6 +67,7 @@ export type ResultsDisplay = {
   unit?: string;
   title_template?: string;
   subtitle_template?: string;
+  summary_path?: string;
   image_path?: string;
   empty_image?: string;
   metadata?: DisplayMetadata[];
@@ -169,6 +170,8 @@ export type DynamicSearchResult = {
   is_partial?: boolean;
   loaded_listing_count?: number;
   target_listing_count?: number;
+  enrichment_status?: 'idle' | 'running' | 'completed' | 'paused' | 'cancelled';
+  enrichment_message?: string | null;
   note?: string | null;
   open_filter_path?: string | null;
 };
@@ -178,7 +181,7 @@ export type DynamicSearchJob = {
   user_id: string;
   query: string;
   limit: number;
-  status: 'queued' | 'running' | 'completed' | 'failed';
+  status: 'queued' | 'running' | 'completed' | 'failed' | 'cancelled';
   progress: number;
   current_step: string;
   profile: string;

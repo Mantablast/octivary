@@ -43,6 +43,18 @@ async function listJobs(): Promise<DynamicSearchJob[]> {
   return response.json() as Promise<DynamicSearchJob[]>;
 }
 
+async function cancelJob(jobId: string): Promise<DynamicSearchJob> {
+  const apiBase = (import.meta.env.VITE_API_BASE || '').trim();
+  const response = await fetch(`${apiBase}/api/dynamic-search/jobs/${jobId}/cancel`, {
+    method: 'POST',
+    headers: buildHeaders()
+  });
+  if (!response.ok) {
+    throw new Error('Failed to stop the finder job.');
+  }
+  return response.json() as Promise<DynamicSearchJob>;
+}
+
 export default function DynamicFinder() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -51,6 +63,8 @@ export default function DynamicFinder() {
   const [job, setJob] = useState<DynamicSearchJob | null>(null);
   const [recentJobs, setRecentJobs] = useState<DynamicSearchJob[]>([]);
   const [error, setError] = useState('');
+  const [listingUpdateNotice, setListingUpdateNotice] = useState('');
+  const [isCancelling, setIsCancelling] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handledQueryRef = useRef<string>('');
   const hasAutoOpenedFilter = useRef(false);
@@ -124,7 +138,9 @@ export default function DynamicFinder() {
   }, [initialQuery]);
 
   useEffect(() => {
-    if (!job || job.status === 'completed' || job.status === 'failed') {
+    const shouldPoll =
+      !!job && job.status !== 'failed' && (job.status !== 'completed' || job.result?.enrichment_status === 'running');
+    if (!job || !shouldPoll) {
       return;
     }
 
@@ -135,8 +151,14 @@ export default function DynamicFinder() {
       try {
         const nextJob = await fetchJob(job.job_id);
         if (cancelled) return;
+        const previousLoaded = job.result?.loaded_listing_count || 0;
+        const nextLoaded = nextJob.result?.loaded_listing_count || 0;
+        if (nextLoaded > previousLoaded) {
+          const delta = nextLoaded - previousLoaded;
+          setListingUpdateNotice(`${delta} new listing${delta === 1 ? '' : 's'} added.`);
+        }
         setJob(nextJob);
-        if (nextJob.status === 'completed' || nextJob.status === 'failed') {
+        if (nextJob.status === 'failed' || nextJob.result?.enrichment_status !== 'running') {
           loadRecentJobs();
           return;
         }
@@ -153,6 +175,14 @@ export default function DynamicFinder() {
       window.clearTimeout(timer);
     };
   }, [job]);
+
+  useEffect(() => {
+    if (!listingUpdateNotice) return;
+    const timer = window.setTimeout(() => {
+      setListingUpdateNotice('');
+    }, 3200);
+    return () => window.clearTimeout(timer);
+  }, [listingUpdateNotice]);
 
   useEffect(() => {
     if (!job || job.status === 'failed' || hasAutoOpenedFilter.current) {
@@ -172,9 +202,44 @@ export default function DynamicFinder() {
     submitQuery(query);
   };
 
-  const progressWidth = `${Math.max(8, Math.round((job?.progress || 0) * 100))}%`;
+  const handleCancel = async (jobId: string) => {
+    setError('');
+    setIsCancelling(true);
+    try {
+      const cancelledJob = await cancelJob(jobId);
+      setJob((current) => (current?.job_id === jobId ? cancelledJob : current));
+      setListingUpdateNotice('Search stopped.');
+      loadRecentJobs();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to stop the finder job.');
+    } finally {
+      setIsCancelling(false);
+    }
+  };
+
+  const isEnriching = job?.result?.enrichment_status === 'running';
+  const isActiveProgress = Boolean(job && (job.status === 'queued' || job.status === 'running' || isEnriching));
+  const targetListings = job?.result?.target_listing_count || job?.limit || RESULT_LIMIT;
+  const loadedListings = job?.result?.loaded_listing_count || 0;
+  const progressValue = isEnriching
+    ? Math.max(0.2, Math.min(0.98, loadedListings / Math.max(1, targetListings)))
+    : job?.progress || 0;
+  const progressWidth = `${Math.max(8, Math.round(progressValue * 100))}%`;
   const result = job?.result;
   const showResults = Boolean(job);
+  const statusLabel = isEnriching ? 'enriching' : job?.status || 'idle';
+  const statusHeadline = isEnriching
+    ? result?.enrichment_message || `Enriching comparison (${loadedListings}/${targetListings})`
+    : job
+    ? job.current_step
+    : 'Waiting for a search';
+
+  const canCancel = Boolean(
+    job &&
+      (job.status === 'queued' ||
+        job.status === 'running' ||
+        job.result?.enrichment_status === 'running')
+  );
 
   if (!showResults) {
     return (
@@ -223,20 +288,39 @@ export default function DynamicFinder() {
           <div className="finder-status-header">
             <div>
               <p className="eyebrow">Job status</p>
-              <h2>{job ? job.current_step : 'Waiting for a search'}</h2>
+              <h2>{statusHeadline}</h2>
             </div>
-            <span className={`status-pill status-${job?.status || 'idle'}`}>
-              {job?.status || 'idle'}
+            <span className={`status-pill status-${statusLabel}`}>
+              {statusLabel}
             </span>
           </div>
-          <div className="finder-progress">
-            <div className="finder-progress-bar" style={{ width: progressWidth }} />
+          <div className={`finder-progress ${isActiveProgress ? 'finder-progress-active' : ''}`}>
+            <div
+              className={`finder-progress-bar ${isActiveProgress ? 'finder-progress-bar-animated' : ''}`}
+              style={{ width: progressWidth }}
+            />
           </div>
           <p className="muted">
             {job
               ? `Profile: ${job.profile} · Query: ${job.query}`
               : 'Waiting for a build request.'}
           </p>
+          {isEnriching ? (
+            <p className="muted">
+              First 10 listings are ready. More products will be added in batches without resetting your filter state.
+            </p>
+          ) : null}
+          {listingUpdateNotice ? <p className="muted">{listingUpdateNotice}</p> : null}
+          {canCancel ? (
+            <button
+              type="button"
+              className="mcda-button mcda-button--ghost finder-stop-button"
+              onClick={() => handleCancel(job.job_id)}
+              disabled={isCancelling}
+            >
+              {isCancelling ? 'Stopping...' : 'Stop search'}
+            </button>
+          ) : null}
           {job?.error_message ? <p className="finder-error">{job.error_message}</p> : null}
           {result?.open_filter_path ? (
             <Link className="ghost-link" to={`${result.open_filter_path}?dynamicJob=${encodeURIComponent(job?.job_id || '')}`}>
@@ -390,7 +474,7 @@ export default function DynamicFinder() {
                   >
                     <strong>{recentJob.query}</strong>
                     <span>
-                      {recentJob.status} · {recentJob.profile}
+                      {recentJob.result?.enrichment_status === 'running' ? 'enriching' : recentJob.status} · {recentJob.profile}
                     </span>
                   </button>
                 ))}

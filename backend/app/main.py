@@ -51,6 +51,8 @@ from .storage import (
 
 app = FastAPI(title='Octivary API', version='0.1.0')
 
+_CANCELLED_JOB_SENTINEL = "__dynamic_search_cancelled__"
+
 
 def _cors_allowlist() -> list[str]:
     raw = os.getenv('CORS_ALLOW_ORIGINS')
@@ -82,7 +84,9 @@ def _find_existing_active_dynamic_job(user_id: str, query: str) -> DynamicSearch
         return None
     jobs = get_search_job_store().list_jobs(user_id, limit=50)
     for job in jobs:
-        if job.status not in {"queued", "running"}:
+        is_active_status = job.status in {"queued", "running"}
+        is_enriching = bool(job.result and job.result.enrichment_status == "running")
+        if not is_active_status and not is_enriching:
             continue
         if _normalized_dynamic_query(job.query) != normalized_query:
             continue
@@ -90,7 +94,19 @@ def _find_existing_active_dynamic_job(user_id: str, query: str) -> DynamicSearch
     return None
 
 
+def _job_is_cancelled(job_id: str) -> bool:
+    job = get_search_job_store().get_job(job_id)
+    return bool(job and job.status == "cancelled")
+
+
+def _raise_if_job_cancelled(job_id: str) -> None:
+    if _job_is_cancelled(job_id):
+        raise RuntimeError(_CANCELLED_JOB_SENTINEL)
+
+
 def _update_dynamic_job_progress(job_id: str, progress: float, message: str) -> None:
+    if _job_is_cancelled(job_id):
+        return
     get_search_job_store().update_job(
         job_id,
         status="running",
@@ -106,6 +122,22 @@ def _generated_job_progress(loaded_listing_count: int, target_listing_count: int
     return min(0.98, 0.62 + (loaded / target) * 0.33)
 
 
+def _set_enrichment_state(
+    result: DynamicSearchResult,
+    status: str,
+    message: str | None,
+    default_target: int,
+) -> DynamicSearchResult:
+    target = result.target_listing_count or default_target or len(result.generated_listings or [])
+    loaded = result.loaded_listing_count or len(result.generated_listings or [])
+    result.enrichment_status = status  # type: ignore[assignment]
+    result.enrichment_message = message
+    result.is_partial = loaded < max(1, target)
+    result.loaded_listing_count = loaded
+    result.target_listing_count = max(1, target)
+    return result
+
+
 def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
     job_id = str(payload.get("job_id") or "").strip()
     if not job_id:
@@ -114,50 +146,68 @@ def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
     job = store.get_job(job_id)
     if not job:
         return
-    store.update_job(
-        job_id,
-        status="running",
-        progress=0.12,
-        current_step="Dequeued for local processing",
-        error_message=None,
-    )
+    if job.status == "cancelled":
+        return
     try:
+        enrich_generated = bool(payload.get("enrich_generated"))
         resume_generated = bool(payload.get("resume_generated"))
-        existing_result = job.result if resume_generated and job.result and job.result.generated_config else None
+        if not enrich_generated:
+            store.update_job(
+                job_id,
+                status="running",
+                progress=0.12,
+                current_step="Dequeued for local processing",
+                error_message=None,
+            )
+        existing_result = job.result if (resume_generated or enrich_generated) and job.result and job.result.generated_config else None
         result = existing_result or build_dynamic_search_result(
             job.query,
             limit=job.limit,
             progress_callback=lambda progress, message: _update_dynamic_job_progress(job_id, progress, message),
+            should_cancel=lambda: _job_is_cancelled(job_id),
         )
+        _raise_if_job_cancelled(job_id)
         if result.generated_config:
             result.open_filter_path = f"/generated/{job_id}"
             save_reusable_generated_result(job.query, result)
-            if result.is_partial and result.generated_listings:
+            if enrich_generated:
+                latest_result = DynamicSearchResult(**result.model_dump())
+                if not latest_result.generated_listings:
+                    return
+                _set_enrichment_state(
+                    latest_result,
+                    "running",
+                    f"Enriching comparison ({latest_result.loaded_listing_count or len(latest_result.generated_listings)}/{latest_result.target_listing_count or job.limit})",
+                    job.limit,
+                )
                 store.update_job(
                     job_id,
-                    status="running",
-                    progress=_generated_job_progress(result.loaded_listing_count, result.target_listing_count or job.limit),
-                    current_step=f"Seed comparison ready ({result.loaded_listing_count}/{result.target_listing_count or job.limit})",
-                    result=result,
+                    status="completed",
+                    progress=1.0,
+                    current_step="Comparison ready",
+                    result=latest_result,
                     error_message=None,
                 )
 
-                latest_result = DynamicSearchResult(**result.model_dump())
-
                 def handle_enrichment_batch(intermediate_result: DynamicSearchResult) -> None:
-                    nonlocal latest_result
+                    if _job_is_cancelled(job_id):
+                        return
                     intermediate_result.open_filter_path = f"/generated/{job_id}"
-                    latest_result = DynamicSearchResult(**intermediate_result.model_dump())
-                    save_reusable_generated_result(job.query, latest_result)
+                    latest_loaded = intermediate_result.loaded_listing_count or len(intermediate_result.generated_listings or [])
+                    latest_target = intermediate_result.target_listing_count or job.limit
+                    _set_enrichment_state(
+                        intermediate_result,
+                        "running",
+                        f"Added more listings ({latest_loaded}/{latest_target})",
+                        job.limit,
+                    )
+                    save_reusable_generated_result(job.query, intermediate_result)
                     store.update_job(
                         job_id,
-                        status="running",
-                        progress=_generated_job_progress(
-                            latest_result.loaded_listing_count,
-                            latest_result.target_listing_count or job.limit,
-                        ),
-                        current_step=f"Adding more products ({latest_result.loaded_listing_count}/{latest_result.target_listing_count or job.limit})",
-                        result=latest_result,
+                        status="completed",
+                        progress=1.0,
+                        current_step="Comparison ready",
+                        result=intermediate_result,
                         error_message=None,
                     )
 
@@ -167,8 +217,19 @@ def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
                         latest_result,
                         target_limit=job.limit,
                         on_batch=handle_enrichment_batch,
+                        should_cancel=lambda: _job_is_cancelled(job_id),
                     )
+                    _raise_if_job_cancelled(job_id)
                     latest_result.open_filter_path = f"/generated/{job_id}"
+                    final_loaded = latest_result.loaded_listing_count or len(latest_result.generated_listings or [])
+                    final_target = latest_result.target_listing_count or job.limit
+                    final_status = "completed" if final_loaded >= final_target else "paused"
+                    final_message = (
+                        f"Enrichment finished ({final_loaded}/{final_target})"
+                        if final_status == "completed"
+                        else f"Enrichment paused ({final_loaded}/{final_target})"
+                    )
+                    _set_enrichment_state(latest_result, final_status, final_message, job.limit)
                     save_reusable_generated_result(job.query, latest_result)
                     store.update_job(
                         job_id,
@@ -179,11 +240,21 @@ def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
                         error_message=None,
                     )
                     return
-                except Exception:
+                except Exception as exc:
+                    if str(exc) == _CANCELLED_JOB_SENTINEL or _job_is_cancelled(job_id):
+                        return
                     latest_result.note = (
                         f"{latest_result.note or ''} Background enrichment paused before reaching the full listing target. "
                         "The seed comparison is still ready to use."
                     ).strip()
+                    paused_loaded = latest_result.loaded_listing_count or len(latest_result.generated_listings or [])
+                    paused_target = latest_result.target_listing_count or job.limit
+                    _set_enrichment_state(
+                        latest_result,
+                        "paused",
+                        f"Enrichment paused ({paused_loaded}/{paused_target})",
+                        job.limit,
+                    )
                     save_reusable_generated_result(job.query, latest_result)
                     store.update_job(
                         job_id,
@@ -195,6 +266,30 @@ def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
                     )
                     return
 
+            if result.is_partial and result.generated_listings:
+                _set_enrichment_state(
+                    result,
+                    "running",
+                    f"Enriching comparison ({result.loaded_listing_count}/{result.target_listing_count or job.limit})",
+                    job.limit,
+                )
+                completed_job = store.update_job(
+                    job_id,
+                    status="completed",
+                    progress=1.0,
+                    current_step="Comparison ready",
+                    result=result,
+                    error_message=None,
+                )
+                queue = get_queue_provider(_process_dynamic_search_queue_message)
+                queue.enqueue({"job_id": job.job_id, "enrich_generated": True, "resume_generated": True})
+                if completed_job is not None:
+                    return
+                return
+
+            _set_enrichment_state(result, "completed", "Comparison ready", job.limit)
+
+        _raise_if_job_cancelled(job_id)
         store.update_job(
             job_id,
             status="completed",
@@ -204,6 +299,8 @@ def _process_dynamic_search_queue_message(payload: dict[str, object]) -> None:
             error_message=None,
         )
     except Exception as exc:
+        if str(exc) == _CANCELLED_JOB_SENTINEL or _job_is_cancelled(job_id):
+            return
         store.update_job(
             job_id,
             status="failed",
@@ -1000,22 +1097,26 @@ async def create_dynamic_search_job(
     if cached_result and cached_result.generated_config:
         cached_result.open_filter_path = f"/generated/{job.job_id}"
         if cached_result.is_partial and os.getenv("OPENAI_API_KEY", "").strip():
-            running_job = store.update_job(
+            _set_enrichment_state(
+                cached_result,
+                "running",
+                f"Enriching comparison ({cached_result.loaded_listing_count or len(cached_result.generated_listings or [])}/{cached_result.target_listing_count or limit})",
+                limit,
+            )
+            completed_job = store.update_job(
                 job.job_id,
-                status="running",
-                progress=_generated_job_progress(
-                    cached_result.loaded_listing_count or len(cached_result.generated_listings or []),
-                    cached_result.target_listing_count or limit,
-                ),
-                current_step="Loaded saved seed comparison",
+                status="completed",
+                progress=1.0,
+                current_step="Loaded saved comparison",
                 result=cached_result,
                 error_message=None,
             )
             queue = get_queue_provider(_process_dynamic_search_queue_message)
-            queue.enqueue({"job_id": job.job_id, "resume_generated": True})
-            if running_job is not None:
-                return running_job
+            queue.enqueue({"job_id": job.job_id, "enrich_generated": True, "resume_generated": True})
+            if completed_job is not None:
+                return completed_job
             return job
+        _set_enrichment_state(cached_result, "completed", "Comparison ready", limit)
         completed_job = store.update_job(
             job.job_id,
             status="completed",
@@ -1044,6 +1145,38 @@ async def get_dynamic_search_job(
     if not job or job.user_id != user_id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Search job not found')
     return job
+
+
+@app.post('/api/dynamic-search/jobs/{job_id}/cancel', response_model=DynamicSearchJob)
+async def cancel_dynamic_search_job(
+    request: Request,
+    job_id: str,
+    _claims: dict = Depends(require_user),
+) -> DynamicSearchJob:
+    guard_if_paused()
+    user_id = _user_id_from_request(request)
+    store = get_search_job_store()
+    job = store.get_job(job_id)
+    if not job or job.user_id != user_id:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Search job not found')
+    if job.status in {'completed', 'failed', 'cancelled'} and ((job.result.enrichment_status if job.result else None) != 'running'):
+        return job
+    result = DynamicSearchResult(**job.result.model_dump()) if job.result else None
+    if result is not None:
+        result.enrichment_status = "cancelled"
+        result.enrichment_message = "Search stopped by user."
+        result.is_partial = False
+    cancelled_job = store.update_job(
+        job_id,
+        status='cancelled',
+        progress=job.progress,
+        current_step='Search stopped',
+        result=result,
+        error_message=None,
+    )
+    if cancelled_job is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Search job not found')
+    return cancelled_job
 
 
 @app.post('/api/dynamic-search/jobs/{job_id}/score')

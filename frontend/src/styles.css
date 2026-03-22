@@ -395,6 +395,7 @@ p {
   border-radius: 999px;
   background: var(--surface-muted);
   overflow: hidden;
+  position: relative;
 }
 
 .finder-progress-bar {
@@ -403,6 +404,28 @@ p {
   border-radius: inherit;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   transition: width 180ms ease-out;
+}
+
+.finder-progress-active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.18) 35%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.18) 65%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: finder-progress-sheen 1.35s linear infinite;
+  pointer-events: none;
+}
+
+.finder-progress-bar-animated {
+  background-size: 200% 100%;
+  animation: finder-progress-gradient 1.6s ease-in-out infinite;
 }
 
 .finder-error {
@@ -424,6 +447,12 @@ p {
   background: var(--surface-muted);
   max-width: 100%;
   flex-shrink: 0;
+}
+
+.status-enriching {
+  border-color: rgba(47, 107, 95, 0.28);
+  background: rgba(47, 107, 95, 0.14);
+  color: var(--accent-2);
 }
 
 .finder-status-card h2,
@@ -450,6 +479,10 @@ p {
 
 .status-failed {
   background: rgba(212, 87, 61, 0.22);
+}
+
+.status-cancelled {
+  background: rgba(93, 101, 118, 0.18);
 }
 
 .status-idle {
@@ -537,6 +570,31 @@ p {
   text-align: left;
   font: inherit;
   cursor: pointer;
+}
+
+.finder-stop-button {
+  width: fit-content;
+}
+
+@keyframes finder-progress-sheen {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes finder-progress-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @media (max-width: 900px) {
@@ -1733,6 +1791,13 @@ p {
   margin: 0;
   color: var(--mcda-muted);
   font-size: 0.9rem;
+}
+
+.mcda-result-summary {
+  margin: 14px 0 0;
+  color: var(--mcda-text);
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 .mcda-result-header {

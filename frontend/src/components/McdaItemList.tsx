@@ -63,6 +63,17 @@ const formatMetadataValue = (item: Record<string, any>, entry: DisplayMetadata) 
     return date.toLocaleDateString('en-US');
   }
 
+  if (typeof raw === 'boolean') {
+    return raw ? 'Yes' : 'No';
+  }
+
+  if (Array.isArray(raw)) {
+    const values = raw
+      .map((value) => String(value).trim())
+      .filter((value) => value.length > 0);
+    return values.length > 0 ? values.join(', ') : '—';
+  }
+
   const value = String(raw);
   return entry.suffix ? `${value}${entry.suffix}` : value;
 };
@@ -231,10 +242,18 @@ export default function McdaItemList({
           const extraMetadata = metadataEntries.slice(1);
           const title = display.title_template ? renderTemplate(display.title_template, item) : item.title || item.id;
           const subtitle = display.subtitle_template ? renderTemplate(display.subtitle_template, item).trim() : '';
+          const summary = display.summary_path ? String(resolvePath(item, display.summary_path) || '').trim() : '';
           const imageSrc =
             resolvePath(item, display.image_path) ||
             display.empty_image ||
             'https://via.placeholder.com/640x480?text=Listing';
+          const resolvedMetadata = extraMetadata
+            .map((entry) => ({
+              entry,
+              value: formatMetadataValue(item, entry)
+            }))
+            .filter(({ value }) => value && value !== '—')
+            .slice(0, 6);
 
           return (
             <article key={item.id} className="mcda-result-card">
@@ -275,12 +294,14 @@ export default function McdaItemList({
                     </div>
                   </div>
 
-                  {extraMetadata.length > 0 && (
+                  {summary && <p className="mcda-result-summary">{summary}</p>}
+
+                  {resolvedMetadata.length > 0 && (
                     <dl className="mcda-metadata-grid">
-                      {extraMetadata.map((entry) => (
+                      {resolvedMetadata.map(({ entry, value }) => (
                         <div key={entry.label}>
                           <dt>{entry.label}</dt>
-                          <dd>{formatMetadataValue(item, entry)}</dd>
+                          <dd>{value}</dd>
                         </div>
                       ))}
                     </dl>
